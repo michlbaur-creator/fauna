@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tagpfauenauge · Artseite · Fauna Mibaso</title>
-<meta name="description" content="Tagpfauenauge (Aglais io): Steckbrief, Merkmale und Wissenswertes – Fauna Mibaso.">
+<meta name="description" content="Tagpfauenauge (Aglais io): naturkundliche Tafel, Foto, Steckbrief und Wissenswertes – Fauna Mibaso.">
 <style>
   :root{
     --blau:#233D5C; --creme:#F7F3E8; --creme-tief:#EEE7D5; --pergament:#EDE3CC;
@@ -26,8 +26,9 @@
   .tafel::after{content:"";position:absolute;inset:6px;border:1px solid #d8cba9;border-radius:3px;pointer-events:none;}
   .tafel .kopf{display:flex;justify-content:space-between;align-items:baseline;
     font-family:var(--sans);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#9a7b45;}
-  .tafel svg{display:block;width:100%;height:auto;max-height:230px;margin:6px 0 4px;}
-  .tafel .bu{text-align:center;font-style:italic;color:#5a4a32;font-size:14px;margin:4px 0 0;}
+  .tafel img{display:block;width:100%;height:auto;margin:8px 0 4px;border-radius:3px;
+    background:#fff;}
+  .tafel .bu{text-align:center;font-style:italic;color:#5a4a32;font-size:14px;margin:6px 0 0;}
   .tafel .ph{text-align:center;font-family:var(--sans);font-size:10px;color:#a99a78;margin-top:2px;}
 
   h1{font-size:clamp(26px,7vw,38px);line-height:1.05;margin:18px 0 2px;font-weight:normal;}
@@ -37,24 +38,28 @@
     border-radius:999px;padding:4px 10px;}
   .chip b{color:var(--honig);font-weight:700;}
 
-  .foto{background:var(--creme-tief);border-radius:10px;aspect-ratio:4/3;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
-    color:#9aa6b0;font-family:var(--sans);border:1px dashed #c3ccd5;margin-bottom:20px;}
-  .foto .ic{width:34px;height:34px;border-radius:50%;border:2px solid #c3ccd5;display:flex;align-items:center;justify-content:center;font-size:18px;}
-  .foto small{font-size:11px;}
+  .foto{margin:0 0 22px;}
+  .foto img{display:block;width:100%;height:auto;border-radius:10px;
+    box-shadow:0 2px 10px rgba(35,61,92,.14);}
+  .foto .ph{font-family:var(--sans);font-size:10.5px;color:#9aa6b0;margin:5px 2px 0;}
 
   h2{font-family:var(--sans);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
-    color:var(--honig);margin:0 0 10px;}
-  dl{margin:0 0 22px;display:grid;grid-template-columns:max-content 1fr;gap:9px 16px;}
+    color:var(--honig);margin:22px 0 10px;}
+  dl{margin:0 0 8px;display:grid;grid-template-columns:max-content 1fr;gap:9px 16px;}
   dt{font-family:var(--sans);font-size:12.5px;font-weight:700;color:var(--blau);}
   dd{margin:0;font-size:15px;color:var(--tinte);}
 
-  .text{font-size:15.5px;color:var(--tinte);margin:0 0 24px;}
+  .abschnitt{font-size:19px;color:var(--blau);margin:20px 0 4px;font-weight:bold;line-height:1.2;}
+  .text{font-size:15.5px;color:var(--tinte);margin:0;}
 
-  .mehr{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:14px;font-weight:600;
-    color:var(--creme);background:var(--blau);border:none;border-radius:999px;padding:12px 20px;cursor:pointer;text-decoration:none;}
-  .mehr:hover{background:#1a2f47;}
-  .baumlink{display:block;margin-top:14px;font-family:var(--sans);font-size:13px;color:var(--blau);}
+  .notizen{list-style:none;margin:6px 0 0;padding:0;}
+  .notizen li{font-size:14.5px;color:var(--tinte);padding-left:18px;position:relative;margin:0 0 7px;}
+  .notizen li::before{content:"—";position:absolute;left:0;color:var(--honig);}
+
+  .baumlink{display:inline-flex;align-items:center;gap:8px;margin-top:24px;font-family:var(--sans);
+    font-size:14px;font-weight:600;color:var(--creme);background:var(--blau);border:none;
+    border-radius:999px;padding:12px 20px;cursor:pointer;text-decoration:none;}
+  .baumlink:hover{background:#1a2f47;}
 
   .vorlage{margin-top:28px;padding-top:14px;border-top:1px solid var(--linie);
     font-family:var(--sans);font-size:11.5px;color:#9aa6b0;}
@@ -66,28 +71,10 @@
   <p class="brot">Insekten › Schmetterlinge › Tagfalter › Edelfalter</p>
 
   <div class="tafel">
-    <div class="kopf"><span>Tafel</span><span>Taf. 15</span></div>
-    <svg viewBox="0 0 300 200" role="img" aria-label="Schmetterling-Illustration">
-      <g fill="#b23a2e">
-        <ellipse cx="150" cy="100" rx="5" ry="40"/>
-        <circle cx="150" cy="60" r="6"/>
-        <path d="M150 56 C142 40 130 34 120 30" stroke="#b23a2e" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <path d="M150 56 C158 40 170 34 180 30" stroke="#b23a2e" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <circle cx="120" cy="30" r="3"/><circle cx="180" cy="30" r="3"/>
-        <path d="M147 78 C95 40 40 50 36 80 C32 108 95 104 147 96 Z"/>
-        <path d="M147 104 C100 116 52 128 58 150 C64 170 120 148 147 124 Z"/>
-        <path d="M153 78 C205 40 260 50 264 80 C268 108 205 104 153 96 Z"/>
-        <path d="M153 104 C200 116 248 128 242 150 C236 170 180 148 153 124 Z"/>
-      </g>
-      <g fill="#1f3a6a" opacity="0.62">
-        <path d="M70 64 C90 62 112 66 130 74 C112 78 90 78 72 76 Z"/>
-        <path d="M230 64 C210 62 188 66 170 74 C188 78 210 78 228 76 Z"/>
-        <path d="M64 132 C86 128 110 132 130 138 C110 142 86 142 66 142 Z"/>
-        <path d="M236 132 C214 128 190 132 170 138 C190 142 214 142 234 142 Z"/>
-      </g>
-    </svg>
+    <div class="kopf"><span>Naturkundliche Tafel</span><span>Taf. 15</span></div>
+    <img src="../images/tafeln/tagpfauenauge.jpg" alt="Naturkundliche Lehrtafel: Tagpfauenauge (Aglais io) mit Entwicklungsstadien">
     <p class="bu">Tagpfauenauge · <i>Aglais io</i></p>
-    <p class="ph">Beispiel-Illustration (Platzhalter für ein klassisches Tafelbild)</p>
+    <p class="ph">Illustration im Stil klassischer Lehrtafeln (teils KI-gestützt erstellt)</p>
   </div>
 
   <h1>Tagpfauenauge</h1>
@@ -99,27 +86,40 @@
   </div>
 
   <div class="foto">
-    <span class="ic">▦</span>
-    <span>Foto</span>
-    <small>Platzhalter · Olympus OM-5</small>
+    <img src="../images/fotos/tagpfauenauge.jpg" alt="Foto: Tagpfauenauge (Aglais io)">
+    <p class="ph">Foto: Michael Baur · Olympus OM-5 · CC BY-NC</p>
   </div>
 
   <h2>Steckbrief</h2>
   <dl>
-    <dt>Merkmale</dt><dd>Rotbraun mit vier großen, leuchtenden Augenflecken in Blau, Gelb und Schwarz.</dd>
-    <dt>Spannweite</dt><dd>50–60 mm</dd>
-    <dt>Lebensraum</dt><dd>Gärten, Wiesen und Wälder – überall verbreitet.</dd>
-    <dt>Flugzeit</dt><dd>Februar bis Oktober</dd>
-    <dt>Raupe an</dt><dd>Großer Brennnessel</dd>
+    <dt>Familie</dt><dd>Edelfalter (Nymphalidae)</dd>
+    <dt>Flügelspanne</dt><dd>50-60 mm</dd>
+    <dt>Flugzeit</dt><dd>Februar-Oktober</dd>
+    <dt>Raupe frisst</dt><dd>Brennnessel (Urtica dioica)</dd>
+    <dt>Vorkommen</dt><dd>Überall: Gärten, Wiesen, Wälder</dd>
+    <dt>Überwinterung</dt><dd>Als Falter (Keller, Höhlen, Dachböden)</dd>
+    <dt>Besonderheit</dt><dd>Vier leuchtende Augenflecken als Schreckbild</dd>
   </dl>
 
-  <h2>Wissenswertes</h2>
-  <p class="text">Kommt ein Vogel zu nah, klappt der Falter blitzschnell die Flügel auf: Vier große Augen starren dem Angreifer entgegen, dazu ein zischendes Geräusch durch Aneinanderreiben der Flügel. Zugeklappt ist die dunkle Unterseite kaum von Rinde zu unterscheiden. Die Raupe lebt gesellig auf Brennnesseln.</p>
+  <h3 class="abschnitt">Vier Augen, die Angst machen</h3>
+  <p class="text">Das Tagpfauenauge ist einer der bekanntesten Tagfalter Deutschlands – und einer der raffiniertest geschützten. Wenn ein Vogel zu nahe kommt, klappt der ruhende Falter blitzschnell die Flügel auf: Vier große, leuchtende Augenflecken starren dem Angreifer entgegen. Gleichzeitig reibt er die Flügel aneinander und erzeugt ein zischendes Geräusch. Dieser Doppelschock – visuell und akustisch – lässt selbst erfahrene Vogelschnäbel zurückschrecken.</p>
 
-  <a class="mehr" href="#">Ausführliche Infos ansehen →</a>
+  <h3 class="abschnitt">Die dunkle Seite des Überlebens</h3>
+  <p class="text">Zugeklappt bietet das Tagpfauenauge ein völlig anderes Bild: Die Unterseite ist tief dunkelbraun bis schwarz mit feiner Maserung – wie Baumrinde oder ein trockenes Blatt. Im Winterschlaf, hängend an der Decke eines Kellers oder einer Höhle, ist es nahezu unsichtbar. Zwei Überlebensstrategien, die sich gegenseitig ergänzen: Erschrecken im Angesicht des Feindes, Verstecken in der Ruhe.</p>
+
+  <h3 class="abschnitt">Brennnessel, Sommer, Sonnenschein</h3>
+  <p class="text">Wie alle großen Edelfalter dieser Gruppe zieht auch das Tagpfauenauge die Brennnessel zur Eiablage vor. Die schwarzen, bestachelten Raupen leben gesellig in Gespinstzelten und sind leicht zu finden. Im Sommer sieht man die Falter in großer Zahl an Schmetterlingsstrauch, Oregano und Disteln – sie tanken Nektar für den langen Winter. Das Zischgeräusch beim Flügelreiben ist mit etwas Übung tatsächlich hörbar – ein unvergesslicher Moment.</p>
+
+
+  <h2>Kurz notiert</h2>
+  <ul class="notizen">
+    <li>Das Zischgeräusch beim Flügelreiben ist mit etwas Übung gut hörbar</li>
+    <li>Auf Schmetterlingsstrauch (Buddleja) oft gemeinsam mit Admiral und Kleinem Fuchs</li>
+  </ul>
+
   <a class="baumlink" href="../interaktiv/stammbaum.html">Im Stammbaum zeigen ↗</a>
 
-  <p class="vorlage">Texte aus der Broschüre „Schmetterlinge im Ebsdorfergrund“ (Michael Baur), für die App verdichtet · Bilder als Platzhalter. Die Artseite ist der gemeinsame Endpunkt von Bestimmungsschlüssel und Stammbaum.</p>
+  <p class="vorlage">Texte und Bilder aus der Broschüre „Schmetterlinge im Ebsdorfergrund“ (Michael Baur), 1:1 übernommen · Fotos CC BY-NC, Illustrationen im Stil klassischer Lehrtafeln. Die Artseite ist der gemeinsame Endpunkt von Bestimmungsschlüssel und Stammbaum.</p>
 </div>
 <script src="../assets/app.js" defer></script>
 </body>

@@ -111,7 +111,7 @@ const farbe=['#1E3A52','#1F5168','#1E6670','#1F7A6F','#2A8C66','#3E9A5E','#57A45
 const ZU = new Set([
   "Vertebrata","Cnidaria","Mollusca","Annelida","Arachnida","Myriapoda","Crustacea","Echinodermata",
   "Odonata","Polyneoptera","Hemiptera","Coleoptera","Hymenoptera","Lepidoptera","Diptera",
-  "Pieridae & Lycaenidae","Nymphalidae","Bombycoidea & Co.","Noctuidae & Geometridae"
+  "Pieridae & Lycaenidae","Nymphalidae","Satyrinae","Papilionidae","Bombycoidea & Co.","Noctuidae & Geometridae"
 ]);
 
 // klassische Ränge (nur dort, wo eindeutig); Kladen/Mischgruppen bleiben ohne Rang
@@ -131,7 +131,7 @@ const RANG = {
   Adephaga:"Unterordnung", Polyphaga:"Unterordnung", Symphyta:"Unterordnung", Apocrita:"Unterordnung",
   Aeshnidae:"Familie", Libellulidae:"Familie", Calopterygidae:"Familie", Coenagrionidae:"Familie",
   Carabidae:"Familie", Dytiscidae:"Familie", Scarabaeidae:"Familie", Tenthredinidae:"Familie",
-  Culicidae:"Familie", Nymphalidae:"Familie"
+  Culicidae:"Familie", Nymphalidae:"Familie", Papilionidae:"Familie", Satyrinae:"Unterfamilie"
 };
 
 const baumDaten = {
@@ -239,6 +239,8 @@ const baumDaten = {
                           {de:"Tagfalter", lat:"Rhopalocera", info:"Tagaktiv, Fühler mit Endknopf, ruhen mit aufgestellten Flügeln.", k:[
                             {de:"Weißlinge & Bläulinge", lat:"Pieridae & Lycaenidae", info:"Der Kohlweißling und die winzigen blauen Bläulinge.", k:[
                               {de:"Kleiner Kohlweißling", lat:"Pieris rapae", art:true, info:"Weiß mit dunklen Flügelspitzen; häufig im Garten, die Raupe frisst an Kohl."},
+                              {de:"Großer Kohlweißling", lat:"Pieris brassicae", art:true, url:"../arten/grosser-kohlweissling.html", info:"Größter heimischer Weißling; weiß mit schwarzen Flügelspitzen, die Raupen fressen gesellig an Kohl."},
+                              {de:"Aurorafalter", lat:"Anthocharis cardamines", art:true, url:"../arten/aurorafalter.html", info:"Männchen mit leuchtend orangem Fleck; einer der ersten Frühlingsfalter, fliegt nur März–Juni."},
                               {de:"Zitronenfalter", lat:"Gonepteryx rhamni", art:true, url:"../arten/zitronenfalter.html", info:"Das Männchen leuchtend zitronengelb; einer der ersten Falter im Frühjahr, überwintert als Falter."},
                               {de:"Hauhechel-Bläuling", lat:"Polyommatus icarus", art:true, info:"Männchen oben himmelblau; der häufigste Bläuling auf Wiesen und Säumen."}
                             ]},
@@ -247,18 +249,30 @@ const baumDaten = {
                               {de:"Kleiner Fuchs", lat:"Aglais urticae", art:true, url:"../arten/kleiner-fuchs.html", info:"Ziegelrot mit blauen Randmonden; sehr häufig, die Raupe lebt an Brennnesseln."},
                               {de:"Admiral", lat:"Vanessa atalanta", art:true, url:"../arten/admiral.html", info:"Schwarzbraun mit roten Binden und weißen Spitzenflecken; Wanderfalter aus dem Süden."},
                               {de:"Distelfalter", lat:"Vanessa cardui", art:true, url:"../arten/distelfalter.html", info:"Orangebraun gescheckt; einer der größten Wanderfalter, in manchen Jahren in Massen."},
-                              {de:"Landkärtchen", lat:"Araschnia levana", art:true, url:"../arten/landkaertchen.html", info:"Zwei Kleider im Jahr – Frühjahrstiere orange, Sommertiere schwarz-weiß."}
+                              {de:"Landkärtchen", lat:"Araschnia levana", art:true, url:"../arten/landkaertchen.html", info:"Zwei Kleider im Jahr – Frühjahrstiere orange, Sommertiere schwarz-weiß."},
+                              {de:"C-Falter", lat:"Polygonia c-album", art:true, url:"../arten/c-falter.html", info:"Zackiger Flügelrand und ein weißes „C“ auf der braunen Unterseite; überwintert als Falter."},
+                              {de:"Kaisermantel", lat:"Argynnis paphia", art:true, url:"../arten/kaisermantel.html", info:"Großer orangefarbener Edelfalter mit silbrigen Perlmuttflecken auf der Unterseite; Raupe an Veilchen."},
+                              {de:"Kleiner Eisvogel", lat:"Limenitis camilla", art:true, url:"../arten/kleiner-eisvogel.html", info:"Blauschwarz mit weißem Querband; eleganter Gleitflieger lichter Laubwälder, Raupe an Geißblatt."}
+                            ]},
+                            {de:"Augenfalter", lat:"Satyrinae", info:"Braune Falter mit Augenflecken; ihre Raupen fressen an Gräsern.", k:[
+                              {de:"Großes Ochsenauge", lat:"Maniola jurtina", art:true, url:"../arten/grosses-ochsenauge.html", info:"Häufigster Tagfalter Mitteleuropas; brauner Falter mit schwarzem Augenfleck, Raupe an Gräsern."},
+                              {de:"Schachbrettfalter", lat:"Melanargia galathea", art:true, url:"../arten/schachbrettfalter.html", info:"Unverwechselbares Schwarz-Weiß-Muster; Falter magerer Wiesen, Raupe an Gräsern."}
+                            ]},
+                            {de:"Ritterfalter", lat:"Papilionidae", info:"Große, prächtige Falter – bei uns vor allem der Schwalbenschwanz.", k:[
+                              {de:"Schwalbenschwanz", lat:"Papilio machaon", art:true, url:"../arten/schwalbenschwanz.html", info:"Größter heimischer Tagfalter; gelb mit blau-roten Zeichnungen und Schwänzchen, Raupe an Doldenblütlern."}
                             ]},
                           ]},
                           {de:"Nachtfalter", lat:"Heterocera", info:"Meist nachtaktiv, Fühler oft gefiedert.", k:[
                             {de:"Schwärmer & Spinner", lat:"Bombycoidea & Co.", info:"Kräftige Flieger wie das Taubenschwänzchen; auch der Seidenspinner.", k:[
                               {de:"Taubenschwänzchen", lat:"Macroglossum stellatarum", art:true, info:"Schwirrt wie ein Kolibri vor Blüten und saugt im Flug; tagaktiver Schwärmer."},
                               {de:"Ligusterschwärmer", lat:"Sphinx ligustri", art:true, info:"Großer Schwärmer mit rosa-schwarz gebändertem Hinterleib; die Raupe trägt ein Schwanzhorn."},
+                              {de:"Mittlerer Weinschwärmer", lat:"Deilephila elpenor", art:true, url:"../arten/mittlerer-weinschwaermer.html", info:"Rosa-olivgrüner Nachtschwärmer; schwirrt in der Dämmerung an Blüten, die Raupe trägt Schlangenaugen."},
                               {de:"Brauner Bär", lat:"Arctia caja", art:true, info:"Auffällig gewarnte Flügel; die pelzige Raupe heißt im Volksmund „Bär“."}
                             ]},
                             {de:"Eulen & Spanner", lat:"Noctuidae & Geometridae", info:"Die meisten „Motten“; Spanner-Raupen gehen wie Landvermesser.", k:[
                               {de:"Gammaeule", lat:"Autographa gamma", art:true, info:"Wanderfalter mit silbernem „γ“-Zeichen auf dem Flügel; fliegt auch am Tag."},
                               {de:"Birkenspanner", lat:"Biston betularia", art:true, info:"Berühmtes Schulbeispiel: helle und dunkle Form je nach Rußbelastung der Baumrinde."},
+                              {de:"Kleespanner", lat:"Chiasmia clathrata", art:true, url:"../arten/kleespanner.html", info:"Tagaktiver Spanner mit feinem Gittermuster; Zeiger für magere, artenreiche Wiesen."},
                               {de:"Hausmutter", lat:"Noctua pronuba", art:true, info:"Unscheinbar braun, doch mit leuchtend orangen Hinterflügeln; kommt oft ans Licht."}
                             ]}
                           ]}
@@ -411,7 +425,7 @@ function tippe(n){ if(!n.isTip)n.collapsed=!n.collapsed; selected=n; zeigePanel(
 function zeigePanel(n){
   const rang = n.rang ? n.rang : (n.isTip ? "Gruppe" : "Zwischengruppe · Klade");
   let html='<p class="rang">'+rang+'</p><h2>'+n.de+'</h2><p class="lat">'+n.lat+'</p><p>'+n.info+'</p>';
-  if(n.art){ html+='<a class="artlink" href="'+(n.url||"#")+'">Tafelbild &amp; mehr im Bestimmungsschlüssel →</a>'; }
+  if(n.art && n.url){ html+='<a class="artlink" href="'+n.url+'">Zur Artseite · Tafel, Foto &amp; Steckbrief →</a>'; }
   panel.innerHTML=html;
 }
 document.getElementById("ueberblick").addEventListener("click",()=>{
