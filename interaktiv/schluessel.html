@@ -354,7 +354,9 @@ function zeigeErgebnis(key){
   if(n.lat) html+='<p class="lat">'+n.lat+'</p>';
   html+='<p>'+n.text+'</p><div class="knoepfe">';
   if(n.art){
-    html+='<a class="btn-prim" href="'+n.url+'">Zur Artseite →</a>';
+    const slug=n.url.replace("../arten/","").replace(".html","");
+    html+='<a class="btn-prim" href="tafel.html?art='+slug+'">Zur Tafel →</a>';
+    html+='<a class="btn-sek" href="'+n.url+'">Ausführliche Artseite →</a>';
     html+='<a class="btn-sek" href="stammbaum.html">Im Stammbaum zeigen ↗</a>';
   } else if(n.larve){
     html+='<button class="weiter btn-prim" id="weiterBtn">'+n.weiterText+'</button>';

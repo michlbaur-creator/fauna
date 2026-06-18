@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Tafel · Fauna Mibaso</title>
+<meta name="theme-color" content="#1a2f47">
+<style>
+  :root{ --blau:#233D5C; --blau-tief:#1a2f47; --creme:#F7F3E8; --honig:#C28A3A;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;height:100%;overflow:hidden;background:var(--blau-tief);}
+  body{font-family:var(--sans);color:var(--creme);display:flex;flex-direction:column;}
+
+  .kopf{display:flex;align-items:center;gap:12px;
+    padding:max(10px,env(safe-area-inset-top)) 14px 10px;
+    background:linear-gradient(180deg,var(--blau-tief),rgba(26,47,71,.0));
+    position:relative;z-index:5;}
+  .kopf a.zurueck{color:var(--creme);text-decoration:none;font-size:14px;font-weight:600;
+    display:inline-flex;align-items:center;gap:5px;flex:0 0 auto;}
+  .kopf .titel{flex:1;min-width:0;text-align:center;font-family:Georgia,serif;font-size:16px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .kopf .titel i{color:#b9c7d6;font-size:13px;}
+  .kopf a.artseite{color:var(--honig);text-decoration:none;font-size:13px;font-weight:600;flex:0 0 auto;}
+
+  .stage{flex:1;position:relative;overflow:hidden;touch-action:none;cursor:grab;}
+  .stage.greife{cursor:grabbing;}
+  .stage img{position:absolute;top:0;left:0;transform-origin:0 0;will-change:transform;
+    user-select:none;-webkit-user-drag:none;background:var(--creme);border-radius:2px;
+    box-shadow:0 6px 30px rgba(0,0,0,.45);}
+
+  .steuer{position:absolute;left:50%;transform:translateX(-50%);
+    bottom:max(16px,env(safe-area-inset-bottom));display:flex;gap:8px;z-index:6;}
+  .steuer button{width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;
+    background:rgba(247,243,232,.92);color:var(--blau);font-size:22px;font-family:Georgia,serif;
+    box-shadow:0 3px 12px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;}
+  .steuer button:active{transform:translateY(1px);}
+  .hinweis{position:absolute;left:0;right:0;bottom:max(74px,calc(env(safe-area-inset-bottom) + 58px));
+    text-align:center;font-size:12px;color:#b9c7d6;z-index:6;pointer-events:none;
+    transition:opacity .4s;}
+</style>
+</head>
+<body>
+  <div class="kopf">
+    <a class="zurueck" href="#" id="zurueck">‹ Zurück</a>
+    <div class="titel" id="titel">Tafel</div>
+    <a class="artseite" id="artseite" href="#">Artseite →</a>
+  </div>
+  <div class="stage" id="stage">
+    <img id="bild" alt="Naturkundliche Tafel">
+  </div>
+  <div class="steuer">
+    <button id="raus" aria-label="Verkleinern">−</button>
+    <button id="fit" aria-label="Einpassen">⤢</button>
+    <button id="rein" aria-label="Vergrößern">+</button>
+  </div>
+  <div class="hinweis" id="hinweis">Ziehen zum Verschieben · zwei Finger oder Mausrad zum Zoomen</div>
+
+<script>
+const ARTEN={
+ "admiral":["Admiral","Vanessa atalanta"],
+ "aurorafalter":["Aurorafalter","Anthocharis cardamines"],
+ "c-falter":["C-Falter","Polygonia c-album"],
+ "distelfalter":["Distelfalter","Vanessa cardui"],
+ "grosser-kohlweissling":["Großer Kohlweißling","Pieris brassicae"],
+ "grosses-ochsenauge":["Großes Ochsenauge","Maniola jurtina"],
+ "kaisermantel":["Kaisermantel","Argynnis paphia"],
+ "kleespanner":["Kleespanner","Chiasmia clathrata"],
+ "kleiner-eisvogel":["Kleiner Eisvogel","Limenitis camilla"],
+ "kleiner-fuchs":["Kleiner Fuchs","Aglais urticae"],
+ "landkaertchen":["Landkärtchen","Araschnia levana"],
+ "mittlerer-weinschwaermer":["Mittlerer Weinschwärmer","Deilephila elpenor"],
+ "schachbrettfalter":["Schachbrettfalter","Melanargia galathea"],
+ "schwalbenschwanz":["Schwalbenschwanz","Papilio machaon"],
+ "tagpfauenauge":["Tagpfauenauge","Aglais io"],
+ "zitronenfalter":["Zitronenfalter","Gonepteryx rhamni"]
+};
+const params=new URLSearchParams(location.search);
+const slug=(params.get("art")||"").toLowerCase();
+const info=ARTEN[slug];
+const stage=document.getElementById("stage");
+const bild=document.getElementById("bild");
+const titelEl=document.getElementById("titel");
+const artseite=document.getElementById("artseite");
+const hinweis=document.getElementById("hinweis");
+
+document.getElementById("zurueck").addEventListener("click",e=>{e.preventDefault();
+  if(history.length>1) history.back(); else location.href="schluessel.html";});
+
+if(!info){
+  titelEl.textContent="Tafel nicht gefunden";
+  artseite.style.display="none";
+  hinweis.textContent="Diese Art ist nicht verfügbar.";
+}else{
+  titelEl.innerHTML=info[0]+' <i>'+info[1]+'</i>';
+  artseite.href="../arten/"+slug+".html";
+  bild.alt="Naturkundliche Tafel: "+info[0]+" ("+info[1]+")";
+  bild.src="../images/tafeln/"+slug+".jpg";
+}
+
+let scale=1,x=0,y=0,minScale=1,natW=0,natH=0,ready=false;
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+function apply(){ bild.style.transform="translate("+x+"px,"+y+"px) scale("+scale+")"; }
+function fit(){
+  if(!natW) return;
+  const w=stage.clientWidth,h=stage.clientHeight;
+  minScale=Math.min(w/natW,h/natH);
+  scale=minScale;
+  x=(w-natW*scale)/2; y=(h-natH*scale)/2;
+  apply();
+}
+function zoomAt(cx,cy,factor){
+  const r=stage.getBoundingClientRect();
+  const px=cx-r.left, py=cy-r.top;
+  const ns=clamp(scale*factor,minScale,minScale*8);
+  x=px-(px-x)*(ns/scale); y=py-(py-y)*(ns/scale);
+  scale=ns; apply();
+}
+bild.addEventListener("load",()=>{ natW=bild.naturalWidth; natH=bild.naturalHeight; ready=true; fit(); });
+window.addEventListener("resize",fit);
+
+document.getElementById("rein").addEventListener("click",()=>zoomAt(stage.clientWidth/2+stage.getBoundingClientRect().left,stage.clientHeight/2+stage.getBoundingClientRect().top,1.5));
+document.getElementById("raus").addEventListener("click",()=>zoomAt(stage.clientWidth/2+stage.getBoundingClientRect().left,stage.clientHeight/2+stage.getBoundingClientRect().top,1/1.5));
+document.getElementById("fit").addEventListener("click",fit);
+
+stage.addEventListener("wheel",e=>{ if(!ready)return; e.preventDefault();
+  zoomAt(e.clientX,e.clientY, e.deltaY<0?1.12:1/1.12); },{passive:false});
+
+// Pointer-basiertes Ziehen & Pinch-Zoom
+const pts=new Map(); let lastDist=0,lastMid=null;
+function versteckeHinweis(){ if(hinweis) hinweis.style.opacity="0"; }
+stage.addEventListener("pointerdown",e=>{ stage.setPointerCapture(e.pointerId);
+  pts.set(e.pointerId,{x:e.clientX,y:e.clientY}); stage.classList.add("greife"); versteckeHinweis();
+  if(pts.size===2){ const p=[...pts.values()]; lastDist=Math.hypot(p[0].x-p[1].x,p[0].y-p[1].y);
+    lastMid={x:(p[0].x+p[1].x)/2,y:(p[0].y+p[1].y)/2}; } });
+stage.addEventListener("pointermove",e=>{ if(!pts.has(e.pointerId)||!ready)return;
+  const prev=pts.get(e.pointerId); pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(pts.size===1){ x+=e.clientX-prev.x; y+=e.clientY-prev.y; apply(); }
+  else if(pts.size===2){ const p=[...pts.values()];
+    const dist=Math.hypot(p[0].x-p[1].x,p[0].y-p[1].y);
+    const mid={x:(p[0].x+p[1].x)/2,y:(p[0].y+p[1].y)/2};
+    if(lastDist){ zoomAt(mid.x,mid.y,dist/lastDist);
+      if(lastMid){ x+=mid.x-lastMid.x; y+=mid.y-lastMid.y; apply(); } }
+    lastDist=dist; lastMid=mid; } });
+function ende(e){ if(pts.has(e.pointerId))pts.delete(e.pointerId);
+  if(pts.size<2){lastDist=0;lastMid=null;} if(pts.size===0)stage.classList.remove("greife"); }
+stage.addEventListener("pointerup",ende);
+stage.addEventListener("pointercancel",ende);
+
+stage.addEventListener("dblclick",e=>{ if(!ready)return;
+  if(scale>minScale*1.2) fit(); else zoomAt(e.clientX,e.clientY,2.4); });
+</script>
+</body>
+</html>

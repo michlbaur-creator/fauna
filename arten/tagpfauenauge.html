@@ -20,16 +20,11 @@
     background:transparent;border:none;cursor:pointer;padding:6px 0;display:inline-flex;gap:6px;align-items:center;text-decoration:none;}
   .brot{font-family:var(--sans);font-size:11.5px;letter-spacing:.06em;color:#8a96a1;margin:8px 0 0;text-transform:uppercase;}
 
-  .tafel{margin:16px 0 4px;background:var(--pergament);
+  .tafel{display:block;margin:16px 0 18px;background:var(--pergament);
     border:1px solid #cdbf9e;border-radius:6px;padding:14px;position:relative;
-    box-shadow:0 1px 0 #fff inset;}
+    box-shadow:0 1px 0 #fff inset;cursor:zoom-in;text-decoration:none;}
   .tafel::after{content:"";position:absolute;inset:6px;border:1px solid #d8cba9;border-radius:3px;pointer-events:none;}
-  .tafel .kopf{display:flex;justify-content:space-between;align-items:baseline;
-    font-family:var(--sans);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#9a7b45;}
-  .tafel img{display:block;width:100%;height:auto;margin:8px 0 4px;border-radius:3px;
-    background:#fff;}
-  .tafel .bu{text-align:center;font-style:italic;color:#5a4a32;font-size:14px;margin:6px 0 0;}
-  .tafel .ph{text-align:center;font-family:var(--sans);font-size:10px;color:#a99a78;margin-top:2px;}
+  .tafel img{display:block;width:100%;height:auto;border-radius:3px;background:#fff;}
 
   h1{font-size:clamp(26px,7vw,38px);line-height:1.05;margin:18px 0 2px;font-weight:normal;}
   .lat{font-family:var(--sans);font-size:14px;color:#7c8794;font-style:italic;margin:0 0 10px;}
@@ -70,12 +65,9 @@
   <a class="zurueck" href="../interaktiv/schluessel.html">‹ Zurück zum Bestimmen</a>
   <p class="brot">Insekten › Schmetterlinge › Tagfalter › Edelfalter</p>
 
-  <div class="tafel">
-    <div class="kopf"><span>Naturkundliche Tafel</span><span>Taf. 15</span></div>
+  <a class="tafel" href="../interaktiv/tafel.html?art=tagpfauenauge" aria-label="Tafel groß und zoombar ansehen">
     <img src="../images/tafeln/tagpfauenauge.jpg" alt="Naturkundliche Lehrtafel: Tagpfauenauge (Aglais io) mit Entwicklungsstadien">
-    <p class="bu">Tagpfauenauge · <i>Aglais io</i></p>
-    <p class="ph">Illustration im Stil klassischer Lehrtafeln (teils KI-gestützt erstellt)</p>
-  </div>
+  </a>
 
   <h1>Tagpfauenauge</h1>
   <p class="lat">Aglais io</p>
