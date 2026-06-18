@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Was kreucht und fleucht denn hier? · Bestimmen · Fauna Mibaso</title>
+<meta name="description" content="Geführtes Bestimmen für Laien: ein paar Fragen nach Sichtbarem – und du landest bei der Tiergruppe oder beim Schmetterling.">
+<style>
+  :root{
+    --blau:#233D5C; --blau-tief:#1a2f47; --creme:#F7F3E8; --creme-tief:#EEE7D5;
+    --tinte:#1c2e42; --honig:#C28A3A; --linie:#c3ccd5;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html{-webkit-text-size-adjust:100%;}
+  body{margin:0;background:var(--creme);color:var(--blau);
+    font-family:Georgia,"Times New Roman",serif;line-height:1.5;}
+  .huelle{max-width:640px;margin:0 auto;padding:clamp(18px,5vw,40px) clamp(12px,3.5vw,28px) 60px;}
+
+  .augenbraue{font-family:var(--sans);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--honig);font-weight:600;margin:0 0 10px;}
+  h1{font-size:clamp(23px,6.6vw,38px);line-height:1.08;margin:0 0 10px;font-weight:normal;}
+  .intro{font-size:clamp(15px,4.2vw,18px);max-width:52ch;margin:0;color:var(--tinte);}
+
+  /* Fortschrittspfad */
+  .pfad{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:20px 0 0;
+    padding-bottom:14px;border-bottom:1px solid var(--linie);min-height:20px;}
+  .pfad .pchip{font-family:var(--sans);font-size:12px;color:var(--blau);background:var(--creme-tief);
+    border:none;border-radius:999px;padding:5px 11px;cursor:pointer;line-height:1.2;
+    transition:background .15s;}
+  .pfad .pchip:hover{background:#e2dac6;}
+  .pfad .pfeil{color:#b3bcc6;font-family:var(--sans);font-size:12px;}
+  .pfad .start{color:#8a96a1;font-family:var(--sans);font-size:12px;letter-spacing:.04em;}
+
+  /* Frage */
+  .frage{margin-top:20px;}
+  .frage h2{font-size:clamp(19px,5.4vw,24px);font-weight:normal;margin:0 0 4px;line-height:1.25;}
+  .frage .sub{font-family:var(--sans);font-size:13px;color:#6f7b86;margin:0 0 16px;}
+
+  .opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;cursor:pointer;
+    background:#fff;border:1px solid var(--linie);border-radius:14px;padding:14px 15px;margin-bottom:11px;
+    color:inherit;font:inherit;
+    transition:transform .14s, box-shadow .14s, border-color .14s;}
+  .opt:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(35,61,92,.10);border-color:#b9c2cd;}
+  .opt:active{transform:translateY(0);}
+  .opt .ic{flex:0 0 auto;width:42px;height:42px;border-radius:11px;background:var(--creme-tief);
+    display:flex;align-items:center;justify-content:center;}
+  .opt .ic svg{display:block;}
+  .opt .ic .swatch{width:24px;height:24px;border-radius:50%;border:1.5px solid rgba(28,46,66,.25);}
+  .opt .tx{flex:1 1 auto;min-width:0;}
+  .opt .t{display:block;font-size:16.5px;line-height:1.25;}
+  .opt .h{display:block;font-family:var(--sans);font-size:12.5px;color:#5a6675;margin-top:3px;line-height:1.35;}
+  .opt .pf{flex:0 0 auto;color:var(--honig);font-size:20px;font-family:var(--sans);}
+
+  /* Ergebnis */
+  .ergebnis{margin-top:20px;padding:17px 18px;border-radius:0 12px 12px 0;
+    background:var(--creme-tief);border-left:4px solid var(--honig);}
+  .ergebnis .rang{font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:#8a96a1;margin:0 0 4px;}
+  .ergebnis h2{margin:0 0 2px;font-size:clamp(21px,6vw,27px);font-weight:normal;}
+  .ergebnis .lat{font-family:var(--sans);font-size:12.5px;color:#8a96a1;font-style:italic;margin:0 0 11px;}
+  .ergebnis p{margin:0 0 4px;font-size:clamp(14.5px,4vw,16px);color:var(--tinte);}
+  .ergebnis .knoepfe{display:flex;flex-wrap:wrap;gap:9px;margin-top:15px;}
+  .ergebnis a, .ergebnis button.weiter{font-family:var(--sans);font-size:13.5px;font-weight:600;
+    text-decoration:none;border-radius:999px;padding:11px 17px;cursor:pointer;border:1px solid var(--blau);}
+  .btn-prim{background:var(--blau);color:var(--creme);border-color:var(--blau)!important;}
+  .btn-prim:hover{background:var(--blau-tief);}
+  .btn-sek{background:transparent;color:var(--blau);}
+  .btn-sek:hover{background:rgba(35,61,92,.06);}
+
+  /* Steuerung */
+  .steuer{display:flex;gap:9px;margin-top:22px;padding-top:16px;border-top:1px solid var(--linie);}
+  .knopf{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--blau);
+    background:transparent;border:1px solid var(--blau);border-radius:999px;padding:8px 15px;cursor:pointer;
+    transition:background .18s,color .18s;}
+  .knopf:hover{background:var(--blau);color:var(--creme);}
+  .knopf:disabled{opacity:.38;cursor:default;}
+  .knopf:disabled:hover{background:transparent;color:var(--blau);}
+  .stammlink{margin-left:auto;font-family:var(--sans);font-size:12.5px;color:#67737e;
+    align-self:center;text-decoration:none;}
+  .stammlink:hover{color:var(--blau);}
+
+  .legende{margin-top:26px;padding-top:16px;border-top:1px solid var(--linie);
+    font-family:var(--sans);font-size:12.5px;color:#67737e;}
+  .legende b{color:var(--blau);font-weight:600;}
+  .legende a{color:var(--blau);}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="huelle">
+  <p class="augenbraue">Frag dich durch · Bestimmen</p>
+  <h1>Was kreucht und fleucht denn hier?</h1>
+  <p class="intro">Du hast ein kleines Tier entdeckt? Beantworte ein paar Fragen nach dem, was du <b>siehst</b> – Beine, Schale, Flügel, Farbe – und der Schlüssel führt dich zur Tiergruppe. Bei den Schmetterlingen geht es weiter bis zur einzelnen Art.</p>
+
+  <div class="pfad" id="pfad"></div>
+
+  <div class="frage" id="frage"></div>
+  <div class="ergebnis" id="ergebnis" style="display:none"></div>
+
+  <div class="steuer">
+    <button class="knopf" id="zurueck">‹ Zurück</button>
+    <button class="knopf" id="vonvorn">↺ Von vorn</button>
+    <a class="stammlink" href="stammbaum.html">Lieber im Stammbaum stöbern ↗</a>
+  </div>
+
+  <div class="legende">
+    <b>So funktioniert's:</b> Jede Frage fragt nur nach Sichtbarem. Tippe die Antwort, die am besten passt – über die Pfad-Punkte oben kommst du jederzeit zu einer früheren Frage zurück. Endpunkte sind entweder eine <b>Tiergruppe</b> (mit Weg in den Stammbaum) oder, bei den Faltern, eine <b>Art</b> mit eigener Seite. Im Zweifel hilft der Blick auf zwei ähnliche Kandidaten.
+  </div>
+</div>
+
+<script>
+/* ----------------------------------------------------------------------------
+   Bestimmungsschlüssel – ein geschachtelter Entscheidungsbaum.
+   Erweitern: neuen Knoten in KNOTEN ergänzen und per "ziel" verlinken.
+   Fragen-Knoten:  { frage, sub?, optionen:[ {t,h?,ic?,sw?,kurz,ziel} ] }
+   Gruppen-Ende:   { gruppe:true, de, lat, text }
+   Art-Ende:       { art:true,    de, lat, text, url }
+   Sonder-Ende:    { de, lat, text, weiterZiel?, weiterText? }   (z. B. Raupe)
+---------------------------------------------------------------------------- */
+const START = "beine";
+const KNOTEN = {
+
+  beine:{ frage:"Schau dir das Tier in Ruhe an: Hat es Beine?",
+    optionen:[
+      {t:"Keine Beine – es kriecht oder schlängelt", ic:"wurm", kurz:"keine Beine", ziel:"kriecher"},
+      {t:"Ja, ich sehe Beine und kann sie zählen", ic:"beine", kurz:"mit Beinen", ziel:"beinzahl"},
+    ]},
+
+  kriecher:{ frage:"Kein Bein in Sicht – wie sieht der weiche Körper aus?",
+    optionen:[
+      {t:"Mit Schneckenhaus – oder nackt, schleimig, kriecht auf einem Fuß", h:"Schnecke oder Nacktschnecke", ic:"schale", kurz:"Schale/Schleim", ziel:"g_schnecken"},
+      {t:"Langer Körper aus vielen gleichen Ringen, ohne Kopf mit Beinen", h:"wie ein Regenwurm", ic:"ringe", kurz:"geringelt", ziel:"g_wuermer"},
+      {t:"Weich, mit vielen kurzen Stummelfüßen, frisst an Blättern", h:"das könnte eine Raupe sein", ic:"raupe", kurz:"Stummelfüße", ziel:"e_raupe"},
+    ]},
+
+  beinzahl:{ frage:"Zähle die Beine – wie viele sind es?",
+    optionen:[
+      {t:"Sechs Beine (drei Paare)", h:"das ist ein Insekt", ic:"n6", kurz:"6 Beine", ziel:"insekt"},
+      {t:"Acht Beine (vier Paare)", h:"Spinne, Weberknecht, Skorpion, Milbe", ic:"n8", kurz:"8 Beine", ziel:"g_spinnen"},
+      {t:"Mehr als acht Beine", h:"viele Beinpaare", ic:"nviel", kurz:"viele Beine", ziel:"vielbeiner"},
+    ]},
+
+  vielbeiner:{ frage:"Viele Beine – wie ist der Körper gebaut?",
+    optionen:[
+      {t:"Sehr lang und wurmförmig, an fast jedem Ring Beine", h:"Doppel- oder Hundertfüßer", ic:"ringe", kurz:"lang & vielbeinig", ziel:"g_tausend"},
+      {t:"Gedrungen, gepanzert, etwa 14 Beine; feucht-dunkler Ort, rollt sich evtl. zur Kugel", h:"Kellerassel & Co.", ic:"panzer", kurz:"Assel", ziel:"g_asseln"},
+    ]},
+
+  insekt:{ frage:"Sechs Beine – das ist ein Insekt! Sieh dir nun die Flügel an.",
+    optionen:[
+      {t:"Breite Flügel, oft bunt, wie mit feinem Staub (Schuppen) bedeckt", h:"ein Falter / Schmetterling", ic:"falter", kurz:"Falter", ziel:"falter"},
+      {t:"Andere Flügel: harte Decken, glasklar, Sprungbeine, Stechrüssel …", h:"Käfer, Biene, Fliege, Libelle …", ic:"insekt", kurz:"anderes Insekt", ziel:"insektorders"},
+    ]},
+
+  insektorders:{ frage:"Welches Insekt passt am besten?", sub:"Endet in der jeweiligen Gruppe – im Stammbaum siehst du, wie sie eingeordnet ist.",
+    optionen:[
+      {t:"Harte Deckflügel, die sich in gerader Linie über dem Rücken treffen", h:"Käfer", kurz:"Käfer", ziel:"g_kaefer"},
+      {t:"Schmale Wespentaille, oft gelb-schwarz, glasklare Flügel", h:"Biene, Wespe, Hummel, Ameise", kurz:"Hautflügler", ziel:"g_hymenoptera"},
+      {t:"Nur ein Paar Flügel, flink und surrend", h:"Fliege oder Mücke", kurz:"Zweiflügler", ziel:"g_diptera"},
+      {t:"Vier lange glasklare Flügel, langer schlanker Körper, am Wasser", h:"Libelle", kurz:"Libelle", ziel:"g_libellen"},
+      {t:"Kräftige Sprung-Hinterbeine, zirpt", h:"Heuschrecke oder Grille", kurz:"Heuschrecke", ziel:"g_heuschrecken"},
+      {t:"Stechrüssel; Vorderflügel halb hart, halb häutig – oder springende Zikade", h:"Wanze / Zikade", kurz:"Schnabelkerf", ziel:"g_wanzen"},
+    ]},
+
+  /* ---- feiner Schmetterlings-Schlüssel ---- */
+  falter:{ frage:"Ein Schmetterling! Welcher erste Eindruck passt am besten?",
+    optionen:[
+      {t:"Vor allem weiß oder gelb, kaum bunt", sw:"#EFE7C8", kurz:"weiß/gelb", ziel:"s_weiss"},
+      {t:"Orange bis rotbraun, dunkel gescheckt", sw:"#C8531F", kurz:"orange", ziel:"s_orange"},
+      {t:"Große, bunte „Augen“ auf den Flügeln", h:"Schreckflecken", sw:"#1f3a6a", kurz:"Augenflecken", ziel:"s_augen"},
+      {t:"Stark gemustert: schwarz-weiß, blau-weiß oder fein vergittert", sw:"#2c2c2c", kurz:"gemustert", ziel:"s_muster"},
+      {t:"Dicker, pelziger Körper; rosa-olivgrün, schwirrt in der Dämmerung", h:"ein Schwärmer", sw:"#C76A95", kurz:"Schwärmer", ziel:"a_mittlerer-weinschwaermer"},
+    ]},
+
+  s_weiss:{ frage:"Weiß oder gelb – sieh genauer hin.",
+    optionen:[
+      {t:"Groß, gelb mit kräftiger schwarzer Zeichnung; blaue Binde, roter Fleck und Schwänzchen am Hinterflügel", h:"unverwechselbar", sw:"#E3CE5A", kurz:"gelb, Schwänzchen", ziel:"a_schwalbenschwanz"},
+      {t:"Gelb (Männchen leuchtend) oder blassgrün, einfarbig; Flügel zugespitzt, blattförmig, je ein oranger Punkt", h:"überwintert als Falter", sw:"#E6D24A", kurz:"gelb, blattförmig", ziel:"a_zitronenfalter"},
+      {t:"Rein weiß", sw:"#F3EFE2", kurz:"weiß", ziel:"s_weiss2"},
+    ]},
+  s_weiss2:{ frage:"Weiße Flügel – welche Zeichnung?",
+    optionen:[
+      {t:"Oranger Fleck auf der Vorderflügelspitze (♂) bzw. grün marmorierte Unterseite (♀); eher klein, Frühling", kurz:"oranger Spitzenfleck", ziel:"a_aurorafalter"},
+      {t:"Kräftige, breite schwarze Flügelspitzen; groß, evtl. zwei schwarze Punkte", kurz:"schwarze Spitzen", ziel:"a_grosser-kohlweissling"},
+    ]},
+
+  s_orange:{ frage:"Orange bis rotbraun – schau zuerst auf die Flügelränder.",
+    optionen:[
+      {t:"Stark gezackt, wie zerfranst (welkes-Blatt-Form); Unterseite mit weißem „C“", kurz:"zerfranst, „C“", ziel:"a_c-falter"},
+      {t:"Ränder glatt oder nur fein gezähnt", kurz:"Ränder glatt", ziel:"s_orange2"},
+    ]},
+  s_orange2:{ frage:"Welche Zeichnung dominiert?",
+    optionen:[
+      {t:"Schwarzer Grund mit leuchtend roten Querbinden und weißen Spitzenflecken", kurz:"rote Binden", ziel:"a_admiral"},
+      {t:"Überwiegend orange gescheckt", kurz:"orange gescheckt", ziel:"s_orange3"},
+    ]},
+  s_orange3:{ frage:"Wie groß ist der Falter – und wo fliegt er?",
+    optionen:[
+      {t:"Groß, sattes Orange wie ein Leopard (schwarze Punkte/Linien); Waldfalter, Unterseite silbrig", kurz:"groß, Leopard", ziel:"a_kaisermantel"},
+      {t:"Kleiner bis mittelgroß", kurz:"kleiner", ziel:"s_orange4"},
+    ]},
+  s_orange4:{ frage:"Sieh dir Ränder und Unterseite genau an.",
+    optionen:[
+      {t:"Ziegelrot; vorn schwarz-gelbe Flecken, am Rand eine Reihe blauer Halbmonde", kurz:"blaue Randmonde", ziel:"a_kleiner-fuchs"},
+      {t:"Lachs-orange stark gescheckt, Spitzen schwarz-weiß, Unterseite marmoriert; rastloser Wanderer", kurz:"marmoriert, rastlos", ziel:"a_distelfalter"},
+      {t:"Klein; im Frühling orange-schwarz, im Sommer fast schwarz-weiß; Unterseite mit Landkarten-Netz", kurz:"Landkarten-Netz", ziel:"a_landkaertchen"},
+    ]},
+
+  s_augen:{ frage:"Wie viele Augen – und welcher Grund?",
+    optionen:[
+      {t:"Vier große, bunte Augenflecken auf rotbraunem Grund", kurz:"vier Augen", ziel:"a_tagpfauenauge"},
+      {t:"Schlicht braun, nur ein orange umrandeter Augenfleck je Vorderflügel", kurz:"ein Auge, braun", ziel:"a_grosses-ochsenauge"},
+    ]},
+
+  s_muster:{ frage:"Welches Muster genau?",
+    optionen:[
+      {t:"Schwarz-weißes Schachbrett-Muster", kurz:"Schachbrett", ziel:"a_schachbrettfalter"},
+      {t:"Blauschwarz mit breitem weißem Querband; segelt/gleitet im Wald", kurz:"blau-weiß, Gleitflug", ziel:"a_kleiner-eisvogel"},
+      {t:"Klein, fein vergittert braun-cremeweiß; flach ausgebreitet, Fühler ohne Knopf", kurz:"vergittert, klein", ziel:"a_kleespanner"},
+    ]},
+
+  /* ---- Endpunkte: Tiergruppen ---- */
+  g_schnecken:{ gruppe:true, de:"Schnecken", lat:"Gastropoda",
+    text:"Weichtiere, die auf einem einzigen muskulösen Fuß kriechen – meist mit Schleimspur. Mit gedrehtem Gehäuse (Schnecke) oder ganz ohne (Nacktschnecke)."},
+  g_wuermer:{ gruppe:true, de:"Ringelwürmer", lat:"Annelida",
+    text:"Ein langer, weicher Körper aus vielen gleichen Ringen, ganz ohne Beine – wie beim Regenwurm. (Ein weiches „Würmchen“ mit deutlichem Kopf dagegen ist oft die Larve eines Insekts.)"},
+  g_spinnen:{ gruppe:true, de:"Spinnentiere", lat:"Arachnida",
+    text:"Acht Beine und keine Fühler; der Körper meist in zwei Abschnitte geteilt. Dazu gehören Webspinnen, Weberknechte, Skorpione und die winzigen Milben."},
+  g_tausend:{ gruppe:true, de:"Tausendfüßer", lat:"Myriapoda",
+    text:"Langer, gegliederter Körper mit sehr vielen Beinpaaren. Die Doppelfüßer fressen langsam an Pflanzen, die flinken Hundertfüßer jagen mit Giftklauen."},
+  g_asseln:{ gruppe:true, de:"Asseln", lat:"Crustacea (Isopoda)",
+    text:"An Land vor allem die Asseln: gepanzert, mit sieben Beinpaaren, an feuchten, dunklen Orten; manche rollen sich zur Kugel. Sie sind echte Krebstiere – verwandt mit Krebs und Krabbe."},
+  g_kaefer:{ gruppe:true, de:"Käfer", lat:"Coleoptera",
+    text:"Harte Deckflügel schützen die häutigen Flugflügel darunter und treffen sich in einer geraden Linie über dem Rücken. Die artenreichste Insektenordnung überhaupt."},
+  g_hymenoptera:{ gruppe:true, de:"Hautflügler", lat:"Hymenoptera",
+    text:"Bienen, Hummeln, Wespen und Ameisen – oft mit schmaler Wespentaille und glasklaren Flügeln. Viele leben in Staaten und bestäuben unsere Blüten."},
+  g_diptera:{ gruppe:true, de:"Zweiflügler", lat:"Diptera",
+    text:"Fliegen und Mücken besitzen nur ein Flügelpaar; das zweite ist zu winzigen Schwingkölbchen umgebaut, die im Flug stabilisieren."},
+  g_libellen:{ gruppe:true, de:"Libellen", lat:"Odonata",
+    text:"Räuber der Lüfte mit vier langen, glasklaren Flügeln und langem Hinterleib. Ihre Larven jagen unter Wasser."},
+  g_heuschrecken:{ gruppe:true, de:"Heuschrecken", lat:"Orthoptera",
+    text:"Kräftige Sprungbeine hinten; viele zirpen. Laubheuschrecken und Grillen haben lange, fadenförmige Fühler, Feldheuschrecken kurze."},
+  g_wanzen:{ gruppe:true, de:"Schnabelkerfe", lat:"Hemiptera",
+    text:"Wanzen und Zikaden saugen mit einem Stechrüssel. Bei den Wanzen ist der Vorderflügel halb hart, halb häutig; Zikaden springen weit."},
+
+  /* ---- Sonder-Ende: Raupe ---- */
+  e_raupe:{ de:"Eine Raupe", lat:"Schmetterlingslarve", larve:true,
+    text:"Das ist die Larve eines Schmetterlings – ein junges Tier mitten in der Verwandlung. Aus ihr wird über die Puppe ein Falter. Welche Art es wird, verraten nur wenige Raupen sicher; am fertigen Falter ist es viel leichter.",
+    weiterZiel:"falter", weiterText:"Falter bestimmen →"},
+
+  /* ---- Endpunkte: Schmetterlings-Arten ---- */
+  "a_admiral":{ art:true, de:"Admiral", lat:"Vanessa atalanta", url:"../arten/admiral.html",
+    text:"Schwarzbraun mit leuchtend roten Binden und weißen Spitzenflecken – ein Zugfalter aus dem Süden."},
+  "a_aurorafalter":{ art:true, de:"Aurorafalter", lat:"Anthocharis cardamines", url:"../arten/aurorafalter.html",
+    text:"Der erste Farbtupfer des Frühlings – das Männchen mit großem orangem Spitzenfleck."},
+  "a_c-falter":{ art:true, de:"C-Falter", lat:"Polygonia c-album", url:"../arten/c-falter.html",
+    text:"Zerfranste Flügelränder wie ein welkes Blatt – und ein weißes „C“ auf der Unterseite."},
+  "a_distelfalter":{ art:true, de:"Distelfalter", lat:"Vanessa cardui", url:"../arten/distelfalter.html",
+    text:"Lachs-orange gescheckt, rastlos – der am weitesten verbreitete Tagfalter der Welt."},
+  "a_grosser-kohlweissling":{ art:true, de:"Großer Kohlweißling", lat:"Pieris brassicae", url:"../arten/grosser-kohlweissling.html",
+    text:"Der größte heimische Weißling: weiß mit kräftigen, breiten schwarzen Flügelspitzen."},
+  "a_grosses-ochsenauge":{ art:true, de:"Großes Ochsenauge", lat:"Maniola jurtina", url:"../arten/grosses-ochsenauge.html",
+    text:"Schlicht braun, mit einem orange umrandeten Augenfleck – der häufigste Tagfalter Mitteleuropas."},
+  "a_kaisermantel":{ art:true, de:"Kaisermantel", lat:"Argynnis paphia", url:"../arten/kaisermantel.html",
+    text:"Groß und leoparden-orange, mit silbrig glänzender Unterseite – ein Waldfalter."},
+  "a_kleespanner":{ art:true, de:"Kleespanner", lat:"Chiasmia clathrata", url:"../arten/kleespanner.html",
+    text:"Ein tagaktiver Spanner mit feinem Gittermuster – streng genommen ein Nachtfalter."},
+  "a_kleiner-eisvogel":{ art:true, de:"Kleiner Eisvogel", lat:"Limenitis camilla", url:"../arten/kleiner-eisvogel.html",
+    text:"Blauschwarz mit breitem weißem Band, elegant gleitend durch lichte Wälder."},
+  "a_kleiner-fuchs":{ art:true, de:"Kleiner Fuchs", lat:"Aglais urticae", url:"../arten/kleiner-fuchs.html",
+    text:"Ziegelrot mit blauen Randmonden – einer der häufigsten und vertrautesten Gartenfalter."},
+  "a_landkaertchen":{ art:true, de:"Landkärtchen", lat:"Araschnia levana", url:"../arten/landkaertchen.html",
+    text:"Zwei Kleider im Jahr – und ein feines Landkarten-Netz auf der Unterseite."},
+  "a_mittlerer-weinschwaermer":{ art:true, de:"Mittlerer Weinschwärmer", lat:"Deilephila elpenor", url:"../arten/mittlerer-weinschwaermer.html",
+    text:"Rosa und olivgrün zugleich – ein Nachtflieger, der wie ein Hubschrauber vor Blüten schwirrt."},
+  "a_schachbrettfalter":{ art:true, de:"Schachbrettfalter", lat:"Melanargia galathea", url:"../arten/schachbrettfalter.html",
+    text:"Ein lebendes Schachbrett über der Magerwiese – unverwechselbar schwarz-weiß."},
+  "a_schwalbenschwanz":{ art:true, de:"Schwalbenschwanz", lat:"Papilio machaon", url:"../arten/schwalbenschwanz.html",
+    text:"Der größte und eleganteste heimische Tagfalter – gelb, mit Schwänzchen am Hinterflügel."},
+  "a_tagpfauenauge":{ art:true, de:"Tagpfauenauge", lat:"Aglais io", url:"../arten/tagpfauenauge.html",
+    text:"Vier große, leuchtende Augenflecken als Schreckbild – kaum zu verwechseln."},
+  "a_zitronenfalter":{ art:true, de:"Zitronenfalter", lat:"Gonepteryx rhamni", url:"../arten/zitronenfalter.html",
+    text:"Leuchtend gelb und blattförmig – mit der längsten Lebensdauer aller heimischen Tagfalter."},
+};
+
+/* ---- kleine Inline-Icons ---- */
+const ICON = {
+  wurm:'<svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#233D5C" stroke-width="2" stroke-linecap="round"><path d="M3 16c3-5 5 5 8 0s5 5 8 0 4 1 4 1"/></svg>',
+  ringe:'<svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#233D5C" stroke-width="1.7"><rect x="3" y="9" width="5" height="8" rx="2"/><rect x="8.5" y="9" width="5" height="8" rx="2"/><rect x="14" y="9" width="5" height="8" rx="2"/><rect x="19.5" y="9" width="3.5" height="8" rx="1.7"/></svg>',
+  schale:'<svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#233D5C" stroke-width="1.8"><path d="M13 13m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M13 13m-5 0a5 5 0 1 0 10 0a5 5 0 1 0 -10 0"/><circle cx="13" cy="13" r="1.4" fill="#233D5C" stroke="none"/></svg>',
+  raupe:'<svg width="30" height="22" viewBox="0 0 30 22" fill="#233D5C"><circle cx="6" cy="13" r="5"/><circle cx="13" cy="12" r="5.2"/><circle cx="20" cy="13" r="5"/><circle cx="25" cy="14" r="4"/><circle cx="4" cy="11" r="1" fill="#fff"/></svg>',
+  beine:'<svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#233D5C" stroke-width="1.8" stroke-linecap="round"><ellipse cx="13" cy="13" rx="4.5" ry="7"/><path d="M8.5 9 3 6M8.5 13H2.5M8.5 17 3 20M17.5 9 23 6M17.5 13H23.5M17.5 17 23 20"/></svg>',
+  n6:'<svg width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12.5" fill="none" stroke="#233D5C" stroke-width="1.8"/><text x="14" y="18.5" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#233D5C">6</text></svg>',
+  n8:'<svg width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12.5" fill="none" stroke="#233D5C" stroke-width="1.8"/><text x="14" y="18.5" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#233D5C">8</text></svg>',
+  nviel:'<svg width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12.5" fill="none" stroke="#233D5C" stroke-width="1.8"/><text x="14" y="18" text-anchor="middle" font-family="Georgia,serif" font-size="11.5" fill="#233D5C">8+</text></svg>',
+  panzer:'<svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#233D5C" stroke-width="1.7" stroke-linecap="round"><path d="M5 13a8 6 0 0 1 16 0"/><path d="M5 13a8 6 0 0 0 16 0" stroke-opacity=".35"/><path d="M9 8.5v9M13 7.7v10.6M17 8.5v9"/></svg>',
+  falter:'<svg width="28" height="24" viewBox="0 0 28 24" fill="#233D5C"><ellipse cx="14" cy="12" rx="1.4" ry="7"/><path d="M13 8C8 3 2 4 2 8s6 4 11 3Z"/><path d="M13 14C8 17 3 19 4 22s8-2 9-6Z"/><path d="M15 8c5-5 11-4 11 0s-6 4-11 3Z"/><path d="M15 14c5 3 10 5 9 8s-8-2-9-6Z"/></svg>',
+  insekt:'<svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#233D5C" stroke-width="1.8" stroke-linecap="round"><ellipse cx="13" cy="14" rx="4" ry="7"/><circle cx="13" cy="6" r="2.4"/><path d="M11 5 8.5 2.5M15 5l2.5-2.5"/><path d="M9 11 3.5 9M9 14H3M9 18l-5.5 2M17 11l5.5-2M17 14h6M17 18l5.5 2"/></svg>',
+};
+function iconHTML(o){
+  if(o.sw) return '<span class="swatch" style="background:'+o.sw+'"></span>';
+  if(o.ic && ICON[o.ic]) return ICON[o.ic];
+  return '';
+}
+
+/* ---- Zustand & Rendern ---- */
+const elPfad=document.getElementById("pfad");
+const elFrage=document.getElementById("frage");
+const elErg=document.getElementById("ergebnis");
+const btnZurueck=document.getElementById("zurueck");
+
+let aktuell=START;            // aktueller Knoten-Schlüssel
+let verlauf=[];               // [{node, kurz}] der beantworteten Fragen
+
+function zeigeFrage(key){
+  const n=KNOTEN[key];
+  if(!n){ return; }
+  aktuell=key;
+  if(n.frage){
+    elErg.style.display="none";
+    let html="<h2>"+n.frage+"</h2>";
+    if(n.sub) html+='<p class="sub">'+n.sub+'</p>';
+    n.optionen.forEach((o,i)=>{
+      const ic=iconHTML(o);
+      html+='<button class="opt" data-i="'+i+'">'+
+            (ic?'<span class="ic">'+ic+'</span>':'')+
+            '<span class="tx"><span class="t">'+o.t+'</span>'+
+            (o.h?'<span class="h">'+o.h+'</span>':'')+'</span>'+
+            '<span class="pf">›</span></button>';
+    });
+    elFrage.innerHTML=html;
+    elFrage.style.display="block";
+    elFrage.querySelectorAll(".opt").forEach(b=>{
+      b.addEventListener("click",()=>{
+        const o=n.optionen[+b.dataset.i];
+        verlauf.push({node:key, kurz:o.kurz});
+        const ziel=KNOTEN[o.ziel];
+        if(ziel && ziel.frage) zeigeFrage(o.ziel);
+        else zeigeErgebnis(o.ziel);
+        bildPfad(); steuerung(); melde();
+      });
+    });
+  }
+  bildPfad(); steuerung(); melde();
+}
+
+function zeigeErgebnis(key){
+  const n=KNOTEN[key];
+  aktuell=key;
+  elFrage.style.display="none";
+  let rang = n.art ? "Schmetterling · Art" : (n.larve ? "Larve · noch kein Falter" : "Tiergruppe");
+  let html='<p class="rang">'+rang+'</p><h2>'+n.de+'</h2>';
+  if(n.lat) html+='<p class="lat">'+n.lat+'</p>';
+  html+='<p>'+n.text+'</p><div class="knoepfe">';
+  if(n.art){
+    html+='<a class="btn-prim" href="'+n.url+'">Zur Artseite →</a>';
+    html+='<a class="btn-sek" href="stammbaum.html">Im Stammbaum zeigen ↗</a>';
+  } else if(n.larve){
+    html+='<button class="weiter btn-prim" id="weiterBtn">'+n.weiterText+'</button>';
+    html+='<a class="btn-sek" href="stammbaum.html">Im Stammbaum zeigen ↗</a>';
+  } else {
+    html+='<a class="btn-prim" href="stammbaum.html">Im Stammbaum zeigen ↗</a>';
+  }
+  html+='</div>';
+  elErg.innerHTML=html;
+  elErg.style.display="block";
+  const wb=document.getElementById("weiterBtn");
+  if(wb) wb.addEventListener("click",()=>{
+    verlauf.push({node:key, kurz:"Raupe"});
+    zeigeFrage(n.weiterZiel); bildPfad(); steuerung(); melde();
+  });
+}
+
+function bildPfad(){
+  let html='<span class="start">Start</span>';
+  verlauf.forEach((v,i)=>{
+    html+='<span class="pfeil">›</span>'+
+          '<button class="pchip" data-i="'+i+'">'+v.kurz+'</button>';
+  });
+  elPfad.innerHTML=html;
+  elPfad.querySelectorAll(".pchip").forEach(c=>{
+    c.addEventListener("click",()=>{
+      const i=+c.dataset.i;
+      const ziel=verlauf[i].node;   // zurück zu der Frage, die hier beantwortet wurde
+      verlauf=verlauf.slice(0,i);
+      zeigeFrage(ziel);
+    });
+  });
+}
+function steuerung(){ btnZurueck.disabled = verlauf.length===0; }
+
+btnZurueck.addEventListener("click",()=>{
+  if(verlauf.length===0) return;
+  const letzte=verlauf.pop();
+  zeigeFrage(letzte.node);
+});
+document.getElementById("vonvorn").addEventListener("click",()=>{
+  verlauf=[]; zeigeFrage(START);
+});
+
+/* Auto-Höhe an die einbettende Seite melden (iframe in WordPress) */
+function melde(){
+  if(window.parent!==window){
+    try{ window.parent.postMessage({fauna:"height", height:document.body.scrollHeight}, "*"); }catch(e){}
+  }
+}
+if("ResizeObserver" in window){ new ResizeObserver(melde).observe(document.body); }
+window.addEventListener("load", melde);
+
+zeigeFrage(START);
+</script>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

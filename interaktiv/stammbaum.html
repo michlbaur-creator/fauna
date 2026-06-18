@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stammbaum der Tiere – Insekten & niedere Tiere</title>
+<style>
+  :root{
+    --blau:#233D5C; --creme:#F7F3E8; --creme-tief:#EEE7D5;
+    --tinte:#1c2e42; --honig:#C28A3A; --linie:#c3ccd5;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html{-webkit-text-size-adjust:100%;}
+  body{margin:0;background:var(--creme);color:var(--blau);
+    font-family:Georgia,"Times New Roman",serif;line-height:1.5;}
+  .huelle{max-width:660px;margin:0 auto;padding:clamp(18px,5vw,40px) clamp(12px,3.5vw,28px) 60px;}
+
+  .augenbraue{font-family:var(--sans);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--honig);font-weight:600;margin:0 0 10px;}
+  h1{font-size:clamp(24px,7vw,40px);line-height:1.08;margin:0 0 10px;font-weight:normal;}
+  .unter{font-family:var(--sans);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+    color:#6f7b86;margin:0 0 14px;}
+  .intro{font-size:clamp(15px,4.2vw,18px);max-width:50ch;margin:0;color:var(--tinte);}
+
+  .leiste{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:20px 0 4px;
+    padding-bottom:14px;border-bottom:1px solid var(--linie);}
+  .knopf{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--blau);
+    background:transparent;border:1px solid var(--blau);border-radius:999px;padding:8px 14px;cursor:pointer;
+    transition:background .18s,color .18s;}
+  .knopf:hover{background:var(--blau);color:var(--creme);}
+  .knopf:active{transform:translateY(1px);}
+  .hinweis{font-family:var(--sans);font-size:12px;color:#67737e;margin-left:auto;}
+
+  .tafel{margin-top:14px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .scrollnote{font-family:var(--sans);font-size:11.5px;color:#9aa6b0;margin:6px 2px 0;display:none;}
+  .scrollnote.an{display:block;}
+  svg{display:block;height:auto;overflow:visible;}
+  svg text{font-family:Georgia,serif;}
+  .hit{cursor:pointer;}
+
+  .panel{margin-top:18px;padding:15px 17px;border-radius:0 12px 12px 0;
+    background:var(--creme-tief);border-left:4px solid var(--honig);min-height:64px;}
+  .panel .rang{font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:#8a96a1;margin:0 0 4px;}
+  .panel h2{margin:0 0 2px;font-size:clamp(19px,5.5vw,23px);font-weight:normal;}
+  .panel .lat{font-family:var(--sans);font-size:12px;color:#8a96a1;margin:0 0 9px;}
+  .panel p{margin:0;font-size:clamp(14.5px,4vw,16px);color:var(--tinte);}
+  .panel .leer{color:#8a96a1;font-style:italic;}
+  .panel .artlink{display:inline-flex;align-items:center;margin-top:12px;
+    font-family:var(--sans);font-size:13px;font-weight:600;color:var(--creme);
+    background:var(--blau);border-radius:999px;padding:9px 16px;text-decoration:none;}
+  .panel .artlink:hover{background:#1a2f47;}
+
+  .legende{margin-top:30px;padding-top:18px;border-top:1px solid var(--linie);
+    font-family:var(--sans);font-size:12.5px;color:#67737e;}
+  .legende b{color:var(--blau);font-weight:600;}
+  details.sys{margin-top:16px;border-top:1px solid var(--linie);padding-top:14px;}
+  details.sys summary{cursor:pointer;font-family:var(--sans);font-size:13px;font-weight:600;
+    color:var(--blau);list-style:none;display:flex;align-items:center;gap:7px;}
+  details.sys summary::-webkit-details-marker{display:none;}
+  details.sys summary::before{content:"▸";color:var(--honig);transition:transform .2s;display:inline-block;}
+  details.sys[open] summary::before{transform:rotate(90deg);}
+  details.sys .inhalt{font-family:var(--sans);font-size:12.5px;color:#5a6675;margin-top:10px;}
+  details.sys .leiter{color:var(--blau);font-weight:600;margin:2px 0 12px;}
+  .sysrow{display:grid;grid-template-columns:18px 78px 1fr;align-items:center;gap:9px;
+    padding:5px 0;border-bottom:1px solid #e7e0cf;}
+  .sysrow:last-of-type{border-bottom:none;}
+  .sysrow .sw{width:15px;height:15px;border-radius:4px;}
+  .sysrow .rk{font-weight:700;color:var(--blau);font-size:11.5px;letter-spacing:.02em;}
+  .sysrow .tx{color:#3c4856;}
+  .sysrow .tx .lt{color:#8a96a1;}
+  details.sys .note{margin-top:11px;font-size:11.5px;color:#7c8794;line-height:1.45;}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="huelle">
+  <p class="augenbraue">Natur vor der Haustür</p>
+  <h1>Der Stammbaum der Tiere</h1>
+  <p class="unter">Schwerpunkt: Insekten &amp; niedere Tiere</p>
+  <p class="intro">Jede Gabelung teilt sich in zwei Äste mit gemeinsamem Vorfahren. Die Insekten sind bis zu ihren großen Ordnungen aufgefächert; die übrigen wirbellosen Gruppen lassen sich antippen und gehen eine Stufe tiefer. Die Wirbeltiere stecken im Dreieck rechts unten.</p>
+
+  <div class="leiste">
+    <button class="knopf" id="ueberblick">Überblick</button>
+    <button class="knopf" id="allesAuf">Alles aufklappen</button>
+    <span class="hinweis">Tipp: Ast antippen</span>
+  </div>
+
+  <div class="tafel"><svg id="baum"></svg></div>
+  <p class="scrollnote" id="scrollnote">↔ Baum ist seitlich verschiebbar</p>
+
+  <div class="panel" id="panel">
+    <p class="rang">Steckbrief</p>
+    <h2>Tippe einen Ast</h2>
+    <p class="leer">Wähle eine Gruppe oder eine Tierart im Baum.</p>
+  </div>
+
+  <div class="legende">
+    <b>Lesehilfe:</b> Ein Verzweigungspunkt ist ein gemeinsamer Vorfahr – was hier abzweigt, teilt eine neue Eigenschaft. Dreiecke sind eingeklappte Gruppen (Zahl = enthaltene Äste); antippen öffnet sie. Tippt man eine Tierart an, leuchtet der Weg zur Wurzel auf.
+    <div id="skala" style="display:flex;align-items:center;gap:7px;margin-top:12px;flex-wrap:wrap;"></div>
+  </div>
+</div>
+
+<script>
+const NS="http://www.w3.org/2000/svg";
+// jede Ebene eine eigene Farbe: tiefes Blau an der Wurzel -> Grün zu den Spitzen
+const farbe=['#1E3A52','#1F5168','#1E6670','#1F7A6F','#2A8C66','#3E9A5E','#57A457','#6FAD52','#86B44F','#9BBA50','#A9BE59','#B3C168','#BBC474','#C0C77F','#C5C98A'];
+
+// standardmäßig eingeklappt: Wirbeltiere, die übrigen Wirbellosen-Gruppen und alle Insekten-Ordnungen
+const ZU = new Set([
+  "Vertebrata","Cnidaria","Mollusca","Annelida","Arachnida","Myriapoda","Crustacea","Echinodermata",
+  "Odonata","Polyneoptera","Hemiptera","Coleoptera","Hymenoptera","Lepidoptera","Diptera",
+  "Pieridae & Lycaenidae","Nymphalidae","Bombycoidea & Co.","Noctuidae & Geometridae"
+]);
+
+// klassische Ränge (nur dort, wo eindeutig); Kladen/Mischgruppen bleiben ohne Rang
+const RANG = {
+  Animalia:"Reich",
+  Porifera:"Stamm", Cnidaria:"Stamm", Mollusca:"Stamm", Annelida:"Stamm", Nematoda:"Stamm",
+  Arthropoda:"Stamm", Echinodermata:"Stamm", Vertebrata:"Unterstamm",
+  Medusozoa:"Klasse", Anthozoa:"Klasse", Gastropoda:"Klasse", Bivalvia:"Klasse", Cephalopoda:"Klasse",
+  Polychaeta:"Klasse", Clitellata:"Klasse", Arachnida:"Klasse", Myriapoda:"Klasse", Crustacea:"Klasse",
+  Insecta:"Klasse", Pisces:"Klasse", Amphibia:"Klasse", Reptilia:"Klasse", Aves:"Klasse", Mammalia:"Klasse",
+  Odonata:"Ordnung", Orthoptera:"Ordnung", Hemiptera:"Ordnung", Coleoptera:"Ordnung",
+  Hymenoptera:"Ordnung", Lepidoptera:"Ordnung", Diptera:"Ordnung", Scorpiones:"Ordnung",
+  Blattodea:"Ordnung", Mantodea:"Ordnung",
+  Anisoptera:"Unterordnung", Zygoptera:"Unterordnung", Ensifera:"Unterordnung", Caelifera:"Unterordnung",
+  Heteroptera:"Unterordnung", Auchenorrhyncha:"Unterordnung", Sternorrhyncha:"Unterordnung",
+  Rhopalocera:"Unterordnung", Heterocera:"Unterordnung", Nematocera:"Unterordnung", Brachycera:"Unterordnung",
+  Adephaga:"Unterordnung", Polyphaga:"Unterordnung", Symphyta:"Unterordnung", Apocrita:"Unterordnung",
+  Aeshnidae:"Familie", Libellulidae:"Familie", Calopterygidae:"Familie", Coenagrionidae:"Familie",
+  Carabidae:"Familie", Dytiscidae:"Familie", Scarabaeidae:"Familie", Tenthredinidae:"Familie",
+  Culicidae:"Familie", Nymphalidae:"Familie"
+};
+
+const baumDaten = {
+ de:"Tierreich", lat:"Animalia", info:"Der gemeinsame Ursprung aller Tiere.", k:[
+  {de:"Schwämme", lat:"Porifera", info:"Die einfachsten Tiere – ohne Organe und Nerven. Sie sitzen fest und filtern ihre Nahrung aus dem Wasser."},
+  {de:"Gewebetiere", lat:"Eumetazoa", info:"Ab hier haben Tiere echtes Gewebe und erste Nervenzellen.", k:[
+    {de:"Nesseltiere", lat:"Cnidaria", info:"Tiere mit Nesselzellen, die wie winzige Harpunen zuschlagen.", k:[
+      {de:"Quallen & Polypen", lat:"Medusozoa", info:"Quallen und ihre festsitzenden Polypen – dazu der winzige Süßwasserpolyp Hydra."},
+      {de:"Blumentiere", lat:"Anthozoa", info:"Korallen und Seeanemonen. Sie bleiben ihr Leben lang Polyp und bauen ganze Riffe."}
+    ]},
+    {de:"Zweiseitentiere", lat:"Bilateria", info:"Eine linke und rechte Hälfte, ein Kopf und ein Hinterende. Fast alle bekannten Tiere gehören dazu.", k:[
+      {de:"Urmünder", lat:"Protostomia", info:"Von den Würmern bis zu den Insekten. In ihrer Entwicklung entsteht zuerst der Mund.", k:[
+        {de:"Spiraltiere", lat:"Spiralia", info:"Schnecken, Muscheln und Würmer – verbunden durch einen gemeinsamen Bauplan der frühen Zellteilung.", k:[
+          {de:"Weichtiere", lat:"Mollusca", info:"Tiere mit weichem Körper, oft mit Kalkschale.", k:[
+            {de:"Schnecken", lat:"Gastropoda", info:"Mit einer einzigen, oft gedrehten Schale – oder ganz ohne, wie die Nacktschnecke."},
+            {de:"Muscheln & Kopffüßer", lat:"Conchifera (Teil)", info:"Hier trennen sich die filtrierenden Muscheln von den jagenden Kopffüßern.", k:[
+              {de:"Muscheln", lat:"Bivalvia", info:"Zwei Schalenhälften, die sich schließen lassen. Sie filtern ihre Nahrung aus dem Wasser."},
+              {de:"Kopffüßer", lat:"Cephalopoda", info:"Tintenfische und Kraken – die klügsten Weichtiere, mit Armen rund um den Mund."}
+            ]}
+          ]},
+          {de:"Ringelwürmer", lat:"Annelida", info:"Ihr Körper ist in viele gleiche Ringe gegliedert.", k:[
+            {de:"Vielborster", lat:"Polychaeta", info:"Borstenwürmer des Meeres, oft mit prächtigen Kiemenkronen."},
+            {de:"Gürtelwürmer", lat:"Clitellata", info:"Regenwurm und Egel – mit einem auffälligen Hautgürtel zur Fortpflanzung."}
+          ]}
+        ]},
+        {de:"Häutungstiere", lat:"Ecdysozoa", info:"Sie wachsen, indem sie ihre feste Außenhaut abstreifen und sich häuten.", k:[
+          {de:"Fadenwürmer", lat:"Nematoda", info:"Winzige, fadenförmige Würmer – in unvorstellbarer Zahl im Boden; manche leben als Parasiten."},
+          {de:"Gliederfüßer", lat:"Arthropoda", info:"Außenskelett und gegliederte Beine – die artenreichste Gruppe der Erde.", k:[
+            {de:"Spinnentiere", lat:"Arachnida", info:"Acht Beine und keine Fühler.", k:[
+              {de:"Webspinnen", lat:"Araneae", info:"Spinnen mit Spinndrüsen am Hinterleib – Netzbauer und Jäger."},
+              {de:"Skorpione & Milben", lat:"Arachnida (übrige)", info:"Skorpione mit Giftstachel sowie die winzigen, oft verborgenen Milben und Weberknechte.", k:[
+                {de:"Skorpione", lat:"Scorpiones", info:"Mit kräftigen Scheren und einem Giftstachel am Schwanz."},
+                {de:"Milben & Weberknechte", lat:"Acari & Opiliones", info:"Meist winzig und überall – im Boden, auf Pflanzen, manche als Parasiten."}
+              ]}
+            ]},
+            {de:"Mandibeltiere", lat:"Mandibulata", info:"Vereint durch kräftige Kau-Werkzeuge, die Mandibeln.", k:[
+              {de:"Tausendfüßer", lat:"Myriapoda", info:"Langer, gegliederter Körper mit vielen Beinpaaren.", k:[
+                {de:"Doppelfüßer", lat:"Diplopoda", info:"Pflanzenfresser mit zwei Beinpaaren je Segment; rollen sich bei Gefahr ein."},
+                {de:"Hundertfüßer", lat:"Chilopoda", info:"Flinke Räuber mit Giftklauen – Steinläufer und Skolopender."}
+              ]},
+              {de:"Krebs- & Insektenlinie", lat:"Pancrustacea", info:"Eine Überraschung der Forschung: Krebse und Insekten sind enge Verwandte.", k:[
+                {de:"Krebstiere", lat:"Crustacea", info:"Meist im Wasser zu Hause; an Land die Asseln.", k:[
+                  {de:"Asseln & Flohkrebse", lat:"Peracarida", info:"Kleinkrebse, die ihre Jungen in einer Bauchtasche tragen – auch die Land-Asseln."},
+                  {de:"Zehnfußkrebse", lat:"Decapoda", info:"Krebse, Krabben, Hummer und Garnelen – mit zehn Laufbeinen."}
+                ]},
+                {de:"Insekten", lat:"Insecta", info:"Sechs Beine, oft zwei Flügelpaare. Die mit Abstand artenreichste Tiergruppe – Herzstück dieser App.", k:[
+                  {de:"Unvollständige Verwandlung", lat:"Hemimetabola", info:"Die Jungen (Nymphen) ähneln schon den Erwachsenen – ganz ohne Puppe.", k:[
+                    {de:"Libellen", lat:"Odonata", info:"Räuber der Lüfte mit vier glasklaren Flügeln; ihre Larven jagen unter Wasser.", k:[
+                      {de:"Großlibellen", lat:"Anisoptera", info:"Kräftige Flieger, die mit ausgebreiteten Flügeln ruhen.", k:[
+                        {de:"Edellibellen", lat:"Aeshnidae", info:"Große, schnelle Jäger wie die Blaugrüne Mosaikjungfer."},
+                        {de:"Segellibellen", lat:"Libellulidae", info:"Sitzen gern auf Warten und segeln los – etwa der Plattbauch."}
+                      ]},
+                      {de:"Kleinlibellen", lat:"Zygoptera", info:"Zarte Flieger, die ihre Flügel in Ruhe zusammenklappen.", k:[
+                        {de:"Prachtlibellen", lat:"Calopterygidae", info:"Metallisch schillernd an Bächen – die Gebänderte Prachtlibelle."},
+                        {de:"Schlanklibellen", lat:"Coenagrionidae", info:"Schlanke Azur- und Pechlibellen an Teichrändern."}
+                      ]}
+                    ]},
+                    {de:"Geradflügler & Schnabelkerfe", lat:"Neoptera (Teil)", info:"Hier trennen sich die kauenden Geradflügler von den saugenden Schnabelkerfen.", k:[
+                      {de:"Heuschrecken & Schaben", lat:"Polyneoptera", info:"Kräftige Springer und flinke Schaben, oft mit ledrigen Vorderflügeln.", k:[
+                        {de:"Heuschrecken", lat:"Orthoptera", info:"Springer mit kräftigen Hinterbeinen; viele zirpen.", k:[
+                          {de:"Laubheuschrecken & Grillen", lat:"Ensifera", info:"Lange, fadenförmige Fühler – das Grüne Heupferd, die Feldgrille."},
+                          {de:"Feldheuschrecken", lat:"Caelifera", info:"Kurze Fühler; zirpen mit den Hinterschenkeln."}
+                        ]},
+                        {de:"Schaben & Fangschrecken", lat:"Dictyoptera", info:"Flinke Bodenläufer und lauernde Jäger.", k:[
+                          {de:"Schaben & Termiten", lat:"Blattodea", info:"Abgeflachte Allesfresser; Termiten bauen riesige Staaten."},
+                          {de:"Fangschrecken", lat:"Mantodea", info:"Lauern mit zu Fangbeinen umgebauten Vorderbeinen – die Gottesanbeterin."}
+                        ]}
+                      ]},
+                      {de:"Schnabelkerfe", lat:"Hemiptera", info:"Wanzen und Zikaden. Ihr Mund ist ein Stechrüssel zum Saugen.", k:[
+                        {de:"Wanzen", lat:"Heteroptera", info:"Vorderflügel halb hart, halb häutig; oft mit Stinkdrüsen.", k:[
+                          {de:"Landwanzen", lat:"Geocorisae", info:"Feuerwanze, Beerenwanze und die Bettwanze."},
+                          {de:"Wasserwanzen", lat:"Hydrocorisae", info:"Wasserläufer und Rückenschwimmer an und auf dem Wasser."}
+                        ]},
+                        {de:"Pflanzensauger", lat:"Sternorrhyncha & Co.", info:"Saugen Pflanzensaft, oft in Massen.", k:[
+                          {de:"Zikaden", lat:"Auchenorrhyncha", info:"Springende Sauger; manche Männchen singen erstaunlich laut."},
+                          {de:"Blatt- & Schildläuse", lat:"Sternorrhyncha", info:"Winzige Sauger – Blattläuse vermehren sich rasend schnell."}
+                        ]}
+                      ]},
+                    ]}
+                  ]},
+                  {de:"Vollständige Verwandlung", lat:"Holometabola", info:"Mit Puppe: Ei → Larve → Puppe → fertiges Insekt. Raupe und Schmetterling sind dasselbe Tier.", k:[
+                    {de:"Käfer", lat:"Coleoptera", info:"Die artenreichste Ordnung überhaupt – harte Deckflügel schützen die Hautflügel darunter.", k:[
+                      {de:"Lauf- & Schwimmkäfer", lat:"Adephaga", info:"Räuberische Käfer zu Land und im Wasser.", k:[
+                        {de:"Laufkäfer", lat:"Carabidae", info:"Schnelle Bodenjäger, oft metallisch glänzend."},
+                        {de:"Schwimmkäfer", lat:"Dytiscidae", info:"Räuber im Teich – der Gelbrandkäfer taucht mit Luftvorrat."}
+                      ]},
+                      {de:"Übrige Käfer", lat:"Polyphaga", info:"Die riesige Mehrheit aller Käferarten.", k:[
+                        {de:"Blatthornkäfer", lat:"Scarabaeidae", info:"Maikäfer, Rosenkäfer und Mistkäfer – mit gefächerten Fühlern."},
+                        {de:"Marien-, Bock- & Rüsselkäfer", lat:"Cucujiformia", info:"Vom nützlichen Marienkäfer bis zum langfühlerigen Bockkäfer."}
+                      ]}
+                    ]},
+                    {de:"Hautflügler & Verwandte", lat:"Holometabola (übrige)", info:"Hier zweigen die Hautflügler ab; die übrigen teilen sich in Schmetterlinge und Zweiflügler.", k:[
+                      {de:"Hautflügler", lat:"Hymenoptera", info:"Bienen, Wespen, Hummeln und Ameisen – viele leben in Staaten und bestäuben unsere Blüten.", k:[
+                        {de:"Pflanzenwespen", lat:"Symphyta", info:"Ohne Wespentaille; ihre Larven fressen an Blättern.", k:[
+                          {de:"Echte Blattwespen", lat:"Tenthredinidae", info:"Häufig an Blättern; ihre Larven ähneln Raupen."},
+                          {de:"Halm- & Holzwespen", lat:"übrige Symphyta", info:"Legen ihre Eier in Halme oder ins Holz."}
+                        ]},
+                        {de:"Taillenwespen", lat:"Apocrita", info:"Mit deutlicher Wespentaille zwischen Brust und Hinterleib.", k:[
+                          {de:"Stechimmen", lat:"Aculeata", info:"Bienen, Hummeln, Wespen und Ameisen – viele bilden Staaten."},
+                          {de:"Schlupf- & Gallwespen", lat:"Parasitica", info:"Legen Eier in andere Insekten oder in Pflanzen (Gallen)."}
+                        ]}
+                      ]},
+                      {de:"Schmetterlinge & Zweiflügler", lat:"Mecopterida", info:"Zwei eng verwandte Ordnungen mit sehr verschiedenen Flügeln.", k:[
+                        {de:"Schmetterlinge", lat:"Lepidoptera", info:"Falter mit schuppenbedeckten Flügeln und Saugrüssel; als Raupe Pflanzenfresser.", k:[
+                          {de:"Tagfalter", lat:"Rhopalocera", info:"Tagaktiv, Fühler mit Endknopf, ruhen mit aufgestellten Flügeln.", k:[
+                            {de:"Weißlinge & Bläulinge", lat:"Pieridae & Lycaenidae", info:"Der Kohlweißling und die winzigen blauen Bläulinge.", k:[
+                              {de:"Kleiner Kohlweißling", lat:"Pieris rapae", art:true, info:"Weiß mit dunklen Flügelspitzen; häufig im Garten, die Raupe frisst an Kohl."},
+                              {de:"Zitronenfalter", lat:"Gonepteryx rhamni", art:true, url:"../arten/zitronenfalter.html", info:"Das Männchen leuchtend zitronengelb; einer der ersten Falter im Frühjahr, überwintert als Falter."},
+                              {de:"Hauhechel-Bläuling", lat:"Polyommatus icarus", art:true, info:"Männchen oben himmelblau; der häufigste Bläuling auf Wiesen und Säumen."}
+                            ]},
+                            {de:"Edelfalter", lat:"Nymphalidae", info:"Tagpfauenauge, Admiral und Kleiner Fuchs.", k:[
+                              {de:"Tagpfauenauge", lat:"Aglais io", art:true, url:"../arten/tagpfauenauge.html", info:"Unverkennbar durch vier große Augenflecken; überwintert als Falter in Schuppen und Kellern."},
+                              {de:"Kleiner Fuchs", lat:"Aglais urticae", art:true, url:"../arten/kleiner-fuchs.html", info:"Ziegelrot mit blauen Randmonden; sehr häufig, die Raupe lebt an Brennnesseln."},
+                              {de:"Admiral", lat:"Vanessa atalanta", art:true, url:"../arten/admiral.html", info:"Schwarzbraun mit roten Binden und weißen Spitzenflecken; Wanderfalter aus dem Süden."},
+                              {de:"Distelfalter", lat:"Vanessa cardui", art:true, url:"../arten/distelfalter.html", info:"Orangebraun gescheckt; einer der größten Wanderfalter, in manchen Jahren in Massen."},
+                              {de:"Landkärtchen", lat:"Araschnia levana", art:true, url:"../arten/landkaertchen.html", info:"Zwei Kleider im Jahr – Frühjahrstiere orange, Sommertiere schwarz-weiß."}
+                            ]},
+                          ]},
+                          {de:"Nachtfalter", lat:"Heterocera", info:"Meist nachtaktiv, Fühler oft gefiedert.", k:[
+                            {de:"Schwärmer & Spinner", lat:"Bombycoidea & Co.", info:"Kräftige Flieger wie das Taubenschwänzchen; auch der Seidenspinner.", k:[
+                              {de:"Taubenschwänzchen", lat:"Macroglossum stellatarum", art:true, info:"Schwirrt wie ein Kolibri vor Blüten und saugt im Flug; tagaktiver Schwärmer."},
+                              {de:"Ligusterschwärmer", lat:"Sphinx ligustri", art:true, info:"Großer Schwärmer mit rosa-schwarz gebändertem Hinterleib; die Raupe trägt ein Schwanzhorn."},
+                              {de:"Brauner Bär", lat:"Arctia caja", art:true, info:"Auffällig gewarnte Flügel; die pelzige Raupe heißt im Volksmund „Bär“."}
+                            ]},
+                            {de:"Eulen & Spanner", lat:"Noctuidae & Geometridae", info:"Die meisten „Motten“; Spanner-Raupen gehen wie Landvermesser.", k:[
+                              {de:"Gammaeule", lat:"Autographa gamma", art:true, info:"Wanderfalter mit silbernem „γ“-Zeichen auf dem Flügel; fliegt auch am Tag."},
+                              {de:"Birkenspanner", lat:"Biston betularia", art:true, info:"Berühmtes Schulbeispiel: helle und dunkle Form je nach Rußbelastung der Baumrinde."},
+                              {de:"Hausmutter", lat:"Noctua pronuba", art:true, info:"Unscheinbar braun, doch mit leuchtend orangen Hinterflügeln; kommt oft ans Licht."}
+                            ]}
+                          ]}
+                        ]},
+                        {de:"Zweiflügler", lat:"Diptera", info:"Fliegen und Mücken – nur ein Flügelpaar, das zweite zu Schwingkölbchen umgebaut.", k:[
+                          {de:"Mücken", lat:"Nematocera", info:"Schlanke Tiere mit langen Fühlern.", k:[
+                            {de:"Stechmücken & Schnaken", lat:"Culicidae & Tipulidae", info:"Von der blutsaugenden Stechmücke bis zur harmlosen Riesenschnake."},
+                            {de:"Zuck- & Gallmücken", lat:"übrige Nematocera", info:"Tanzen in Schwärmen; viele Larven leben im Wasser."}
+                          ]},
+                          {de:"Fliegen", lat:"Brachycera", info:"Gedrungener, mit kurzen Fühlern.", k:[
+                            {de:"Stuben- & Schmeißfliegen", lat:"Muscidae & Calliphoridae", info:"Allgegenwärtig; Schmeißfliegen schimmern metallisch blau-grün."},
+                            {de:"Schweb- & Raubfliegen", lat:"Syrphidae & Asilidae", info:"Schwebfliegen stehen wespenähnlich in der Luft; Raubfliegen jagen andere Insekten."}
+                          ]}
+                        ]}
+                      ]}
+                    ]}
+                  ]}
+                ]}
+              ]}
+            ]}
+          ]}
+        ]}
+      ]},
+      {de:"Neumünder", lat:"Deuterostomia", info:"Die Linie, zu der auch wir gehören – vom Seestern bis zum Menschen.", k:[
+        {de:"Stachelhäuter", lat:"Echinodermata", info:"Fünfstrahlig gebaut – nähere Verwandte der Wirbeltiere als die Insekten.", k:[
+          {de:"Seesterne & Schlangensterne", lat:"Asterozoa", info:"Mit kräftigen Armen; können verlorene Arme nachwachsen lassen."},
+          {de:"Seeigel & Seegurken", lat:"Echinozoa", info:"Kugelig bestachelt oder walzenförmig weich – Weidegänger des Meeresbodens."}
+        ]},
+        {de:"Wirbeltiere", lat:"Vertebrata", info:"Tiere mit Knochen-Rückgrat und Schädel. In dieser App bewusst kompakt gehalten.", k:[
+          {de:"Fische", lat:"Pisces", info:"Im Wasser zu Hause, mit Kiemen und Flossen."},
+          {de:"Landwirbeltiere", lat:"Tetrapoda", info:"Vier Gliedmaßen – der Schritt aufs Land.", k:[
+            {de:"Amphibien", lat:"Amphibia", info:"Frösche, Kröten und Molche, zwischen Wasser und Land."},
+            {de:"Nabeltiere", lat:"Amniota", info:"Ein Ei mit Hülle macht unabhängig vom Wasser.", k:[
+              {de:"Säugetiere", lat:"Mammalia", info:"Fell, ein warmer Körper und Milch für die Jungen.", k:[
+                {de:"Kloakentiere", lat:"Monotremata", info:"Säugetiere, die noch Eier legen – das Schnabeltier."},
+                {de:"Beutel- & Höhere Säuger", lat:"Theria", info:"Die Jungen kommen lebend zur Welt.", k:[
+                  {de:"Beuteltiere", lat:"Marsupialia", info:"Reifen im Beutel heran: Känguru, Koala."},
+                  {de:"Höhere Säugetiere", lat:"Placentalia", info:"Reifen im Mutterleib – von der Maus bis zum Menschen."}
+                ]}
+              ]},
+              {de:"Sauropsiden", lat:"Sauropsida", info:"Schuppentiere und ihre gefiederten Nachfahren – hier zweigen die Vögel aus der Reptilien-Linie ab.", k:[
+                {de:"Reptilien", lat:"Reptilia", info:"Schlangen, Echsen, Schildkröten, Krokodile."},
+                {de:"Vögel", lat:"Aves", info:"Die gefiederten Nachfahren der Dinosaurier."}
+              ]}
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}
+  ]}
+ ]
+};
+
+let uid=0;
+function praep(n,level,parent){
+  n.id=uid++; n.level=level; n.parent=parent; n.isTip=!n.k;
+  n.collapsed=ZU.has(n.lat); n.rang=n.art?"Art":(RANG[n.lat]||"");
+  if(n.k) n.k.forEach(c=>praep(c,level+1,n));
+}
+praep(baumDaten,0,null);
+
+const svg=document.getElementById("baum");
+const panel=document.getElementById("panel");
+const scrollnote=document.getElementById("scrollnote");
+let selected=null;
+
+const farb=l=>farbe[Math.min(l,farbe.length-1)];
+function tipPfad(node){const s=new Set();let n=node;while(n){s.add(n.id);n=n.parent;}return s;}
+function blaetter(n,a){ if(n.isTip||n.collapsed)a.push(n); else n.k.forEach(c=>blaetter(c,a)); return a; }
+function zaehle(n){ return n.isTip?1:n.k.reduce((s,c)=>s+zaehle(c),0); }
+function el(name,at){const e=document.createElementNS(NS,name);for(const a in at)e.setAttribute(a,at[a]);return e;}
+
+function zeichne(){
+  const cont=svg.parentNode.clientWidth || 360;
+  const bl=blaetter(baumDaten,[]); bl.forEach((b,i)=>b._row=i);
+  (function setY(n){ if(n.isTip||n.collapsed){n._y=n._row;return n._y;}
+    const ys=n.k.map(setY); n._y=(Math.min(...ys)+Math.max(...ys))/2; return n._y; })(baumDaten);
+  let maxLevel=0;
+  (function ml(n){ if(n.level>maxLevel)maxLevel=n.level; if(!(n.isTip||n.collapsed))n.k.forEach(ml); })(baumDaten);
+
+  const padL=8, padT=18, rowH=31;
+  const labelW=Math.min(Math.max(cont*0.42,156),236);
+  const colStep=(cont-labelW-padL)/Math.max(maxLevel,1);
+  const X=l=>padL+l*colStep;
+  const treeRight=X(maxLevel);
+  const totalW=treeRight+labelW;
+  const Y=r=>padT+r*rowH;
+  const hoehe=padT+(bl.length-1)*rowH+padT;
+
+  scrollnote.classList.toggle("an", totalW>cont+2);
+  svg.setAttribute("viewBox",`0 0 ${totalW} ${hoehe}`);
+  svg.setAttribute("width",totalW); svg.setAttribute("height",hoehe);
+  while(svg.firstChild) svg.removeChild(svg.firstChild);
+  const pfad=selected?tipPfad(selected):new Set();
+
+  (function linien(n){
+    if(n.isTip||n.collapsed) return;
+    const px=X(n.level);
+    const ys=n.k.map(c=>Y(c._y));
+    svg.appendChild(el("line",{x1:px,y1:Math.min(...ys),x2:px,y2:Math.max(...ys),
+      stroke:farb(n.level),"stroke-width":1.6,"stroke-linecap":"round"}));
+    n.k.forEach(c=>{
+      const leaf=c.isTip||c.collapsed, auf=pfad.has(c.id);
+      const wl=c.collapsed?Math.min(18,colStep*0.6):0;
+      const cx=leaf?(treeRight-wl):X(c.level);
+      svg.appendChild(el("line",{x1:px,y1:Y(c._y),x2:cx,y2:Y(c._y),
+        stroke:auf?"#C28A3A":farb(c.level),"stroke-width":auf?2.4:1.4,"stroke-linecap":"round",
+        "stroke-opacity":(leaf&&!auf)?0.7:1}));
+      linien(c);
+    });
+  })(baumDaten);
+
+  function label(x,y,de,lat,bold){
+    const t=el("text",{x:x,y:y-1,"font-size":12.5,"font-weight":bold?"bold":"normal",fill:"#1c2e42"});
+    t.textContent=de; svg.appendChild(t);
+    if(lat){const l=el("text",{x:x,y:y+10,"font-size":9,fill:"#8a96a1"});l.textContent=lat;svg.appendChild(l);}
+  }
+  function hit(node,x,y,w){
+    const r=el("rect",{x:x-7,y:y-rowH/2,width:Math.max(w+14,16),height:rowH,fill:"transparent",class:"hit"});
+    r.addEventListener("click",()=>tippe(node)); svg.appendChild(r);
+  }
+  (function knoten(n){
+    const y=Y(n._y), px=X(n.level), aktiv=selected&&selected.id===n.id;
+    if(n.collapsed){
+      const wl=Math.min(18,colStep*0.6), h=Math.min(9,rowH/2-4);
+      svg.appendChild(el("path",{d:`M${treeRight-wl},${y} L${treeRight},${y-h} L${treeRight},${y+h} Z`,
+        fill:aktiv?"#C28A3A":farb(n.level),"fill-opacity":aktiv?0.95:0.62,
+        stroke:aktiv?"#C28A3A":farb(n.level),"stroke-width":1}));
+      const t=el("text",{x:treeRight+9,y:y-1,"font-size":12,"font-weight":"bold",fill:"#1c2e42"});
+      t.textContent=n.de+" ▸"; svg.appendChild(t);
+      const l=el("text",{x:treeRight+9,y:y+10,"font-size":9,fill:"#8a96a1"});
+      l.textContent=n.lat+" · "+zaehle(n)+" Äste"; svg.appendChild(l);
+      hit(n,px,y,treeRight-px+labelW-12);
+    } else if(n.isTip){
+      svg.appendChild(el("circle",{cx:treeRight,cy:y,r:aktiv?5.5:3.6,fill:aktiv?"#C28A3A":farb(n.level)}));
+      const t=el("text",{x:treeRight+9,y:y-1,"font-size":12,fill:"#1c2e42"});
+      t.textContent=n.de; svg.appendChild(t);
+      const l=el("text",{x:treeRight+9,y:y+10,"font-size":9,fill:"#8a96a1"});
+      l.textContent=n.lat; svg.appendChild(l);
+      hit(n,px,y,treeRight-px+labelW-12);
+    } else {
+      svg.appendChild(el("circle",{cx:px,cy:y,r:aktiv?6:4.5,fill:aktiv?"#C28A3A":"#fff",
+        stroke:farb(n.level),"stroke-width":2}));
+      hit(n,px-2,y,16); n.k.forEach(knoten);
+    }
+  })(baumDaten);
+}
+
+function tippe(n){ if(!n.isTip)n.collapsed=!n.collapsed; selected=n; zeigePanel(n); zeichne(); }
+function zeigePanel(n){
+  const rang = n.rang ? n.rang : (n.isTip ? "Gruppe" : "Zwischengruppe · Klade");
+  let html='<p class="rang">'+rang+'</p><h2>'+n.de+'</h2><p class="lat">'+n.lat+'</p><p>'+n.info+'</p>';
+  if(n.art){ html+='<a class="artlink" href="'+(n.url||"#")+'">Tafelbild &amp; mehr im Bestimmungsschlüssel →</a>'; }
+  panel.innerHTML=html;
+}
+document.getElementById("ueberblick").addEventListener("click",()=>{
+  (function r(n){n.collapsed=ZU.has(n.lat); if(n.k)n.k.forEach(r);})(baumDaten);
+  selected=null;
+  panel.innerHTML='<p class="rang">Steckbrief</p><h2>Tippe einen Ast</h2><p class="leer">Wähle eine Gruppe oder eine Tierart im Baum.</p>';
+  zeichne();
+});
+document.getElementById("allesAuf").addEventListener("click",()=>{
+  (function o(n){n.collapsed=false; if(n.k)n.k.forEach(o);})(baumDaten); zeichne();
+});
+window.addEventListener("resize",()=>{clearTimeout(window._t);window._t=setTimeout(zeichne,150);});
+zeichne();
+
+// Ebenen-Farbskala in der Lesehilfe
+(function(){
+  const sk=document.getElementById("skala");
+  const a=document.createElement("span");
+  a.textContent="Ebenen:"; a.style.cssText="color:#67737e;margin-right:2px;";
+  sk.appendChild(a);
+  farbe.slice(0,13).forEach(c=>{
+    const d=document.createElement("span");
+    d.style.cssText="width:14px;height:14px;border-radius:3px;background:"+c+";";
+    sk.appendChild(d);
+  });
+  const b=document.createElement("span");
+  b.textContent="Wurzel → Arten"; b.style.cssText="color:#67737e;margin-left:4px;";
+  sk.appendChild(b);
+
+  // aufklappbare Systematik-Box: Ränge am Beispiel des Admirals, mit Baum-Farben
+  const bsp=[
+    ["Reich","Tiere","Animalia",0],
+    ["Stamm","Gliederfüßer","Arthropoda",5],
+    ["Klasse","Insekten","Insecta",8],
+    ["Ordnung","Schmetterlinge","Lepidoptera",12],
+    ["Familie","Edelfalter","Nymphalidae",14],
+    ["Art","Admiral","Vanessa atalanta",14]
+  ];
+  let rows="";
+  bsp.forEach(([rk,de,lt,lvl])=>{
+    rows+='<div class="sysrow"><span class="sw" style="background:'+farbe[Math.min(lvl,farbe.length-1)]+'"></span>'+
+          '<span class="rk">'+rk+'</span><span class="tx">'+de+' <span class="lt">'+lt+'</span></span></div>';
+  });
+  const det=document.createElement("details"); det.className="sys";
+  det.innerHTML='<summary>Systematik &middot; wie die Ränge zu den Farben passen</summary>'+
+    '<div class="inhalt">'+
+    '<p>Die klassische Rangordnung von grob nach fein:</p>'+
+    '<p class="leiter">Reich › Stamm › Klasse › Ordnung › Familie › Gattung › Art</p>'+
+    '<p>Beispiel <b>Admiral</b> (ein Tagfalter) – jede Stufe mit ihrer Farbe im Baum:</p>'+
+    rows+
+    '<p class="note">Die Farben zeigen die <b>Stufe im Baum</b>. Klassische Ränge liegen unterschiedlich tief – dazwischen gibt es weitere Verzweigungen (Kladen) ohne eigenen Rang. Darum hat nicht jede „Klasse“ dieselbe Farbe. Beim Antippen eines Astes steht der Rang oben im Steckbrief.</p>'+
+    '</div>';
+  document.querySelector(".legende").appendChild(det);
+})();
+
+// Auto-Höhe an die einbettende Seite melden (für iframe-Einbindung in WordPress)
+function reportHeight(){
+  if(window.parent!==window){
+    try{ window.parent.postMessage({fauna:"height", height:document.body.scrollHeight}, "*"); }catch(e){}
+  }
+}
+if("ResizeObserver" in window){ new ResizeObserver(reportHeight).observe(document.body); }
+window.addEventListener("load", reportHeight); reportHeight();
+</script>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

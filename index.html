@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fauna Mibaso — Tiere entdecken · Tiere verstehen</title>
+<meta name="description" content="Digitale Naturwerkstatt für die Hosentasche: Tiere bestimmen, ordnen und verstehen. Schwerpunkt: Insekten & niedere Tiere.">
+<meta name="theme-color" content="#233D5C">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Fauna Mibaso">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/icon.svg">
+<style>
+  :root{
+    --blau:#233D5C; --blau-tief:#1a2f47; --creme:#F7F3E8; --creme-tief:#EEE7D5;
+    --tinte:#1c2e42; --honig:#C28A3A; --linie:#d7cfba;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html{-webkit-text-size-adjust:100%;}
+  body{margin:0;background:var(--creme);color:var(--blau);
+    font-family:Georgia,"Times New Roman",serif;line-height:1.5;}
+  .huelle{max-width:680px;margin:0 auto;padding:clamp(20px,5vw,44px) clamp(14px,4vw,30px) 60px;}
+
+  /* Kopf */
+  .kopf{display:flex;align-items:center;gap:16px;margin-bottom:6px;}
+  .kopf img{width:62px;height:62px;border-radius:16px;flex:0 0 auto;box-shadow:0 2px 8px rgba(35,61,92,.18);}
+  .kopf h1{font-size:clamp(28px,8vw,44px);line-height:1;margin:0;font-weight:normal;}
+  .tagline{font-size:clamp(15px,4vw,17px);color:var(--tinte);margin:10px 0 4px;max-width:46ch;}
+  .fokus{font-family:var(--sans);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--honig);font-weight:600;margin:0 0 4px;}
+  .install{font-family:var(--sans);font-size:12.5px;color:#6f7b86;margin:14px 0 0;
+    padding:10px 14px;background:var(--creme-tief);border-radius:10px;}
+  .install b{color:var(--blau);}
+
+  /* Rubriken */
+  section{margin-top:30px;}
+  h2{font-family:var(--sans);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--honig);font-weight:700;margin:0 0 12px;
+    padding-bottom:8px;border-bottom:1px solid var(--linie);}
+  .gitter{display:grid;grid-template-columns:1fr;gap:11px;}
+  @media(min-width:520px){ .gitter{grid-template-columns:1fr 1fr;} }
+
+  .kachel{display:block;text-decoration:none;color:inherit;position:relative;
+    background:#fff;border:1px solid var(--linie);border-radius:14px;padding:15px 16px;
+    transition:transform .14s, box-shadow .14s, border-color .14s;}
+  .kachel:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(35,61,92,.10);border-color:#b9c2cd;}
+  .kachel.aus{opacity:.62;}
+  .kachel.aus:hover{transform:none;box-shadow:none;}
+  .kachel .kt{font-size:18px;line-height:1.2;margin:0 0 5px;padding-right:62px;}
+  .kachel .kb{font-family:var(--sans);font-size:13px;color:#5a6675;margin:0;}
+  .badge{position:absolute;top:13px;right:13px;font-family:var(--sans);font-size:10px;
+    font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px;}
+  .b-fertig{background:var(--blau);color:var(--creme);}
+  .b-vorschau{background:transparent;color:var(--honig);border:1px solid var(--honig);}
+  .b-teil{background:transparent;color:var(--blau);border:1px solid #b9c2cd;}
+  .b-plan{background:var(--creme-tief);color:#8a93a0;}
+
+  .warum{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+  .warum a{font-family:var(--sans);font-size:13px;color:#5a6675;text-decoration:none;
+    background:var(--creme-tief);border-radius:10px;padding:11px 13px;line-height:1.3;}
+  .warum a small{display:block;font-size:10px;color:#9aa3ae;margin-top:3px;letter-spacing:.04em;text-transform:uppercase;}
+
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--linie);
+    font-family:var(--sans);font-size:12.5px;color:#6f7b86;}
+  footer a{color:var(--blau);}
+</style>
+</head>
+<body>
+<div class="huelle">
+
+  <div class="kopf">
+    <img src="assets/icon.svg" alt="Fauna Mibaso Logo">
+    <h1>Fauna Mibaso</h1>
+  </div>
+  <p class="fokus">Natur vor der Haustür · Insekten &amp; niedere Tiere</p>
+  <p class="tagline">Michael Baurs digitale Naturwerkstatt für die Hosentasche — Tiere entdecken, ordnen und verstehen.</p>
+  <p class="install">📲 <b>Als App ablegen:</b> Im Browser teilen → „Zum Home-Bildschirm". Läuft danach wie eine eigene App.</p>
+
+  <section>
+    <h2>Entdecken</h2>
+    <div class="gitter">
+      <a class="kachel" href="interaktiv/schluessel.html">
+        <span class="badge b-fertig">Fertig</span>
+        <p class="kt">Frag dich durch</p>
+        <p class="kb">„Was kreucht und fleucht denn hier?" Ein paar Fragen – und du landest bei der Gruppe oder beim Schmetterling.</p>
+      </a>
+      <a class="kachel aus" href="#">
+        <span class="badge b-plan">Geplant</span>
+        <p class="kt">Was kreucht und fleucht?</p>
+        <p class="kb">Alle Arten zum Stöbern, Filtern und Vergleichen.</p>
+      </a>
+      <a class="kachel" href="arten/admiral.html">
+        <span class="badge b-vorschau">Vorschau</span>
+        <p class="kt">Beispiel-Artseite</p>
+        <p class="kb">Admiral: klassisches Tafelbild, Foto, Steckbrief.</p>
+      </a>
+      <a class="kachel aus" href="#">
+        <span class="badge b-plan">Geplant</span>
+        <p class="kt">Natur zum Mitnehmen</p>
+        <p class="kb">Broschüren-PDFs zu Schmetterlingen, Käfern &amp; Co.</p>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Ordnen</h2>
+    <div class="gitter">
+      <a class="kachel" href="interaktiv/stammbaum.html">
+        <span class="badge b-fertig">Fertig</span>
+        <p class="kt">Stammbaum der Tiere</p>
+        <p class="kb">Verzweigt &amp; dichotom, Schwerpunkt Insekten – bis hinunter zur Art.</p>
+      </a>
+      <a class="kachel" href="interaktiv/stammbaum.html">
+        <span class="badge b-teil">Im Stammbaum</span>
+        <p class="kt">Systematik &amp; Ränge</p>
+        <p class="kb">Reich → Stamm → Klasse → … bis zur Art, jede Ebene mit eigener Farbe.</p>
+      </a>
+      <a class="kachel aus" href="#">
+        <span class="badge b-plan">Geplant</span>
+        <p class="kt">Verwandte finden</p>
+        <p class="kb">Vier Tiere – drei sind verwandt. Welches fällt aus dem Rahmen?</p>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Verstehen</h2>
+    <div class="gitter">
+      <a class="kachel aus" href="#">
+        <span class="badge b-plan">Geplant</span>
+        <p class="kt">Verwandlung</p>
+        <p class="kb">Vollständige &amp; unvollständige Metamorphose – ein Lernpfad in Schritten.</p>
+      </a>
+      <a class="kachel aus" href="#">
+        <span class="badge b-plan">Geplant</span>
+        <p class="kt">Wer bestäubt was?</p>
+        <p class="kb">Insekten und Blüten – wer zu wem passt.</p>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Staunen — Warum ist das so?</h2>
+    <div class="warum">
+      <a href="#">Warum leuchten Glühwürmchen?<small>Geplant</small></a>
+      <a href="#">Warum summen Bienen?<small>Geplant</small></a>
+      <a href="#">Warum haben Marienkäfer Punkte?<small>Geplant</small></a>
+      <a href="#">Warum zirpen Grillen?<small>Geplant</small></a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Knobeln &amp; Testen</h2>
+    <div class="gitter">
+      <a class="kachel aus" href="#">
+        <span class="badge b-plan">Geplant</span>
+        <p class="kt">Tierquiz</p>
+        <p class="kb">Vier Tiere – aber nur eines passt. Tippe das Richtige!</p>
+      </a>
+      <a class="kachel aus" href="#">
+        <span class="badge b-plan">Geplant</span>
+        <p class="kt">Der große Fauna-Test</p>
+        <p class="kb">Gemischte Fragen quer durch die App – rund fünf Minuten.</p>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    Hinweise und Korrekturen willkommen: <a href="mailto:mibaur@me.com">mibaur@me.com</a><br>
+    © 2026 Michael Baur · Fauna Mibaso
+  </footer>
+
+</div>
+<script src="assets/app.js" defer></script>
+</body>
+</html>

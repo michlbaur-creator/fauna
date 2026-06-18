@@ -1,0 +1,13 @@
+{
+  "name": "Fauna Mibaso",
+  "short_name": "Fauna",
+  "description": "Digitale Naturwerkstatt für die Hosentasche – Tiere bestimmen, ordnen und verstehen. Schwerpunkt: Insekten & niedere Tiere.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#F7F3E8",
+  "theme_color": "#233D5C",
+  "icons": [
+    { "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
