@@ -23,16 +23,28 @@
     font-family:Georgia,"Times New Roman",serif;line-height:1.5;}
   .huelle{max-width:680px;margin:0 auto;padding:clamp(20px,5vw,44px) clamp(14px,4vw,30px) 60px;}
 
-  /* Kopf */
-  .kopf{display:flex;align-items:center;gap:16px;margin-bottom:6px;}
-  .kopf img{width:62px;height:62px;border-radius:16px;flex:0 0 auto;box-shadow:0 2px 8px rgba(35,61,92,.18);}
-  .kopf h1{font-size:clamp(28px,8vw,44px);line-height:1;margin:0;font-weight:normal;}
-  .tagline{font-size:clamp(15px,4vw,17px);color:var(--tinte);margin:10px 0 4px;max-width:46ch;}
-  .fokus{font-family:var(--sans);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
-    color:var(--honig);font-weight:600;margin:0 0 4px;}
-  .install{font-family:var(--sans);font-size:12.5px;color:#6f7b86;margin:14px 0 0;
-    padding:10px 14px;background:var(--creme-tief);border-radius:10px;}
-  .install b{color:var(--blau);}
+  /* Kopf — Banner analog Flora, in dunklem warmem Blau */
+  .app-head{
+    background:linear-gradient(180deg,var(--blau-tief) 0%,var(--blau) 100%);
+    color:var(--creme);
+    padding:26px 20px 26px;
+    padding-top:max(26px,env(safe-area-inset-top));
+    border-bottom:4px double #5b7da0;
+    text-align:center;
+  }
+  .app-head .logo{
+    width:60px;height:60px;margin:0 auto 10px;display:block;
+    border-radius:15px;background:var(--creme);padding:4px;
+    box-shadow:0 3px 10px rgba(0,0,0,.2);
+  }
+  .app-head h1{margin:0;font-size:clamp(28px,8vw,40px);font-weight:normal;letter-spacing:.02em;line-height:1.15;}
+  .app-head .untertitel{
+    font-style:italic;color:#b9c7d6;margin-top:8px;font-size:1rem;
+    max-width:520px;margin-left:auto;margin-right:auto;line-height:1.4;
+  }
+  @media (display-mode:standalone){
+    .app-head{padding-top:max(42px,calc(env(safe-area-inset-top) + 10px));}
+  }
 
   /* Rubriken */
   section{margin-top:30px;}
@@ -68,15 +80,14 @@
 </style>
 </head>
 <body>
-<div class="huelle">
 
-  <div class="kopf">
-    <img src="assets/icon.svg" alt="Fauna Mibaso Logo">
-    <h1>Fauna Mibaso</h1>
-  </div>
-  <p class="fokus">Natur vor der Haustür · Insekten &amp; niedere Tiere</p>
-  <p class="tagline">Michael Baurs digitale Naturwerkstatt für die Hosentasche — Tiere entdecken, ordnen und verstehen.</p>
-  <p class="install">📲 <b>Als App ablegen:</b> Im Browser teilen → „Zum Home-Bildschirm". Läuft danach wie eine eigene App.</p>
+<header class="app-head">
+  <img class="logo" src="assets/icon.svg" alt="Fauna Mibaso Logo">
+  <h1>Fauna Mibaso</h1>
+  <div class="untertitel">Michael Baurs digitale Naturwerkstatt für die Hosentasche.</div>
+</header>
+
+<div class="huelle">
 
   <section>
     <h2>Entdecken</h2>
@@ -96,10 +107,10 @@
         <p class="kt">Beispiel-Artseite</p>
         <p class="kb">Admiral: klassisches Tafelbild, Foto, Steckbrief.</p>
       </a>
-      <a class="kachel aus" href="#">
-        <span class="badge b-plan">Geplant</span>
+      <a class="kachel" href="broschueren/">
+        <span class="badge b-fertig">Fertig</span>
         <p class="kt">Natur zum Mitnehmen</p>
-        <p class="kb">Broschüren-PDFs zu Schmetterlingen, Käfern &amp; Co.</p>
+        <p class="kb">Anklickbare Broschüre über unsere Schmetterlinge.</p>
       </a>
     </div>
   </section>
