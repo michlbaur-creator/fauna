@@ -421,13 +421,13 @@ function zeichne(){
   })(baumDaten);
 }
 
-function tippe(n){ if(!n.isTip)n.collapsed=!n.collapsed; selected=n; zeigePanel(n); zeichne(); }
+function tippe(n){
+  if(n.art && n.url){ location.href=n.url; return; }   // Art → direkt zur Artseite
+  if(!n.isTip)n.collapsed=!n.collapsed; selected=n; zeigePanel(n); zeichne();
+}
 function zeigePanel(n){
   const rang = n.rang ? n.rang : (n.isTip ? "Gruppe" : "Zwischengruppe · Klade");
   let html='<p class="rang">'+rang+'</p><h2>'+n.de+'</h2><p class="lat">'+n.lat+'</p><p>'+n.info+'</p>';
-  if(n.art && n.url){ const slug=n.url.replace("../arten/","").replace(".html","");
-    html+='<a class="artlink" href="tafel.html?art='+slug+'">Zur Tafel →</a>';
-    html+='<a class="artlink" href="'+n.url+'" style="margin-left:8px;background:#5d6f7b;">Artseite →</a>'; }
   panel.innerHTML=html;
 }
 document.getElementById("ueberblick").addEventListener("click",()=>{
