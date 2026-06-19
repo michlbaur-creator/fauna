@@ -112,7 +112,8 @@ const ZU = new Set([
   "Vertebrata","Cnidaria","Mollusca","Annelida","Arachnida","Myriapoda","Crustacea","Echinodermata",
   "Odonata","Polyneoptera","Hemiptera","Coleoptera","Hymenoptera","Lepidoptera","Diptera",
   "Pieridae & Lycaenidae","Nymphalidae","Satyrinae","Papilionidae","Bombycoidea & Co.","Noctuidae & Geometridae",
-  "Apidae","Vespidae","Coccinellidae","Cerambycidae","Cleridae","Syrphidae & Asilidae","Geocorisae","Sternorrhyncha"
+  "Apidae","Vespidae","Coccinellidae","Cerambycidae","Cleridae","Syrphidae & Asilidae","Geocorisae","Sternorrhyncha",
+  "Scarabaeidae","Auchenorrhyncha","Coenagrionidae","Libellulidae","Mecoptera","Megaloptera"
 ]);
 
 // klassische Ränge (nur dort, wo eindeutig); Kladen/Mischgruppen bleiben ohne Rang
@@ -183,11 +184,15 @@ const baumDaten = {
                     {de:"Libellen", lat:"Odonata", info:"Räuber der Lüfte mit vier glasklaren Flügeln; ihre Larven jagen unter Wasser.", k:[
                       {de:"Großlibellen", lat:"Anisoptera", info:"Kräftige Flieger, die mit ausgebreiteten Flügeln ruhen.", k:[
                         {de:"Edellibellen", lat:"Aeshnidae", info:"Große, schnelle Jäger wie die Blaugrüne Mosaikjungfer."},
-                        {de:"Segellibellen", lat:"Libellulidae", info:"Sitzen gern auf Warten und segeln los – etwa der Plattbauch."}
+                        {de:"Segellibellen", lat:"Libellulidae", info:"Sitzen gern auf Warten und segeln los.", k:[
+                          {de:"Plattbauch", lat:"Libellula depressa", art:true, url:"../arten/plattbauch.html", info:"Flacher, breiter Hinterleib; Männchen hellblau bereift. Pionier neuer Tümpel."}
+                        ]}
                       ]},
                       {de:"Kleinlibellen", lat:"Zygoptera", info:"Zarte Flieger, die ihre Flügel in Ruhe zusammenklappen.", k:[
                         {de:"Prachtlibellen", lat:"Calopterygidae", info:"Metallisch schillernd an Bächen – die Gebänderte Prachtlibelle."},
-                        {de:"Schlanklibellen", lat:"Coenagrionidae", info:"Schlanke Azur- und Pechlibellen an Teichrändern."}
+                        {de:"Schlanklibellen", lat:"Coenagrionidae", info:"Schlanke Azur- und Pechlibellen an Teichrändern.", k:[
+                          {de:"Frühe Adonislibelle", lat:"Pyrrhosoma nymphula", art:true, url:"../arten/fruehe-adonislibelle.html", info:"Leuchtend rote Kleinlibelle; eine der ersten im Jahr."}
+                        ]}
                       ]}
                     ]},
                     {de:"Geradflügler & Schnabelkerfe", lat:"Neoptera (Teil)", info:"Hier trennen sich die kauenden Geradflügler von den saugenden Schnabelkerfen.", k:[
@@ -205,12 +210,15 @@ const baumDaten = {
                         {de:"Wanzen", lat:"Heteroptera", info:"Vorderflügel halb hart, halb häutig; oft mit Stinkdrüsen.", k:[
                           {de:"Landwanzen", lat:"Geocorisae", info:"Wanzen des Landes – von der Feuerwanze bis zur Baumwanze.", k:[
                             {de:"Gemeine Feuerwanze", lat:"Pyrrhocoris apterus", art:true, url:"../arten/gemeine-feuerwanze.html", info:"Rot-schwarz; sammelt sich in Pulks an Linden und Mauern."},
-                            {de:"Streifenwanze", lat:"Graphosoma lineatum", art:true, url:"../arten/streifenwanze.html", info:"Rot-schwarz längsgestreift; Baumwanze auf Doldenblüten."}
+                            {de:"Streifenwanze", lat:"Graphosoma lineatum", art:true, url:"../arten/streifenwanze.html", info:"Rot-schwarz längsgestreift; Baumwanze auf Doldenblüten."},
+                            {de:"Eichen-Schmuckwanze", lat:"Rhabdomiris striatellus", art:true, url:"../arten/eichen-schmuckwanze.html", info:"Schlanke Weichwanze, orange-rot gestreift; im Frühling in Eichenkronen."}
                           ]},
                           {de:"Wasserwanzen", lat:"Hydrocorisae", info:"Wasserläufer und Rückenschwimmer an und auf dem Wasser."}
                         ]},
                         {de:"Pflanzensauger", lat:"Sternorrhyncha & Co.", info:"Saugen Pflanzensaft, oft in Massen.", k:[
-                          {de:"Zikaden", lat:"Auchenorrhyncha", info:"Springende Sauger; manche Männchen singen erstaunlich laut."},
+                          {de:"Zikaden", lat:"Auchenorrhyncha", info:"Springende Sauger; manche Männchen singen erstaunlich laut.", k:[
+                            {de:"Gemeine Blutzikade", lat:"Cercopis vulnerata", art:true, url:"../arten/gemeine-blutzikade.html", info:"Schwarz mit roten Warnflecken; springt blitzschnell weg."}
+                          ]},
                           {de:"Blatt- & Schildläuse", lat:"Sternorrhyncha", info:"Winzige Sauger – Blattläuse vermehren sich rasend schnell.", k:[
                             {de:"Schwarze Blattlaus", lat:"Aphis fabae", art:true, url:"../arten/schwarze-blattlaus.html", info:"Bildet riesige Kolonien; wird von Ameisen gemolken."}
                           ]}
@@ -219,18 +227,28 @@ const baumDaten = {
                     ]}
                   ]},
                   {de:"Vollständige Verwandlung", lat:"Holometabola", info:"Mit Puppe: Ei → Larve → Puppe → fertiges Insekt. Raupe und Schmetterling sind dasselbe Tier.", k:[
+                    {de:"Schnabelfliegen", lat:"Mecoptera", info:"Urtümliche Insekten mit langem Kopf-„Schnabel“.", k:[
+                      {de:"Gemeine Skorpionsfliege", lat:"Panorpa communis", art:true, url:"../arten/gemeine-skorpionsfliege.html", info:"Männchen mit skorpionartig aufgebogenem Hinterleib; harmloser Aasfresser."}
+                    ]},
+                    {de:"Großflügler", lat:"Megaloptera", info:"Wasserliebende Verwandte der Netzflügler.", k:[
+                      {de:"Gemeine Schlammfliege", lat:"Sialis lutaria", art:true, url:"../arten/gemeine-schlammfliege.html", info:"Dunkel und träge am Wasser; Larve räuberisch im Schlamm."}
+                    ]},
                     {de:"Käfer", lat:"Coleoptera", info:"Die artenreichste Ordnung überhaupt – harte Deckflügel schützen die Hautflügel darunter.", k:[
                       {de:"Lauf- & Schwimmkäfer", lat:"Adephaga", info:"Räuberische Käfer zu Land und im Wasser.", k:[
                         {de:"Laufkäfer", lat:"Carabidae", info:"Schnelle Bodenjäger, oft metallisch glänzend."},
                         {de:"Schwimmkäfer", lat:"Dytiscidae", info:"Räuber im Teich – der Gelbrandkäfer taucht mit Luftvorrat."}
                       ]},
                       {de:"Übrige Käfer", lat:"Polyphaga", info:"Die riesige Mehrheit aller Käferarten.", k:[
-                        {de:"Blatthornkäfer", lat:"Scarabaeidae", info:"Maikäfer, Rosenkäfer und Mistkäfer – mit gefächerten Fühlern."},
+                        {de:"Blatthornkäfer", lat:"Scarabaeidae", info:"Maikäfer, Rosenkäfer und Mistkäfer – mit gefächerten Fühlern.", k:[
+                          {de:"Gartenlaubkäfer", lat:"Phyllopertha horticola", art:true, url:"../arten/gartenlaubkaefer.html", info:"Kleiner „Junikäfer“; schwärmt im Frühsommer, Larve frisst Graswurzeln."}
+                        ]},
                         {de:"Marienkäfer", lat:"Coccinellidae", info:"Bunte Glückskäfer und fleißige Blattlausvertilger.", k:[
                           {de:"Siebenpunkt-Marienkäfer", lat:"Coccinella septempunctata", art:true, url:"../arten/siebenpunkt-marienkaefer.html", info:"Roter Glückskäfer mit sieben Punkten; frisst Unmengen Blattläuse."}
                         ]},
                         {de:"Bockkäfer", lat:"Cerambycidae", info:"Käfer mit oft körperlangen Fühlern; Larven leben im Holz.", k:[
-                          {de:"Kleiner Pappel-Bockkäfer", lat:"Saperda populnea", art:true, url:"../arten/kleiner-pappel-bockkaefer.html", info:"Grau gepunktet; erzeugt spindelförmige Gallen an jungen Pappeln."}
+                          {de:"Kleiner Pappel-Bockkäfer", lat:"Saperda populnea", art:true, url:"../arten/kleiner-pappel-bockkaefer.html", info:"Grau gepunktet; erzeugt spindelförmige Gallen an jungen Pappeln."},
+                          {de:"Echter Widderbock", lat:"Clytus arietis", art:true, url:"../arten/echter-widderbock.html", info:"Schwarz-gelb wie eine Wespe (Mimikry); Larve im Totholz."},
+                          {de:"Fleckenhörniger Halsbock", lat:"Anoplodera sexguttata", art:true, url:"../arten/fleckenhoerniger-halsbock.html", info:"Schwarz mit gelben Flecken; Blütenbesucher, Larve im Totholz."}
                         ]},
                         {de:"Buntkäfer", lat:"Cleridae", info:"Bunte, behaarte Blütenkäfer; Larven oft Räuber.", k:[
                           {de:"Bienenkäfer", lat:"Trichodes apiarius", art:true, url:"../arten/bienenkaefer.html", info:"Rot-blau gebändert; Larve lebt räuberisch in Wildbienennestern."}
@@ -248,7 +266,8 @@ const baumDaten = {
                             {de:"Echte Bienen", lat:"Apidae", info:"Hummeln und Holzbienen – wichtige Bestäuber.", k:[
                               {de:"Dunkle Erdhummel", lat:"Bombus terrestris", art:true, url:"../arten/dunkle-erdhummel.html", info:"Häufige Hummel mit zwei gelben Binden und weißem Hinterende; wichtige Bestäuberin."},
                               {de:"Steinhummel", lat:"Bombus lapidarius", art:true, url:"../arten/steinhummel.html", info:"Tiefschwarz mit leuchtend rotem Hinterende; nistet gern unter Steinen."},
-                              {de:"Große Holzbiene", lat:"Xylocopa violacea", art:true, url:"../arten/grosse-holzbiene.html", info:"Größte heimische Wildbiene, schwarz mit blau schimmernden Flügeln; nistet in Totholz."}
+                              {de:"Große Holzbiene", lat:"Xylocopa violacea", art:true, url:"../arten/grosse-holzbiene.html", info:"Größte heimische Wildbiene, schwarz mit blau schimmernden Flügeln; nistet in Totholz."},
+                              {de:"Ackerhummel", lat:"Bombus pascuorum", art:true, url:"../arten/ackerhummel.html", info:"Durchgehend rostbraun behaart, ohne weißes Hinterende; nistet oft oberirdisch."}
                             ]},
                             {de:"Faltenwespen", lat:"Vespidae", info:"Wespen und Hornissen – bauen Nester aus Papier.", k:[
                               {de:"Gemeine Wespe", lat:"Vespula vulgaris", art:true, url:"../arten/gemeine-wespe.html", info:"Gelb-schwarze Wespe an Kuchen und Saft; staatenbildend, baut Papiernester."},

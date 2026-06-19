@@ -158,9 +158,11 @@ const KNOTEN = {
       {t:"Harte Deckflügel, die sich in gerader Linie über dem Rücken treffen", h:"Käfer", kurz:"Käfer", ziel:"k_kaefer"},
       {t:"Schmale Wespentaille, oft gelb-schwarz, glasklare Flügel", h:"Biene, Wespe, Hummel, Ameise", kurz:"Hautflügler", ziel:"k_hymenoptera"},
       {t:"Nur ein Paar Flügel, flink und surrend", h:"Fliege oder Mücke", kurz:"Zweiflügler", ziel:"k_diptera"},
-      {t:"Vier lange glasklare Flügel, langer schlanker Körper, am Wasser", h:"Libelle", kurz:"Libelle", ziel:"g_libellen"},
+      {t:"Vier lange glasklare Flügel, langer schlanker Körper, am Wasser", h:"Libelle", kurz:"Libelle", ziel:"k_libellen"},
       {t:"Kräftige Sprung-Hinterbeine, zirpt", h:"Heuschrecke oder Grille", kurz:"Heuschrecke", ziel:"g_heuschrecken"},
       {t:"Stechrüssel; Vorderflügel halb hart, halb häutig – oder springende Zikade", h:"Wanze / Zikade", kurz:"Schnabelkerf", ziel:"k_wanzen"},
+      {t:"Langer Kopf-„Schnabel“; Männchen mit skorpionartig aufgebogenem Hinterleib", h:"Skorpionsfliege", kurz:"Skorpionsfliege", ziel:"a_gemeine-skorpionsfliege"},
+      {t:"Dunkel und träge am Wasser, große dachartig getragene, geäderte Flügel", h:"Schlammfliege", kurz:"Schlammfliege", ziel:"a_gemeine-schlammfliege"},
     ]},
 
   /* ---- Käfer ---- */
@@ -168,8 +170,17 @@ const KNOTEN = {
     optionen:[
       {t:"Halbrund, rot mit schwarzen Punkten", h:"ein Marienkäfer", sw:"#C0392B", kurz:"rot, Punkte", ziel:"a_siebenpunkt-marienkaefer"},
       {t:"Länglich, rot-schwarz gebändert, Vorderkörper metallisch blaugrün; auf Blüten", h:"Bienenkäfer", sw:"#2f4a8a", kurz:"rot-blau, Blüte", ziel:"a_bienenkaefer"},
-      {t:"Grau, lang gestreckt, mit sehr langen Fühlern (fast körperlang)", h:"ein Bockkäfer", sw:"#9a9384", kurz:"lange Fühler", ziel:"a_kleiner-pappel-bockkaefer"},
+      {t:"Länglich mit sehr langen Fühlern (fast körperlang)", h:"ein Bockkäfer", sw:"#9a9384", kurz:"Bockkäfer", ziel:"k_bockkaefer"},
+      {t:"Gedrungen, hellbraune Flügeldecken, dunkler Vorderkörper; schwärmt im Frühsommer", h:"Gartenlaubkäfer", sw:"#7a5a2a", kurz:"brauner Laubkäfer", ziel:"a_gartenlaubkaefer"},
       {t:"Ein anderer Käfer", h:"zur Gruppe", kurz:"anderer Käfer", ziel:"g_kaefer"},
+    ]},
+
+  k_bockkaefer:{ frage:"Ein Bockkäfer – welcher?", sub:"Lange Fühler, schlanker Körper.",
+    optionen:[
+      {t:"Schwarz mit gelben Querbinden, wespenähnlich; läuft nervös über Holz und Blüten", h:"Echter Widderbock", sw:"#E8B11E", kurz:"wespenähnlich", ziel:"a_echter-widderbock"},
+      {t:"Schwarz mit einigen gelben Flecken; auf Doldenblüten", h:"Fleckenhörniger Halsbock", sw:"#2c2c2c", kurz:"schwarz, gelbe Flecken", ziel:"a_fleckenhoerniger-halsbock"},
+      {t:"Grau gepunktet; an jungen Pappeln/Espen, oft mit spindelförmigen Gallen", h:"Pappel-Bockkäfer", sw:"#9a9384", kurz:"grau, Pappel", ziel:"a_kleiner-pappel-bockkaefer"},
+      {t:"Ein anderer Bockkäfer", h:"zur Gruppe", kurz:"anderer", ziel:"g_kaefer"},
     ]},
 
   /* ---- Hautflügler: Bienen, Hummeln, Wespen ---- */
@@ -184,6 +195,7 @@ const KNOTEN = {
       {t:"Schwarz mit zwei gelben Binden und weißem Hinterende", sw:"#E3C012", kurz:"weißes Ende", ziel:"a_dunkle-erdhummel"},
       {t:"Tiefschwarz mit leuchtend rot-orangem Hinterende", sw:"#C0392B", kurz:"rotes Ende", ziel:"a_steinhummel"},
       {t:"Sehr groß, ganz schwarz, Flügel blau-violett schimmernd", sw:"#5b4b8a", kurz:"groß, blau-schwarz", ziel:"a_grosse-holzbiene"},
+      {t:"Durchgehend rostbraun/orange pelzig, ohne weißes Hinterende", sw:"#9a5a2a", kurz:"rostbraun", ziel:"a_ackerhummel"},
       {t:"Eine andere Biene oder Hummel", kurz:"andere", ziel:"g_hymenoptera"},
     ]},
   k_wespen:{ frage:"Glatt und gelb-schwarz – wie groß?",
@@ -207,7 +219,17 @@ const KNOTEN = {
       {t:"Rot-schwarz, rundlich; in Gruppen an Mauern und Linden", h:"Feuerwanze", sw:"#C0392B", kurz:"rot-schwarz, Pulk", ziel:"a_gemeine-feuerwanze"},
       {t:"Rot-schwarz längsgestreift; auf Doldenblüten wie Fenchel und Dill", h:"Streifenwanze", sw:"#C8451F", kurz:"längsgestreift", ziel:"a_streifenwanze"},
       {t:"Winzig, weich, in dichten Kolonien an Trieben", h:"Blattlaus", sw:"#2c2c2c", kurz:"winzig, Kolonie", ziel:"a_schwarze-blattlaus"},
+      {t:"Schlank, orange-rot gestreift; im Frühling auf Eichen", h:"Eichen-Schmuckwanze", sw:"#C8451F", kurz:"Eiche, gestreift", ziel:"a_eichen-schmuckwanze"},
+      {t:"Schwarz mit leuchtend roten Flecken, springt blitzschnell weg", h:"Blutzikade", sw:"#C0392B", kurz:"Zikade, rot-schwarz", ziel:"a_gemeine-blutzikade"},
       {t:"Eine andere Wanze oder eine Zikade", h:"zur Gruppe", kurz:"andere", ziel:"g_wanzen"},
+    ]},
+
+  /* ---- Libellen ---- */
+  k_libellen:{ frage:"Eine Libelle! Wie hält sie die Flügel in Ruhe?",
+    optionen:[
+      {t:"Zart und schlank; Flügel zusammengeklappt; leuchtend rot", h:"Kleinlibelle", sw:"#C0392B", kurz:"rot, zart", ziel:"a_fruehe-adonislibelle"},
+      {t:"Kräftig; Flügel flach ausgebreitet; Hinterleib breit, hellblau bereift", h:"Großlibelle", sw:"#7fa8d0", kurz:"breit, blau", ziel:"a_plattbauch"},
+      {t:"Eine andere Libelle", h:"zur Gruppe", kurz:"andere", ziel:"g_libellen"},
     ]},
 
   /* ---- feiner Schmetterlings-Schlüssel ---- */
@@ -357,6 +379,28 @@ const KNOTEN = {
     text:"Im rot-schwarzen Ringelpulli auf Doldenblüten; eine Baumwanze mit wehrhaften Stinkdrüsen."},
   "a_schwarze-blattlaus":{ art:true, rang:"Insekt · Art", de:"Schwarze Blattlaus", lat:"Aphis fabae", url:"../arten/schwarze-blattlaus.html",
     text:"Bildet riesige Kolonien an Trieben und wird von Ameisen „gemolken“ – Lieblingsspeise vieler Nützlinge."},
+
+  /* ---- Endpunkte: weitere Insekten-Arten (Runde 2) ---- */
+  "a_ackerhummel":{ art:true, rang:"Insekt · Art", de:"Ackerhummel", lat:"Bombus pascuorum", url:"../arten/ackerhummel.html",
+    text:"Durchgehend rostbraun behaart, ohne weißes Hinterende – eine der häufigsten und friedlichsten Hummeln."},
+  "a_gartenlaubkaefer":{ art:true, rang:"Insekt · Art", de:"Gartenlaubkäfer", lat:"Phyllopertha horticola", url:"../arten/gartenlaubkaefer.html",
+    text:"Kleiner „Junikäfer“, der im Frühsommer über Wiesen schwärmt; die Larve frisst an Graswurzeln."},
+  "a_fleckenhoerniger-halsbock":{ art:true, rang:"Insekt · Art", de:"Fleckenhörniger Halsbock", lat:"Anoplodera sexguttata", url:"../arten/fleckenhoerniger-halsbock.html",
+    text:"Schlanker Bockkäfer, schwarz mit gelben Flecken; Blütenbesucher, Larve im Totholz."},
+  "a_echter-widderbock":{ art:true, rang:"Insekt · Art", de:"Echter Widderbock", lat:"Clytus arietis", url:"../arten/echter-widderbock.html",
+    text:"Schwarz-gelb wie eine Wespe – Mimikry pur; die Larve entwickelt sich im Totholz."},
+  "a_gemeine-blutzikade":{ art:true, rang:"Insekt · Art", de:"Gemeine Blutzikade", lat:"Cercopis vulnerata", url:"../arten/gemeine-blutzikade.html",
+    text:"Schwarz mit leuchtend roten Warnflecken; springt blitzschnell davon. Larven leben an Wurzeln."},
+  "a_eichen-schmuckwanze":{ art:true, rang:"Insekt · Art", de:"Eichen-Schmuckwanze", lat:"Rhabdomiris striatellus", url:"../arten/eichen-schmuckwanze.html",
+    text:"Schlanke, orange-rot gestreifte Weichwanze; lebt im Frühling in den Kronen von Eichen."},
+  "a_fruehe-adonislibelle":{ art:true, rang:"Insekt · Art", de:"Frühe Adonislibelle", lat:"Pyrrhosoma nymphula", url:"../arten/fruehe-adonislibelle.html",
+    text:"Leuchtend rote Kleinlibelle und eine der ersten im Jahr – schon ab April am Teichrand."},
+  "a_plattbauch":{ art:true, rang:"Insekt · Art", de:"Plattbauch", lat:"Libellula depressa", url:"../arten/plattbauch.html",
+    text:"Großlibelle mit auffällig flachem, breitem Hinterleib; Männchen hellblau bereift. Pionier neuer Tümpel."},
+  "a_gemeine-skorpionsfliege":{ art:true, rang:"Insekt · Art", de:"Gemeine Skorpionsfliege", lat:"Panorpa communis", url:"../arten/gemeine-skorpionsfliege.html",
+    text:"Langer Kopf-„Schnabel“, Männchen mit skorpionartig aufgebogenem Hinterleib – harmloser Aasräuber."},
+  "a_gemeine-schlammfliege":{ art:true, rang:"Insekt · Art", de:"Gemeine Schlammfliege", lat:"Sialis lutaria", url:"../arten/gemeine-schlammfliege.html",
+    text:"Dunkel und träge am Wasser, mit großen dachartigen Flügeln; die Larve jagt im Bodenschlamm."},
 };
 
 /* ---- kleine Inline-Icons ---- */
