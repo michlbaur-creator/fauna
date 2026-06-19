@@ -1,3 +1,4 @@
-# Temporärer Ablage-Ordner für hochgeladene Tafeln (nicht ins Repo)
+# Temporäre Ablage-Ordner für hochgeladene Tafeln/Fotos (nicht ins Repo)
 tafeln_neu/
+fotos_neu/
 .DS_Store
