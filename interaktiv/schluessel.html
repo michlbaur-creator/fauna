@@ -91,7 +91,7 @@
 <div class="huelle">
   <p class="augenbraue">Frag dich durch · Bestimmen</p>
   <h1>Was kreucht und fleucht denn hier?</h1>
-  <p class="intro">Du hast ein kleines Tier entdeckt? Beantworte ein paar Fragen nach dem, was du <b>siehst</b> – Beine, Schale, Flügel, Farbe – und der Schlüssel führt dich zur Tiergruppe. Bei den Schmetterlingen geht es weiter bis zur einzelnen Art.</p>
+  <p class="intro">Du hast ein kleines Tier entdeckt? Beantworte ein paar Fragen nach dem, was du <b>siehst</b> – Beine, Schale, Flügel, Farbe – und der Schlüssel führt dich zur Tiergruppe und bei vielen Gruppen weiter bis zur einzelnen Art.</p>
 
   <div class="pfad" id="pfad"></div>
 
@@ -105,7 +105,7 @@
   </div>
 
   <div class="legende">
-    <b>So funktioniert's:</b> Jede Frage fragt nur nach Sichtbarem. Tippe die Antwort, die am besten passt – über die Pfad-Punkte oben kommst du jederzeit zu einer früheren Frage zurück. Endpunkte sind entweder eine <b>Tiergruppe</b> (mit Weg in den Stammbaum) oder, bei den Faltern, eine <b>Art</b> mit eigener Seite. Im Zweifel hilft der Blick auf zwei ähnliche Kandidaten.
+    <b>So funktioniert's:</b> Jede Frage fragt nur nach Sichtbarem. Tippe die Antwort, die am besten passt – über die Pfad-Punkte oben kommst du jederzeit zu einer früheren Frage zurück. Endpunkte sind entweder eine <b>Tiergruppe</b> (mit Weg in den Stammbaum) oder eine einzelne <b>Art</b> mit eigener Seite. Im Zweifel hilft der Blick auf zwei ähnliche Kandidaten.
   </div>
 </div>
 
@@ -155,12 +155,59 @@ const KNOTEN = {
 
   insektorders:{ frage:"Welches Insekt passt am besten?", sub:"Endet in der jeweiligen Gruppe – im Stammbaum siehst du, wie sie eingeordnet ist.",
     optionen:[
-      {t:"Harte Deckflügel, die sich in gerader Linie über dem Rücken treffen", h:"Käfer", kurz:"Käfer", ziel:"g_kaefer"},
-      {t:"Schmale Wespentaille, oft gelb-schwarz, glasklare Flügel", h:"Biene, Wespe, Hummel, Ameise", kurz:"Hautflügler", ziel:"g_hymenoptera"},
-      {t:"Nur ein Paar Flügel, flink und surrend", h:"Fliege oder Mücke", kurz:"Zweiflügler", ziel:"g_diptera"},
+      {t:"Harte Deckflügel, die sich in gerader Linie über dem Rücken treffen", h:"Käfer", kurz:"Käfer", ziel:"k_kaefer"},
+      {t:"Schmale Wespentaille, oft gelb-schwarz, glasklare Flügel", h:"Biene, Wespe, Hummel, Ameise", kurz:"Hautflügler", ziel:"k_hymenoptera"},
+      {t:"Nur ein Paar Flügel, flink und surrend", h:"Fliege oder Mücke", kurz:"Zweiflügler", ziel:"k_diptera"},
       {t:"Vier lange glasklare Flügel, langer schlanker Körper, am Wasser", h:"Libelle", kurz:"Libelle", ziel:"g_libellen"},
       {t:"Kräftige Sprung-Hinterbeine, zirpt", h:"Heuschrecke oder Grille", kurz:"Heuschrecke", ziel:"g_heuschrecken"},
-      {t:"Stechrüssel; Vorderflügel halb hart, halb häutig – oder springende Zikade", h:"Wanze / Zikade", kurz:"Schnabelkerf", ziel:"g_wanzen"},
+      {t:"Stechrüssel; Vorderflügel halb hart, halb häutig – oder springende Zikade", h:"Wanze / Zikade", kurz:"Schnabelkerf", ziel:"k_wanzen"},
+    ]},
+
+  /* ---- Käfer ---- */
+  k_kaefer:{ frage:"Ein Käfer! Welcher passt am besten?", sub:"Triffst du keinen davon, geht es zur Gruppe.",
+    optionen:[
+      {t:"Halbrund, rot mit schwarzen Punkten", h:"ein Marienkäfer", sw:"#C0392B", kurz:"rot, Punkte", ziel:"a_siebenpunkt-marienkaefer"},
+      {t:"Länglich, rot-schwarz gebändert, Vorderkörper metallisch blaugrün; auf Blüten", h:"Bienenkäfer", sw:"#2f4a8a", kurz:"rot-blau, Blüte", ziel:"a_bienenkaefer"},
+      {t:"Grau, lang gestreckt, mit sehr langen Fühlern (fast körperlang)", h:"ein Bockkäfer", sw:"#9a9384", kurz:"lange Fühler", ziel:"a_kleiner-pappel-bockkaefer"},
+      {t:"Ein anderer Käfer", h:"zur Gruppe", kurz:"anderer Käfer", ziel:"g_kaefer"},
+    ]},
+
+  /* ---- Hautflügler: Bienen, Hummeln, Wespen ---- */
+  k_hymenoptera:{ frage:"Biene, Wespe oder Hummel? Sieh auf Pelz und Taille.",
+    optionen:[
+      {t:"Dick und pelzig", h:"Hummel oder Biene", sw:"#4a3b2a", kurz:"pelzig", ziel:"k_bienen"},
+      {t:"Glatt, gelb-schwarz, mit deutlicher Wespentaille", h:"Wespe oder Hornisse", sw:"#E8B11E", kurz:"glatt, Taille", ziel:"k_wespen"},
+      {t:"Schlank/klein und unscheinbar – oder eine Ameise", h:"zur Gruppe", kurz:"andere", ziel:"g_hymenoptera"},
+    ]},
+  k_bienen:{ frage:"Pelzig – welche Hummel oder Biene?",
+    optionen:[
+      {t:"Schwarz mit zwei gelben Binden und weißem Hinterende", sw:"#E3C012", kurz:"weißes Ende", ziel:"a_dunkle-erdhummel"},
+      {t:"Tiefschwarz mit leuchtend rot-orangem Hinterende", sw:"#C0392B", kurz:"rotes Ende", ziel:"a_steinhummel"},
+      {t:"Sehr groß, ganz schwarz, Flügel blau-violett schimmernd", sw:"#5b4b8a", kurz:"groß, blau-schwarz", ziel:"a_grosse-holzbiene"},
+      {t:"Eine andere Biene oder Hummel", kurz:"andere", ziel:"g_hymenoptera"},
+    ]},
+  k_wespen:{ frage:"Glatt und gelb-schwarz – wie groß?",
+    optionen:[
+      {t:"Mittelgroß, leuchtend gelb-schwarz; oft am Kuchen oder Saftglas", sw:"#E8B11E", kurz:"mittel", ziel:"a_gemeine-wespe"},
+      {t:"Sehr groß, braun-rot mit gelb; brummt laut", sw:"#9a5a2a", kurz:"sehr groß", ziel:"a_hornisse"},
+      {t:"Eine andere Wespe", kurz:"andere", ziel:"g_hymenoptera"},
+    ]},
+
+  /* ---- Zweiflügler ---- */
+  k_diptera:{ frage:"Eine Fliege – tarnt sie sich als Biene oder Wespe?",
+    optionen:[
+      {t:"Pummelig wie eine Honigbiene, schwebt vor Blüten", h:"Mistbiene", sw:"#8a6a3a", kurz:"bienenartig", ziel:"a_mistbiene"},
+      {t:"Schlank, gelb-schwarz gebändert, steht ruhig in der Luft", h:"Hainschwebfliege", sw:"#E0A020", kurz:"schwebt, gestreift", ziel:"a_hainschwebfliege"},
+      {t:"Eine andere Fliege oder Mücke", h:"zur Gruppe", kurz:"andere", ziel:"g_diptera"},
+    ]},
+
+  /* ---- Schnabelkerfe: Wanzen & Läuse ---- */
+  k_wanzen:{ frage:"Schnabelkerf – welche Form und Farbe?",
+    optionen:[
+      {t:"Rot-schwarz, rundlich; in Gruppen an Mauern und Linden", h:"Feuerwanze", sw:"#C0392B", kurz:"rot-schwarz, Pulk", ziel:"a_gemeine-feuerwanze"},
+      {t:"Rot-schwarz längsgestreift; auf Doldenblüten wie Fenchel und Dill", h:"Streifenwanze", sw:"#C8451F", kurz:"längsgestreift", ziel:"a_streifenwanze"},
+      {t:"Winzig, weich, in dichten Kolonien an Trieben", h:"Blattlaus", sw:"#2c2c2c", kurz:"winzig, Kolonie", ziel:"a_schwarze-blattlaus"},
+      {t:"Eine andere Wanze oder eine Zikade", h:"zur Gruppe", kurz:"andere", ziel:"g_wanzen"},
     ]},
 
   /* ---- feiner Schmetterlings-Schlüssel ---- */
@@ -282,6 +329,34 @@ const KNOTEN = {
     text:"Vier große, leuchtende Augenflecken als Schreckbild – kaum zu verwechseln."},
   "a_zitronenfalter":{ art:true, de:"Zitronenfalter", lat:"Gonepteryx rhamni", url:"../arten/zitronenfalter.html",
     text:"Leuchtend gelb und blattförmig – mit der längsten Lebensdauer aller heimischen Tagfalter."},
+
+  /* ---- Endpunkte: weitere Insekten-Arten ---- */
+  "a_dunkle-erdhummel":{ art:true, rang:"Insekt · Art", de:"Dunkle Erdhummel", lat:"Bombus terrestris", url:"../arten/dunkle-erdhummel.html",
+    text:"Pelzige Hummel mit zwei gelben Binden und weißem Hinterende – wichtige Bestäuberin und Frühaufsteherin."},
+  "a_steinhummel":{ art:true, rang:"Insekt · Art", de:"Steinhummel", lat:"Bombus lapidarius", url:"../arten/steinhummel.html",
+    text:"Tiefschwarz mit leuchtend rot-orangem Hinterende; nistet gern unter Steinen und ist sehr friedlich."},
+  "a_grosse-holzbiene":{ art:true, rang:"Insekt · Art", de:"Große Holzbiene", lat:"Xylocopa violacea", url:"../arten/grosse-holzbiene.html",
+    text:"Größte heimische Wildbiene: fast schwarz mit blau-violett schimmernden Flügeln, brummt laut – aber harmlos."},
+  "a_gemeine-wespe":{ art:true, rang:"Insekt · Art", de:"Gemeine Wespe", lat:"Vespula vulgaris", url:"../arten/gemeine-wespe.html",
+    text:"Die gelb-schwarze Wespe am Kuchen: staatenbildend, baut Nester aus selbst gemachtem „Papier“."},
+  "a_hornisse":{ art:true, rang:"Insekt · Art", de:"Hornisse", lat:"Vespa crabro", url:"../arten/hornisse.html",
+    text:"Größte heimische soziale Wespe – trotz ihres Rufs friedlich und besonders geschützt."},
+  "a_mistbiene":{ art:true, rang:"Insekt · Art", de:"Mistbiene", lat:"Eristalis tenax", url:"../arten/mistbiene.html",
+    text:"Eine Schwebfliege in perfekter Honigbienen-Tarnung – ohne Stachel. Ihre Larve ist die „Rattenschwanzlarve“."},
+  "a_hainschwebfliege":{ art:true, rang:"Insekt · Art", de:"Hainschwebfliege", lat:"Episyrphus balteatus", url:"../arten/hainschwebfliege.html",
+    text:"Trägt ein Wespen-Warnkleid, ist aber harmlos; die Larve ist ein gefräßiger Blattlausjäger."},
+  "a_siebenpunkt-marienkaefer":{ art:true, rang:"Insekt · Art", de:"Siebenpunkt-Marienkäfer", lat:"Coccinella septempunctata", url:"../arten/siebenpunkt-marienkaefer.html",
+    text:"Der rote Glückskäfer mit sieben Punkten – Blattlausvertilger Nummer eins im Garten."},
+  "a_bienenkaefer":{ art:true, rang:"Insekt · Art", de:"Bienenkäfer", lat:"Trichodes apiarius", url:"../arten/bienenkaefer.html",
+    text:"Hübsch rot-blau gebändert auf Blüten – seine Larve lebt räuberisch in Wildbienennestern."},
+  "a_kleiner-pappel-bockkaefer":{ art:true, rang:"Insekt · Art", de:"Kleiner Pappel-Bockkäfer", lat:"Saperda populnea", url:"../arten/kleiner-pappel-bockkaefer.html",
+    text:"Grau gepunkteter Bockkäfer mit langen Fühlern; erzeugt spindelförmige Gallen an jungen Pappeln."},
+  "a_gemeine-feuerwanze":{ art:true, rang:"Insekt · Art", de:"Gemeine Feuerwanze", lat:"Pyrrhocoris apterus", url:"../arten/gemeine-feuerwanze.html",
+    text:"Rot-schwarz und gesellig – sammelt sich im Frühjahr in großen Pulks an Mauern und Linden. Völlig harmlos."},
+  "a_streifenwanze":{ art:true, rang:"Insekt · Art", de:"Streifenwanze", lat:"Graphosoma lineatum", url:"../arten/streifenwanze.html",
+    text:"Im rot-schwarzen Ringelpulli auf Doldenblüten; eine Baumwanze mit wehrhaften Stinkdrüsen."},
+  "a_schwarze-blattlaus":{ art:true, rang:"Insekt · Art", de:"Schwarze Blattlaus", lat:"Aphis fabae", url:"../arten/schwarze-blattlaus.html",
+    text:"Bildet riesige Kolonien an Trieben und wird von Ameisen „gemolken“ – Lieblingsspeise vieler Nützlinge."},
 };
 
 /* ---- kleine Inline-Icons ---- */
@@ -349,7 +424,7 @@ function zeigeErgebnis(key){
   const n=KNOTEN[key];
   aktuell=key;
   elFrage.style.display="none";
-  let rang = n.art ? "Schmetterling · Art" : (n.larve ? "Larve · noch kein Falter" : "Tiergruppe");
+  let rang = n.art ? (n.rang || "Schmetterling · Art") : (n.larve ? "Larve · noch kein Falter" : "Tiergruppe");
   let html='<p class="rang">'+rang+'</p><h2>'+n.de+'</h2>';
   if(n.lat) html+='<p class="lat">'+n.lat+'</p>';
   html+='<p>'+n.text+'</p><div class="knoepfe">';
