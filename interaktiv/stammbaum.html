@@ -113,7 +113,8 @@ const ZU = new Set([
   "Odonata","Polyneoptera","Hemiptera","Coleoptera","Hymenoptera","Lepidoptera","Diptera",
   "Pieridae & Lycaenidae","Nymphalidae","Satyrinae","Papilionidae","Bombycoidea & Co.","Noctuidae & Geometridae",
   "Apidae","Vespidae","Coccinellidae","Cerambycidae","Cleridae","Syrphidae & Asilidae","Geocorisae","Sternorrhyncha",
-  "Scarabaeidae","Auchenorrhyncha","Coenagrionidae","Libellulidae","Mecoptera","Megaloptera"
+  "Scarabaeidae","Auchenorrhyncha","Coenagrionidae","Libellulidae","Mecoptera","Megaloptera",
+  "Araneae","Ephemeroptera","Dermaptera","Cantharidae","Wildbienen","Bibionidae","Muscidae & Calliphoridae","Rhagionidae & Empididae","übrige Symphyta"
 ]);
 
 // klassische Ränge (nur dort, wo eindeutig); Kladen/Mischgruppen bleiben ohne Rang
@@ -163,7 +164,10 @@ const baumDaten = {
           {de:"Fadenwürmer", lat:"Nematoda", info:"Winzige, fadenförmige Würmer – in unvorstellbarer Zahl im Boden; manche leben als Parasiten."},
           {de:"Gliederfüßer", lat:"Arthropoda", info:"Außenskelett und gegliederte Beine – die artenreichste Gruppe der Erde.", k:[
             {de:"Spinnentiere", lat:"Arachnida", info:"Acht Beine und keine Fühler.", k:[
-              {de:"Webspinnen", lat:"Araneae", info:"Spinnen mit Spinndrüsen am Hinterleib – Netzbauer und Jäger."},
+              {de:"Webspinnen", lat:"Araneae", info:"Spinnen mit Spinndrüsen am Hinterleib – Netzbauer und Jäger.", k:[
+                {de:"Kreuzspinne", lat:"Araneus diadematus", art:true, url:"../arten/kreuzspinne.html", info:"Helles Kreuz auf dem Hinterleib; baut große Radnetze."},
+                {de:"Kürbisspinne", lat:"Araniella cucurbitina", art:true, url:"../arten/kuerbisspinne.html", info:"Winzig, mit leuchtend grünem kugeligem Hinterleib."}
+              ]},
               {de:"Skorpione & Milben", lat:"Arachnida (übrige)", info:"Skorpione mit Giftstachel sowie die winzigen, oft verborgenen Milben und Weberknechte.", k:[
                 {de:"Skorpione", lat:"Scorpiones", info:"Mit kräftigen Scheren und einem Giftstachel am Schwanz."},
                 {de:"Milben & Weberknechte", lat:"Acari & Opiliones", info:"Meist winzig und überall – im Boden, auf Pflanzen, manche als Parasiten."}
@@ -181,6 +185,9 @@ const baumDaten = {
                 ]},
                 {de:"Insekten", lat:"Insecta", info:"Sechs Beine, oft zwei Flügelpaare. Die mit Abstand artenreichste Tiergruppe – Herzstück dieser App.", k:[
                   {de:"Unvollständige Verwandlung", lat:"Hemimetabola", info:"Die Jungen (Nymphen) ähneln schon den Erwachsenen – ganz ohne Puppe.", k:[
+                    {de:"Eintagsfliegen", lat:"Ephemeroptera", info:"Urtümliche Fluginsekten; die Erwachsenen leben oft nur einen Tag.", k:[
+                      {de:"Große Eintagsfliege", lat:"Ephemera danica", art:true, url:"../arten/grosse-eintagsfliege.html", info:"Lebt als Larve jahrelang im Wasser, als Fluginsekt nur Stunden bis Tage."}
+                    ]},
                     {de:"Libellen", lat:"Odonata", info:"Räuber der Lüfte mit vier glasklaren Flügeln; ihre Larven jagen unter Wasser.", k:[
                       {de:"Großlibellen", lat:"Anisoptera", info:"Kräftige Flieger, die mit ausgebreiteten Flügeln ruhen.", k:[
                         {de:"Edellibellen", lat:"Aeshnidae", info:"Große, schnelle Jäger wie die Blaugrüne Mosaikjungfer."},
@@ -191,7 +198,8 @@ const baumDaten = {
                       {de:"Kleinlibellen", lat:"Zygoptera", info:"Zarte Flieger, die ihre Flügel in Ruhe zusammenklappen.", k:[
                         {de:"Prachtlibellen", lat:"Calopterygidae", info:"Metallisch schillernd an Bächen – die Gebänderte Prachtlibelle."},
                         {de:"Schlanklibellen", lat:"Coenagrionidae", info:"Schlanke Azur- und Pechlibellen an Teichrändern.", k:[
-                          {de:"Frühe Adonislibelle", lat:"Pyrrhosoma nymphula", art:true, url:"../arten/fruehe-adonislibelle.html", info:"Leuchtend rote Kleinlibelle; eine der ersten im Jahr."}
+                          {de:"Frühe Adonislibelle", lat:"Pyrrhosoma nymphula", art:true, url:"../arten/fruehe-adonislibelle.html", info:"Leuchtend rote Kleinlibelle; eine der ersten im Jahr."},
+                          {de:"Hufeisen-Azurjungfer", lat:"Coenagrion puella", art:true, url:"../arten/hufeisen-azurjungfer.html", info:"Himmelblaue Kleinlibelle mit schwarzem Hufeisen-Zeichen; häufig am Gartenteich."}
                         ]}
                       ]}
                     ]},
@@ -204,6 +212,9 @@ const baumDaten = {
                         {de:"Schaben & Fangschrecken", lat:"Dictyoptera", info:"Flinke Bodenläufer und lauernde Jäger.", k:[
                           {de:"Schaben & Termiten", lat:"Blattodea", info:"Abgeflachte Allesfresser; Termiten bauen riesige Staaten."},
                           {de:"Fangschrecken", lat:"Mantodea", info:"Lauern mit zu Fangbeinen umgebauten Vorderbeinen – die Gottesanbeterin."}
+                        ]},
+                        {de:"Ohrwürmer", lat:"Dermaptera", info:"Mit der auffälligen Zange am Hinterleib; fürsorgliche Mütter.", k:[
+                          {de:"Gemeiner Ohrwurm", lat:"Forficula auricularia", art:true, url:"../arten/gemeiner-ohrwurm.html", info:"Allesfresser mit Hinterleibszange; kriecht trotz Namens nicht ins Ohr."}
                         ]}
                       ]},
                       {de:"Schnabelkerfe", lat:"Hemiptera", info:"Wanzen und Zikaden. Ihr Mund ist ein Stechrüssel zum Saugen.", k:[
@@ -211,7 +222,9 @@ const baumDaten = {
                           {de:"Landwanzen", lat:"Geocorisae", info:"Wanzen des Landes – von der Feuerwanze bis zur Baumwanze.", k:[
                             {de:"Gemeine Feuerwanze", lat:"Pyrrhocoris apterus", art:true, url:"../arten/gemeine-feuerwanze.html", info:"Rot-schwarz; sammelt sich in Pulks an Linden und Mauern."},
                             {de:"Streifenwanze", lat:"Graphosoma lineatum", art:true, url:"../arten/streifenwanze.html", info:"Rot-schwarz längsgestreift; Baumwanze auf Doldenblüten."},
-                            {de:"Eichen-Schmuckwanze", lat:"Rhabdomiris striatellus", art:true, url:"../arten/eichen-schmuckwanze.html", info:"Schlanke Weichwanze, orange-rot gestreift; im Frühling in Eichenkronen."}
+                            {de:"Eichen-Schmuckwanze", lat:"Rhabdomiris striatellus", art:true, url:"../arten/eichen-schmuckwanze.html", info:"Schlanke Weichwanze, orange-rot gestreift; im Frühling in Eichenkronen."},
+                            {de:"Lederwanze", lat:"Coreus marginatus", art:true, url:"../arten/lederwanze.html", info:"Breite, ledrig wirkende Randwanze mit kleinen Kopfhörnchen; an Ampfer."},
+                            {de:"Kohlwanze", lat:"Eurydema", art:true, url:"../arten/kohlwanze.html", info:"Schwarz mit roter/weißer Warnzeichnung; saugt an Kreuzblütlern."}
                           ]},
                           {de:"Wasserwanzen", lat:"Hydrocorisae", info:"Wasserläufer und Rückenschwimmer an und auf dem Wasser."}
                         ]},
@@ -248,10 +261,16 @@ const baumDaten = {
                         {de:"Bockkäfer", lat:"Cerambycidae", info:"Käfer mit oft körperlangen Fühlern; Larven leben im Holz.", k:[
                           {de:"Kleiner Pappel-Bockkäfer", lat:"Saperda populnea", art:true, url:"../arten/kleiner-pappel-bockkaefer.html", info:"Grau gepunktet; erzeugt spindelförmige Gallen an jungen Pappeln."},
                           {de:"Echter Widderbock", lat:"Clytus arietis", art:true, url:"../arten/echter-widderbock.html", info:"Schwarz-gelb wie eine Wespe (Mimikry); Larve im Totholz."},
-                          {de:"Fleckenhörniger Halsbock", lat:"Anoplodera sexguttata", art:true, url:"../arten/fleckenhoerniger-halsbock.html", info:"Schwarz mit gelben Flecken; Blütenbesucher, Larve im Totholz."}
+                          {de:"Fleckenhörniger Halsbock", lat:"Anoplodera sexguttata", art:true, url:"../arten/fleckenhoerniger-halsbock.html", info:"Schwarz mit gelben Flecken; Blütenbesucher, Larve im Totholz."},
+                          {de:"Kleiner Schmalbock", lat:"Leptura aethiops", art:true, url:"../arten/kleiner-schmalbock.html", info:"Zierlicher Schmalbock; Blütenbesucher, Larve im Totholz."},
+                          {de:"Scheckhornbock", lat:"Cerambycidae", art:true, url:"../arten/scheckhornbock.html", info:"Schwarz-weiß gescheckter Bockkäfer mit langen Fühlern; Larve im Totholz."}
                         ]},
                         {de:"Buntkäfer", lat:"Cleridae", info:"Bunte, behaarte Blütenkäfer; Larven oft Räuber.", k:[
                           {de:"Bienenkäfer", lat:"Trichodes apiarius", art:true, url:"../arten/bienenkaefer.html", info:"Rot-blau gebändert; Larve lebt räuberisch in Wildbienennestern."}
+                        ]},
+                        {de:"Weichkäfer", lat:"Cantharidae", info:"Käfer mit weichen Flügeldecken; Räuber und Blütenbesucher.", k:[
+                          {de:"Rotschwarzer Weichkäfer", lat:"Cantharis pellucida", art:true, url:"../arten/rotschwarzer-weichkaefer.html", info:"Rot-schwarz; jagt Blattläuse, häufig auf Blüten."},
+                          {de:"Gemeiner Weichkäfer", lat:"Cantharis fusca", art:true, url:"../arten/gemeiner-weichkaefer.html", info:"Schwarze Flügeldecken, roter Halsschild; nützlicher Räuber."}
                         ]}
                       ]}
                     ]},
@@ -259,7 +278,9 @@ const baumDaten = {
                       {de:"Hautflügler", lat:"Hymenoptera", info:"Bienen, Wespen, Hummeln und Ameisen – viele leben in Staaten und bestäuben unsere Blüten.", k:[
                         {de:"Pflanzenwespen", lat:"Symphyta", info:"Ohne Wespentaille; ihre Larven fressen an Blättern.", k:[
                           {de:"Echte Blattwespen", lat:"Tenthredinidae", info:"Häufig an Blättern; ihre Larven ähneln Raupen."},
-                          {de:"Halm- & Holzwespen", lat:"übrige Symphyta", info:"Legen ihre Eier in Halme oder ins Holz."}
+                          {de:"Halm- & Holzwespen", lat:"übrige Symphyta", info:"Legen ihre Eier in Halme oder ins Holz.", k:[
+                            {de:"Holzwespen-Schlupfwespe", lat:"Sirex juvencus", art:true, url:"../arten/holzwespen-schlupfwespe.html", info:"Holzwespe mit langem Legebohrer; Larve bohrt im Nadelholz."}
+                          ]}
                         ]},
                         {de:"Taillenwespen", lat:"Apocrita", info:"Mit deutlicher Wespentaille zwischen Brust und Hinterleib.", k:[
                           {de:"Stechimmen", lat:"Aculeata", info:"Bienen, Hummeln, Wespen und Ameisen – viele bilden Staaten.", k:[
@@ -272,6 +293,11 @@ const baumDaten = {
                             {de:"Faltenwespen", lat:"Vespidae", info:"Wespen und Hornissen – bauen Nester aus Papier.", k:[
                               {de:"Gemeine Wespe", lat:"Vespula vulgaris", art:true, url:"../arten/gemeine-wespe.html", info:"Gelb-schwarze Wespe an Kuchen und Saft; staatenbildend, baut Papiernester."},
                               {de:"Hornisse", lat:"Vespa crabro", art:true, url:"../arten/hornisse.html", info:"Größte heimische soziale Wespe; trotz Ruf friedlich und geschützt."}
+                            ]},
+                            {de:"Weitere Wildbienen", lat:"Wildbienen", info:"Einzeln lebende Bienen – Maurer-, Masken- und Kuckucksbienen.", k:[
+                              {de:"Rote Mauerbiene", lat:"Osmia bicornis", art:true, url:"../arten/rote-mauerbiene.html", info:"Frühe, rostrote Wildbiene; baut Lehmzellen, top im Insektenhotel."},
+                              {de:"Maskenbiene", lat:"Hylaeus", art:true, url:"../arten/maskenbiene.html", info:"Winzig, fast nackt, mit heller Gesichtsmaske; trägt Pollen im Kropf."},
+                              {de:"Wespenbiene", lat:"Nomada", art:true, url:"../arten/wespenbiene.html", info:"Wespenähnliche „Kuckucksbiene“; schmuggelt Eier in fremde Nester."}
                             ]}
                           ]},
                           {de:"Schlupf- & Gallwespen", lat:"Parasitica", info:"Legen Eier in andere Insekten oder in Pflanzen (Gallen)."}
@@ -323,13 +349,22 @@ const baumDaten = {
                         {de:"Zweiflügler", lat:"Diptera", info:"Fliegen und Mücken – nur ein Flügelpaar, das zweite zu Schwingkölbchen umgebaut.", k:[
                           {de:"Mücken", lat:"Nematocera", info:"Schlanke Tiere mit langen Fühlern.", k:[
                             {de:"Stechmücken & Schnaken", lat:"Culicidae & Tipulidae", info:"Von der blutsaugenden Stechmücke bis zur harmlosen Riesenschnake."},
-                            {de:"Zuck- & Gallmücken", lat:"übrige Nematocera", info:"Tanzen in Schwärmen; viele Larven leben im Wasser."}
+                            {de:"Zuck- & Gallmücken", lat:"übrige Nematocera", info:"Tanzen in Schwärmen; viele Larven leben im Wasser."},
+                            {de:"Haarmücken", lat:"Bibionidae", info:"Träge Frühlingsmücken; erscheinen oft in Massen.", k:[
+                              {de:"Schwarzauge", lat:"Bibio marci", art:true, url:"../arten/schwarzauge.html", info:"Die Märzhaarmücke um den Markustag; schwarz, behaart, tief fliegend."}
+                            ]}
                           ]},
                           {de:"Fliegen", lat:"Brachycera", info:"Gedrungener, mit kurzen Fühlern.", k:[
-                            {de:"Stuben- & Schmeißfliegen", lat:"Muscidae & Calliphoridae", info:"Allgegenwärtig; Schmeißfliegen schimmern metallisch blau-grün."},
+                            {de:"Stuben- & Schmeißfliegen", lat:"Muscidae & Calliphoridae", info:"Allgegenwärtig; Schmeißfliegen schimmern metallisch blau-grün.", k:[
+                              {de:"Goldfliege", lat:"Lucilia sericata", art:true, url:"../arten/goldfliege.html", info:"Metallisch grün glänzend; ihre Maden sind wichtige Aaszersetzer."}
+                            ]},
                             {de:"Schweb- & Raubfliegen", lat:"Syrphidae & Asilidae", info:"Schwebfliegen stehen wespenähnlich in der Luft; Raubfliegen jagen andere Insekten.", k:[
                               {de:"Hainschwebfliege", lat:"Episyrphus balteatus", art:true, url:"../arten/hainschwebfliege.html", info:"Wespenähnlich gemustert, harmlos; Larve ist Blattlausjäger."},
                               {de:"Mistbiene", lat:"Eristalis tenax", art:true, url:"../arten/mistbiene.html", info:"Schwebfliege in Honigbienen-Tarnung; Larve ist die Rattenschwanzlarve."}
+                            ]},
+                            {de:"Schnepfen- & Tanzfliegen", lat:"Rhagionidae & Empididae", info:"Schlanke, räuberische Fliegen mit langen Beinen.", k:[
+                              {de:"Schwarzfüßige Schnepfenfliege", lat:"Rhagio scolopaceus", art:true, url:"../arten/schwarzfuessige-schnepfenfliege.html", info:"Sitzt kopfüber an Stämmen; jagt kleine Insekten."},
+                              {de:"Helle Tanzfliege", lat:"Empis livida", art:true, url:"../arten/helle-tanzfliege.html", info:"Räuberin mit Stechrüssel; Männchen balzen mit Brautgeschenk."}
                             ]}
                           ]}
                         ]}
