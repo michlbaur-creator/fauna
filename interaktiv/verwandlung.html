@@ -16,19 +16,19 @@
   html{-webkit-text-size-adjust:100%;}
   body{margin:0;background:var(--creme);color:var(--blau);
     font-family:Georgia,"Times New Roman",serif;line-height:1.5;}
-  .huelle{max-width:640px;margin:0 auto;padding:clamp(14px,4vw,30px) clamp(12px,3.5vw,28px) 56px;}
+  .huelle{max-width:640px;margin:0 auto;padding:clamp(10px,3vw,20px) clamp(12px,3.5vw,28px) 48px;}
 
   /* Kopf */
   .kopf{display:flex;align-items:center;justify-content:space-between;gap:12px;}
   .zurueck{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--blau);
     text-decoration:none;display:inline-flex;gap:5px;align-items:center;}
   .zaehler{font-family:var(--sans);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8a96a1;}
-  h1{font-size:clamp(23px,6.4vw,38px);line-height:1.08;margin:12px 0 4px;font-weight:normal;}
-  .unter{font-size:clamp(14.5px,4vw,17px);color:var(--tinte);margin:0 0 4px;max-width:48ch;}
+  h1{font-size:clamp(22px,5.2vw,31px);line-height:1.06;margin:6px 0 2px;font-weight:normal;}
+  .unter{font-size:clamp(13.5px,3.6vw,15.5px);color:var(--tinte);margin:0;max-width:48ch;}
 
   /* Schritt-Chips */
   .chips{display:flex;gap:7px;overflow-x:auto;-webkit-overflow-scrolling:touch;
-    padding:16px 2px 4px;margin:6px -2px 0;scrollbar-width:none;}
+    padding:10px 2px 4px;margin:2px -2px 0;scrollbar-width:none;}
   .chips::-webkit-scrollbar{display:none;}
   .chip{flex:0 0 auto;display:flex;align-items:center;gap:7px;cursor:pointer;
     font-family:var(--sans);font-size:12.5px;color:#5a6675;background:#fff;
@@ -41,8 +41,8 @@
   .chip.fertig:not(.aktiv) .nr{background:#cfe0d2;color:#3e7a55;}
 
   /* Bühne / Illustration */
-  .buehne{margin-top:14px;}
-  .bildbox{position:relative;width:100%;aspect-ratio:1/1;max-height:62vh;margin:0 auto;}
+  .buehne{margin-top:10px;}
+  .bildbox{position:relative;width:min(100%,400px);aspect-ratio:1/1;max-height:50vh;margin:0 auto;}
   .bild{position:absolute;inset:0;opacity:0;transition:opacity .5s ease;}
   .bild.an{opacity:1;}
   .bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
@@ -80,7 +80,7 @@
   .scrubnote{font-family:var(--sans);font-size:11.5px;color:#9aa6b0;margin:6px 2px 0;}
 
   /* Erklärtext + entdecken */
-  .erklaer{margin-top:16px;}
+  .erklaer{margin-top:12px;}
   .erklaer h2{font-size:clamp(18px,5vw,23px);font-weight:normal;margin:0 0 7px;}
   .erklaer p{font-size:clamp(14.5px,4vw,16.5px);color:var(--tinte);margin:0 0 10px;}
   .entdeckhint{font-family:var(--sans);font-size:12.5px;color:var(--honig);font-weight:600;margin:4px 0 0;}
@@ -144,7 +144,7 @@
     <span class="zaehler" id="zaehler">Schritt 1 / 5</span>
   </div>
   <h1>Verwandlung</h1>
-  <p class="unter">Vom Ei zum Falter – und der zweite Weg ohne Puppe. Ein Lernpfad in 5 Schritten.</p>
+  <p class="unter">Vom Ei zum Falter – und der zweite Weg ohne Puppe.</p>
 
   <div class="chips" id="chips"></div>
 
@@ -311,6 +311,7 @@ function renderTafel(s){
       b.classList.add("aktiv");
       const h=s.hotspots.find(z=>z.n==b.dataset.n);
       info.innerHTML='<p class="it">Punkt '+h.n+'</p><h3>'+h.titel+'</h3><p>'+h.text+'</p>';
+      info.scrollIntoView({block:"nearest", behavior:reduce?"auto":"smooth"});
       melde();
     });
   });
