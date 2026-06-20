@@ -403,7 +403,13 @@ function renderVergleich(s){
   function zeige(v){
     bV.classList.toggle("an",v); bU.classList.toggle("an",!v);
     wegBox.innerHTML=v?wegVoll:wegUnvoll;
-    grp.innerHTML=v?grpVoll:grpUnvoll; melde();
+    grp.innerHTML=v?grpVoll:grpUnvoll;
+    var qzEl=document.getElementById("qz");
+    if(qzEl){ qzEl.querySelectorAll("button").forEach(function(b){
+      b.classList.remove("voll","unvoll");
+      var t=b.querySelector(".tag"); if(t) t.parentNode.removeChild(t);
+    }); }
+    melde();
   }
   bV.addEventListener("click",()=>zeige(true));
   bU.addEventListener("click",()=>zeige(false));
