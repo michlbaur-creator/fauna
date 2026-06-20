@@ -42,7 +42,7 @@
 
   /* Bühne / Illustration */
   .buehne{margin-top:10px;}
-  .bildbox{position:relative;width:min(100%,400px);aspect-ratio:1/1;max-height:50vh;margin:0 auto;}
+  .bildbox{position:relative;width:min(82%,300px);aspect-ratio:1/1;max-height:32vh;margin:0 auto;}
   .bild{position:absolute;inset:0;opacity:0;transition:opacity .5s ease;}
   .bild.an{opacity:1;}
   .bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
@@ -69,6 +69,9 @@
   .playbtn{flex:0 0 auto;width:40px;height:40px;border-radius:50%;border:1px solid var(--blau);
     background:var(--blau);color:var(--creme);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
   .playbtn:hover{background:var(--blau-tief);}
+  .stepbtn{flex:0 0 auto;width:34px;height:34px;border-radius:50%;border:1px solid var(--blau);
+    background:#fff;color:var(--blau);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .stepbtn:disabled{opacity:.35;cursor:default;}
   .stufenlabel{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--blau);}
   .stufenlabel small{font-weight:400;color:#8a96a1;}
   input[type=range].scrub{flex:1 1 auto;-webkit-appearance:none;appearance:none;height:6px;border-radius:999px;
@@ -144,9 +147,6 @@
     <a class="zurueck" href="../index.html">‹ Startseite</a>
     <span class="zaehler" id="zaehler">Schritt 1 / 5</span>
   </div>
-  <h1>Verwandlung</h1>
-  <p class="unter">Vom Ei zum Falter – und der zweite Weg ohne Puppe.</p>
-
   <div class="chips" id="chips"></div>
 
   <div class="buehne" id="buehne"></div>
@@ -177,7 +177,7 @@ const BASIS = "../assets/verwandlung/";
 const SCHRITTE = [
   /* 1 */ {
     chip:"Zwei Wege", titel:"Was heißt Verwandlung?",
-    text:"Viele Insekten leben zwei ganz verschiedene Leben: erst als gefräßige Larve, dann als erwachsenes, meist geflügeltes Tier (Imago). Dazwischen liegt die Verwandlung – die Metamorphose. Dafür gibt es in der Insektenwelt zwei Wege.",
+    text:"Viele Insekten leben zwei Leben: erst als gefräßige Larve, dann als erwachsenes, geflügeltes Tier (Imago). Dazwischen liegt die Verwandlung – auf zwei Wegen.",
     hint:"Tippe die Punkte im Bild an.",
     typ:"tafel",
     bild:{src:"start-zwei-wege.png", label:"Raupe & Falter nebeneinander", glyph:"🐛"},
@@ -188,8 +188,8 @@ const SCHRITTE = [
   },
   /* 2 */ {
     chip:"Mit Puppe", titel:"Vollständige Verwandlung",
-    text:"Der Weg der Schmetterlinge, Käfer, Bienen und Fliegen führt über vier sehr verschiedene Gestalten. Zieh den Regler von links nach rechts – oder lass es ablaufen.",
-    hint:"Regler ziehen oder ▶ drücken.",
+    text:"Schmetterlinge, Käfer, Bienen und Fliegen durchlaufen vier ganz verschiedene Gestalten – mit Puppe.",
+    hint:"▶ abspielen oder mit ‹ › weiterklicken.",
     typ:"sequenz",
     absprung:{text:"Den ganzen Kreislauf beim Admiral ansehen ›", url:"../arten/admiral.html"},
     stufen:[
@@ -205,7 +205,7 @@ const SCHRITTE = [
   },
   /* 3 */ {
     chip:"Die Puppe", titel:"Das Wunder dazwischen",
-    text:"In der Puppe geschieht das eigentliche Wunder: Der Raupenkörper wird fast vollständig aufgelöst und neu zusammengesetzt. Aus wenigen Zellgruppen wachsen Flügel, Beine und Fühler des Falters.",
+    text:"In der Puppe wird der Raupenkörper fast vollständig aufgelöst und neu zusammengebaut – zu Flügeln, Beinen und Fühlern.",
     hint:"Tippe die Punkte an – und sieh den Falter schlüpfen.",
     typ:"tafel", schluepfen:true,
     bild:{src:"voll-3-puppe.png", label:"Puppe (Detail)", glyph:"🛡️"},
@@ -218,8 +218,8 @@ const SCHRITTE = [
   },
   /* 4 */ {
     chip:"Ohne Puppe", titel:"Unvollständige Verwandlung",
-    text:"Libellen, Heuschrecken und Wanzen gehen den anderen Weg: ganz ohne Puppe. Die Jungen ähneln den Erwachsenen schon – sie werden nur größer.",
-    hint:"Regler ziehen oder ▶ drücken.",
+    text:"Libellen, Heuschrecken und Wanzen gehen den Weg ohne Puppe: Die Jungen ähneln den Großen und werden nur größer.",
+    hint:"▶ abspielen oder mit ‹ › weiterklicken.",
     typ:"sequenz",
     absprung:{text:"Im Stammbaum: die Hemimetabola ›", url:"../interaktiv/stammbaum.html"},
     stufen:[
@@ -233,7 +233,7 @@ const SCHRITTE = [
   },
   /* 5 */ {
     chip:"Vergleich", titel:"Zwei Wege im Vergleich",
-    text:"Der ganze Unterschied steckt in einem einzigen Schritt: der Puppe. Mit ihr wird aus der Raupe ein völlig neues Tier – ohne sie wächst die Nymphe nur Stück für Stück heran.",
+    text:"Der ganze Unterschied steckt in einem Schritt: der Puppe. Mit ihr wird aus der Raupe ein neues Tier – ohne sie wächst die Nymphe Stück für Stück heran.",
     typ:"vergleich"
   },
 ];
@@ -340,27 +340,26 @@ function renderSequenz(s){
   if(s.hint) e+='<p class="entdeckhint">👇 '+s.hint+'</p>';
   e+='<div class="seq"><div class="seqkopf">'+
        '<button class="playbtn" id="play" aria-label="Abspielen">▶</button>'+
-       '<input type="range" class="scrub" id="scrub" min="0" max="'+max+'" value="0" step="1">'+
+       '<button class="stepbtn" id="prev" aria-label="Voriges Stadium">‹</button>'+
+       '<div class="stufenlabel" id="stl" style="flex:1 1 auto;text-align:center;"></div>'+
+       '<button class="stepbtn" id="next" aria-label="Nächstes Stadium">›</button>'+
      '</div>'+
-     '<div class="stufenlabel" id="stl"></div>'+
-     '<div class="infokarte" id="info"></div>'+
-     '<p class="scrubnote">Stadium '+(1)+' von '+(max+1)+'</p></div>';
+     '<div class="infokarte" id="info"></div></div>';
   if(s.absprung) e+='<a class="absprung" href="'+s.absprung.url+'">'+s.absprung.text+'</a>';
   elE.innerHTML=e;
 
-  const scrub=document.getElementById("scrub");
   const setze=(v)=>{
     stufe=Math.max(0,Math.min(max,v));
-    scrub.value=stufe;
-    scrub.style.setProperty("--p",(stufe/max*100)+"%");
     elB.querySelectorAll(".bild").forEach((b,k)=>b.classList.toggle("an",k===stufe));
     const st=s.stufen[stufe];
-    document.getElementById("stl").innerHTML=st.name+' <small>· Stadium '+(stufe+1)+'/'+(max+1)+'</small>';
+    document.getElementById("stl").innerHTML=st.name+' <small>· '+(stufe+1)+'/'+(max+1)+'</small>';
     document.getElementById("info").innerHTML='<p>'+st.text+'</p>';
-    elE.querySelector(".scrubnote").textContent="Stadium "+(stufe+1)+" von "+(max+1);
+    document.getElementById("prev").disabled=(stufe===0);
+    document.getElementById("next").disabled=(stufe===max);
     melde();
   };
-  scrub.addEventListener("input",()=>setze(+scrub.value));
+  document.getElementById("prev").addEventListener("click",()=>setze(stufe-1));
+  document.getElementById("next").addEventListener("click",()=>setze(stufe+1));
   document.getElementById("play").addEventListener("click",function(){
     if(timer){ stopPlay(); this.textContent="▶"; return; }
     this.textContent="❚❚";
