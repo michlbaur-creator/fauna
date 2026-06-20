@@ -1,0 +1,758 @@
+[
+{
+"slug": "admiral",
+"deutsch": "Admiral",
+"lat": "Vanessa atalanta",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11
+],
+"wichtig": true
+},
+{
+"slug": "aurorafalter",
+"deutsch": "Aurorafalter",
+"lat": "Anthocharis cardamines",
+"monate": [
+3,
+4,
+5,
+6
+],
+"wichtig": true
+},
+{
+"slug": "c-falter",
+"deutsch": "C-Falter",
+"lat": "Polygonia c-album",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false
+},
+{
+"slug": "distelfalter",
+"deutsch": "Distelfalter",
+"lat": "Vanessa cardui",
+"monate": [
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true
+},
+{
+"slug": "grosser-kohlweissling",
+"deutsch": "Großer Kohlweißling",
+"lat": "Pieris brassicae",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false
+},
+{
+"slug": "grosses-ochsenauge",
+"deutsch": "Großes Ochsenauge",
+"lat": "Maniola jurtina",
+"monate": [
+6,
+7,
+8,
+9
+],
+"wichtig": true
+},
+{
+"slug": "kaisermantel",
+"deutsch": "Kaisermantel",
+"lat": "Argynnis paphia",
+"monate": [
+6,
+7,
+8
+],
+"wichtig": false
+},
+{
+"slug": "kleespanner",
+"deutsch": "Kleespanner",
+"lat": "Chiasmia clathrata",
+"monate": [
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false
+},
+{
+"slug": "kleiner-eisvogel",
+"deutsch": "Kleiner Eisvogel",
+"lat": "Limenitis camilla",
+"monate": [
+6,
+7,
+8
+],
+"wichtig": false
+},
+{
+"slug": "kleiner-fuchs",
+"deutsch": "Kleiner Fuchs",
+"lat": "Aglais urticae",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true
+},
+{
+"slug": "landkaertchen",
+"deutsch": "Landkärtchen",
+"lat": "Araschnia levana",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false
+},
+{
+"slug": "mittlerer-weinschwaermer",
+"deutsch": "Mittlerer Weinschwärmer",
+"lat": "Deilephila elpenor",
+"monate": [
+5,
+6,
+7
+],
+"wichtig": false
+},
+{
+"slug": "schachbrettfalter",
+"deutsch": "Schachbrettfalter",
+"lat": "Melanargia galathea",
+"monate": [
+6,
+7,
+8
+],
+"wichtig": true
+},
+{
+"slug": "schwalbenschwanz",
+"deutsch": "Schwalbenschwanz",
+"lat": "Papilio machaon",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": true
+},
+{
+"slug": "tagpfauenauge",
+"deutsch": "Tagpfauenauge",
+"lat": "Aglais io",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true
+},
+{
+"slug": "zitronenfalter",
+"deutsch": "Zitronenfalter",
+"lat": "Gonepteryx rhamni",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true
+},
+{
+"slug": "dunkle-erdhummel",
+"deutsch": "Dunkle Erdhummel",
+"lat": "Bombus terrestris",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true
+},
+{
+"slug": "steinhummel",
+"deutsch": "Steinhummel",
+"lat": "Bombus lapidarius",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true
+},
+{
+"slug": "grosse-holzbiene",
+"deutsch": "Große Holzbiene",
+"lat": "Xylocopa violacea",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": true
+},
+{
+"slug": "gemeine-wespe",
+"deutsch": "Gemeine Wespe",
+"lat": "Vespula vulgaris",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true
+},
+{
+"slug": "hornisse",
+"deutsch": "Hornisse",
+"lat": "Vespa crabro",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true
+},
+{
+"slug": "mistbiene",
+"deutsch": "Mistbiene",
+"lat": "Eristalis tenax",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11
+],
+"wichtig": true
+},
+{
+"slug": "hainschwebfliege",
+"deutsch": "Hainschwebfliege",
+"lat": "Episyrphus balteatus",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11
+],
+"wichtig": true
+},
+{
+"slug": "siebenpunkt-marienkaefer",
+"deutsch": "Siebenpunkt-Marienkäfer",
+"lat": "Coccinella septempunctata",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true
+},
+{
+"slug": "bienenkaefer",
+"deutsch": "Bienenkäfer",
+"lat": "Trichodes apiarius",
+"monate": [
+5,
+6,
+7
+],
+"wichtig": false
+},
+{
+"slug": "kleiner-pappel-bockkaefer",
+"deutsch": "Kleiner Pappel-Bockkäfer",
+"lat": "Saperda populnea",
+"monate": [
+5,
+6,
+7
+],
+"wichtig": false
+},
+{
+"slug": "gemeine-feuerwanze",
+"deutsch": "Gemeine Feuerwanze",
+"lat": "Pyrrhocoris apterus",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11
+],
+"wichtig": true
+},
+{
+"slug": "streifenwanze",
+"deutsch": "Streifenwanze",
+"lat": "Graphosoma lineatum",
+"monate": [
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": true
+},
+{
+"slug": "schwarze-blattlaus",
+"deutsch": "Schwarze Blattlaus",
+"lat": "Aphis fabae",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false
+},
+{
+"slug": "fruehe-adonislibelle",
+"deutsch": "Frühe Adonislibelle",
+"lat": "Pyrrhosoma nymphula",
+"monate": [
+4,
+5,
+6,
+7,
+8
+],
+"wichtig": true
+},
+{
+"slug": "gartenlaubkaefer",
+"deutsch": "Gartenlaubkäfer",
+"lat": "Phyllopertha horticola",
+"monate": [
+5,
+6,
+7
+],
+"wichtig": false
+},
+{
+"slug": "fleckenhoerniger-halsbock",
+"deutsch": "Fleckenhörniger Halsbock",
+"lat": "Anoplodera sexguttata",
+"monate": [
+5,
+6,
+7
+],
+"wichtig": false
+},
+{
+"slug": "ackerhummel",
+"deutsch": "Ackerhummel",
+"lat": "Bombus pascuorum",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true
+},
+{
+"slug": "gemeine-blutzikade",
+"deutsch": "Gemeine Blutzikade",
+"lat": "Cercopis vulnerata",
+"monate": [
+4,
+5,
+6,
+7,
+8
+],
+"wichtig": false
+},
+{
+"slug": "gemeine-skorpionsfliege",
+"deutsch": "Gemeine Skorpionsfliege",
+"lat": "Panorpa communis",
+"monate": [
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": true
+},
+{
+"slug": "gemeine-schlammfliege",
+"deutsch": "Gemeine Schlammfliege",
+"lat": "Sialis lutaria",
+"monate": [
+4,
+5,
+6
+],
+"wichtig": false
+},
+{
+"slug": "echter-widderbock",
+"deutsch": "Echter Widderbock",
+"lat": "Clytus arietis",
+"monate": [
+5,
+6,
+7
+],
+"wichtig": false
+},
+{
+"slug": "plattbauch",
+"deutsch": "Plattbauch",
+"lat": "Libellula depressa",
+"monate": [
+5,
+6,
+7,
+8
+],
+"wichtig": true
+},
+{
+"slug": "eichen-schmuckwanze",
+"deutsch": "Eichen-Schmuckwanze",
+"lat": "Rhabdomiris striatellus",
+"monate": [
+5,
+6
+],
+"wichtig": false
+},
+{
+"slug": "kleiner-schmalbock",
+"deutsch": "Kleiner Schmalbock",
+"lat": "Leptura aethiops",
+"monate": [
+6,
+7,
+8
+],
+"wichtig": false
+},
+{
+"slug": "scheckhornbock",
+"deutsch": "Scheckhornbock",
+"lat": "Cerambycidae",
+"monate": [
+5,
+6,
+7,
+8
+],
+"wichtig": false
+},
+{
+"slug": "rotschwarzer-weichkaefer",
+"deutsch": "Rotschwarzer Weichkäfer",
+"lat": "Cantharis pellucida",
+"monate": [
+5,
+6,
+7
+],
+"wichtig": false
+},
+{
+"slug": "gemeiner-weichkaefer",
+"deutsch": "Gemeiner Weichkäfer",
+"lat": "Cantharis fusca",
+"monate": [
+4,
+5,
+6,
+7
+],
+"wichtig": false
+},
+{
+"slug": "lederwanze",
+"deutsch": "Lederwanze",
+"lat": "Coreus marginatus",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false
+},
+{
+"slug": "kohlwanze",
+"deutsch": "Kohlwanze",
+"lat": "Eurydema",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false
+},
+{
+"slug": "schwarzauge",
+"deutsch": "Schwarzauge (Märzhaarmücke)",
+"lat": "Bibio marci",
+"monate": [
+4,
+5
+],
+"wichtig": false
+},
+{
+"slug": "schwarzfuessige-schnepfenfliege",
+"deutsch": "Schwarzfüßige Schnepfenfliege",
+"lat": "Rhagio scolopaceus",
+"monate": [
+5,
+6,
+7,
+8
+],
+"wichtig": false
+},
+{
+"slug": "helle-tanzfliege",
+"deutsch": "Helle Tanzfliege",
+"lat": "Empis livida",
+"monate": [
+5,
+6,
+7
+],
+"wichtig": false
+},
+{
+"slug": "holzwespen-schlupfwespe",
+"deutsch": "Holzwespen-Schlupfwespe",
+"lat": "Sirex juvencus",
+"monate": [
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false
+},
+{
+"slug": "goldfliege",
+"deutsch": "Goldfliege",
+"lat": "Lucilia sericata",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false
+},
+{
+"slug": "maskenbiene",
+"deutsch": "Maskenbiene",
+"lat": "Hylaeus spec.",
+"monate": [
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false
+},
+{
+"slug": "rote-mauerbiene",
+"deutsch": "Rote Mauerbiene",
+"lat": "Osmia bicornis",
+"monate": [
+3,
+4,
+5,
+6
+],
+"wichtig": true
+},
+{
+"slug": "wespenbiene",
+"deutsch": "Wespenbiene",
+"lat": "Nomada spec.",
+"monate": [
+4,
+5,
+6,
+7
+],
+"wichtig": false
+},
+{
+"slug": "gemeiner-ohrwurm",
+"deutsch": "Gemeiner Ohrwurm",
+"lat": "Forficula auricularia",
+"monate": [
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true
+},
+{
+"slug": "grosse-eintagsfliege",
+"deutsch": "Große Eintagsfliege",
+"lat": "Ephemera danica",
+"monate": [
+5,
+6,
+7
+],
+"wichtig": false
+},
+{
+"slug": "kreuzspinne",
+"deutsch": "Kreuzspinne",
+"lat": "Araneus diadematus",
+"monate": [
+7,
+8,
+9,
+10
+],
+"wichtig": true
+},
+{
+"slug": "kuerbisspinne",
+"deutsch": "Kürbisspinne",
+"lat": "Araniella cucurbitina",
+"monate": [
+5,
+6,
+7,
+8
+],
+"wichtig": false
+}
+]

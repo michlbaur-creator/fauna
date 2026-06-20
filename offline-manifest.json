@@ -4,6 +4,7 @@
 "./index.html",
 "./manifest.webmanifest",
 "./assets/app.js",
+"./tiere.json",
 "./interaktiv/schluessel.html",
 "./interaktiv/stammbaum.html",
 "./interaktiv/systematik.html",
