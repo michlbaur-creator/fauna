@@ -52,6 +52,34 @@
     border-radius:999px;padding:8px 16px;font-size:13.5px;color:var(--blau);font-family:var(--sans);
     cursor:pointer;line-height:1;box-shadow:0 1px 4px rgba(35,61,92,.06);transition:border-color .15s;}
   .start-chip:hover{border-color:#9bb0c6;}
+  .start-chip .chip-link{background:none;border:none;color:inherit;font:inherit;cursor:pointer;
+    display:inline-flex;align-items:center;gap:6px;padding:0;line-height:1;}
+  .chip-x{background:none;border:none;color:#9aa6b0;font-size:13px;cursor:pointer;padding:0 0 0 3px;
+    line-height:1;font-family:var(--sans);}
+  .chip-x:hover{color:var(--blau);}
+
+  /* Neu-hier-Tour */
+  .tour-overlay{position:fixed;inset:0;background:rgba(26,47,71,.62);display:none;z-index:1000;
+    align-items:center;justify-content:center;padding:20px;animation:tour-fade .25s ease;}
+  .tour-overlay.aktiv{display:flex;}
+  @keyframes tour-fade{from{opacity:0}to{opacity:1}}
+  .tour-bubble{background:#fff;border-radius:16px;padding:20px 20px 15px;max-width:360px;width:100%;
+    box-shadow:0 12px 32px rgba(0,0,0,.28);border:1px solid #cdd6dd;}
+  .tour-zaehler{font-family:var(--sans);color:#8a96a1;font-size:12px;letter-spacing:.06em;margin-bottom:7px;}
+  .tour-titel{font-family:Georgia,serif;color:var(--blau);font-size:1.3rem;margin:0 0 7px;line-height:1.2;}
+  .tour-text{font-family:var(--sans);color:#3a4653;line-height:1.55;margin:0 0 15px;font-size:.97rem;}
+  .tour-buttons{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .tour-skip{background:none;border:none;color:#8a96a1;cursor:pointer;font-family:var(--sans);font-size:.9rem;padding:8px 4px;}
+  .tour-skip:hover{color:var(--blau);}
+  .tour-weiter{background:var(--blau);color:var(--creme);border:none;border-radius:999px;padding:10px 22px;
+    font-family:var(--sans);font-weight:600;cursor:pointer;box-shadow:0 2px 6px rgba(35,61,92,.3);}
+  .tour-weiter:hover{background:var(--blau-tief);}
+  .tour-help{position:fixed;bottom:max(16px,env(safe-area-inset-bottom));right:max(16px,env(safe-area-inset-right));
+    width:44px;height:44px;border-radius:50%;background:#fff;color:var(--blau);border:1px solid #cdd6dd;
+    font-family:Georgia,serif;font-size:1.35rem;font-weight:700;cursor:pointer;
+    box-shadow:0 4px 14px rgba(35,61,92,.18);z-index:100;display:flex;align-items:center;justify-content:center;
+    transition:transform .12s ease,background .12s ease,color .12s ease;}
+  .tour-help:hover{background:var(--blau);color:var(--creme);transform:translateY(-2px);}
 
   /* Installations-Bubbles (iPhone/Android, nur wenn nicht installiert) */
   .install-bubble{display:none;text-align:center;margin:0 0 14px;}
@@ -205,6 +233,7 @@
   </section>
 
   <div class="start-chips">
+    <span class="start-chip" id="chip-anleitung"><button class="chip-link" id="chip-anleitung-auf" type="button">📖 Neu hier?</button><button class="chip-x" id="chip-anleitung-zu" type="button" aria-label="Hinweis ausblenden">✕</button></span>
     <button class="start-chip" id="chip-offline" type="button" aria-haspopup="dialog">📥 <span id="chip-offline-text">Für unterwegs speichern</span></button>
   </div>
 
@@ -490,6 +519,72 @@
       try{ localStorage.setItem('install-bubble-zu','1'); }catch(e){}
     });
   });
+})();
+</script>
+
+<!-- Neu-hier-Tour + schwebender Hilfe-Knopf -->
+<div class="tour-overlay" id="tour-overlay" role="dialog" aria-modal="true" aria-labelledby="tour-titel">
+  <div class="tour-bubble">
+    <div class="tour-zaehler" id="tour-zaehler"></div>
+    <h3 class="tour-titel" id="tour-titel"></h3>
+    <p class="tour-text" id="tour-text"></p>
+    <div class="tour-buttons">
+      <button class="tour-skip" id="tour-skip" type="button">Überspringen</button>
+      <button class="tour-weiter" id="tour-weiter" type="button">Weiter ›</button>
+    </div>
+  </div>
+</div>
+<button class="tour-help" id="tour-help" type="button" aria-label="Kurze Tour anzeigen" title="Kurze Tour anzeigen">?</button>
+
+<script>
+(function(){
+  var TOUR=[
+    { titel:'Willkommen bei Fauna Mibaso!',
+      text:'In zwei, drei Sätzen zeige ich dir, was du hier alles findest.' },
+    { titel:'Tiere entdecken',
+      text:'Insekten und andere Wirbellose vor der Haustür – jede Art mit Foto, naturkundlicher Tafel und Steckbrief.' },
+    { titel:'Was fliegt & krabbelt gerade?',
+      text:'Ganz oben siehst du die Tiere, die genau jetzt im Jahr unterwegs sind – tippe eines an.' },
+    { titel:'Bestimmen & ordnen',
+      text:'Über den Bestimmungsschlüssel zur Art, im Stammbaum die Verwandtschaft erkunden – mit Suchfeld für jede Art.' },
+    { titel:'Knobeln, verstehen, staunen',
+      text:'Tierquiz, „Verwandte finden“ und Lernpfade wie „Verwandlung“ oder „Wer bestäubt was?“.' },
+    { titel:'Tipp: als App speichern',
+      text:'Über das Teilen-Symbol → „Zum Home-Bildschirm“ – dann liegt Fauna wie eine echte App auf deinem Handy und läuft auch offline.' }
+  ];
+  var overlay=document.getElementById('tour-overlay');
+  var elZ=document.getElementById('tour-zaehler'), elT=document.getElementById('tour-titel'),
+      elX=document.getElementById('tour-text'), elNext=document.getElementById('tour-weiter'),
+      elSkip=document.getElementById('tour-skip'), elHelp=document.getElementById('tour-help');
+  var idx=0;
+  function zeige(i){
+    idx=i; var s=TOUR[i];
+    elZ.textContent=(i+1)+' / '+TOUR.length;
+    elT.textContent=s.titel; elX.textContent=s.text;
+    elNext.textContent=(i===TOUR.length-1)?'Los geht’s ›':'Weiter ›';
+    elSkip.style.visibility=(i===TOUR.length-1)?'hidden':'visible';
+  }
+  function starte(){ zeige(0); overlay.classList.add('aktiv'); }
+  function beende(){ overlay.classList.remove('aktiv'); try{localStorage.setItem('fauna-tour-gesehen','1');}catch(e){} }
+  elNext.addEventListener('click',function(){ if(idx<TOUR.length-1) zeige(idx+1); else beende(); });
+  elSkip.addEventListener('click',beende);
+  overlay.addEventListener('click',function(e){ if(e.target===overlay) beende(); });
+  elHelp.addEventListener('click',starte);
+
+  // „Neu hier?“-Chip
+  var chipAnl=document.getElementById('chip-anleitung');
+  var chipAuf=document.getElementById('chip-anleitung-auf');
+  var chipZu=document.getElementById('chip-anleitung-zu');
+  try{ if(localStorage.getItem('chip-anleitung-zu')==='1' && chipAnl) chipAnl.style.display='none'; }catch(e){}
+  if(chipAuf) chipAuf.addEventListener('click',starte);
+  if(chipZu) chipZu.addEventListener('click',function(ev){
+    ev.preventDefault(); ev.stopPropagation();
+    if(chipAnl) chipAnl.style.display='none';
+    try{ localStorage.setItem('chip-anleitung-zu','1'); }catch(e){}
+  });
+
+  // Beim Erstbesuch automatisch zeigen
+  try{ if(!localStorage.getItem('fauna-tour-gesehen')) setTimeout(starte,700); }catch(e){}
 })();
 </script>
 <script src="assets/app.js" defer></script>
