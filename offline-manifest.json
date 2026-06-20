@@ -75,7 +75,8 @@
 "./arten/zitronenfalter.html",
 "./broschueren/",
 "./broschueren/index.html",
-"./broschueren/schmetterlinge.pdf"
+"./broschueren/schmetterlinge.pdf",
+"./interaktiv/bestaeubung.html"
 ],
 "media": [
 "./assets/icon.svg",
@@ -199,6 +200,22 @@
 "./assets/verwandlung/voll-2-raupe.png",
 "./assets/verwandlung/voll-3-puppe.png",
 "./assets/verwandlung/voll-4-falter.png",
-"./assets/verwandlung/voll-5-schluepft.png"
+"./assets/verwandlung/voll-5-schluepft.png",
+"./images/blueten/achillea-millefolium.jpg",
+"./images/blueten/aegopodium-podagraria.jpg",
+"./images/blueten/bellis-perennis.jpg",
+"./images/blueten/centaurea-jacea.jpg",
+"./images/blueten/daucus-carota.jpg",
+"./images/blueten/dianthus-deltoides.jpg",
+"./images/blueten/digitalis-purpurea.jpg",
+"./images/blueten/eupatorium-cannabinum.jpg",
+"./images/blueten/heracleum-sphondylium.jpg",
+"./images/blueten/lonicera-periclymenum.jpg",
+"./images/blueten/lotus-corniculatus.jpg",
+"./images/blueten/rosa-canina.jpg",
+"./images/blueten/salvia-pratensis.jpg",
+"./images/blueten/saponaria-officinalis.jpg",
+"./images/blueten/silene-latifolia.jpg",
+"./images/blueten/symphytum-officinale.jpg"
 ]
 }
