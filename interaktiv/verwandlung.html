@@ -210,9 +210,9 @@ const SCHRITTE = [
     bild:{src:"voll-3-puppe.png", label:"Puppe (Detail)", glyph:"🛡️"},
     schluepfBild:{src:"voll-5-schluepft.png", label:"Falter schlüpft", glyph:"🦋"},
     hotspots:[
-      {x:50,y:22,n:1,titel:"Puppenhülle",text:"Eine feste Schutzhülle. Bei vielen Tagfaltern hängt sie kopfüber – die Stürzpuppe."},
-      {x:38,y:52,n:2,titel:"Flügelanlagen",text:"Schon von außen ahnt man die Flügel – als feine Linien auf der Hülle."},
-      {x:60,y:74,n:3,titel:"Schlüpfnaht",text:"Hier reißt die Hülle auf, wenn der fertige Falter sich herausschiebt."},
+      {x:50,y:53,n:1,titel:"Puppenhülle",text:"Eine feste Schutzhülle. Bei vielen Tagfaltern hängt sie kopfüber – die Stürzpuppe."},
+      {x:51,y:65,n:2,titel:"Flügelanlagen",text:"Schon von außen ahnt man die Flügel – als feine Linien auf der Hülle."},
+      {x:52,y:77,n:3,titel:"Schlüpfnaht",text:"Hier reißt die Hülle auf, wenn der fertige Falter sich herausschiebt."},
     ]
   },
   /* 4 */ {
@@ -320,6 +320,7 @@ function renderTafel(s){
     if(!img) return;
     img.style.opacity="1";
     img.classList.remove("zu"); void img.offsetWidth; img.classList.add("auf");
+    elB.querySelectorAll(".hotspot").forEach(h=>{ h.style.transition="opacity .5s"; h.style.opacity="0"; setTimeout(()=>h.style.display="none",500); });
     sb.disabled=true; sb.textContent="🦋 geschlüpft"; melde();
   });
 }
