@@ -14,7 +14,8 @@
 10,
 11
 ],
-"wichtig": true
+"wichtig": true,
+"foto": true
 },
 {
 "slug": "aurorafalter",
@@ -26,7 +27,8 @@
 5,
 6
 ],
-"wichtig": true
+"wichtig": true,
+"foto": false
 },
 {
 "slug": "c-falter",
@@ -42,7 +44,8 @@
 9,
 10
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "distelfalter",
@@ -56,7 +59,8 @@
 9,
 10
 ],
-"wichtig": true
+"wichtig": true,
+"foto": true
 },
 {
 "slug": "grosser-kohlweissling",
@@ -71,7 +75,8 @@
 9,
 10
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "grosses-ochsenauge",
@@ -83,7 +88,8 @@
 8,
 9
 ],
-"wichtig": true
+"wichtig": true,
+"foto": true
 },
 {
 "slug": "kaisermantel",
@@ -94,7 +100,8 @@
 7,
 8
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "kleespanner",
@@ -107,7 +114,8 @@
 8,
 9
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "kleiner-eisvogel",
@@ -118,7 +126,8 @@
 7,
 8
 ],
-"wichtig": false
+"wichtig": false,
+"foto": false
 },
 {
 "slug": "kleiner-fuchs",
@@ -134,7 +143,8 @@
 9,
 10
 ],
-"wichtig": true
+"wichtig": true,
+"foto": true
 },
 {
 "slug": "landkaertchen",
@@ -148,7 +158,8 @@
 8,
 9
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "mittlerer-weinschwaermer",
@@ -159,7 +170,8 @@
 6,
 7
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "schachbrettfalter",
@@ -170,7 +182,8 @@
 7,
 8
 ],
-"wichtig": true
+"wichtig": true,
+"foto": true
 },
 {
 "slug": "schwalbenschwanz",
@@ -184,7 +197,8 @@
 8,
 9
 ],
-"wichtig": true
+"wichtig": true,
+"foto": true
 },
 {
 "slug": "tagpfauenauge",
@@ -200,7 +214,8 @@
 9,
 10
 ],
-"wichtig": true
+"wichtig": true,
+"foto": true
 },
 {
 "slug": "zitronenfalter",
@@ -216,7 +231,8 @@
 9,
 10
 ],
-"wichtig": true
+"wichtig": true,
+"foto": true
 },
 {
 "slug": "dunkle-erdhummel",
@@ -232,7 +248,8 @@
 9,
 10
 ],
-"wichtig": true
+"wichtig": true,
+"foto": false
 },
 {
 "slug": "steinhummel",
@@ -248,7 +265,8 @@
 9,
 10
 ],
-"wichtig": true
+"wichtig": true,
+"foto": false
 },
 {
 "slug": "grosse-holzbiene",
@@ -262,7 +280,8 @@
 8,
 9
 ],
-"wichtig": true
+"wichtig": true,
+"foto": false
 },
 {
 "slug": "gemeine-wespe",
@@ -277,7 +296,8 @@
 9,
 10
 ],
-"wichtig": true
+"wichtig": true,
+"foto": false
 },
 {
 "slug": "hornisse",
@@ -292,7 +312,8 @@
 9,
 10
 ],
-"wichtig": true
+"wichtig": true,
+"foto": false
 },
 {
 "slug": "mistbiene",
@@ -309,7 +330,8 @@
 10,
 11
 ],
-"wichtig": true
+"wichtig": true,
+"foto": true
 },
 {
 "slug": "hainschwebfliege",
@@ -326,7 +348,8 @@
 10,
 11
 ],
-"wichtig": true
+"wichtig": true,
+"foto": false
 },
 {
 "slug": "siebenpunkt-marienkaefer",
@@ -342,7 +365,8 @@
 9,
 10
 ],
-"wichtig": true
+"wichtig": true,
+"foto": false
 },
 {
 "slug": "bienenkaefer",
@@ -353,7 +377,8 @@
 6,
 7
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "kleiner-pappel-bockkaefer",
@@ -364,7 +389,8 @@
 6,
 7
 ],
-"wichtig": false
+"wichtig": false,
+"foto": false
 },
 {
 "slug": "gemeine-feuerwanze",
@@ -381,7 +407,8 @@
 10,
 11
 ],
-"wichtig": true
+"wichtig": true,
+"foto": false
 },
 {
 "slug": "streifenwanze",
@@ -394,7 +421,8 @@
 8,
 9
 ],
-"wichtig": true
+"wichtig": true,
+"foto": false
 },
 {
 "slug": "schwarze-blattlaus",
@@ -409,7 +437,8 @@
 9,
 10
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "fruehe-adonislibelle",
@@ -422,7 +451,8 @@
 7,
 8
 ],
-"wichtig": true
+"wichtig": true,
+"foto": true
 },
 {
 "slug": "gartenlaubkaefer",
@@ -433,7 +463,8 @@
 6,
 7
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "fleckenhoerniger-halsbock",
@@ -444,7 +475,8 @@
 6,
 7
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "ackerhummel",
@@ -460,7 +492,8 @@
 9,
 10
 ],
-"wichtig": true
+"wichtig": true,
+"foto": true
 },
 {
 "slug": "gemeine-blutzikade",
@@ -473,7 +506,8 @@
 7,
 8
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "gemeine-skorpionsfliege",
@@ -486,7 +520,8 @@
 8,
 9
 ],
-"wichtig": true
+"wichtig": true,
+"foto": true
 },
 {
 "slug": "gemeine-schlammfliege",
@@ -497,7 +532,8 @@
 5,
 6
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "echter-widderbock",
@@ -508,7 +544,8 @@
 6,
 7
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "plattbauch",
@@ -520,7 +557,8 @@
 7,
 8
 ],
-"wichtig": true
+"wichtig": true,
+"foto": true
 },
 {
 "slug": "eichen-schmuckwanze",
@@ -530,7 +568,8 @@
 5,
 6
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "kleiner-schmalbock",
@@ -541,7 +580,8 @@
 7,
 8
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "scheckhornbock",
@@ -553,7 +593,8 @@
 7,
 8
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "rotschwarzer-weichkaefer",
@@ -564,7 +605,8 @@
 6,
 7
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "gemeiner-weichkaefer",
@@ -576,7 +618,8 @@
 6,
 7
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "lederwanze",
@@ -591,7 +634,8 @@
 9,
 10
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "kohlwanze",
@@ -606,7 +650,8 @@
 9,
 10
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "schwarzauge",
@@ -616,7 +661,8 @@
 4,
 5
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "schwarzfuessige-schnepfenfliege",
@@ -628,7 +674,8 @@
 7,
 8
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "helle-tanzfliege",
@@ -639,7 +686,8 @@
 6,
 7
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "holzwespen-schlupfwespe",
@@ -652,7 +700,8 @@
 8,
 9
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "goldfliege",
@@ -667,7 +716,8 @@
 9,
 10
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "maskenbiene",
@@ -680,7 +730,8 @@
 8,
 9
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "rote-mauerbiene",
@@ -692,7 +743,8 @@
 5,
 6
 ],
-"wichtig": true
+"wichtig": true,
+"foto": true
 },
 {
 "slug": "wespenbiene",
@@ -704,7 +756,8 @@
 6,
 7
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "gemeiner-ohrwurm",
@@ -718,7 +771,8 @@
 9,
 10
 ],
-"wichtig": true
+"wichtig": true,
+"foto": true
 },
 {
 "slug": "grosse-eintagsfliege",
@@ -729,7 +783,8 @@
 6,
 7
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 },
 {
 "slug": "kreuzspinne",
@@ -741,7 +796,8 @@
 9,
 10
 ],
-"wichtig": true
+"wichtig": true,
+"foto": true
 },
 {
 "slug": "kuerbisspinne",
@@ -753,6 +809,7 @@
 7,
 8
 ],
-"wichtig": false
+"wichtig": false,
+"foto": true
 }
 ]

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tierquiz · Fauna Mibaso</title>
+<meta name="description" content="Vier Tiere – aber nur eines passt. Erkennst du die heimischen Insekten am Foto? Das Tierquiz von Fauna Mibaso.">
+<meta name="theme-color" content="#233D5C">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/icon.svg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Fauna Mibaso">
+<style>
+  :root{
+    --blau:#233D5C; --blau-tief:#1a2f47; --creme:#F7F3E8; --creme-tief:#EEE7D5;
+    --tinte:#1c2e42; --honig:#C28A3A; --linie:#c3ccd5; --gruen:#3f8a52; --rot:#b5402f;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html{-webkit-text-size-adjust:100%;}
+  body{margin:0;background:var(--creme);color:var(--blau);font-family:Georgia,"Times New Roman",serif;line-height:1.5;}
+  .huelle{max-width:640px;margin:0 auto;padding:clamp(16px,4.5vw,34px) clamp(12px,3.5vw,26px) 56px;}
+  .zurueck{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--blau);text-decoration:none;
+    display:inline-flex;gap:6px;align-items:center;padding:6px 0;}
+  .augenbraue{font-family:var(--sans);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--honig);font-weight:700;margin:8px 0 6px;}
+  h1{font-size:clamp(24px,7vw,38px);margin:0 0 6px;font-weight:normal;}
+  .intro{font-family:var(--sans);font-size:13.5px;color:#5a6675;margin:0 0 14px;}
+
+  .leiste{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid var(--linie);
+    border-bottom:1px solid var(--linie);padding:10px 0;margin-bottom:18px;font-family:var(--sans);}
+  .score{font-size:14px;color:var(--blau);}
+  .score b{color:var(--honig);}
+  .quote{font-size:13px;color:#6f7b86;margin-left:auto;}
+  .knopf{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--blau);background:transparent;
+    border:1px solid var(--blau);border-radius:999px;padding:7px 14px;cursor:pointer;transition:background .15s,color .15s;}
+  .knopf:hover{background:var(--blau);color:var(--creme);}
+
+  .frage{font-size:clamp(18px,5vw,22px);margin:0 0 4px;font-weight:normal;}
+  .frage b{font-weight:bold;}
+  .flat{font-family:var(--sans);font-size:12.5px;color:#8a96a1;font-style:italic;margin:0 0 14px;}
+
+  .gitter{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+  .opt{padding:0;border:2px solid var(--linie);border-radius:14px;overflow:hidden;background:#fff;cursor:pointer;
+    position:relative;transition:transform .12s,box-shadow .12s,border-color .12s;}
+  .opt:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(35,61,92,.12);}
+  .opt img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center;background:var(--creme-tief);}
+  .opt.richtig{border-color:var(--gruen);}
+  .opt.falsch{border-color:var(--rot);}
+  .opt .mark{position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:50%;display:none;
+    align-items:center;justify-content:center;color:#fff;font-family:var(--sans);font-size:17px;font-weight:700;}
+  .opt.richtig .mark{display:flex;background:var(--gruen);}
+  .opt.falsch .mark{display:flex;background:var(--rot);}
+  .opt[disabled]{cursor:default;}
+  .opt[disabled]:hover{transform:none;box-shadow:none;}
+
+  .aufloesung{margin-top:18px;padding:15px 17px;border-radius:0 12px 12px 0;background:var(--creme-tief);
+    border-left:4px solid var(--honig);display:none;}
+  .aufloesung.an{display:block;}
+  .aufloesung .txt{font-size:clamp(15px,4vw,16.5px);margin:0 0 12px;color:var(--tinte);}
+  .aufloesung .txt b{color:var(--blau);}
+  .aufloesung .knoepfe{display:flex;flex-wrap:wrap;gap:9px;}
+  .btn{font-family:var(--sans);font-size:13.5px;font-weight:600;text-decoration:none;border-radius:999px;
+    padding:11px 18px;cursor:pointer;border:1px solid var(--blau);}
+  .btn-prim{background:var(--blau);color:var(--creme);}
+  .btn-prim:hover{background:var(--blau-tief);}
+  .btn-sek{background:transparent;color:var(--blau);}
+  .btn-sek:hover{background:rgba(35,61,92,.06);}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="huelle">
+  <a class="zurueck" href="../">‹ Zur Startseite</a>
+  <p class="augenbraue">Knobeln &amp; Testen</p>
+  <h1>Tierquiz</h1>
+  <p class="intro">Vier Tiere – aber nur eines passt. Tippe das richtige Foto!</p>
+
+  <div class="leiste">
+    <span class="score">Richtig: <b id="richtig">0</b> / <span id="gesamt">0</span></span>
+    <button class="knopf" id="reset" type="button">↺ Zurücksetzen</button>
+    <span class="quote" id="quote"></span>
+  </div>
+
+  <h2 class="frage" id="frage">…</h2>
+  <p class="flat" id="flat"></p>
+  <div class="gitter" id="gitter"></div>
+
+  <div class="aufloesung" id="aufloesung">
+    <p class="txt" id="aufl-txt"></p>
+    <div class="knoepfe">
+      <button class="btn btn-prim" id="weiter" type="button">Weiter ›</button>
+      <a class="btn btn-sek" id="artlink" href="#">Zur Artseite →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var pool=[], ziel=null, beantwortet=false, richtig=0, gesamt=0;
+  var elFrage=document.getElementById("frage"), elFlat=document.getElementById("flat"),
+      elGitter=document.getElementById("gitter"), elAufl=document.getElementById("aufloesung"),
+      elAuflTxt=document.getElementById("aufl-txt"), elArt=document.getElementById("artlink"),
+      elRichtig=document.getElementById("richtig"), elGesamt=document.getElementById("gesamt"),
+      elQuote=document.getElementById("quote");
+
+  function misch(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  function foto(t){ return "../images/fotos/"+t.slug+".jpg"; }
+
+  function neueFrage(){
+    beantwortet=false; elAufl.classList.remove("an");
+    ziel=pool[Math.floor(Math.random()*pool.length)];
+    var rest=misch(pool.filter(function(t){return t.slug!==ziel.slug;})).slice(0,3);
+    var opt=misch([ziel].concat(rest));
+    elFrage.innerHTML="Welches Tier ist <b>"+ziel.deutsch+"</b>?";
+    elFlat.textContent=ziel.lat||"";
+    elGitter.innerHTML="";
+    opt.forEach(function(t){
+      var b=document.createElement("button"); b.className="opt"; b.type="button";
+      b.innerHTML='<img src="'+foto(t)+'" alt="Tier-Foto" loading="lazy"><span class="mark"></span>';
+      b.addEventListener("click",function(){ waehle(b,t); });
+      elGitter.appendChild(b);
+    });
+  }
+
+  function waehle(btn,t){
+    if(beantwortet) return; beantwortet=true; gesamt++;
+    var korrekt = t.slug===ziel.slug;
+    if(korrekt) richtig++;
+    // alle Buttons markieren
+    Array.prototype.forEach.call(elGitter.children,function(b){
+      b.setAttribute("disabled","");
+      var img=b.querySelector("img"), mark=b.querySelector(".mark");
+      // welcher Slug? über src ableiten
+      var isZiel = img.getAttribute("src").indexOf("/"+ziel.slug+".jpg")>=0;
+      if(isZiel){ b.classList.add("richtig"); mark.textContent="✓"; }
+    });
+    if(!korrekt){ btn.classList.add("falsch"); btn.querySelector(".mark").textContent="✕"; }
+    elRichtig.textContent=richtig; elGesamt.textContent=gesamt;
+    elQuote.textContent = gesamt>=3 ? (Math.round(richtig/gesamt*100)+" %") : "";
+    elAuflTxt.innerHTML = (korrekt?"Richtig! ":"Knapp daneben. ")+"Das war <b>"+ziel.deutsch+"</b> <i>("+(ziel.lat||"")+")</i>.";
+    elArt.href="../arten/"+ziel.slug+".html";
+    elAufl.classList.add("an");
+  }
+
+  document.getElementById("weiter").addEventListener("click",neueFrage);
+  document.getElementById("reset").addEventListener("click",function(){richtig=0;gesamt=0;elRichtig.textContent=0;elGesamt.textContent=0;elQuote.textContent="";neueFrage();});
+
+  fetch("../tiere.json").then(function(r){return r.json();}).then(function(daten){
+    pool=daten.filter(function(t){return t.foto;});
+    if(pool.length<4){ elFrage.textContent="Zu wenige Fotos fürs Quiz."; return; }
+    neueFrage();
+  }).catch(function(){ elFrage.textContent="Quiz konnte nicht geladen werden."; });
+
+  // Höhe an einbettende Seite melden (WordPress-iframe)
+  function melde(){ if(window.parent!==window){ try{ window.parent.postMessage({fauna:"height",height:document.body.scrollHeight},"*"); }catch(e){} } }
+  if("ResizeObserver" in window){ new ResizeObserver(melde).observe(document.body); }
+  window.addEventListener("load",melde);
+})();
+</script>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>
