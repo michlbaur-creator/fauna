@@ -32,6 +32,31 @@
   .knopf:active{transform:translateY(1px);}
   .hinweis{font-family:var(--sans);font-size:12px;color:#67737e;margin-left:auto;}
 
+  /* Suche */
+  .suchzeile{position:relative;margin:14px 0 0;}
+  .suchfeld{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--linie);
+    border-radius:999px;padding:9px 15px;}
+  .suchfeld svg.lupe{width:16px;height:16px;flex:0 0 auto;}
+  .suchzeile input{flex:1;border:none;outline:none;background:transparent;
+    font-family:var(--sans);font-size:15px;color:var(--blau);min-width:0;}
+  .suchzeile input::placeholder{color:#9aa6b0;}
+  .suchzeile .loeschen{border:none;background:transparent;color:#9aa6b0;font-size:18px;
+    cursor:pointer;padding:0 2px;line-height:1;display:none;}
+  .treffer{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:20;
+    background:#fff;border:1px solid var(--linie);border-radius:14px;
+    box-shadow:0 8px 26px rgba(35,61,92,.16);overflow:hidden;max-height:320px;overflow-y:auto;display:none;}
+  .treffer.an{display:block;}
+  .treffer button{display:flex;align-items:baseline;gap:8px;width:100%;text-align:left;
+    border:none;background:transparent;cursor:pointer;padding:11px 15px;
+    border-bottom:1px solid #eee4cf;font-family:var(--sans);}
+  .treffer button:last-child{border-bottom:none;}
+  .treffer button:hover,.treffer button.akt{background:var(--creme-tief);}
+  .treffer .tde{font-size:14.5px;font-weight:600;color:var(--blau);}
+  .treffer .tlat{font-size:11.5px;font-style:italic;color:#8a96a1;}
+  .treffer .tart{margin-left:auto;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--honig);font-weight:700;flex:0 0 auto;}
+  .treffer .leer{padding:13px 15px;font-family:var(--sans);font-size:13px;color:#8a96a1;}
+
   .tafel{margin-top:14px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
   .scrollnote{font-family:var(--sans);font-size:11.5px;color:#9aa6b0;margin:6px 2px 0;display:none;}
   .scrollnote.an{display:block;}
@@ -85,6 +110,16 @@
     <button class="knopf" id="ueberblick">Überblick</button>
     <button class="knopf" id="allesAuf">Alles aufklappen</button>
     <span class="hinweis">Tipp: Ast antippen</span>
+  </div>
+
+  <div class="suchzeile">
+    <div class="suchfeld">
+      <svg class="lupe" viewBox="0 0 24 24" fill="none" stroke="#8a96a1" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" id="suche" placeholder="Art oder Gruppe suchen …" autocomplete="off" spellcheck="false">
+      <button class="loeschen" id="sucheLoeschen" aria-label="Suche leeren">×</button>
+    </div>
+    <div class="treffer" id="treffer"></div>
   </div>
 
   <div class="tafel"><svg id="baum"></svg></div>
@@ -483,20 +518,21 @@ function zeichne(){
         fill:aktiv?"#C28A3A":farb(n.level),"fill-opacity":aktiv?0.95:0.62,
         stroke:aktiv?"#C28A3A":farb(n.level),"stroke-width":1}));
       const t=el("text",{x:treeRight+9,y:y-1,"font-size":12,"font-weight":"bold",fill:"#1c2e42"});
-      t.textContent=n.de+" ▸"; svg.appendChild(t);
+      t.textContent=n.de+" ▸"; if(aktiv)t.setAttribute("id","aktivLabel"); svg.appendChild(t);
       const l=el("text",{x:treeRight+9,y:y+10,"font-size":9,fill:"#8a96a1"});
       l.textContent=n.lat+" · "+zaehle(n)+" Äste"; svg.appendChild(l);
       hit(n,px,y,treeRight-px+labelW-12);
     } else if(n.isTip){
       svg.appendChild(el("circle",{cx:treeRight,cy:y,r:aktiv?5.5:3.6,fill:aktiv?"#C28A3A":farb(n.level)}));
       const t=el("text",{x:treeRight+9,y:y-1,"font-size":12,fill:"#1c2e42"});
-      t.textContent=n.de; svg.appendChild(t);
+      t.textContent=n.de; if(aktiv)t.setAttribute("id","aktivLabel"); svg.appendChild(t);
       const l=el("text",{x:treeRight+9,y:y+10,"font-size":9,fill:"#8a96a1"});
       l.textContent=n.lat; svg.appendChild(l);
       hit(n,px,y,treeRight-px+labelW-12);
     } else {
-      svg.appendChild(el("circle",{cx:px,cy:y,r:aktiv?6:4.5,fill:aktiv?"#C28A3A":"#fff",
-        stroke:farb(n.level),"stroke-width":2}));
+      const c=el("circle",{cx:px,cy:y,r:aktiv?6:4.5,fill:aktiv?"#C28A3A":"#fff",
+        stroke:farb(n.level),"stroke-width":2});
+      if(aktiv)c.setAttribute("id","aktivLabel"); svg.appendChild(c);
       hit(n,px-2,y,16); n.k.forEach(knoten);
     }
   })(baumDaten);
@@ -522,6 +558,71 @@ document.getElementById("allesAuf").addEventListener("click",()=>{
 });
 window.addEventListener("resize",()=>{clearTimeout(window._t);window._t=setTimeout(zeichne,150);});
 zeichne();
+
+/* ---- Suche: flacher Index über alle Knoten, Treffer-Liste, Sprung zum Ast ---- */
+const SUCHINDEX=[];
+(function sammle(n){ SUCHINDEX.push(n); if(n.k)n.k.forEach(sammle); })(baumDaten);
+// Arten zuerst, dann alphabetisch nach deutschem Namen
+SUCHINDEX.sort((a,b)=> (b.art?1:0)-(a.art?1:0) || a.de.localeCompare(b.de,"de"));
+
+const sucheEl=document.getElementById("suche");
+const trefferEl=document.getElementById("treffer");
+const loeschenEl=document.getElementById("sucheLoeschen");
+let trefferListe=[], aktIndex=-1;
+
+function normal(s){ return s.toLowerCase()
+  .replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/ß/g,"ss"); }
+
+function springeZu(n){
+  if(n.art && n.url){ location.href=n.url; return; }   // Art → direkt zur Artseite
+  // Vorfahren aufklappen, damit der Ast sichtbar wird
+  let p=n.parent; while(p){ p.collapsed=false; p=p.parent; }
+  selected=n; zeigePanel(n); zeichne();
+  trefferZu();
+  requestAnimationFrame(()=>{
+    const ziel=document.getElementById("aktivLabel");
+    if(ziel && ziel.scrollIntoView) ziel.scrollIntoView({block:"center",inline:"center",behavior:"smooth"});
+  });
+}
+function trefferZu(){ trefferEl.classList.remove("an"); trefferEl.innerHTML=""; trefferListe=[]; aktIndex=-1; }
+function markiere(){
+  Array.from(trefferEl.children).forEach((b,i)=>b.classList.toggle("akt",i===aktIndex));
+}
+function zeichneTreffer(q){
+  const nq=normal(q.trim());
+  if(!nq){ trefferZu(); return; }
+  trefferListe=SUCHINDEX.filter(n=> normal(n.de).includes(nq) || normal(n.lat).includes(nq) ).slice(0,14);
+  trefferEl.innerHTML="";
+  if(!trefferListe.length){
+    trefferEl.innerHTML='<div class="leer">Nichts gefunden zu „'+q.trim()+'“.</div>';
+    trefferEl.classList.add("an"); aktIndex=-1; return;
+  }
+  trefferListe.forEach((n,i)=>{
+    const b=document.createElement("button");
+    b.innerHTML='<span class="tde">'+n.de+'</span><span class="tlat">'+n.lat+'</span>'+
+      (n.art?'<span class="tart">Art →</span>':'');
+    b.addEventListener("click",()=>springeZu(n));
+    trefferEl.appendChild(b);
+  });
+  aktIndex=-1; trefferEl.classList.add("an");
+}
+sucheEl.addEventListener("input",()=>{
+  loeschenEl.style.display=sucheEl.value?"block":"none";
+  zeichneTreffer(sucheEl.value);
+});
+sucheEl.addEventListener("keydown",(e)=>{
+  if(!trefferListe.length) return;
+  if(e.key==="ArrowDown"){ e.preventDefault(); aktIndex=Math.min(aktIndex+1,trefferListe.length-1); markiere(); }
+  else if(e.key==="ArrowUp"){ e.preventDefault(); aktIndex=Math.max(aktIndex-1,0); markiere(); }
+  else if(e.key==="Enter"){ e.preventDefault(); springeZu(trefferListe[aktIndex>=0?aktIndex:0]); }
+  else if(e.key==="Escape"){ trefferZu(); }
+});
+loeschenEl.addEventListener("click",()=>{
+  sucheEl.value=""; loeschenEl.style.display="none"; trefferZu(); sucheEl.focus();
+});
+document.addEventListener("click",(e)=>{
+  if(!e.target.closest(".suchzeile")) trefferZu();
+});
 
 // Ebenen-Farbskala in der Lesehilfe
 (function(){

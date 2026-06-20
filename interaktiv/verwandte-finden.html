@@ -73,7 +73,7 @@
   .konf{position:absolute;top:-16px;border-radius:2px;animation:konf-fall linear forwards;}
   @keyframes konf-fall{0%{transform:translateY(-16px) rotate(0);opacity:1}85%{opacity:1}100%{transform:translateY(106vh) rotate(680deg);opacity:0}}
   @media (prefers-reduced-motion:reduce){.konf{display:none;} *{transition:none!important;}}
-  body{padding-top:env(safe-area-inset-top);}
+  body{padding-top:calc(env(safe-area-inset-top) + min(12vh,120px));}
 </style>
 </head>
 <body>
