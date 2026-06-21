@@ -67,13 +67,15 @@
     padding:12px 20px;cursor:pointer;border:1px solid var(--blau);}
   .btn-prim{background:var(--blau);color:var(--creme);} .btn-prim:hover{background:var(--blau-tief);}
   .btn-sek{background:transparent;color:var(--blau);} .btn-sek:hover{background:rgba(35,61,92,.06);}
+  .weiter{display:none;margin:16px auto 0;}
+  .weiter.an{display:block;}
   .versteckt{display:none;}
 
   .feier{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;}
   .konf{position:absolute;top:-16px;border-radius:2px;animation:konf-fall linear forwards;}
   @keyframes konf-fall{0%{transform:translateY(-16px) rotate(0);opacity:1}85%{opacity:1}100%{transform:translateY(106vh) rotate(680deg);opacity:0}}
   @media (prefers-reduced-motion:reduce){.konf{display:none;} *{transition:none!important;}}
-  body{padding-top:calc(env(safe-area-inset-top) + min(12vh,120px));}
+  body{padding-top:calc(env(safe-area-inset-top) + min(2vh,14px));}
 </style>
 </head>
 <body>
@@ -102,6 +104,7 @@
     <h2 class="frage">Welches Tier gehört <b>nicht</b> dazu?</h2>
     <p class="flat" id="flat">Drei sind verwandt – tippe den Außenseiter.</p>
     <div class="gitter" id="gitter"></div>
+    <button class="btn btn-prim weiter" id="weiter" type="button">Weiter ›</button>
   </div>
 
   <div id="ende" class="ende versteckt">
@@ -133,6 +136,7 @@
     idx++;
     if(idx>N){ ende(); return; }
     sperre=false;
+    $("weiter").classList.remove("an");
     elNr.textContent=idx;
     elBalken.style.width=Math.round((idx-1)/N*100)+"%";
     elFlat.innerHTML="Drei sind verwandt – tippe den Außenseiter.";
@@ -165,7 +169,9 @@
     elRichtig.textContent=richtig;
     elBalken.style.width=Math.round(idx/N*100)+"%";
     elFlat.innerHTML="Die anderen drei sind <b>"+trioName+"</b>.";
-    setTimeout(naechste, korrekt?1100:1800);
+    var w=$("weiter");
+    w.textContent = (idx>=N) ? "Zum Ergebnis ›" : "Weiter ›";
+    w.classList.add("an");
   }
 
   function ende(){
@@ -225,6 +231,7 @@
   });
   $("nochmal").addEventListener("click",function(){ zeige(elStart); });
   $("abbruch").addEventListener("click",function(){ zeige(elStart); });
+  $("weiter").addEventListener("click",function(){ naechste(); });
 
   fetch("../tiere.json").then(function(r){return r.json();}).then(function(daten){
     pool=daten.filter(function(t){return t.foto;});
