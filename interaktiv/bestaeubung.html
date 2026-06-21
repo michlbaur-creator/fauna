@@ -18,14 +18,14 @@
   html{-webkit-text-size-adjust:100%;}
   body{margin:0;background:var(--creme);color:var(--blau);
     font-family:Georgia,"Times New Roman",serif;line-height:1.5;}
-  .huelle{max-width:640px;margin:0 auto;padding:clamp(10px,3vw,20px) clamp(12px,3.5vw,28px) 48px;}
+  .huelle{max-width:640px;margin:0 auto;padding:clamp(4px,1.5vw,10px) clamp(12px,3.5vw,28px) 40px;}
 
   /* Kopf */
   .kopf{display:flex;align-items:center;justify-content:space-between;gap:12px;}
   .zurueck{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--blau);
     text-decoration:none;display:inline-flex;gap:5px;align-items:center;}
   .zaehler{font-family:var(--sans);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8a96a1;}
-  h1{font-size:clamp(22px,5.2vw,31px);line-height:1.06;margin:6px 0 2px;font-weight:normal;}
+  h1{font-size:clamp(19px,4.6vw,25px);line-height:1.05;margin:4px 0 0;font-weight:normal;}
 
   /* Schritt-Chips */
   .chips{display:flex;gap:7px;overflow-x:auto;-webkit-overflow-scrolling:touch;
@@ -40,6 +40,16 @@
   .chip.aktiv{background:var(--blau);color:var(--creme);border-color:var(--blau);}
   .chip.aktiv .nr{background:var(--honig);color:#fff;}
   .chip.fertig:not(.aktiv) .nr{background:#cfe0d2;color:#3e7a55;}
+  /* Extra-Stationen (UV, Trickfalle) – thematisch anders */
+  .chip.extra{background:#f4ead7;border-color:#e3cda0;color:#9a6f2e;}
+  .chip.extra .nr{background:#e3cda0;color:#7a5520;}
+  .chip.extra.aktiv{background:#9a6f2e;border-color:#9a6f2e;color:#fff;}
+  .chip.extra.aktiv .nr{background:#fff;color:#9a6f2e;}
+  /* Quiz – prominent */
+  .chip.quiz{background:var(--honig);border-color:var(--honig);color:#fff;font-weight:700;box-shadow:0 2px 8px rgba(194,138,58,.32);}
+  .chip.quiz .nr{background:#fff;color:var(--honig);}
+  .chip.quiz.aktiv{background:var(--blau);border-color:var(--blau);color:#fff;}
+  .chip.quiz.aktiv .nr{background:var(--honig);color:#fff;}
 
   /* Bühne */
   .buehne{margin-top:10px;}
@@ -58,15 +68,14 @@
   .svgbox svg{display:block;width:100%;height:auto;background:var(--pergament);
     border:1px solid #cdbf9e;border-radius:12px;}
 
-  /* Paar: Bestäuber + Blüten-Galerie */
-  .paar{display:flex;flex-direction:column;align-items:center;gap:6px;}
-  .best{display:flex;flex-direction:column;align-items:center;margin:0;}
-  .best img{width:88px;height:88px;object-fit:cover;border-radius:50%;border:3px solid #fff;
-    box-shadow:0 2px 9px rgba(35,61,92,.18);background:var(--creme-tief);}
-  .best figcaption{font-family:var(--sans);font-size:12.5px;font-weight:700;color:var(--blau);margin-top:5px;}
-  .passt{font-family:var(--sans);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
-    color:var(--honig);font-weight:700;}
-  .bluetenbox{position:relative;width:min(72%,250px);aspect-ratio:1/1;max-height:28vh;margin:2px auto 0;}
+  /* Paar: Blüten-Galerie mit Bestäuber-Inset */
+  .paar{display:flex;flex-direction:column;align-items:center;gap:4px;}
+  .best-inset{position:absolute;top:8px;left:8px;z-index:4;display:flex;flex-direction:column;align-items:center;gap:2px;}
+  .best-inset img{width:58px;height:58px;object-fit:cover;border-radius:50%;border:2.5px solid #fff;
+    box-shadow:0 2px 8px rgba(35,61,92,.32);background:var(--creme-tief);}
+  .best-inset span{font-family:var(--sans);font-size:10px;font-weight:700;color:#fff;
+    background:rgba(26,47,71,.7);border-radius:999px;padding:2px 7px;white-space:nowrap;}
+  .bluetenbox{position:relative;width:min(78%,270px);aspect-ratio:4/3;max-height:30vh;margin:0 auto;}
   .bl{position:absolute;inset:0;opacity:0;transition:opacity .45s ease;}
   .bl.an{opacity:1;}
   .bl img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
@@ -249,45 +258,45 @@ const SCHRITTE = [
   },
   /* 1 */ {
     chip:"Bienen", titel:"Hummeln & Bienen",
-    text:"Hummeln und Bienen sind kräftig, lernfähig und langzüngig. Sie setzen sich auf eine Blüte, drücken sie sogar auf – und erreichen mit ihrer Zunge tief verborgenen Nektar. Dafür belohnen tiefe Lippen- und Schmetterlingsblüten sie reichlich.",
-    hint:"Blättere durch die passenden Blüten.",
+    text:"Kräftig, lernfähig, langzüngig: Hummeln und Bienen erreichen tief verborgenen Nektar in Lippen- und Schmetterlingsblüten.",
     typ:"paar",
-    best:{src:"ackerhummel.jpg", name:"Hummeln & Wildbienen", glyph:"🐝"},
-    merkmale:["braucht Landeplatz","kräftig zum Aufdrücken","lange Zunge","liebt Blau & Violett"],
+    best:{src:"ackerhummel.jpg", name:"Hummeln & Wildbienen", kurz:"Hummeln & Bienen"},
     blueten:[
+      {src:"biene-rhododendron.jpg", name:"Wildbiene am Rhododendron", lat:"",
+       warum:"Live erwischt: Die Wildbiene taucht kopfüber in die Blüte und sammelt Pollen – genau dafür ist sie gebaut."},
       {src:"salvia-pratensis.jpg", name:"Wiesensalbei", lat:"Salvia pratensis",
-       warum:"Beim Eintauchen drückt die Hummel einen Hebel – der Staubbeutel klatscht ihr den Pollen genau auf den Rücken."},
+       warum:"Beim Eintauchen drückt die Hummel einen Hebel – der Staubbeutel klatscht ihr den Pollen auf den Rücken."},
       {src:"digitalis-purpurea.jpg", name:"Roter Fingerhut", lat:"Digitalis purpurea",
-       warum:"Die Röhre ist wie gemacht für eine Hummel: Haare und Punkte im Inneren weisen den Weg zum Nektar."},
+       warum:"Eine Röhre wie gemacht für die Hummel: Haare und Punkte weisen den Weg zum Nektar."},
+      {src:"taubnessel.jpg", name:"Weiße Taubnessel", lat:"Lamium album",
+       warum:"Klassische Lippenblüte: Der Nektar sitzt tief hinten – eine Hummel muss kräftig hineinkriechen."},
       {src:"symphytum-officinale.jpg", name:"Beinwell", lat:"Symphytum officinale",
-       warum:"Hängende Glocken mit tief sitzendem Nektar – nur langzüngige Hummeln kommen überhaupt heran."},
-      {src:"lotus-corniculatus.jpg", name:"Hornklee", lat:"Lotus corniculatus",
-       warum:"Eine Schmetterlingsblüte, die sich erst unter dem Gewicht einer Biene öffnet – ein echter Türsteher."}
+       warum:"Hängende Glocken mit tief sitzendem Nektar – nur langzüngige Hummeln kommen heran."}
     ]
   },
   /* 2 */ {
     chip:"Tagfalter", titel:"Tagfalter",
-    text:"Tagfalter tragen einen extrem langen Rüssel, den sie wie einen Strohhalm aufrollen. Damit erreichen sie Nektar tief in engen Röhren – müssen dazu aber sitzen können. Ihre Blüten bieten darum eine Sitzfläche und leuchten oft rosa oder rot.",
-    hint:"Blättere durch die passenden Blüten.",
+    text:"Mit ihrem langen Rüssel saugen Tagfalter Nektar aus tiefen Röhren – brauchen dabei aber eine Sitzfläche.",
     typ:"paar",
-    best:{src:"admiral.jpg", name:"Tagfalter", glyph:"🦋"},
-    merkmale:["sehr langer Rüssel","sitzt beim Saugen","sieht Rot & Rosa","tagaktiv"],
+    best:{src:"admiral.jpg", name:"Tagfalter", kurz:"Tagfalter"},
     blueten:[
+      {src:"zitronenfalter-dost.jpg", name:"Zitronenfalter am Dost", lat:"",
+       warum:"Der lange Rüssel reicht tief in die winzigen Röhrenblüten des Wilden Dosts – ein Lieblingsplatz vieler Falter."},
+      {src:"falter-sommerflieder.jpg", name:"Falter am Sommerflieder", lat:"",
+       warum:"Nicht umsonst „Schmetterlingsstrauch“: Die duftenden Rispen sind ein Magnet für Tagfalter."},
+      {src:"kaisermantel-dost.jpg", name:"Kaisermantel am Dost", lat:"",
+       warum:"Auch der große Kaisermantel sitzt zum Saugen – Dost-Polster bieten Nektar und sichere Landefläche."},
+      {src:"aurorafalter-fruehling.jpg", name:"Aurorafalter im Frühling", lat:"",
+       warum:"Früh im Jahr zählt jede Nektarquelle – der Aurorafalter nutzt die ersten violetten Blüten."},
       {src:"eupatorium-cannabinum.jpg", name:"Wasserdost", lat:"Eupatorium cannabinum",
-       warum:"Viele winzige Röhrenblüten auf einem Polster – ein Landeplatz voller Nektar und ein wahrer Falter-Magnet."},
-      {src:"centaurea-jacea.jpg", name:"Wiesen-Flockenblume", lat:"Centaurea jacea",
-       warum:"Tiefe Einzelröhrchen im Korb – perfekt für den langen Falterrüssel, der Pollen bleibt am Kopf hängen."},
-      {src:"dianthus-deltoides.jpg", name:"Heide-Nelke", lat:"Dianthus deltoides",
-       warum:"Der Nektar sitzt am Grund einer langen, schmalen Röhre – nur ein Schmetterlingsrüssel reicht so tief."}
+       warum:"Viele winzige Röhrenblüten auf einem Polster – Landeplatz voller Nektar und ein wahrer Falter-Magnet."}
     ]
   },
   /* 3 */ {
     chip:"Nachtfalter", titel:"Nachtfalter & Schwärmer",
-    text:"In der Dämmerung übernehmen Nachtfalter und Schwärmer. Sie steuern Blüten nicht nach Farbe an, sondern nach Duft – und schweben oft im Flug davor, statt zu landen. Ihre Blüten sind weiß (im Dunkeln gut sichtbar), öffnen sich abends und duften intensiv süß.",
-    hint:"Blättere durch die passenden Blüten.",
+    text:"In der Dämmerung steuern Nachtfalter und Schwärmer weiße, stark duftende Blüten an – oft schwebend, statt zu landen.",
     typ:"paar",
-    best:{src:"mittlerer-weinschwaermer.jpg", name:"Schwärmer & Nachtfalter", glyph:"🌙"},
-    merkmale:["fliegt in der Dämmerung","schwebt vor der Blüte","folgt dem Duft","sieht Weiß im Dunkeln"],
+    best:{src:"mittlerer-weinschwaermer.jpg", name:"Schwärmer & Nachtfalter", kurz:"Nachtfalter"},
     blueten:[
       {src:"lonicera-periclymenum.jpg", name:"Wald-Geißblatt", lat:"Lonicera periclymenum",
        warum:"Öffnet sich abends, duftet süß und trägt sehr lange Röhren – wie gemacht für schwebende Nachtschwärmer."},
@@ -299,11 +308,9 @@ const SCHRITTE = [
   },
   /* 4 */ {
     chip:"Fliegen", titel:"Schwebfliegen & Fliegen",
-    text:"Fliegen und Schwebfliegen haben nur einen kurzen Rüssel und sind keine eleganten Flieger. Sie brauchen Nektar, der offen und leicht erreichbar ist – und eine bequeme Landefläche. Flache Dolden und offene Körbchen sind ihre Welt.",
-    hint:"Blättere durch die passenden Blüten.",
+    text:"Kurzer Rüssel, wenig Flugkunst: Fliegen und Schwebfliegen brauchen offenen Nektar auf flachen Dolden und Körbchen.",
     typ:"paar",
-    best:{src:"mistbiene.jpg", name:"Schwebfliegen & Fliegen", glyph:"🪰"},
-    merkmale:["kurzer Rüssel","braucht offenen Nektar","flache Landefläche","wenig wählerisch"],
+    best:{src:"mistbiene.jpg", name:"Schwebfliegen & Fliegen", kurz:"Fliegen"},
     blueten:[
       {src:"daucus-carota.jpg", name:"Wilde Möhre", lat:"Daucus carota",
        warum:"Eine flache Dolde aus hunderten Mini-Blüten – der Nektar liegt offen und ist auch für kurze Rüssel erreichbar."},
@@ -315,22 +322,22 @@ const SCHRITTE = [
   },
   /* 5 */ {
     chip:"Käfer", titel:"Käfer",
-    text:"Käfer waren schon da, als es noch gar keine Bienen gab – sie zählen zu den ältesten Bestäubern. Sie sind plump, fressen vor allem Pollen und hinterlassen Spuren. Ihre Blüten sind darum robust gebaut, weit offen und locken oft mit Duft statt Farbe.",
-    hint:"Blättere durch die passenden Blüten.",
+    text:"Die ältesten Bestäuber: Käfer fressen Pollen auf robusten, weit offenen Blüten – plump, aber wirksam.",
     typ:"paar",
-    best:{src:"fleckenhoerniger-halsbock.jpg", name:"Blütenkäfer", glyph:"🪲"},
-    merkmale:["frisst Pollen","plump & robust","folgt dem Duft","braucht offene Schalen"],
+    best:{src:"fleckenhoerniger-halsbock.jpg", name:"Blütenkäfer", kurz:"Käfer"},
     blueten:[
+      {src:"rosenkaefer-dolde.jpg", name:"Rosenkäfer auf Doldenblüte", lat:"",
+       warum:"Live erwischt: Der goldglänzende Rosenkäfer frisst Pollen auf einer offenen Dolde – plump, aber wirksam."},
       {src:"rosa-canina.jpg", name:"Hundsrose", lat:"Rosa canina",
        warum:"Eine weit offene Schale mit Bergen von Pollen – Käfer landen, fressen und tragen den Pollen weiter."},
       {src:"heracleum-sphondylium.jpg", name:"Wiesen-Bärenklau", lat:"Heracleum sphondylium",
-       warum:"Große, stabile Dolde, die das Gewicht plumper Käfer trägt – Pollen und Nektar liegen frei zugänglich."},
+       warum:"Große, stabile Dolde, die das Gewicht plumper Käfer trägt – Pollen und Nektar liegen frei."},
       {src:"achillea-millefolium.jpg", name:"Schafgarbe", lat:"Achillea millefolium",
-       warum:"Feste Polster aus vielen Blütchen – eine robuste Plattform, auf der Käfer gemütlich weiden können."}
+       warum:"Feste Polster aus vielen Blütchen – eine robuste Plattform, auf der Käfer gemütlich weiden."}
     ]
   },
   /* 6 */ {
-    chip:"UV-Blick", titel:"Bienen sehen anders",
+    chip:"UV-Blick", kat:"extra", titel:"Bienen sehen anders",
     text:"Bienen nehmen die Welt anders wahr als wir: Sie sehen ultraviolettes Licht, dafür kein Rot. Viele Blüten tragen UV-Muster, die für uns unsichtbar sind – „Saftmale“, die wie Landebahnen direkt zum Nektar führen.",
     hint:"Tippe zum Umschalten der Sicht.",
     typ:"konzept", uv:true,
@@ -341,7 +348,7 @@ const SCHRITTE = [
     ]
   },
   /* 7 */ {
-    chip:"Trickfalle", titel:"Die Aronstab-Falle",
+    chip:"Trickfalle", kat:"extra", titel:"Die Aronstab-Falle",
     text:"Nicht jede Blüte spielt fair. Der Aronstab lockt mit Aas-Geruch und Wärme – und fängt seine Bestäuber in einer Kesselfalle. Über Nacht zappeln kleine Mücken in der Kammer, bestäuben dabei die Blüten und werden am Morgen mit frischem Pollen wieder freigelassen.",
     hint:"Tippe die Punkte an.",
     typ:"konzept", svg:svgAronstab(),
@@ -353,7 +360,7 @@ const SCHRITTE = [
     ]
   },
   /* 8 */ {
-    chip:"Quiz", titel:"Wer passt zusammen?",
+    chip:"Quiz", kat:"quiz", titel:"Wer passt zusammen?",
     text:"Geschafft! Zum Abschluss der Test: Errätst du, wer welche Blüte bestäubt?",
     typ:"quiz"
   }
@@ -400,7 +407,7 @@ function chips(){
   elChips.innerHTML="";
   SCHRITTE.forEach((s,k)=>{
     const c=document.createElement("button");
-    c.className="chip"+(k===i?" aktiv":"")+(k<i?" fertig":"");
+    c.className="chip"+(s.kat?" "+s.kat:"")+(k===i?" aktiv":"")+(k<i?" fertig":"");
     c.innerHTML='<span class="nr">'+(k+1)+'</span>'+s.chip;
     c.addEventListener("click",()=>geheZu(k));
     elChips.appendChild(c);
@@ -481,15 +488,14 @@ function renderKonzept(s){
 /* --- Paar: Bestäuber + Blüten-Galerie --- */
 function renderPaar(s){
   gal=0;
-  let html='<div class="paar">'+
-    '<figure class="best"><img src="'+FOTO+s.best.src+'" alt="'+s.best.name+'" '+
-      'onerror="this.style.visibility=\'hidden\'"><figcaption>'+s.best.name+'</figcaption></figure>'+
-    '<div class="passt">passt zu ↓</div>'+
-    '<div class="bluetenbox">';
+  let html='<div class="paar"><div class="bluetenbox">'+
+    '<span class="best-inset"><img src="'+FOTO+s.best.src+'" alt="'+s.best.name+'" '+
+      'onerror="this.style.visibility=\'hidden\'"><span>'+s.best.kurz+'</span></span>';
   s.blueten.forEach((b,k)=>{
     html+='<figure class="bl '+(k===0?"an":"")+'" style="margin:0;">'+
       '<img src="'+BLUETE+b.src+'" alt="'+b.name+'" onerror="this.classList.add(\'weg\')">'+
-      '<figcaption class="blcap"><span class="bn">'+b.name+'</span><span class="bla">'+b.lat+'</span></figcaption>'+
+      '<figcaption class="blcap"><span class="bn">'+b.name+'</span>'+
+        (b.lat?'<span class="bla">'+b.lat+'</span>':'')+'</figcaption>'+
     '</figure>';
   });
   html+='</div>'+
@@ -500,10 +506,7 @@ function renderPaar(s){
     '</div></div>';
   elB.innerHTML=html;
 
-  let e='<h2>'+s.titel+'</h2><p>'+s.text+'</p>';
-  if(s.merkmale) e+='<div class="merkmale">'+s.merkmale.map(m=>'<span>'+m+'</span>').join("")+'</div>';
-  if(s.hint) e+='<p class="entdeckhint">👇 '+s.hint+'</p>';
-  e+='<div class="infokarte" id="info"></div>';
+  let e='<p>'+s.text+'</p><div class="infokarte" id="info"></div>';
   elE.innerHTML=e;
 
   const pkt=document.getElementById("gpunkte");
