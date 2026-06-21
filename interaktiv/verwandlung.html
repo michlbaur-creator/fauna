@@ -127,6 +127,58 @@
   .quizchips button.unvoll{background:#efe7da;border-color:#dcc9a8;color:#9a6a2a;}
   .quizchips button .tag{font-size:11px;margin-left:6px;opacity:.85;}
 
+  /* Chip-Kategorien */
+  .chip.uebung{background:#e9eef3;border-color:#c0cedb;color:#3a5570;}
+  .chip.uebung .nr{background:#c0cedb;color:#2b405a;}
+  .chip.uebung.aktiv{background:#3a5570;border-color:#3a5570;color:#fff;}
+  .chip.uebung.aktiv .nr{background:#fff;color:#3a5570;}
+  .chip.quiz{background:var(--honig);border-color:var(--honig);color:#fff;font-weight:700;box-shadow:0 2px 8px rgba(194,138,58,.3);}
+  .chip.quiz .nr{background:#fff;color:var(--honig);}
+  .chip.quiz.aktiv{background:var(--blau);border-color:var(--blau);color:#fff;}
+  .chip.quiz.aktiv .nr{background:var(--honig);color:#fff;}
+
+  /* Zuordnen-Station */
+  .zuliste{display:flex;flex-direction:column;gap:8px;margin:4px 0 14px;}
+  .zurow{display:flex;align-items:center;justify-content:space-between;gap:10px;
+    background:#fff;border:1px solid var(--linie);border-radius:12px;padding:9px 12px;}
+  .zuname{font-family:var(--sans);font-size:14.5px;font-weight:600;color:var(--blau);}
+  .zuopt{display:flex;gap:6px;flex:0 0 auto;}
+  .zuopt button{font-family:var(--sans);font-size:12px;color:var(--blau);background:#fff;
+    border:1px solid var(--linie);border-radius:999px;padding:7px 11px;cursor:pointer;transition:.13s;white-space:nowrap;}
+  .zuopt button.sel{background:var(--blau);color:var(--creme);border-color:var(--blau);}
+  .zuopt button.ok{background:#e6efe7;border-color:#bcd6c0;color:#2f6a45;}
+  .zuopt button.no{background:#f2e2dd;border-color:#dcc9a8;color:#9a3f2a;}
+  .zufuss{display:flex;align-items:center;gap:12px;}
+  .zutally{font-family:var(--sans);font-size:14px;font-weight:700;color:var(--honig);}
+
+  /* Abschluss-Quiz */
+  .qkopf{font-family:var(--sans);font-size:13.5px;color:#6f7b86;border-top:1px solid var(--linie);
+    border-bottom:1px solid var(--linie);padding:9px 0;margin:0 0 12px;}
+  .qkopf b{color:var(--honig);}
+  .qbalken{height:6px;background:var(--creme-tief);border-radius:3px;overflow:hidden;margin:0 0 16px;}
+  .qbalken div{height:100%;width:0;background:var(--honig);transition:width .3s;}
+  .qtier{font-size:clamp(22px,6vw,30px);text-align:center;margin:6px 0 2px;}
+  .qfrage{font-family:var(--sans);font-size:13.5px;color:#6f7b86;text-align:center;margin:0 0 16px;}
+  .qwahl{display:flex;gap:10px;}
+  .qwahl button{flex:1 1 0;font-family:var(--sans);font-size:15px;font-weight:600;color:var(--blau);
+    background:#fff;border:1.5px solid var(--linie);border-radius:14px;padding:16px 10px;cursor:pointer;line-height:1.3;transition:.13s;}
+  .qwahl button small{font-weight:400;color:#8a96a1;font-size:12px;}
+  .qwahl button.ok{background:#e6efe7;border-color:#3E9A5E;color:#2f6a45;}
+  .qwahl button.ok small{color:#5a9a72;}
+  .qwahl button.no{background:#f2e2dd;border-color:#B5482F;color:#9a3f2a;}
+  .qwahl button:disabled{cursor:default;}
+  .qfb{font-family:var(--sans);font-size:14px;text-align:center;margin:14px 0 0;min-height:1.2em;}
+  .qfb.ok{color:#3E9A5E;font-weight:600;} .qfb.no{color:#B5482F;}
+  .qende{text-align:center;padding:6px 0;}
+  .qlabel{font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8a96a1;margin:0;}
+  .qscore{font-family:Georgia,serif;font-size:clamp(40px,12vw,60px);line-height:1;color:var(--blau);margin:4px 0;}
+  .qscore small{font-size:.4em;color:#8a96a1;}
+  .qspruch{font-size:clamp(16px,4.6vw,19px);margin:8px auto 16px;max-width:30ch;}
+  .konffeld{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;}
+  .konf{position:absolute;top:-14px;width:9px;height:14px;border-radius:2px;animation:konffall linear forwards;}
+  @keyframes konffall{0%{transform:translateY(-14px);opacity:1;}100%{transform:translateY(106vh) rotate(540deg);opacity:.9;}}
+  .konf{animation-duration:3.6s;}
+
   /* Navigation */
   .nav{display:flex;gap:9px;margin-top:24px;padding-top:16px;border-top:1px solid var(--linie);}
   .knopf{font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--blau);background:transparent;
@@ -162,7 +214,11 @@
 
 <script>
 /* ===========================================================================
-   Lernpfad „Verwandlung" – Gerüst. Bilder gehören nach ../assets/verwandlung/.
+   Lernpfad „Verwandlung".
+   ►► MASSGEBLICHE FASSUNG – wird ab jetzt direkt hier im Repo gepflegt.
+      NICHT mehr aus dem externen Generator neu erzeugen, sonst gehen
+      Anpassungen (Pechlibelle, Safe-Area, Mini-Check, Module) verloren.
+   Bilder gehören nach ../assets/verwandlung/.
    Fehlt ein Bild, zeigt das Gerüst einen Platzhalter mit dem erwarteten Namen.
 
    Datenmodell pro Schritt:
@@ -232,18 +288,62 @@ const SCHRITTE = [
     ]
   },
   /* 5 */ {
+    chip:"Pechlibelle", titel:"Live: die Pechlibelle",
+    text:"Ein echtes Beispiel für die Verwandlung ohne Puppe – die Große Pechlibelle (Ischnura elegans), Schritt für Schritt in eigenen Fotos.",
+    hint:"▶ abspielen oder mit ‹ › weiterklicken.",
+    typ:"sequenz",
+    absprung:{text:"Libellen im Stammbaum ›", url:"../interaktiv/stammbaum.html"},
+    stufen:[
+      {name:"Paarungsrad", bild:{src:"pl-1-paarung.jpg", label:"Paarungsrad", glyph:"💙"},
+       text:"Es beginnt mit dem typischen „Paarungsrad“: Männchen und Weibchen bilden zusammen eine Herzform."},
+      {name:"Eiablage", bild:{src:"pl-2-eiablage.jpg", label:"Eiablage", glyph:"🥚"},
+       text:"Das Weibchen legt die Eier an Wasserpflanzen ab, oft dicht über oder unter der Wasseroberfläche."},
+      {name:"Larve (klein)", bild:{src:"pl-3-larve-klein.jpg", label:"junge Larve", glyph:"🦗"},
+       text:"Aus dem Ei schlüpft eine winzige Larve. Sie lebt und jagt unter Wasser – eine Puppe gibt es nie."},
+      {name:"Larve (groß)", bild:{src:"pl-4-larve-gross.jpg", label:"große Larve", glyph:"🦗"},
+       text:"Über viele Häutungen wächst die Larve heran; die Flügelscheiden werden langsam sichtbar."},
+      {name:"Schlüpfen", bild:{src:"pl-5-schluepfen.jpg", label:"Schlüpfen am Halm", glyph:"🪴"},
+       text:"Zum Schlüpfen klettert die Larve an einem Halm aus dem Wasser und hält sich fest."},
+      {name:"Frisch geschlüpft", bild:{src:"pl-6-frisch.jpg", label:"frisch geschlüpft", glyph:"✨"},
+       text:"Die junge Libelle zwängt sich heraus und pumpt die noch blassen Flügel prall – daneben bleibt die leere Larvenhaut zurück."},
+      {name:"Imago", bild:{src:"pl-7-imago.jpg", label:"erwachsene Pechlibelle", glyph:"💙"},
+       text:"Ausgefärbt und flugfähig: die erwachsene Pechlibelle mit dem leuchtend blauen Hinterleibsende."}
+    ]
+  },
+  /* 6 */ {
     chip:"Vergleich", titel:"Zwei Wege im Vergleich",
     text:"Der ganze Unterschied steckt in einem Schritt: der Puppe. Mit ihr wird aus der Raupe ein neues Tier – ohne sie wächst die Nymphe Stück für Stück heran.",
     typ:"vergleich"
   },
+  /* 7 */ {
+    chip:"Zuordnen", kat:"uebung", titel:"Mit oder ohne Puppe?",
+    text:"Übung: Ordne jedes Tier seinem Weg zu – mit Puppe (vollständig) oder ohne Puppe (unvollständig). Dann auf „Prüfen“ tippen.",
+    typ:"zuordnen"
+  },
+  /* 8 */ {
+    chip:"Quiz", kat:"quiz", titel:"Abschluss-Quiz",
+    text:"Zum Schluss der Test: Macht dieses Tier eine Verwandlung mit oder ohne Puppe?",
+    typ:"quiz"
+  },
 ];
 
-/* Insekten fürs Mini-Quiz in Schritt 5 */
+/* Insekten fürs Mini-Quiz in Schritt 6 */
 const QUIZTIERE = [
   {t:"Schmetterling", w:"voll"}, {t:"Marienkäfer", w:"voll"},
   {t:"Biene", w:"voll"}, {t:"Stubenfliege", w:"voll"},
   {t:"Libelle", w:"unvoll"}, {t:"Heuschrecke", w:"unvoll"}, {t:"Feuerwanze", w:"unvoll"},
 ];
+
+/* Tiere für Zuordnen-Station & Abschluss-Quiz (voll = mit Puppe, unvoll = ohne Puppe) */
+const TIERE_TYP = [
+  {t:"Schmetterling", w:"voll"}, {t:"Käfer", w:"voll"}, {t:"Marienkäfer", w:"voll"},
+  {t:"Biene", w:"voll"}, {t:"Wespe", w:"voll"}, {t:"Fliege", w:"voll"},
+  {t:"Ameise", w:"voll"}, {t:"Mücke", w:"voll"}, {t:"Floh", w:"voll"},
+  {t:"Libelle", w:"unvoll"}, {t:"Heuschrecke", w:"unvoll"}, {t:"Feuerwanze", w:"unvoll"},
+  {t:"Ohrwurm", w:"unvoll"}, {t:"Zikade", w:"unvoll"}, {t:"Schabe", w:"unvoll"},
+  {t:"Eintagsfliege", w:"unvoll"}, {t:"Gottesanbeterin", w:"unvoll"}
+];
+function mischT(a){a=a.slice();for(var k=a.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1));var t=a[k];a[k]=a[j];a[j]=t;}return a;}
 
 /* ---- Bausteine ---- */
 function bildHTML(b, klasse){
@@ -267,7 +367,7 @@ function chips(){
   elChips.innerHTML="";
   SCHRITTE.forEach((s,k)=>{
     const c=document.createElement("button");
-    c.className="chip"+(k===i?" aktiv":"")+(k<i?" fertig":"");
+    c.className="chip"+(s.kat?" "+s.kat:"")+(k===i?" aktiv":"")+(k<i?" fertig":"");
     c.innerHTML='<span class="nr">'+(k+1)+'</span>'+s.chip;
     c.addEventListener("click",()=>geheZu(k));
     elChips.appendChild(c);
@@ -280,6 +380,8 @@ function render(){
   const s=SCHRITTE[i];
   if(s.typ==="sequenz") renderSequenz(s);
   else if(s.typ==="vergleich") renderVergleich(s);
+  else if(s.typ==="zuordnen") renderZuordnen(s);
+  else if(s.typ==="quiz") renderQuiz(s);
   else renderTafel(s);
   document.getElementById("zurueckBtn").disabled = (i===0);
   const wb=document.getElementById("weiterBtn");
@@ -427,6 +529,131 @@ function renderVergleich(s){
     });
     qz.appendChild(b);
   });
+}
+
+/* --- Zuordnen-Station (Worksheet: erst zuordnen, dann prüfen) --- */
+function renderZuordnen(s){
+  elB.innerHTML="";
+  const tiere=mischT(TIERE_TYP).slice(0,8);
+  const wahl={}; let geprueft=false;
+  let e='<h2>'+s.titel+'</h2><p>'+s.text+'</p><div class="zuliste" id="zuliste"></div>'+
+    '<div class="zufuss"><button class="knopf prim" id="pruefBtn" style="margin:0;">Prüfen</button>'+
+    '<span class="zutally" id="zutally"></span></div>';
+  elE.innerHTML=e;
+  const liste=document.getElementById("zuliste");
+  tiere.forEach((tr,k)=>{
+    const row=document.createElement("div"); row.className="zurow";
+    row.innerHTML='<span class="zuname">'+tr.t+'</span>'+
+      '<span class="zuopt"><button data-w="voll">mit Puppe</button>'+
+      '<button data-w="unvoll">ohne Puppe</button></span>';
+    row.querySelectorAll("button").forEach(b=>{
+      b.addEventListener("click",()=>{
+        if(geprueft) return;
+        wahl[k]=b.dataset.w;
+        row.querySelectorAll("button").forEach(x=>x.classList.toggle("sel",x===b));
+        melde();
+      });
+    });
+    liste.appendChild(row);
+  });
+  const pb=document.getElementById("pruefBtn"), tally=document.getElementById("zutally");
+  pb.addEventListener("click",()=>{
+    if(!geprueft){
+      let r=0;
+      Array.from(liste.children).forEach((row,k)=>{
+        const richtig=tiere[k].w;
+        row.querySelectorAll("button").forEach(b=>{
+          b.disabled=true;
+          if(b.dataset.w===richtig) b.classList.add("ok");
+          if(wahl[k]===b.dataset.w && wahl[k]!==richtig) b.classList.add("no");
+        });
+        if(wahl[k]===richtig) r++;
+      });
+      tally.textContent=r+" / "+tiere.length+" richtig";
+      pb.textContent="Nochmal"; geprueft=true;
+    } else { renderZuordnen(s); }
+    melde();
+  });
+}
+
+/* --- Abschluss-Quiz: Mit oder ohne Puppe? --- */
+function renderQuiz(s){
+  const fragen=mischT(TIERE_TYP).slice(0,8);
+  let q=0, score=0, sperre=false;
+  elB.innerHTML="";
+  function zeigeFrage(){
+    sperre=false;
+    const f=fragen[q];
+    let e='<div class="qkopf">Frage <b>'+(q+1)+'</b> / '+fragen.length+' · ✓ '+score+'</div>'+
+      '<div class="qbalken"><div style="width:'+(q/fragen.length*100)+'%"></div></div>'+
+      '<p class="qtier">'+f.t+'</p>'+
+      '<p class="qfrage">Verwandlung mit oder ohne Puppe?</p>'+
+      '<div class="qwahl" id="qwahl">'+
+        '<button data-w="voll">Mit Puppe<br><small>vollständig</small></button>'+
+        '<button data-w="unvoll">Ohne Puppe<br><small>unvollständig</small></button>'+
+      '</div><div class="qfb" id="qfb"></div>';
+    elE.innerHTML=e;
+    const wrap=document.getElementById("qwahl"), fb=document.getElementById("qfb");
+    wrap.querySelectorAll("button").forEach(b=>{
+      b.addEventListener("click",()=>{
+        if(sperre) return; sperre=true;
+        const richtig=(b.dataset.w===f.w);
+        wrap.querySelectorAll("button").forEach(x=>{
+          x.disabled=true; if(x.dataset.w===f.w) x.classList.add("ok");
+        });
+        if(richtig){ score++; fb.textContent="✓ Richtig!"; fb.className="qfb ok"; }
+        else{ b.classList.add("no"); fb.textContent="✗ "+(f.w==="voll"?"Mit Puppe (vollständig).":"Ohne Puppe (unvollständig)."); fb.className="qfb no"; }
+        melde();
+        setTimeout(()=>{ q++; if(q<fragen.length) zeigeFrage(); else ende(); }, richtig?850:1500);
+      });
+    });
+    melde();
+  }
+  function ende(){
+    const perfekt=score===fragen.length;
+    const sprueche=perfekt
+      ? ["Alles richtig – du hast die Verwandlung verstanden! 🦋","Volltreffer! Mit und ohne Puppe sitzen perfekt."]
+      : score>=Math.ceil(fragen.length*0.6)
+        ? ["Stark! Fast alles richtig.","Gut gemacht – ein paar Häutungen noch. 🐛"]
+        : ["Schau ruhig nochmal durch die Schritte – dann sitzt es.","Ein guter Anfang! Noch eine Runde?"];
+    elE.innerHTML='<div class="qende"><p class="qlabel">Ergebnis</p>'+
+      '<p class="qscore">'+score+'<small> / '+fragen.length+'</small></p>'+
+      '<p class="qspruch">'+sprueche[Math.floor(Math.random()*sprueche.length)]+'</p>'+
+      '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">'+
+        '<button class="knopf prim" id="qnochmal" style="margin:0;">Nochmal</button>'+
+        '<button class="knopf" id="qstart">↺ Pfad von vorn</button></div></div>';
+    document.getElementById("qnochmal").addEventListener("click",()=>renderQuiz(s));
+    document.getElementById("qstart").addEventListener("click",()=>geheZu(0));
+    if(perfekt){ konfetti(); fanfare(); }
+    melde();
+  }
+  zeigeFrage();
+}
+
+/* kleines Konfetti + Fanfare (nur bei fehlerfreiem Quiz) */
+function konfetti(){
+  if(reduce) return;
+  const feld=document.createElement("div"); feld.className="konffeld";
+  const farben=['#C28A3A','#233D5C','#3E9A5E','#e8a020','#9b59b6','#e74c3c'];
+  for(let n=0;n<70;n++){
+    const k=document.createElement("span"); k.className="konf";
+    k.style.cssText='left:'+Math.random()*100+'%;background:'+farben[(Math.random()*farben.length)|0]+
+      ';animation-delay:'+(Math.random()*0.5).toFixed(2)+'s;transform:rotate('+(Math.random()*360)+'deg);';
+    feld.appendChild(k);
+  }
+  document.body.appendChild(feld); setTimeout(()=>feld.remove(),4200);
+}
+function fanfare(){
+  try{
+    const Ctx=window.AudioContext||window.webkitAudioContext; if(!Ctx) return;
+    const ctx=new Ctx(); if(ctx.state==="suspended") ctx.resume();
+    const t0=ctx.currentTime+0.05;
+    [[523.25,0,0.16,0.2],[659.25,0.15,0.16,0.2],[783.99,0.30,0.16,0.2],[1046.5,0.46,0.6,0.22]]
+    .forEach(([fr,st,du,vo])=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type="triangle";o.frequency.value=fr;
+      g.gain.setValueAtTime(0,t0+st);g.gain.linearRampToValueAtTime(vo,t0+st+0.02);g.gain.exponentialRampToValueAtTime(0.001,t0+st+du);
+      o.connect(g).connect(ctx.destination);o.start(t0+st);o.stop(t0+st+du+0.05);});
+    setTimeout(()=>ctx.close().catch(()=>{}),1600);
+  }catch(e){}
 }
 
 /* ---- Navigation ---- */
