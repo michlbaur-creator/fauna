@@ -207,7 +207,6 @@
 "./images/blueten/centaurea-jacea.jpg",
 "./images/blueten/daucus-carota.jpg",
 "./images/blueten/dianthus-deltoides.jpg",
-"./images/blueten/digitalis-purpurea.jpg",
 "./images/blueten/eupatorium-cannabinum.jpg",
 "./images/blueten/heracleum-sphondylium.jpg",
 "./images/blueten/lonicera-periclymenum.jpg",
@@ -234,6 +233,10 @@
 "./assets/verwandlung/pl-6-frisch.jpg",
 "./assets/verwandlung/pl-7-imago.jpg",
 "./images/blueten/vespa-vulgaris.jpg",
-"./images/blueten/hummel.jpg"
+"./images/blueten/hummel.jpg",
+"./images/blueten/prinzip-blume.jpg",
+"./images/blueten/aronstab.jpg",
+"./images/blueten/uv-ohne.jpg",
+"./images/blueten/uv-mit.jpg"
 ]
 }

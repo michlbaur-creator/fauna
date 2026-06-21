@@ -67,6 +67,8 @@
   .svgbox{position:relative;width:min(86%,320px);margin:0 auto;}
   .svgbox svg{display:block;width:100%;height:auto;background:var(--pergament);
     border:1px solid #cdbf9e;border-radius:12px;}
+  .svgbox.fotobox{width:min(96%,460px);}
+  .svgbox .kbild{display:block;width:100%;height:auto;border-radius:12px;}
 
   /* Paar: Blüten-Galerie mit Bestäuber-Inset */
   .paar{display:flex;flex-direction:column;align-items:center;gap:4px;}
@@ -249,11 +251,11 @@ const SCHRITTE = [
     chip:"Prinzip", titel:"Schlüssel & Schloss",
     text:"Eine Blüte und ihr Bestäuber passen zusammen wie Schlüssel und Schloss. Form, Farbe, Duft und die Tiefe des Nektars verraten, wer eine Blüte bestäubt. Forscher nennen diese eingespielten Paare <b>Bestäubungssyndrome</b> – kein Zufall, sondern das Ergebnis von Jahrmillionen gemeinsamer Entwicklung.",
     hint:"Tippe die Punkte in der Blüte an.",
-    typ:"konzept", svg:svgSchluessel(),
+    typ:"konzept", bild:"prinzip-blume.jpg",
     hotspots:[
-      {x:50,y:54,n:1,titel:"Der Nektar",text:"Die Belohnung. Wie tief der Nektar sitzt, entscheidet, wer ihn erreicht: Kurze Rüssel kommen nur an flachen Nektar heran."},
-      {x:50,y:36,n:2,titel:"Die Blütenröhre",text:"Die Form ist das Schloss. Eine enge, tiefe Röhre sperrt die meisten Besucher aus – nur der passende „Schlüssel“ kommt durch."},
-      {x:50,y:16,n:3,titel:"Farbe & Duft",text:"Die Werbung. Farbe und Duft locken genau die Bestäuber an, die zur Blüte passen – Bienen eher Blau, Falter eher Rot, Nachtfalter folgen dem Duft."}
+      {x:30,y:60,n:1,titel:"Der Nektar",text:"Die Belohnung sitzt tief im Sporn der Blüte. Wie tief der Nektar liegt, entscheidet, wer ihn erreicht – hier kommt nur der lange Rüssel des Taubenschwänzchens heran."},
+      {x:45,y:46,n:2,titel:"Die Blütenröhre",text:"Die Form ist das Schloss. Eine enge, tiefe Röhre sperrt die meisten Besucher aus – nur der passende „Schlüssel“ kommt durch."},
+      {x:28,y:27,n:3,titel:"Farbe & Duft",text:"Die Werbung. Farbe und Duft locken genau die Bestäuber an, die zur Blüte passen – Bienen eher Blau, Falter eher Rot, Nachtfalter folgen dem Duft."}
     ]
   },
   /* 1 */ {
@@ -334,7 +336,7 @@ const SCHRITTE = [
     chip:"UV-Blick", kat:"extra", titel:"Bienen sehen anders",
     text:"Bienen nehmen die Welt anders wahr als wir: Sie sehen ultraviolettes Licht, dafür kein Rot. Viele Blüten tragen UV-Muster, die für uns unsichtbar sind – „Saftmale“, die wie Landebahnen direkt zum Nektar führen.",
     typ:"konzept", uv:true,
-    svg:svgBlume(false), svgUV:svgBlume(true),
+    bild:"uv-ohne.jpg", bildUV:"uv-mit.jpg",
     umschalter:["So sehen wir","So sieht die Biene"],
     hotspots:[
       {x:50,y:50,n:1,titel:"Das Saftmal",text:"Im UV-Licht erscheint die Blütenmitte als dunkles Ziel mit hellem Ring – eine Markierung, die die Biene direkt zum Nektar lotst. Für unser Auge ist sie unsichtbar."}
@@ -344,12 +346,12 @@ const SCHRITTE = [
     chip:"Trickfalle", kat:"extra", titel:"Die Aronstab-Falle",
     text:"Nicht jede Blüte spielt fair. Der Aronstab lockt mit Aas-Geruch und Wärme – und fängt seine Bestäuber in einer Kesselfalle. Über Nacht zappeln kleine Mücken in der Kammer, bestäuben dabei die Blüten und werden am Morgen mit frischem Pollen wieder freigelassen.",
     hint:"Tippe die Punkte an.",
-    typ:"konzept", svg:svgAronstab(),
+    typ:"konzept", bild:"aronstab.jpg",
     hotspots:[
-      {x:52,y:16,n:1,titel:"Der Kolben",text:"Er heizt sich auf und verströmt einen Aas- oder Kot-Geruch. Das lockt Aasmücken an, die hier eigentlich ihre Eier ablegen wollen."},
-      {x:40,y:50,n:2,titel:"Die Gleitzone",text:"Die Wände sind glatt wie eine Rutsche – die Mücken verlieren den Halt und fallen hinunter in die Kammer."},
-      {x:60,y:53,n:3,titel:"Die Reusenhaare",text:"Steife Haare zeigen nach unten wie eine Reuse. Hinein geht es leicht, hinaus zunächst nicht."},
-      {x:50,y:76,n:4,titel:"Der Kesselraum",text:"Unten warten die Blüten. Die umherkrabbelnden Mücken bestäuben sie. Am nächsten Tag welken die Haare – der Weg nach draußen ist frei."}
+      {x:53,y:24,n:1,titel:"Der Kolben",text:"Er heizt sich auf und verströmt einen Aas- oder Kot-Geruch. Das lockt Aasmücken an, die hier eigentlich ihre Eier ablegen wollen."},
+      {x:66,y:42,n:2,titel:"Die Gleitzone",text:"Die Wände sind glatt wie eine Rutsche – die Mücken verlieren den Halt und fallen hinunter in die Kammer."},
+      {x:42,y:57,n:3,titel:"Die Blüten & Reusenhaare",text:"Im Kessel sitzen die kleinen Blüten, darüber steife Haare wie eine Reuse. Hinein geht es leicht, hinaus zunächst nicht."},
+      {x:52,y:74,n:4,titel:"Der Kesselraum",text:"Hier krabbeln die gefangenen Mücken umher und bestäuben die Blüten. Am nächsten Tag welken die Haare – der Weg nach draußen ist frei."}
     ]
   },
   /* 8 */ {
@@ -365,7 +367,6 @@ const TYPEN = {
   fliegen:"Schwebfliegen & Fliegen", kaefer:"Käfer"
 };
 const QUIZPOOL = [
-  {f:"digitalis-purpurea.jpg", name:"Roter Fingerhut", typ:"bienen"},
   {f:"salvia-pratensis.jpg",   name:"Wiesensalbei",    typ:"bienen"},
   {f:"symphytum-officinale.jpg",name:"Beinwell",       typ:"bienen"},
   {f:"eupatorium-cannabinum.jpg",name:"Wasserdost",    typ:"tagfalter"},
@@ -420,61 +421,48 @@ function render(){
   chips(); melde();
 }
 
-/* --- Konzept: SVG + Hotspots (optional Umschalter) --- */
+/* --- Konzept: SVG ODER Foto + Hotspots (optional Umschalter) --- */
 function renderKonzept(s){
-  let html='<div class="svgbox" id="svgbox">'+(s.svg)+'</div>';
-  elB.innerHTML=html;
-  // Hotspots in die svgbox legen
+  elB.innerHTML='<div class="svgbox'+(s.bild?' fotobox':'')+'" id="svgbox"></div>';
   const box=document.getElementById("svgbox");
-  s.hotspots.forEach(h=>{
-    const b=document.createElement("button");
-    b.className="hotspot"; b.dataset.n=h.n; b.textContent=h.n;
-    b.style.left=h.x+"%"; b.style.top=h.y+"%"; b.style.position="absolute";
-    box.appendChild(b);
-  });
+  let uvOn=false;
 
   let e='<h2>'+s.titel+'</h2><p>'+s.text+'</p>';
   if(s.uv) e+='<div class="umschalter"><button id="uA" class="an">'+s.umschalter[0]+'</button>'+
               '<button id="uB">'+s.umschalter[1]+'</button></div>';
   if(s.hint) e+='<p class="entdeckhint">👇 '+s.hint+'</p>';
-  e+='<div class="infokarte" id="info"><p class="leer">Tippe eine Zahl in der Illustration an.</p></div>';
+  e+='<div class="infokarte" id="info"><p class="leer">Tippe eine Zahl im Bild an.</p></div>';
   elE.innerHTML=e;
-
   const info=document.getElementById("info");
-  box.querySelectorAll(".hotspot").forEach(b=>{
-    b.addEventListener("click",()=>{
-      box.querySelectorAll(".hotspot").forEach(x=>x.classList.remove("aktiv"));
-      b.classList.add("aktiv");
-      const h=s.hotspots.find(z=>z.n==b.dataset.n);
-      info.innerHTML='<p class="it">Punkt '+h.n+'</p><h3>'+h.titel+'</h3><p>'+h.text+'</p>';
-      info.scrollIntoView({block:"nearest",behavior:reduce?"auto":"smooth"});
-      melde();
+
+  function medium(){
+    if(s.bild) return '<img class="kbild" src="'+BLUETE+(uvOn?s.bildUV:s.bild)+'" alt="'+s.titel+'" '+
+      'onerror="this.style.opacity=.15">';
+    return uvOn?s.svgUV:s.svg;
+  }
+  function malen(){
+    box.innerHTML=medium();
+    s.hotspots.forEach(h=>{
+      const b=document.createElement("button");
+      b.className="hotspot"; b.dataset.n=h.n; b.textContent=h.n;
+      b.style.cssText="position:absolute;left:"+h.x+"%;top:"+h.y+"%;";
+      b.addEventListener("click",()=>{
+        box.querySelectorAll(".hotspot").forEach(x=>x.classList.remove("aktiv"));
+        b.classList.add("aktiv");
+        const hh=s.hotspots.find(z=>z.n==b.dataset.n);
+        info.innerHTML='<p class="it">Punkt '+hh.n+'</p><h3>'+hh.titel+'</h3><p>'+hh.text+'</p>';
+        info.scrollIntoView({block:"nearest",behavior:reduce?"auto":"smooth"});
+        melde();
+      });
+      box.appendChild(b);
     });
-  });
+  }
+  malen();
+
   if(s.uv){
     const uA=document.getElementById("uA"), uB=document.getElementById("uB");
-    const setUV=(on)=>{
-      uA.classList.toggle("an",!on); uB.classList.toggle("an",on);
-      box.querySelectorAll(".hotspot").forEach(x=>x.remove());
-      box.querySelector("svg").outerHTML = on ? s.svgUV : s.svg;
-      // Hotspots nach dem Austausch neu setzen
-      s.hotspots.forEach(h=>{
-        const b=document.createElement("button");
-        b.className="hotspot"; b.dataset.n=h.n; b.textContent=h.n;
-        b.style.left=h.x+"%"; b.style.top=h.y+"%"; b.style.position="absolute";
-        b.addEventListener("click",()=>{
-          box.querySelectorAll(".hotspot").forEach(x=>x.classList.remove("aktiv"));
-          b.classList.add("aktiv");
-          const hh=s.hotspots.find(z=>z.n==b.dataset.n);
-          info.innerHTML='<p class="it">Punkt '+hh.n+'</p><h3>'+hh.titel+'</h3><p>'+hh.text+'</p>';
-          melde();
-        });
-        box.appendChild(b);
-      });
-      melde();
-    };
-    uA.addEventListener("click",()=>setUV(false));
-    uB.addEventListener("click",()=>setUV(true));
+    uA.addEventListener("click",()=>{ uvOn=false; uA.classList.add("an"); uB.classList.remove("an"); malen(); melde(); });
+    uB.addEventListener("click",()=>{ uvOn=true; uB.classList.add("an"); uA.classList.remove("an"); malen(); melde(); });
   }
 }
 
