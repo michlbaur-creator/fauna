@@ -236,6 +236,13 @@
 "./images/blueten/prinzip-blume.jpg",
 "./images/blueten/aronstab.jpg",
 "./images/blueten/uv-ohne.jpg",
-"./images/blueten/uv-mit.jpg"
+"./images/blueten/uv-mit.jpg",
+"./assets/apple-touch-icon.png",
+"./assets/icon-192.png",
+"./assets/icon-512.png",
+"./assets/icon-192-maskable.png",
+"./assets/icon-512-maskable.png",
+"./assets/favicon-32.png",
+"./assets/icon-maskable.svg"
 ]
 }
