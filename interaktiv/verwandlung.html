@@ -267,9 +267,9 @@ const SCHRITTE = [
     bild:{src:"voll-3-puppe.png", label:"Puppe (Detail)", glyph:"🛡️"},
     schluepfBild:{src:"voll-5-schluepft.png", label:"Falter schlüpft", glyph:"🦋"},
     hotspots:[
-      {x:50,y:53,n:1,titel:"Puppenhülle",text:"Eine feste Schutzhülle. Bei vielen Tagfaltern hängt sie kopfüber – die Stürzpuppe."},
-      {x:51,y:65,n:2,titel:"Flügelanlagen",text:"Schon von außen ahnt man die Flügel – als feine Linien auf der Hülle."},
-      {x:52,y:77,n:3,titel:"Schlüpfnaht",text:"Hier reißt die Hülle auf, wenn der fertige Falter sich herausschiebt."},
+      {x:66,y:50,n:1,titel:"Puppenhülle",text:"Eine feste Schutzhülle. Bei vielen Tagfaltern hängt sie kopfüber – die Stürzpuppe."},
+      {x:67,y:63,n:2,titel:"Flügelanlagen",text:"Schon von außen ahnt man die Flügel – als feine Linien auf der Hülle."},
+      {x:66,y:76,n:3,titel:"Schlüpfnaht",text:"Hier reißt die Hülle auf, wenn der fertige Falter sich herausschiebt."},
     ]
   },
   /* 4 */ {
@@ -302,8 +302,6 @@ const SCHRITTE = [
        text:"Aus dem Ei schlüpft eine winzige Larve. Sie lebt und jagt unter Wasser – eine Puppe gibt es nie."},
       {name:"Larve (groß)", bild:{src:"pl-4-larve-gross.jpg", label:"große Larve", glyph:"🦗"},
        text:"Über viele Häutungen wächst die Larve heran; die Flügelscheiden werden langsam sichtbar."},
-      {name:"Schlüpfen", bild:{src:"pl-5-schluepfen.jpg", label:"Schlüpfen am Halm", glyph:"🪴"},
-       text:"Zum Schlüpfen klettert die Larve an einem Halm aus dem Wasser und hält sich fest."},
       {name:"Frisch geschlüpft", bild:{src:"pl-6-frisch.jpg", label:"frisch geschlüpft", glyph:"✨"},
        text:"Die junge Libelle zwängt sich heraus und pumpt die noch blassen Flügel prall – daneben bleibt die leere Larvenhaut zurück."},
       {name:"Imago", bild:{src:"pl-7-imago.jpg", label:"erwachsene Pechlibelle", glyph:"💙"},
@@ -339,11 +337,21 @@ const TIERE_TYP = [
   {t:"Schmetterling", w:"voll"}, {t:"Käfer", w:"voll"}, {t:"Marienkäfer", w:"voll"},
   {t:"Biene", w:"voll"}, {t:"Wespe", w:"voll"}, {t:"Fliege", w:"voll"},
   {t:"Ameise", w:"voll"}, {t:"Mücke", w:"voll"}, {t:"Floh", w:"voll"},
-  {t:"Libelle", w:"unvoll"}, {t:"Heuschrecke", w:"unvoll"}, {t:"Feuerwanze", w:"unvoll"},
-  {t:"Ohrwurm", w:"unvoll"}, {t:"Zikade", w:"unvoll"}, {t:"Schabe", w:"unvoll"},
-  {t:"Eintagsfliege", w:"unvoll"}, {t:"Gottesanbeterin", w:"unvoll"}
+  {t:"Libelle", w:"unvoll"}, {t:"Heuschrecke", w:"unvoll"}, {t:"Grille", w:"unvoll"},
+  {t:"Feuerwanze", w:"unvoll"}, {t:"Ohrwurm", w:"unvoll"}, {t:"Zikade", w:"unvoll"},
+  {t:"Schabe", w:"unvoll"}, {t:"Eintagsfliege", w:"unvoll"}, {t:"Gottesanbeterin", w:"unvoll"}
 ];
 function mischT(a){a=a.slice();for(var k=a.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1));var t=a[k];a[k]=a[j];a[j]=t;}return a;}
+/* Auswahl mit Schwerpunkt auf der unvollständigen Verwandlung (Hemimetabola);
+   die Libelle ist immer dabei. */
+function zieheTiere(n){
+  var unvoll=TIERE_TYP.filter(x=>x.w==="unvoll"), voll=TIERE_TYP.filter(x=>x.w==="voll");
+  var nU=Math.round(n*0.6), nV=n-nU;
+  var lib=unvoll.find(x=>x.t==="Libelle");
+  var restU=mischT(unvoll.filter(x=>x.t!=="Libelle")).slice(0,Math.max(0,nU-1));
+  var pick=(lib?[lib]:[]).concat(restU, mischT(voll).slice(0,nV));
+  return mischT(pick);
+}
 
 /* ---- Bausteine ---- */
 function bildHTML(b, klasse){
@@ -534,7 +542,7 @@ function renderVergleich(s){
 /* --- Zuordnen-Station (Worksheet: erst zuordnen, dann prüfen) --- */
 function renderZuordnen(s){
   elB.innerHTML="";
-  const tiere=mischT(TIERE_TYP).slice(0,8);
+  const tiere=zieheTiere(8);
   const wahl={}; let geprueft=false;
   let e='<h2>'+s.titel+'</h2><p>'+s.text+'</p><div class="zuliste" id="zuliste"></div>'+
     '<div class="zufuss"><button class="knopf prim" id="pruefBtn" style="margin:0;">Prüfen</button>'+
@@ -578,7 +586,7 @@ function renderZuordnen(s){
 
 /* --- Abschluss-Quiz: Mit oder ohne Puppe? --- */
 function renderQuiz(s){
-  const fragen=mischT(TIERE_TYP).slice(0,8);
+  const fragen=zieheTiere(8);
   let q=0, score=0, sperre=false;
   elB.innerHTML="";
   function zeigeFrage(){

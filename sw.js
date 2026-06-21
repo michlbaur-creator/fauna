@@ -17,8 +17,8 @@
    Nur wenn sich Bilder ändern, zusätzlich die MEDIA-Version erhöhen.
 */
 
-const SHELL_CACHE = 'fauna-shell-v24';
-const MEDIA_CACHE = 'fauna-media-v2';
+const SHELL_CACHE = 'fauna-shell-v25';
+const MEDIA_CACHE = 'fauna-media-v3';
 const MANIFEST_URL = './offline-manifest.json';
 
 // Kern-Hülle: das Nötigste für den Start (klein, schnell).
