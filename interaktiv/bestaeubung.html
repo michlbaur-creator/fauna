@@ -147,6 +147,10 @@
   .qende .gross{font-family:Georgia,serif;font-size:clamp(38px,11vw,58px);line-height:1;color:var(--blau);margin:6px 0 2px;}
   .qende .gross small{font-size:.4em;color:#8a96a1;}
   .qende .spruch{font-size:clamp(16px,4.6vw,19px);margin:10px auto 16px;max-width:30ch;}
+  .konffeld{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;}
+  .konf{position:absolute;top:-14px;width:9px;height:14px;border-radius:2px;animation:konffall 3.6s linear forwards;}
+  @keyframes konffall{0%{transform:translateY(-14px);opacity:1;}100%{transform:translateY(106vh) rotate(540deg);opacity:.9;}}
+  @media (prefers-reduced-motion:reduce){.konf{display:none;}}
 
   /* Navigation */
   .nav{display:flex;gap:9px;margin-top:24px;padding-top:16px;border-top:1px solid var(--linie);}
@@ -370,7 +374,6 @@ const QUIZPOOL = [
   {f:"salvia-pratensis.jpg",   name:"Wiesensalbei",    typ:"bienen"},
   {f:"symphytum-officinale.jpg",name:"Beinwell",       typ:"bienen"},
   {f:"eupatorium-cannabinum.jpg",name:"Wasserdost",    typ:"tagfalter"},
-  {f:"centaurea-jacea.jpg",    name:"Flockenblume",    typ:"tagfalter"},
   {f:"dianthus-deltoides.jpg", name:"Heide-Nelke",     typ:"tagfalter"},
   {f:"lonicera-periclymenum.jpg",name:"Wald-Geißblatt",typ:"nacht"},
   {f:"silene-latifolia.jpg",   name:"Weiße Lichtnelke",typ:"nacht"},
@@ -564,9 +567,36 @@ function renderQuiz(s){
       '</div></div>';
     document.getElementById("nochmal").addEventListener("click",()=>renderQuiz(s));
     document.getElementById("zumStart").addEventListener("click",()=>geheZu(0));
+    if(score===fragen.length){ konfetti(); fanfare(); }
     melde();
   }
   zeigeFrage();
+}
+
+/* Konfetti + Fanfare (bei fehlerfreiem Quiz) */
+function konfetti(){
+  if(reduce) return;
+  const feld=document.createElement("div"); feld.className="konffeld";
+  const farben=['#C28A3A','#233D5C','#3E9A5E','#e8a020','#9b59b6','#e74c3c'];
+  for(let n=0;n<70;n++){
+    const k=document.createElement("span"); k.className="konf";
+    k.style.cssText='left:'+Math.random()*100+'%;background:'+farben[(Math.random()*farben.length)|0]+
+      ';animation-delay:'+(Math.random()*0.5).toFixed(2)+'s;transform:rotate('+(Math.random()*360)+'deg);';
+    feld.appendChild(k);
+  }
+  document.body.appendChild(feld); setTimeout(()=>feld.remove(),4200);
+}
+function fanfare(){
+  try{
+    const Ctx=window.AudioContext||window.webkitAudioContext; if(!Ctx) return;
+    const ctx=new Ctx(); if(ctx.state==="suspended") ctx.resume();
+    const t0=ctx.currentTime+0.05;
+    [[523.25,0,0.16,0.2],[659.25,0.15,0.16,0.2],[783.99,0.30,0.16,0.2],[1046.5,0.46,0.6,0.22]]
+    .forEach(([fr,st,du,vo])=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type="triangle";o.frequency.value=fr;
+      g.gain.setValueAtTime(0,t0+st);g.gain.linearRampToValueAtTime(vo,t0+st+0.02);g.gain.exponentialRampToValueAtTime(0.001,t0+st+du);
+      o.connect(g).connect(ctx.destination);o.start(t0+st);o.stop(t0+st+du+0.05);});
+    setTimeout(()=>ctx.close().catch(()=>{}),1600);
+  }catch(e){}
 }
 
 /* ---- Navigation ---- */

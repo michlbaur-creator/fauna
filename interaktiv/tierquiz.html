@@ -71,6 +71,11 @@
     padding:12px 20px;cursor:pointer;border:1px solid var(--blau);}
   .btn-prim{background:var(--blau);color:var(--creme);} .btn-prim:hover{background:var(--blau-tief);}
   .btn-sek{background:transparent;color:var(--blau);} .btn-sek:hover{background:rgba(35,61,92,.06);}
+  .weiter{display:none;margin:16px auto 0;}
+  .weiter.an{display:block;}
+  .aufloesung{display:none;font-family:var(--sans);font-size:14px;color:#6f7b86;text-align:center;margin:14px 0 0;min-height:1em;}
+  .aufloesung.an{display:block;}
+  .aufloesung b{color:var(--blau);}
 
   .versteckt{display:none;}
 
@@ -110,6 +115,8 @@
     <h2 class="frage" id="frage">…</h2>
     <p class="flat" id="flat"></p>
     <div class="gitter" id="gitter"></div>
+    <p class="aufloesung" id="aufloesung"></p>
+    <button class="btn btn-prim weiter" id="weiter" type="button">Weiter ›</button>
   </div>
 
   <!-- Ende -->
@@ -141,6 +148,8 @@
     idx++;
     if(idx>N){ ende(); return; }
     sperre=false;
+    $("weiter").classList.remove("an");
+    var au=$("aufloesung"); au.classList.remove("an"); au.innerHTML="";
     elNr.textContent=idx;
     elBalken.style.width=Math.round((idx-1)/N*100)+"%";
     ziel=pool[Math.floor(Math.random()*pool.length)];
@@ -169,7 +178,13 @@
     if(!korrekt){ btn.classList.add("falsch"); btn.querySelector(".mark").textContent="✕"; }
     elRichtig.textContent=richtig;
     elBalken.style.width=Math.round(idx/N*100)+"%";
-    setTimeout(naechste, korrekt?900:1500);   // automatisch zur nächsten Frage
+    var au=$("aufloesung");
+    au.innerHTML = korrekt ? "✓ Richtig!" : "✗ Das war: <b>"+ziel.deutsch+"</b>";
+    au.style.color = korrekt ? "#3E9A5E" : "#B5482F";
+    au.classList.add("an");
+    var w=$("weiter");
+    w.textContent = (idx>=N) ? "Zum Ergebnis ›" : "Weiter ›";
+    w.classList.add("an");
   }
 
   function ende(){
@@ -241,6 +256,7 @@
   });
   $("nochmal").addEventListener("click",function(){ zeige(elStart); });
   $("abbruch").addEventListener("click",function(){ zeige(elStart); });
+  $("weiter").addEventListener("click",function(){ naechste(); });
 
   fetch("../tiere.json").then(function(r){return r.json();}).then(function(daten){
     pool=daten.filter(function(t){return t.foto;});
