@@ -77,7 +77,8 @@
 "./broschueren/index.html",
 "./broschueren/schmetterlinge.pdf",
 "./interaktiv/bestaeubung.html",
-"./interaktiv/gesamttest.html"
+"./interaktiv/gesamttest.html",
+"./anleitung.html"
 ],
 "media": [
 "./assets/icon.svg",

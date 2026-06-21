@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>So funktioniert's · Fauna Mibaso</title>
+<meta name="description" content="Anleitung für Fauna Mibaso: eine einfache Kurzanleitung für Einsteiger und eine didaktische Fassung für Lehrkräfte.">
+<meta name="theme-color" content="#233D5C">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon.svg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Fauna Mibaso">
+<style>
+  :root{
+    --blau:#233D5C; --blau-tief:#1a2f47; --creme:#F7F3E8; --creme-tief:#EEE7D5;
+    --tinte:#1c2e42; --honig:#C28A3A; --linie:#d7cfba;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html{-webkit-text-size-adjust:100%;}
+  body{margin:0;background:var(--creme);color:var(--blau);
+    font-family:Georgia,"Times New Roman",serif;line-height:1.55;padding-top:env(safe-area-inset-top);}
+  .huelle{max-width:760px;margin:0 auto;padding:clamp(14px,4vw,30px) clamp(14px,4vw,28px) 56px;}
+
+  .zurueck{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--blau);
+    text-decoration:none;display:inline-flex;gap:6px;align-items:center;padding:4px 0;}
+  .augenbraue{font-family:var(--sans);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--honig);font-weight:600;margin:14px 0 8px;}
+  h1{font-size:clamp(26px,7vw,40px);line-height:1.08;margin:0 0 6px;font-weight:normal;}
+  .unter{font-family:var(--sans);font-size:14px;color:#6f7b86;margin:0 0 6px;}
+
+  /* Tabs */
+  .tabs{display:flex;gap:8px;margin:22px 0 6px;}
+  .tab{flex:1;padding:12px 10px;border:1px solid var(--linie);background:#fff;border-radius:13px;
+    font-family:var(--sans);font-size:15px;color:#6f7b86;cursor:pointer;text-align:center;line-height:1.25;
+    transition:background .15s,color .15s,border-color .15s;}
+  .tab .klein{display:block;font-size:12px;opacity:.8;margin-top:2px;}
+  .tab[aria-selected="true"]{background:var(--blau);color:var(--creme);border-color:var(--blau);}
+  .panel{display:none;}
+  .panel.aktiv{display:block;}
+
+  .intro{font-family:var(--sans);color:#5a6675;font-style:italic;margin:16px 0 10px;font-size:15px;}
+
+  /* Schritt-Karten */
+  .schritt{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--linie);
+    border-radius:14px;padding:16px 18px;margin:12px 0;}
+  .schritt .nr{flex:0 0 auto;width:42px;height:42px;border-radius:50%;background:var(--creme-tief);
+    color:var(--blau);display:flex;align-items:center;justify-content:center;font-family:var(--sans);
+    font-weight:700;font-size:1.25rem;}
+  .schritt .inh{flex:1;}
+  .schritt h3{margin:4px 0 5px;font-size:1.2rem;font-weight:normal;color:var(--blau);}
+  .schritt p{margin:0;color:var(--tinte);font-size:1.05rem;}
+  .schritt p+p{margin-top:7px;}
+
+  h2.h2{font-family:var(--sans);font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--honig);font-weight:700;margin:30px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--linie);}
+  .panel p.fliess{line-height:1.6;font-size:1.02rem;color:var(--tinte);}
+  .bereich{background:#fff;border:1px solid var(--linie);border-left:4px solid var(--honig);
+    border-radius:10px;padding:12px 16px;margin:10px 0;}
+  .bereich h4{margin:0 0 4px;font-family:var(--sans);color:var(--blau);font-size:1.02rem;}
+  .bereich p{margin:0;color:#5a6675;font-size:.97rem;line-height:1.5;}
+  .tipp{background:var(--creme-tief);border:1px solid var(--linie);border-radius:10px;
+    padding:13px 16px;margin:16px 0;font-size:.99rem;color:var(--tinte);font-family:var(--sans);}
+  .tipp strong{color:var(--blau);}
+
+  .druck{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--blau);background:#fff;
+    border:1px solid var(--blau);border-radius:999px;padding:11px 18px;cursor:pointer;margin:18px 0 0;}
+  .druck:hover{background:var(--blau);color:var(--creme);}
+
+  footer{margin-top:38px;padding-top:16px;border-top:1px solid var(--linie);
+    font-family:var(--sans);font-size:12.5px;color:#8a93a0;}
+  footer a{color:#6f7b86;}
+  @media print{ .tabs,.zurueck,.druck{display:none;} .panel{display:block!important;} body{background:#fff;} }
+</style>
+</head>
+<body>
+<div class="huelle">
+  <a class="zurueck" href="index.html">‹ zur Startseite</a>
+  <p class="augenbraue">Natur vor der Haustür</p>
+  <h1>So funktioniert's</h1>
+  <p class="unter">Eine kleine Anleitung für Fauna Mibaso</p>
+
+  <div class="tabs" role="tablist" aria-label="Anleitung wählen">
+    <button class="tab" id="tab-einsteiger" role="tab" aria-selected="true" aria-controls="panel-einsteiger">
+      Für Einsteiger<span class="klein">Schnell &amp; einfach</span></button>
+    <button class="tab" id="tab-lehrkraft" role="tab" aria-selected="false" aria-controls="panel-lehrkraft">
+      Für Lehrkräfte<span class="klein">Didaktischer Überblick</span></button>
+  </div>
+
+  <!-- EINSTEIGER -->
+  <section class="panel aktiv" id="panel-einsteiger" role="tabpanel" aria-labelledby="tab-einsteiger">
+    <p class="intro">In fünf Schritten durch die App – ganz ohne Anmeldung, ohne Konto, ohne Werbung.</p>
+
+    <div class="schritt"><div class="nr">1</div><div class="inh">
+      <h3>App öffnen</h3>
+      <p>Im Browser <strong>fauna.mibaso.de</strong> eingeben – fertig. Du landest auf der Startseite mit den großen Kacheln.</p>
+    </div></div>
+
+    <div class="schritt"><div class="nr">2</div><div class="inh">
+      <h3>Aufs Handy legen (einmalig)</h3>
+      <p>Über das <strong>Teilen-Symbol</strong> deines Browsers → <strong>„Zum Home-Bildschirm“</strong>. Danach hast du ein eigenes Symbol wie bei jeder anderen App.</p>
+      <p><strong>Für draußen ohne Empfang:</strong> Drücke einmal – am besten im WLAN – auf der Startseite den Knopf <strong>„Für unterwegs speichern“</strong>. Dann liegen alle Tiere samt Bildern auf dem Gerät und die App läuft <strong>vollständig offline</strong>.</p>
+    </div></div>
+
+    <div class="schritt"><div class="nr">3</div><div class="inh">
+      <h3>Ein Tier finden</h3>
+      <p><strong>„Frag dich durch“</strong> stellt dir ein paar einfache Fragen und führt dich Schritt für Schritt zur passenden Tiergruppe und Art.</p>
+      <p>Ganz oben zeigt <strong>„Was fliegt &amp; krabbelt gerade?“</strong>, welche Tiere jetzt im Jahr unterwegs sind. Und im <strong>Stammbaum</strong> gibt es ein <strong>Suchfeld</strong>, das direkt zur Art springt.</p>
+    </div></div>
+
+    <div class="schritt"><div class="nr">4</div><div class="inh">
+      <h3>Tier ansehen</h3>
+      <p>Tippe ein Tier an. Du siehst die <strong>naturkundliche Tafel</strong>, oft ein <strong>Foto</strong> und einen kurzen, unterhaltsamen Text mit Wissenswertem und Verwechslungs-Tipps.</p>
+    </div></div>
+
+    <div class="schritt"><div class="nr">5</div><div class="inh">
+      <h3>Spielen, knobeln, staunen</h3>
+      <p>Teste dich im <strong>Tierquiz</strong> und bei <strong>„Verwandte finden“</strong>, durchlaufe die <strong>Lernpfade</strong> („Verwandlung“, „Wer bestäubt was?“) oder wage den <strong>großen Fauna-Test</strong> quer durch alle Themen.</p>
+    </div></div>
+
+    <div class="tipp"><strong>Verlaufen?</strong> Oben links führt dich auf jeder Seite ein „‹ Startseite“ wieder zurück. Du kannst nichts kaputt machen – einfach ausprobieren.</div>
+  </section>
+
+  <!-- LEHRKRÄFTE -->
+  <section class="panel" id="panel-lehrkraft" role="tabpanel" aria-labelledby="tab-lehrkraft">
+    <p class="intro">Fauna Mibaso ist eine werbefreie, kostenlose Web-App (PWA) zu den heimischen Insekten und wirbellosen Tieren einer Region – gedacht für den Einsatz im Unterricht, auf Exkursionen und zum selbstständigen Lernen.</p>
+
+    <h2 class="h2">Idee &amp; Zielgruppe</h2>
+    <p class="fliess">Die App verbindet <strong>Bestimmen</strong>, <strong>Ordnen</strong> und <strong>Verstehen</strong>: Lernende sollen Arten nicht nur erkennen, sondern Zusammenhänge (Verwandtschaft, Körperbau, Verwandlung, Bestäubung) begreifen und Freude am genauen Hinsehen entwickeln. Die Texte sind bewusst laienverständlich gehalten – mit historischen und anekdotischen Häppchen statt Fachjargon. Geeignet ab etwa Klasse 5 bis zur Oberstufe, je nach gewähltem Baustein.</p>
+
+    <h2 class="h2">Die Bereiche der Startseite</h2>
+    <div class="bereich"><h4>Was fliegt &amp; krabbelt gerade?</h4><p>Eine saisonale Leiste ganz oben zeigt die Tiere, die im aktuellen Monat aktiv sind – idealer Aufhänger für Exkursionen.</p></div>
+    <div class="bereich"><h4>Entdecken</h4><p>Die geführte Bestimmung „Frag dich durch“ und die anklickbare Broschüre „Natur zum Mitnehmen“.</p></div>
+    <div class="bereich"><h4>Ordnen</h4><p>Interaktiver Stammbaum (mit Suchfeld), die Seite „Systematik &amp; Ränge“ und das Quiz „Verwandte finden“ – Schulung des systematischen Blicks.</p></div>
+    <div class="bereich"><h4>Verstehen</h4><p>Zwei Lernpfade zum Durchblättern: „Verwandlung“ (vollständige &amp; unvollständige Metamorphose) und „Wer bestäubt was?“ (Insekten und Blüten, jeweils mit kurzem Abschluss-Quiz).</p></div>
+    <div class="bereich"><h4>Staunen</h4><p>Kurze Phänomen-Erklärungen (Glühwürmchen, Bienensprache, Marienkäfer-Punkte, Grillenzirpen) – ideal als Einstieg oder Stundenabschluss.</p></div>
+    <div class="bereich"><h4>Knobeln &amp; Testen</h4><p>Das Tierquiz (Arten erkennen) und „Der große Fauna-Test“, der Fragen aus allen Bereichen mischt – inklusive der beiden Lernpfade. Drei Modi: kurz, Standard und ein 5-Minuten-Blitztest.</p></div>
+
+    <h2 class="h2">Einsatzszenarien</h2>
+    <div class="bereich"><h4>Exkursion / Wandertag</h4><p>App vorab als Symbol ablegen und „Für unterwegs speichern“ drücken (offline-fähig). Aufgabe: Tiere suchen, mit „Frag dich durch“ bestimmen. „Was fliegt &amp; krabbelt gerade?“ liefert saisonale Vorschläge.</p></div>
+    <div class="bereich"><h4>Stationenlernen</h4><p>Station 1 Bestimmen, Station 2 Stammbaum/Verwandte, Station 3 ein Lernpfad, Station 4 Quiz – die Bereiche lassen sich einzeln zuweisen.</p></div>
+    <div class="bereich"><h4>Hausaufgabe / Differenzierung</h4><p>Einsteiger: geführte Bestimmung + Tierquiz. Fortgeschrittene: Systematik, Lernpfade und der große Fauna-Test.</p></div>
+    <div class="bereich"><h4>Stundeneinstieg</h4><p>Ein „Staunen“-Phänomen als 3-Minuten-Impuls an der Projektion.</p></div>
+
+    <h2 class="h2">Technik &amp; Datenschutz</h2>
+    <p class="fliess">Reine Web-App, läuft auf Smartphone, Tablet und am Beamer. <strong>Kein Konto, keine Anmeldung, keine personenbezogene Datenerhebung, keine Werbung.</strong> Es werden keine Daten auf einem Server gespeichert. Seiten und Texte sind nach dem ersten Besuch offline verfügbar; mit dem Knopf <strong>„Für unterwegs speichern“</strong> lädt man zusätzlich alle Bilder vorab (am besten im WLAN) – danach funktioniert die App <strong>vollständig offline</strong>, praktisch ohne Empfang im Gelände. Lizenz der Inhalte: CC&nbsp;BY-NC.</p>
+
+    <div class="tipp"><strong>Tipp für die Klasse:</strong> Quiz und Test spielen bei fehlerfreiem Ergebnis eine kleine Fanfare. Bei vielen Geräten gleichzeitig vorab kurz ansprechen oder die Lautstärke regeln.</div>
+
+    <button class="druck" type="button" id="druck">🖨 Diese Anleitung drucken</button>
+  </section>
+
+  <footer>
+    Fragen, Hinweise, Korrekturen → <a href="mailto:mibaur@me.com">mibaur@me.com</a><br>
+    © 2026 Michael Baur · Fauna Mibaso
+  </footer>
+</div>
+
+<script>
+(function(){
+  var tabs=[
+    {t:document.getElementById('tab-einsteiger'),p:document.getElementById('panel-einsteiger')},
+    {t:document.getElementById('tab-lehrkraft'), p:document.getElementById('panel-lehrkraft')}
+  ];
+  function waehle(i){ tabs.forEach(function(x,j){ var on=(i===j);
+    x.t.setAttribute('aria-selected',on?'true':'false'); x.p.classList.toggle('aktiv',on); }); }
+  tabs.forEach(function(x,i){ x.t.addEventListener('click',function(){ waehle(i); }); });
+  var d=document.getElementById('druck'); if(d) d.addEventListener('click',function(){ window.print(); });
+})();
+</script>
+<script src="assets/app.js" defer></script>
+</body>
+</html>
