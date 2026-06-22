@@ -41,8 +41,8 @@
   }
   .app-head h1{margin:0;font-size:clamp(28px,8vw,40px);font-weight:normal;letter-spacing:.02em;line-height:1.15;}
   .app-head .untertitel{
-    font-style:italic;color:#b9c7d6;margin-top:8px;font-size:1rem;
-    max-width:520px;margin-left:auto;margin-right:auto;line-height:1.4;
+    font-style:italic;color:#b9c7d6;margin-top:8px;font-size:clamp(11px,3.4vw,15px);
+    white-space:nowrap;max-width:100%;margin-left:auto;margin-right:auto;line-height:1.4;
   }
   @media (display-mode:standalone){
     .app-head{padding-top:max(42px,calc(env(safe-area-inset-top) + 10px));}
@@ -237,7 +237,7 @@
   <div class="start-chips">
     <span class="start-chip" id="chip-anleitung"><a class="chip-link" href="anleitung.html">📖 Neu hier?</a><button class="chip-x" id="chip-anleitung-zu" type="button" aria-label="Hinweis ausblenden">✕</button></span>
     <a class="start-chip" href="https://flora.mibaso.de/" style="text-decoration:none;">🌼 Flora Mibaso</a>
-    <button class="start-chip" id="chip-offline" type="button" aria-haspopup="dialog">📥 <span id="chip-offline-text">Für unterwegs speichern</span></button>
+    <button class="start-chip" id="chip-offline" type="button" aria-haspopup="dialog" title="Für unterwegs speichern" aria-label="Für unterwegs speichern">📥<span id="chip-offline-text"></span></button>
   </div>
 
   <section>
@@ -370,7 +370,7 @@
           </svg>
         </span>
         <p class="kt">Der große Fauna-Test</p>
-        <p class="kb">Alle Themen gemischt – Tiere, Verwandtschaft, Naturwissen und die Lernpfade. Drei Modi.</p>
+        <p class="kb">Quer durch deine App. Gemischte Fragen aus allen Bereichen. Drei Modi.</p>
       </a>
     </div>
   </section>
@@ -428,7 +428,7 @@
     info.textContent='✓ Vollständig offline gespeichert — läuft jetzt auch ohne Internet.';
     barWrap.style.display='none';
     aktion.style.display='none';
-    if(chipOffText) chipOffText.textContent='Offline gespeichert ✓';
+    if(chipOffText) chipOffText.textContent=' ✓';
   }
 
   chipOff.addEventListener('click', function(){ overlay.classList.add('aktiv'); });
