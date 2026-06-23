@@ -251,6 +251,7 @@ const SCHRITTE = [
     hint:"▶ abspielen oder mit ‹ › weiterklicken.",
     typ:"sequenz",
     absprung:{text:"Den ganzen Kreislauf beim Admiral ansehen ›", url:"../arten/admiral.html"},
+    absprung2:{text:"Vom Ei zum Schmetterling – als Tafel ›", url:"staunen-metamorphose-schmetterling.html"},
     stufen:[
       {name:"Ei", bild:{src:"voll-1-ei.png", label:"Eier an der Brennnessel", glyph:"🥚"},
        text:"Alles beginnt klein. Das Weibchen klebt die Eier an die Futterpflanze – beim Tagpfauenauge an die Brennnessel."},
@@ -296,6 +297,7 @@ const SCHRITTE = [
     hint:"▶ abspielen oder mit ‹ › weiterklicken.",
     typ:"sequenz", foto:true,
     absprung:{text:"Libellen im Stammbaum ›", url:"../interaktiv/stammbaum.html"},
+    absprung2:{text:"Metamorphose der Libelle – als Tafel ›", url:"staunen-metamorphose-libelle.html"},
     stufen:[
       {name:"Paarungsrad", bild:{src:"pl-1-paarung.jpg", label:"Paarungsrad", glyph:"💙"},
        text:"Es beginnt mit dem typischen „Paarungsrad“: Männchen und Weibchen bilden zusammen eine Herzform."},
@@ -416,6 +418,7 @@ function renderTafel(s){
   if(s.schluepfen) e+='<button class="schluepfbtn" id="schluepfBtn">▶ Schlüpfen ansehen</button>';
   e+='<div class="infokarte" id="info"><p class="leer">Tippe eine Zahl im Bild an.</p></div>';
   if(s.absprung) e+='<a class="absprung" href="'+s.absprung.url+'">'+s.absprung.text+'</a>';
+  if(s.absprung2) e+='<a class="absprung" style="margin-left:8px" href="'+s.absprung2.url+'">'+s.absprung2.text+'</a>';
   elE.innerHTML=e;
 
   const info=document.getElementById("info");
@@ -459,6 +462,7 @@ function renderSequenz(s){
      '</div>'+
      '<div class="infokarte" id="info"></div></div>';
   if(s.absprung) e+='<a class="absprung" href="'+s.absprung.url+'">'+s.absprung.text+'</a>';
+  if(s.absprung2) e+='<a class="absprung" style="margin-left:8px" href="'+s.absprung2.url+'">'+s.absprung2.text+'</a>';
   elE.innerHTML=e;
 
   const setze=(v)=>{
