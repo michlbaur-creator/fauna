@@ -84,7 +84,9 @@
 "./impressum/",
 "./impressum/index.html",
 "./interaktiv/lebensraum.html",
-"./interaktiv/insektenschwund.html"
+"./interaktiv/insektenschwund.html",
+"./interaktiv/staunen-metamorphose-schmetterling.html",
+"./interaktiv/staunen-metamorphose-libelle.html"
 ],
 "media": [
 "./assets/icon.svg",
@@ -260,6 +262,8 @@
 "./images/lebensraum/07-libellen.jpg",
 "./images/lebensraum/08-gluehwuermchen.jpg",
 "./images/lebensraum/09-schwebfliegen.jpg",
-"./images/flyer-insektenschwund.jpg"
+"./images/flyer-insektenschwund.jpg",
+"./assets/staunen/metamorphose-schmetterling.jpg",
+"./assets/staunen/metamorphose-libelle.jpg"
 ]
 }

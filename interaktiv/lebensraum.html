@@ -203,14 +203,15 @@ $("weiter").addEventListener("click",()=>{
 function ende(){
   $("spiel").style.display="none";
   $("balken")&&($("balken").style.width="100%");
+  $("zaehler").textContent="";
   const perfekt=score===DATEN.length;
   const sprueche = perfekt
     ? ["Alles richtig – du weißt, was unsere Insekten brauchen! 🌱","Volltreffer! Ein echter Lebensraum-Kenner."]
     : score>=Math.ceil(DATEN.length*0.6)
       ? ["Stark! Fast alles richtig.","Gut gemacht – schon ein guter Blick fürs Detail."]
-      : ["Schau ruhig nochmal genau hin – Struktur und Wasser sind oft der Schlüssel.","Ein guter Anfang! Noch eine Runde?"];
+      : ["Schau ruhig nochmal genau hin – Struktur, Nahrung und etwas Unordnung sind oft der Schlüssel.","Ein guter Anfang! Noch eine Runde?"];
   const e=$("ende"); e.style.display="block";
-  e.innerHTML='<div class="ende"><p class="zaehler" style="font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8a96a1;">Ergebnis</p>'+
+  e.innerHTML='<div class="ende"><p style="font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8a96a1;margin:0;">Ergebnis</p>'+
     '<p class="gross">'+score+'<small> / '+DATEN.length+'</small></p>'+
     '<p class="spruch">'+sprueche[Math.floor(Math.random()*sprueche.length)]+'</p>'+
     '<div class="knoepfe"><button class="knopf prim" id="nochmal">Nochmal</button>'+
