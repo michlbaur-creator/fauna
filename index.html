@@ -105,6 +105,18 @@
   .bubble-content em{font-style:italic;color:var(--honig);font-weight:600;}
   .bubble-content .schliessen{display:inline-block;margin-top:8px;color:#6f7b86;text-decoration:underline;cursor:pointer;font-size:.86rem;}
 
+  /* Aktion-Banner „Wo sind die Insekten geblieben?" */
+  .aktion-banner{display:flex;align-items:center;gap:14px;margin:8px 0 22px;text-decoration:none;
+    background:#fff;border:1px solid var(--linie);border-left:4px solid var(--honig);border-radius:14px;
+    padding:12px 14px;color:var(--blau);box-shadow:0 2px 10px rgba(35,61,92,.07);transition:transform .12s,border-color .15s;}
+  .aktion-banner:hover{transform:translateY(-2px);border-color:#9bb0c6;}
+  .aktion-banner img{flex:0 0 auto;width:62px;height:84px;object-fit:cover;border-radius:8px;border:1px solid var(--linie);background:var(--creme-tief);}
+  .aktion-banner .ab-tx{flex:1;min-width:0;}
+  .ab-eyebrow{display:block;font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--honig);font-weight:700;}
+  .aktion-banner strong{display:block;font-size:1.12rem;font-weight:normal;margin:2px 0;line-height:1.15;}
+  .ab-sub{display:block;font-family:var(--sans);font-size:12.5px;color:#6f7b86;line-height:1.35;}
+  .ab-pf{margin-left:auto;color:var(--honig);font-size:20px;flex:0 0 auto;}
+
   /* „Was fliegt & krabbelt gerade?" – saisonale Leiste */
   .jetzt-sektion{margin:6px 0 4px;}
   .jetzt-titel{font-family:var(--sans);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
@@ -239,6 +251,16 @@
     <a class="start-chip" href="https://flora.mibaso.de/" style="text-decoration:none;">🌼 Flora Mibaso</a>
     <button class="start-chip" id="chip-offline" type="button" aria-haspopup="dialog" title="Für unterwegs speichern" aria-label="Für unterwegs speichern">📥<span id="chip-offline-text"></span></button>
   </div>
+
+  <a class="aktion-banner" href="interaktiv/insektenschwund.html">
+    <img src="images/flyer-insektenschwund.jpg" alt="" aria-hidden="true">
+    <span class="ab-tx">
+      <span class="ab-eyebrow">Mitmachen</span>
+      <strong>Wo sind die Insekten geblieben?</strong>
+      <span class="ab-sub">Warum es weniger werden – und was jede Blüte bewirkt.</span>
+    </span>
+    <span class="ab-pf" aria-hidden="true">›</span>
+  </a>
 
   <section>
     <h2>Entdecken</h2>
