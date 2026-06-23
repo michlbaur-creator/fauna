@@ -45,6 +45,11 @@
     border:1px solid var(--linie);border-radius:999px;padding:7px 14px;font-size:.95rem;font-weight:500;
     font-family:var(--sans);}
   .chip .emoji{font-size:1.05em;}
+  .webseite-banner{display:block;margin:30px 0 6px;border-radius:16px;overflow:hidden;
+    box-shadow:0 3px 14px rgba(35,61,92,.12);border:1px solid var(--linie);text-decoration:none;
+    transition:transform .15s,box-shadow .15s;}
+  .webseite-banner:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(35,61,92,.18);}
+  .webseite-banner img{display:block;width:100%;height:auto;}
   footer.app-foot{text-align:center;padding:22px 20px 30px;padding-bottom:max(30px,env(safe-area-inset-bottom));
     color:#6f7b86;font-size:.86rem;border-top:1px solid var(--linie);background:#fff;font-family:var(--sans);}
   footer.app-foot a{color:var(--blau);}
@@ -77,17 +82,16 @@
 
     <p>Auch im Ruhestand ist meine Begeisterung für Natur, Fotografie und neue Medien ungebrochen. Heute bleibt endlich Zeit für Projekte, die im Berufsalltag oft zu kurz kamen: beobachten, fotografieren, gestalten, erklären und Neues ausprobieren.</p>
 
-    <p>So entstanden nach und nach <a href="https://mibaso.de/" target="_blank" rel="noopener">mibaso.de</a>, <a href="https://flora.mibaso.de/" target="_blank" rel="noopener">flora.mibaso.de</a>, <a href="https://fauna.mibaso.de/" target="_blank" rel="noopener">fauna.mibaso.de</a>, kleine Lern-Apps, Quizideen und naturkundliche Materialien für Interessierte, Schulen, Exkursionen und VHS-Kurse.</p>
+    <p>So entstanden nach und nach <a href="https://mibaso.de/" target="_blank" rel="noopener">mibaso.de</a>, <a href="https://flora.mibaso.de/" target="_blank" rel="noopener">flora.mibaso.de</a>, <a href="https://fauna.mibaso.de/" target="_blank" rel="noopener">fauna.mibaso.de</a>, kleine Lern-Apps, Quizideen und naturkundliche Materialien für Interessierte, Schulen, Exkursionen und für meine VHS-Kurse.</p>
 
-    <p>Vielleicht regen sie ja dazu an, die Natur vor der eigenen Haustür mit neuen Augen zu entdecken.</p>
+    <p>Diese App ist handgeprüft, aber nicht handgeschnitzt: Einige Inhalte entstanden mit KI-Unterstützung und wurden anschließend von mir überarbeitet.</p>
+
+    <p>Mehr Projekte und Material gibt es auf <a href="https://mibaso.de/" target="_blank" rel="noopener">mibaso.de</a>.</p>
   </div>
 
-  <div class="schwerpunkte" aria-label="Meine Themen">
-    <span class="chip"><span class="emoji" aria-hidden="true">🌿</span>Natur</span>
-    <span class="chip"><span class="emoji" aria-hidden="true">📷</span>Fotografie</span>
-    <span class="chip"><span class="emoji" aria-hidden="true">💻</span>Medien</span>
-    <span class="chip"><span class="emoji" aria-hidden="true">🎓</span>VHS</span>
-  </div>
+  <a class="webseite-banner" href="https://mibaso.de/" target="_blank" rel="noopener" aria-label="Zu meiner Website mibaso.de">
+    <img src="../images/mibaso-banner.jpg" alt="Meine neue Webseite – mibaso.de: Rezepte, Makrofotos, VHS-Materialien">
+  </a>
 </main>
 <footer class="app-foot">
   <p>Kontakt: <a href="mailto:mibaur@me.com">mibaur@me.com</a></p>
