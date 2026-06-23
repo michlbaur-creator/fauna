@@ -82,7 +82,8 @@
 "./ueber/",
 "./ueber/index.html",
 "./impressum/",
-"./impressum/index.html"
+"./impressum/index.html",
+"./interaktiv/lebensraum.html"
 ],
 "media": [
 "./assets/icon.svg",
@@ -248,6 +249,15 @@
 "./assets/icon-512-maskable.png",
 "./assets/favicon-32.png",
 "./assets/icon-maskable.svg",
-"./images/portrait-logo.jpg"
+"./images/portrait-logo.jpg",
+"./images/lebensraum/01-hummel-nest.jpg",
+"./images/lebensraum/02-schmetterlinge.jpg",
+"./images/lebensraum/03-kaefer-totholz.jpg",
+"./images/lebensraum/04-heuschrecken.jpg",
+"./images/lebensraum/05-marienkaefer.jpg",
+"./images/lebensraum/06-wildbienen-hotel.jpg",
+"./images/lebensraum/07-libellen.jpg",
+"./images/lebensraum/08-gluehwuermchen.jpg",
+"./images/lebensraum/09-schwebfliegen.jpg"
 ]
 }
