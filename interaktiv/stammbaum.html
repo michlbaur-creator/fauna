@@ -117,7 +117,7 @@
   <div class="leiste">
     <button class="knopf" id="ueberblick">Überblick</button>
     <button class="knopf" id="allesAuf">Alles aufklappen</button>
-    <span class="hinweis">Tipp: Ast antippen</span>
+    <span class="hinweis">Tipp: Gruppe antippen → Tafeln erscheinen unten</span>
   </div>
 
   <div class="suchzeile">
@@ -136,7 +136,7 @@
   <div class="panel" id="panel">
     <p class="rang">Steckbrief</p>
     <h2>Tippe einen Ast</h2>
-    <p class="leer">Wähle eine Gruppe oder eine Tierart im Baum.</p>
+    <p class="leer">Wähle eine Gruppe – hier erscheinen dann die Tafeln aller enthaltenen Arten. Oder tippe direkt eine Art an.</p>
   </div>
 
   <div class="legende">
@@ -675,7 +675,7 @@ function zeigePanel(n){
 document.getElementById("ueberblick").addEventListener("click",()=>{
   (function r(n){n.collapsed=ZU.has(n.lat); if(n.k)n.k.forEach(r);})(baumDaten);
   selected=null;
-  panel.innerHTML='<p class="rang">Steckbrief</p><h2>Tippe einen Ast</h2><p class="leer">Wähle eine Gruppe oder eine Tierart im Baum.</p>';
+  panel.innerHTML='<p class="rang">Steckbrief</p><h2>Tippe einen Ast</h2><p class="leer">Wähle eine Gruppe – hier erscheinen dann die Tafeln aller enthaltenen Arten. Oder tippe direkt eine Art an.</p>';
   zeichne();
 });
 document.getElementById("allesAuf").addEventListener("click",()=>{
