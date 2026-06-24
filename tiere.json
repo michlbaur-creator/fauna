@@ -1353,5 +1353,224 @@
 "wichtig": false,
 "foto": false,
 "gruppe": "Käfer"
+},
+{
+"slug": "gemeine-stechmuecke",
+"deutsch": "Gemeine Stechmücke",
+"lat": "Culex pipiens",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Zweiflügler"
+},
+{
+"slug": "gemeine-zuckmuecke",
+"deutsch": "Gemeine Zuckmücke",
+"lat": "Chironomus plumosus",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Zweiflügler"
+},
+{
+"slug": "asiatische-tigermuecke",
+"deutsch": "Asiatische Tigermücke",
+"lat": "Aedes albopictus",
+"monate": [
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Zweiflügler"
+},
+{
+"slug": "schmetterlingsmuecke",
+"deutsch": "Schmetterlingsmücke",
+"lat": "Psychoda alternata",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Zweiflügler"
+},
+{
+"slug": "rasenhalmfliege",
+"deutsch": "Gemeine Rasenhalmfliege",
+"lat": "Thaumatomyia notata",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Zweiflügler"
+},
+{
+"slug": "riesen-schnake",
+"deutsch": "Riesen-Schnake",
+"lat": "Tipula maxima",
+"monate": [
+5,
+6,
+7,
+8
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Zweiflügler"
+},
+{
+"slug": "taufliege",
+"deutsch": "Taufliege",
+"lat": "Drosophila melanogaster",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Zweiflügler"
+},
+{
+"slug": "stubenfliege",
+"deutsch": "Stubenfliege",
+"lat": "Musca domestica",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Zweiflügler"
+},
+{
+"slug": "blaue-schmeissfliege",
+"deutsch": "Blaue Schmeißfliege",
+"lat": "Calliphora vomitoria",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Zweiflügler"
+},
+{
+"slug": "gemeine-fleischfliege",
+"deutsch": "Gemeine Fleischfliege",
+"lat": "Sarcophaga carnaria",
+"monate": [
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Zweiflügler"
+},
+{
+"slug": "ringelmuecke",
+"deutsch": "Ringelmücke",
+"lat": "Culiseta annulata",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Zweiflügler"
+},
+{
+"slug": "gemeine-stechfliege",
+"deutsch": "Gemeine Stechfliege",
+"lat": "Stomoxys calcitrans",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Zweiflügler"
+},
+{
+"slug": "kohlschnake",
+"deutsch": "Kohlschnake",
+"lat": "Tipula oleracea",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Zweiflügler"
 }
 ]
