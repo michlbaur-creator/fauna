@@ -717,6 +717,24 @@ document.addEventListener("click",(e)=>{
   if(!e.target.closest(".suchzeile")) trefferZu();
 });
 
+/* ---- Deep-Link: direkt zu einer Art/Gruppe springen (?art=slug, ?ziel=lat, ?gruppe=name) ---- */
+(function(){
+  const params=new URLSearchParams(location.search);
+  const art=params.get("art"), ziel=params.get("ziel"), grp=params.get("gruppe");
+  let node=null;
+  if(art){ node=SUCHINDEX.find(n=> n.url && n.url.replace(/^.*\//,"").replace(/\.html$/,"")===art ); }
+  else if(ziel){ node=SUCHINDEX.find(n=> normal(n.lat)===normal(ziel) ); }
+  else if(grp){ node=SUCHINDEX.find(n=> normal(n.de)===normal(grp) ); }
+  if(!node) return;
+  // Vorfahren aufklappen, damit der Ast sichtbar wird (Art NICHT zur Artseite umleiten)
+  let p=node.parent; while(p){ p.collapsed=false; p=p.parent; }
+  selected=node; zeigePanel(node); zeichne();
+  requestAnimationFrame(()=>{
+    const z=document.getElementById("aktivLabel");
+    if(z && z.scrollIntoView) z.scrollIntoView({block:"center",inline:"center",behavior:"smooth"});
+  });
+})();
+
 // Ebenen-Farbskala in der Lesehilfe
 (function(){
   const sk=document.getElementById("skala");
