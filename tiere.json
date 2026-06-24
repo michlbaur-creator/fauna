@@ -288,7 +288,7 @@
 },
 {
 "slug": "grosse-holzbiene",
-"deutsch": "Große Holzbiene",
+"deutsch": "Blauviolette Holzbiene",
 "lat": "Xylocopa violacea",
 "monate": [
 4,
@@ -1780,5 +1780,45 @@
 "wichtig": false,
 "foto": false,
 "gruppe": "Wanzen & Zikaden"
+},
+{
+"slug": "mai-langhornbiene",
+"deutsch": "Mai-Langhornbiene",
+"lat": "Eucera longicornis",
+"monate": [
+5,
+6,
+7
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Hautflügler"
+},
+{
+"slug": "gemeine-trauerbiene",
+"deutsch": "Gemeine Trauerbiene",
+"lat": "Melecta albifrons",
+"monate": [
+4,
+5,
+6,
+7
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Hautflügler"
+},
+{
+"slug": "fleckenbiene",
+"deutsch": "Fleckenbiene",
+"lat": "Thyreus orbatus",
+"monate": [
+6,
+7,
+8
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Hautflügler"
 }
 ]
