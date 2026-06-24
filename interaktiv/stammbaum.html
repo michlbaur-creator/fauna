@@ -647,6 +647,10 @@ function zeichne(){
 function tippe(n){
   if(n.art && n.url){ location.href=n.url; return; }   // Art → direkt zur Artseite
   if(!n.isTip)n.collapsed=!n.collapsed; selected=n; zeigePanel(n); zeichne();
+  // Hat die Gruppe eine Tafel-Galerie? Dann sichtbar machen (Panel sitzt unter dem Baum).
+  if(panel.querySelector(".galerie")){
+    requestAnimationFrame(()=>{ if(panel.scrollIntoView) panel.scrollIntoView({behavior:"smooth",block:"start"}); });
+  }
 }
 function zeigePanel(n){
   const rang = n.rang ? n.rang : (n.isTip ? "Gruppe" : "Zwischengruppe · Klade");
