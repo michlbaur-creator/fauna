@@ -76,6 +76,14 @@
     font-family:var(--sans);font-size:13px;font-weight:600;color:var(--creme);
     background:var(--blau);border-radius:999px;padding:9px 16px;text-decoration:none;}
   .panel .artlink:hover{background:#1a2f47;}
+  .panel .gal-titel{font-family:var(--sans);font-size:12px;font-weight:600;color:#6f7b86;margin:14px 0 9px;}
+  .panel .galerie{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:11px;}
+  .panel .gal-item{display:flex;flex-direction:column;gap:5px;text-decoration:none;color:var(--blau);}
+  .panel .gal-item img{width:100%;height:auto;display:block;border-radius:8px;border:1px solid var(--linie);
+    background:#fff;box-shadow:0 1px 5px rgba(35,61,92,.12);transition:border-color .12s,transform .12s;}
+  .panel .gal-item:hover img{border-color:var(--honig);transform:translateY(-2px);}
+  .panel .gal-item span{font-family:var(--sans);font-size:11px;line-height:1.2;}
+  .panel .gal-mehr{font-family:var(--sans);font-size:12px;color:#8a96a1;margin:10px 0 0;font-style:italic;}
 
   .legende{margin-top:30px;padding-top:18px;border-top:1px solid var(--linie);
     font-family:var(--sans);font-size:12.5px;color:#67737e;}
@@ -554,6 +562,8 @@ let selected=null;
 const farb=l=>farbe[Math.min(l,farbe.length-1)];
 function tipPfad(node){const s=new Set();let n=node;while(n){s.add(n.id);n=n.parent;}return s;}
 function blaetter(n,a){ if(n.isTip||n.collapsed)a.push(n); else n.k.forEach(c=>blaetter(c,a)); return a; }
+// Alle Arten (mit eigener Seite) unterhalb eines Knotens – für die Tafel-Galerie im Panel
+function artBlaetter(n,a){ if(n.art){ if(n.url)a.push(n); return a; } if(n.k)n.k.forEach(c=>artBlaetter(c,a)); return a; }
 function zaehle(n){ return n.isTip?1:n.k.reduce((s,c)=>s+zaehle(c),0); }
 function el(name,at){const e=document.createElementNS(NS,name);for(const a in at)e.setAttribute(a,at[a]);return e;}
 
@@ -640,7 +650,22 @@ function tippe(n){
 }
 function zeigePanel(n){
   const rang = n.rang ? n.rang : (n.isTip ? "Gruppe" : "Zwischengruppe · Klade");
-  let html='<p class="rang">'+rang+'</p><h2>'+n.de+'</h2><p class="lat">'+n.lat+'</p><p>'+n.info+'</p>';
+  let html='<p class="rang">'+rang+'</p><h2>'+n.de+'</h2><p class="lat">'+n.lat+'</p>'+(n.info?'<p>'+n.info+'</p>':'');
+  if(n.art && n.url){
+    html+='<a class="artlink" href="'+n.url+'">Zur Art ↗</a>';
+  } else {
+    const arten=artBlaetter(n,[]);
+    if(arten.length){
+      const MAX=60, zeige=arten.slice(0,MAX);
+      html+='<p class="gal-titel">'+arten.length+(arten.length===1?' Art':' Arten')+' · Tafel antippen</p><div class="galerie">';
+      zeige.forEach(a=>{
+        const img=a.url.replace("../arten/","../images/tafeln/").replace(/\.html$/,".jpg");
+        html+='<a class="gal-item" href="'+a.url+'"><img loading="lazy" src="'+img+'" alt="Tafel '+a.de+'" onerror="this.style.display=\'none\'"><span>'+a.de+'</span></a>';
+      });
+      html+='</div>';
+      if(arten.length>MAX) html+='<p class="gal-mehr">… und '+(arten.length-MAX)+' weitere – tippe eine Untergruppe für alle.</p>';
+    }
+  }
   panel.innerHTML=html;
 }
 document.getElementById("ueberblick").addEventListener("click",()=>{

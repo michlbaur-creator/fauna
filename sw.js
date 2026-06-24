@@ -17,7 +17,7 @@
    Nur wenn sich Bilder ändern, zusätzlich die MEDIA-Version erhöhen.
 */
 
-const SHELL_CACHE = 'fauna-shell-v56';
+const SHELL_CACHE = 'fauna-shell-v57';
 const MEDIA_CACHE = 'fauna-media-v4';
 const MANIFEST_URL = './offline-manifest.json';
 
