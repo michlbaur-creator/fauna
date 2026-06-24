@@ -283,22 +283,30 @@ const baumDaten = {
                     ]},
                     {de:"Käfer", lat:"Coleoptera", info:"Die artenreichste Ordnung überhaupt – harte Deckflügel schützen die Hautflügel darunter.", k:[
                       {de:"Lauf- & Schwimmkäfer", lat:"Adephaga", info:"Räuberische Käfer zu Land und im Wasser.", k:[
-                        {de:"Laufkäfer", lat:"Carabidae", info:"Schnelle Bodenjäger, oft metallisch glänzend."},
+                        {de:"Laufkäfer", lat:"Carabidae", info:"Schnelle Bodenjäger, oft metallisch glänzend.", k:[
+                          {de:"Lederlaufkäfer", lat:"Carabus coriaceus", art:true, url:"../arten/lederlaufkaefer.html", info:"Größter heimischer Laufkäfer; mattschwarz, jagt nachts Schnecken und Würmer."}
+                        ]},
                         {de:"Schwimmkäfer", lat:"Dytiscidae", info:"Räuber im Teich – der Gelbrandkäfer taucht mit Luftvorrat."}
                       ]},
                       {de:"Übrige Käfer", lat:"Polyphaga", info:"Die riesige Mehrheit aller Käferarten.", k:[
                         {de:"Blatthornkäfer", lat:"Scarabaeidae", info:"Maikäfer, Rosenkäfer und Mistkäfer – mit gefächerten Fühlern.", k:[
-                          {de:"Gartenlaubkäfer", lat:"Phyllopertha horticola", art:true, url:"../arten/gartenlaubkaefer.html", info:"Kleiner „Junikäfer“; schwärmt im Frühsommer, Larve frisst Graswurzeln."}
+                          {de:"Gartenlaubkäfer", lat:"Phyllopertha horticola", art:true, url:"../arten/gartenlaubkaefer.html", info:"Kleiner „Junikäfer“; schwärmt im Frühsommer, Larve frisst Graswurzeln."},
+                          {de:"Feldmaikäfer", lat:"Melolontha melolontha", art:true, url:"../arten/feldmaikaefer.html", info:"Der klassische Maikäfer mit Fächerfühlern; Engerling lebt Jahre im Boden."},
+                          {de:"Gemeiner Rosenkäfer", lat:"Cetonia aurata", art:true, url:"../arten/rosenkaefer.html", info:"Metallisch grün glänzend; fliegt mit eingeklappten Flügeldecken, Larve im Kompost."}
                         ]},
                         {de:"Marienkäfer", lat:"Coccinellidae", info:"Bunte Glückskäfer und fleißige Blattlausvertilger.", k:[
-                          {de:"Siebenpunkt-Marienkäfer", lat:"Coccinella septempunctata", art:true, url:"../arten/siebenpunkt-marienkaefer.html", info:"Roter Glückskäfer mit sieben Punkten; frisst Unmengen Blattläuse."}
+                          {de:"Siebenpunkt-Marienkäfer", lat:"Coccinella septempunctata", art:true, url:"../arten/siebenpunkt-marienkaefer.html", info:"Roter Glückskäfer mit sieben Punkten; frisst Unmengen Blattläuse."},
+                          {de:"Asiatischer Marienkäfer", lat:"Harmonia axyridis", art:true, url:"../arten/asiatischer-marienkaefer.html", info:"Sehr variabel, oft mit weißem „M“ am Halsschild; eingeführt und invasiv."},
+                          {de:"Zweiundzwanzigpunkt-Marienkäfer", lat:"Psyllobora vigintiduopunctata", art:true, url:"../arten/zweiundzwanzigpunkt-marienkaefer.html", info:"Klein, gelb mit 22 Punkten; frisst Mehltau statt Blattläuse."}
                         ]},
                         {de:"Bockkäfer", lat:"Cerambycidae", info:"Käfer mit oft körperlangen Fühlern; Larven leben im Holz.", k:[
                           {de:"Kleiner Pappel-Bockkäfer", lat:"Saperda populnea", art:true, url:"../arten/kleiner-pappel-bockkaefer.html", info:"Grau gepunktet; erzeugt spindelförmige Gallen an jungen Pappeln."},
                           {de:"Echter Widderbock", lat:"Clytus arietis", art:true, url:"../arten/echter-widderbock.html", info:"Schwarz-gelb wie eine Wespe (Mimikry); Larve im Totholz."},
                           {de:"Fleckenhörniger Halsbock", lat:"Anoplodera sexguttata", art:true, url:"../arten/fleckenhoerniger-halsbock.html", info:"Schwarz mit gelben Flecken; Blütenbesucher, Larve im Totholz."},
                           {de:"Kleiner Schmalbock", lat:"Leptura aethiops", art:true, url:"../arten/kleiner-schmalbock.html", info:"Zierlicher Schmalbock; Blütenbesucher, Larve im Totholz."},
-                          {de:"Scheckhorn-Distelbock", lat:"Agapanthia villosoviridescens", art:true, url:"../arten/scheckhornbock.html", info:"Gelblich-grüner Distelbock mit sehr langen geringelten Fühlern; Larve in Distelstängeln."}
+                          {de:"Scheckhorn-Distelbock", lat:"Agapanthia villosoviridescens", art:true, url:"../arten/scheckhornbock.html", info:"Gelblich-grüner Distelbock mit sehr langen geringelten Fühlern; Larve in Distelstängeln."},
+                          {de:"Moschuskäfer", lat:"Aromia moschata", art:true, url:"../arten/moschuskaefer.html", info:"Blau-grün schimmernder Bock mit moschusartigem Duft; Larve in alten Weiden."},
+                          {de:"Gemeiner Fleckenbock", lat:"Rutpela maculata", art:true, url:"../arten/gemeiner-fleckenbock.html", info:"Gelb-schwarz gefleckt, wespenähnlich; häufiger Blütenbesucher, Larve im Totholz."}
                         ]},
                         {de:"Buntkäfer", lat:"Cleridae", info:"Bunte, behaarte Blütenkäfer; Larven oft Räuber.", k:[
                           {de:"Bienenkäfer", lat:"Trichodes apiarius", art:true, url:"../arten/bienenkaefer.html", info:"Rot-blau gebändert; Larve lebt räuberisch in Wildbienennestern."}
@@ -306,6 +314,28 @@ const baumDaten = {
                         {de:"Weichkäfer", lat:"Cantharidae", info:"Käfer mit weichen Flügeldecken; Räuber und Blütenbesucher.", k:[
                           {de:"Rotschwarzer Weichkäfer", lat:"Cantharis pellucida", art:true, url:"../arten/rotschwarzer-weichkaefer.html", info:"Rot-schwarz; jagt Blattläuse, häufig auf Blüten."},
                           {de:"Gemeiner Weichkäfer", lat:"Cantharis fusca", art:true, url:"../arten/gemeiner-weichkaefer.html", info:"Schwarze Flügeldecken, roter Halsschild; nützlicher Räuber."}
+                        ]},
+                        {de:"Blattkäfer", lat:"Chrysomelidae", info:"Bunte Blattfresser; oft an einer bestimmten Pflanze.", k:[
+                          {de:"Lilienhähnchen", lat:"Lilioceris lilii", art:true, url:"../arten/lilienhaehnchen.html", info:"Leuchtend rot; frisst an Lilien, Larven tarnen sich mit Kot."},
+                          {de:"Kartoffelkäfer", lat:"Leptinotarsa decemlineata", art:true, url:"../arten/kartoffelkaefer.html", info:"Gelb mit zehn schwarzen Streifen; eingeschleppter Kartoffelschädling."}
+                        ]},
+                        {de:"Scheinbockkäfer", lat:"Oedemeridae", info:"Schlanke, oft metallische Blütenkäfer.", k:[
+                          {de:"Blauer Scheinbockkäfer", lat:"Ischnomera cyanea", art:true, url:"../arten/blauer-scheinbockkaefer.html", info:"Metallisch blau-grün; auf Blüten, Larve in morschem Laubholz."}
+                        ]},
+                        {de:"Mistkäfer", lat:"Geotrupidae", info:"Kräftige Käfer, die Dung und Aas vergraben und verwerten.", k:[
+                          {de:"Waldmistkäfer", lat:"Anoplotrupes stercorosus", art:true, url:"../arten/waldmistkaefer.html", info:"Blau-violett glänzend; wichtiger Verwerter auf Waldwegen."}
+                        ]},
+                        {de:"Rüsselkäfer", lat:"Curculionidae", info:"Käfer mit Rüssel – die artenreichste Käferfamilie.", k:[
+                          {de:"Gefurchter Dickmaulrüssler", lat:"Otiorhynchus sulcatus", art:true, url:"../arten/dickmaulruessler.html", info:"Nachtaktiv, flugunfähig; berüchtigter Garten- und Topfpflanzen-Schädling."}
+                        ]},
+                        {de:"Leuchtkäfer", lat:"Lampyridae", info:"Die Glühwürmchen – Weibchen leuchten, um Männchen anzulocken.", k:[
+                          {de:"Großer Leuchtkäfer", lat:"Lampyris noctiluca", art:true, url:"../arten/grosser-leuchtkaefer.html", info:"Das „Glühwürmchen“; flügelloses Weibchen leuchtet grünlich in Sommernächten."}
+                        ]},
+                        {de:"Speckkäfer", lat:"Dermestidae", info:"Verwerter tierischer Stoffe; im Haus Vorrats- und Sammlungsschädlinge.", k:[
+                          {de:"Gemeiner Speckkäfer", lat:"Dermestes lardarius", art:true, url:"../arten/gemeiner-speckkaefer.html", info:"Braun-schwarz mit heller Binde; Larven fressen Fell, Federn, Trockenfleisch."}
+                        ]},
+                        {de:"Glanzkäfer", lat:"Nitidulidae", info:"Winzige Blütenkäfer; manche in Massen an Raps.", k:[
+                          {de:"Gemeiner Glanzkäfer", lat:"Meligethes aeneus", art:true, url:"../arten/gemeiner-glanzkaefer.html", info:"Nur wenige Millimeter, metallisch glänzend; als Rapsglanzkäfer bekannt."}
                         ]}
                       ]}
                     ]},

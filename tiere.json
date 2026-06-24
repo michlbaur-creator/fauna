@@ -1132,5 +1132,226 @@
 "wichtig": true,
 "foto": false,
 "gruppe": "Hautflügler"
+},
+{
+"slug": "moschuskaefer",
+"deutsch": "Moschuskäfer",
+"lat": "Aromia moschata",
+"monate": [
+5,
+6,
+7,
+8
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Käfer"
+},
+{
+"slug": "blauer-scheinbockkaefer",
+"deutsch": "Blauer Scheinbockkäfer",
+"lat": "Ischnomera cyanea",
+"monate": [
+5,
+6,
+7,
+8
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Käfer"
+},
+{
+"slug": "lederlaufkaefer",
+"deutsch": "Lederlaufkäfer",
+"lat": "Carabus coriaceus",
+"monate": [
+4,
+5,
+6,
+7,
+8
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Käfer"
+},
+{
+"slug": "asiatischer-marienkaefer",
+"deutsch": "Asiatischer Marienkäfer",
+"lat": "Harmonia axyridis",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Käfer"
+},
+{
+"slug": "gemeiner-speckkaefer",
+"deutsch": "Gemeiner Speckkäfer",
+"lat": "Dermestes lardarius",
+"monate": [
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Käfer"
+},
+{
+"slug": "grosser-leuchtkaefer",
+"deutsch": "Großer Leuchtkäfer",
+"lat": "Lampyris noctiluca",
+"monate": [
+5,
+6,
+7
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Käfer"
+},
+{
+"slug": "feldmaikaefer",
+"deutsch": "Feldmaikäfer",
+"lat": "Melolontha melolontha",
+"monate": [
+4,
+5,
+6
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Käfer"
+},
+{
+"slug": "lilienhaehnchen",
+"deutsch": "Lilienhähnchen",
+"lat": "Lilioceris lilii",
+"monate": [
+5,
+6,
+7,
+8
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Käfer"
+},
+{
+"slug": "rosenkaefer",
+"deutsch": "Gemeiner Rosenkäfer",
+"lat": "Cetonia aurata",
+"monate": [
+5,
+6,
+7,
+8
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Käfer"
+},
+{
+"slug": "kartoffelkaefer",
+"deutsch": "Kartoffelkäfer",
+"lat": "Leptinotarsa decemlineata",
+"monate": [
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Käfer"
+},
+{
+"slug": "waldmistkaefer",
+"deutsch": "Waldmistkäfer",
+"lat": "Anoplotrupes stercorosus",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Käfer"
+},
+{
+"slug": "gemeiner-fleckenbock",
+"deutsch": "Gemeiner Fleckenbock",
+"lat": "Rutpela maculata",
+"monate": [
+5,
+6,
+7
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Käfer"
+},
+{
+"slug": "dickmaulruessler",
+"deutsch": "Gefurchter Dickmaulrüssler",
+"lat": "Otiorhynchus sulcatus",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Käfer"
+},
+{
+"slug": "zweiundzwanzigpunkt-marienkaefer",
+"deutsch": "Zweiundzwanzigpunkt-Marienkäfer",
+"lat": "Psyllobora vigintiduopunctata",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Käfer"
+},
+{
+"slug": "gemeiner-glanzkaefer",
+"deutsch": "Gemeiner Glanzkäfer",
+"lat": "Meligethes aeneus",
+"monate": [
+4,
+5,
+6
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Käfer"
 }
 ]
