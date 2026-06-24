@@ -312,7 +312,12 @@ const baumDaten = {
                     {de:"Hautflügler & Verwandte", lat:"Holometabola (übrige)", info:"Hier zweigen die Hautflügler ab; die übrigen teilen sich in Schmetterlinge und Zweiflügler.", k:[
                       {de:"Hautflügler", lat:"Hymenoptera", info:"Bienen, Wespen, Hummeln und Ameisen – viele leben in Staaten und bestäuben unsere Blüten.", k:[
                         {de:"Pflanzenwespen", lat:"Symphyta", info:"Ohne Wespentaille; ihre Larven fressen an Blättern.", k:[
-                          {de:"Echte Blattwespen", lat:"Tenthredinidae", info:"Häufig an Blättern; ihre Larven ähneln Raupen."},
+                          {de:"Echte Blattwespen", lat:"Tenthredinidae", info:"Häufig an Blättern; ihre Larven ähneln Raupen.", k:[
+                            {de:"Gemeine Breitblattwespe", lat:"Tenthredo mistura", art:true, url:"../arten/gemeine-breitblattwespe.html", info:"Wespenähnlich, aber ohne Wespentaille und ohne Stachel; Larven an Laubbäumen."}
+                          ]},
+                          {de:"Buschhornblattwespen", lat:"Diprionidae", info:"Männchen mit gefiederten Fühlern; Larven an Nadelbäumen.", k:[
+                            {de:"Rote Kiefernbuschhornblattwespe", lat:"Diprion pini", art:true, url:"../arten/kiefernbuschhornblattwespe.html", info:"Larven fressen in Gruppen an Kiefernnadeln; bei Massenvermehrung Forstschädling."}
+                          ]},
                           {de:"Halm- & Holzwespen", lat:"übrige Symphyta", info:"Legen ihre Eier in Halme oder ins Holz.", k:[
                             {de:"Holzwespen-Schlupfwespe", lat:"Sirex juvencus", art:true, url:"../arten/holzwespen-schlupfwespe.html", info:"Holzwespe mit langem Legebohrer; Larve bohrt im Nadelholz."}
                           ]}
@@ -323,19 +328,39 @@ const baumDaten = {
                               {de:"Dunkle Erdhummel", lat:"Bombus terrestris", art:true, url:"../arten/dunkle-erdhummel.html", info:"Häufige Hummel mit zwei gelben Binden und weißem Hinterende; wichtige Bestäuberin."},
                               {de:"Steinhummel", lat:"Bombus lapidarius", art:true, url:"../arten/steinhummel.html", info:"Tiefschwarz mit leuchtend rotem Hinterende; nistet gern unter Steinen."},
                               {de:"Große Holzbiene", lat:"Xylocopa violacea", art:true, url:"../arten/grosse-holzbiene.html", info:"Größte heimische Wildbiene, schwarz mit blau schimmernden Flügeln; nistet in Totholz."},
-                              {de:"Ackerhummel", lat:"Bombus pascuorum", art:true, url:"../arten/ackerhummel.html", info:"Durchgehend rostbraun behaart, ohne weißes Hinterende; nistet oft oberirdisch."}
+                              {de:"Ackerhummel", lat:"Bombus pascuorum", art:true, url:"../arten/ackerhummel.html", info:"Durchgehend rostbraun behaart, ohne weißes Hinterende; nistet oft oberirdisch."},
+                              {de:"Honigbiene", lat:"Apis mellifera", art:true, url:"../arten/honigbiene.html", info:"Staatenbildend mit Königin und Wachswaben; verständigt sich per Schwänzeltanz."},
+                              {de:"Gartenhummel", lat:"Bombus hortorum", art:true, url:"../arten/gartenhummel.html", info:"Lange Zunge und langes Gesicht; kommt an besonders tiefe Blüten."},
+                              {de:"Baumhummel", lat:"Bombus hypnorum", art:true, url:"../arten/baumhummel.html", info:"Fuchsrote Brust, weißes Hinterende; nistet gern in Nistkästen."},
+                              {de:"Wiesenhummel", lat:"Bombus pratorum", art:true, url:"../arten/wiesenhummel.html", info:"Kleine, frühe Hummel mit gelbem Kragen und rotorangem Hinterende."},
+                              {de:"Gemeine Pelzbiene", lat:"Anthophora plumipes", art:true, url:"../arten/gemeine-pelzbiene.html", info:"Pelzige, schwirrende Frühlings-Wildbiene; Männchen mit hellem Gesicht."}
                             ]},
                             {de:"Faltenwespen", lat:"Vespidae", info:"Wespen und Hornissen – bauen Nester aus Papier.", k:[
                               {de:"Gemeine Wespe", lat:"Vespula vulgaris", art:true, url:"../arten/gemeine-wespe.html", info:"Gelb-schwarze Wespe an Kuchen und Saft; staatenbildend, baut Papiernester."},
-                              {de:"Hornisse", lat:"Vespa crabro", art:true, url:"../arten/hornisse.html", info:"Größte heimische soziale Wespe; trotz Ruf friedlich und geschützt."}
+                              {de:"Hornisse", lat:"Vespa crabro", art:true, url:"../arten/hornisse.html", info:"Größte heimische soziale Wespe; trotz Ruf friedlich und geschützt."},
+                              {de:"Deutsche Wespe", lat:"Vespula germanica", art:true, url:"../arten/deutsche-wespe.html", info:"Wie die Gemeine Wespe am Kuchentisch; Unterschied an Punkten/Strichen im Gesicht."},
+                              {de:"Haus-Feldwespe", lat:"Polistes dominula", art:true, url:"../arten/haus-feldwespe.html", info:"Schlank, langbeinig, friedlich; offene Wabe ohne Hülle."}
                             ]},
                             {de:"Weitere Wildbienen", lat:"Wildbienen", info:"Einzeln lebende Bienen – Maurer-, Masken- und Kuckucksbienen.", k:[
                               {de:"Rote Mauerbiene", lat:"Osmia bicornis", art:true, url:"../arten/rote-mauerbiene.html", info:"Frühe, rostrote Wildbiene; baut Lehmzellen, top im Insektenhotel."},
                               {de:"Maskenbiene", lat:"Hylaeus", art:true, url:"../arten/maskenbiene.html", info:"Winzig, fast nackt, mit heller Gesichtsmaske; trägt Pollen im Kropf."},
-                              {de:"Wespenbiene", lat:"Nomada", art:true, url:"../arten/wespenbiene.html", info:"Wespenähnliche „Kuckucksbiene“; schmuggelt Eier in fremde Nester."}
+                              {de:"Wespenbiene", lat:"Nomada", art:true, url:"../arten/wespenbiene.html", info:"Wespenähnliche „Kuckucksbiene“; schmuggelt Eier in fremde Nester."},
+                              {de:"Gehörnte Mauerbiene", lat:"Osmia cornuta", art:true, url:"../arten/gehoernte-mauerbiene.html", info:"Schwarz-rost, mit Hörnchen im Gesicht; frühe Bestäuberin im Insektenhotel."}
+                            ]},
+                            {de:"Grabwespen", lat:"Crabronidae & Sphecidae", info:"Solitär; graben Brutröhren und versorgen die Larven mit Beute.", k:[
+                              {de:"Sandwespe", lat:"Bembix rostrata", art:true, url:"../arten/sandwespe.html", info:"Gräbt im Sand; trägt der Larve laufend frische Fliegen nach."},
+                              {de:"Grabwespe", lat:"Sphex funerarius", art:true, url:"../arten/grabwespe.html", info:"Schwarz-rot; jagt Heuschrecken als Larvenproviant."},
+                              {de:"Töpfergrabwespe", lat:"Sceliphron curvatum", art:true, url:"../arten/toepfergrabwespe.html", info:"Baut Tongefäße aus Lehm und füllt sie mit Spinnen."}
+                            ]},
+                            {de:"Ameisen", lat:"Formicidae", info:"Staatenbildend; Arbeiterinnen meist flügellos.", k:[
+                              {de:"Rote Waldameise", lat:"Formica rufa", art:true, url:"../arten/rote-waldameise.html", info:"Baut große Nadelhügel; spritzt Ameisensäure, Nester geschützt."},
+                              {de:"Schwarze Wegameise", lat:"Lasius niger", art:true, url:"../arten/schwarze-wegameise.html", info:"Sehr häufig an Wegen und Mauern; großer Hochzeitsflug im Sommer."},
+                              {de:"Gelbe Wegameise", lat:"Lasius flavus", art:true, url:"../arten/gelbe-wegameise.html", info:"Blassgelb, lebt unterirdisch; baut Erdhügel auf Magerwiesen."}
                             ]}
                           ]},
-                          {de:"Schlupf- & Gallwespen", lat:"Parasitica", info:"Legen Eier in andere Insekten oder in Pflanzen (Gallen)."}
+                          {de:"Schlupf- & Gallwespen", lat:"Parasitica", info:"Legen Eier in andere Insekten oder in Pflanzen (Gallen).", k:[
+                            {de:"Große Schlupfwespe", lat:"Rhyssa persuasoria", art:true, url:"../arten/grosse-schlupfwespe.html", info:"Riesiger Legebohrer; parasitiert Holzwespen-Larven tief im Holz."}
+                          ]}
                         ]}
                       ]},
                       {de:"Schmetterlinge & Zweiflügler", lat:"Mecopterida", info:"Zwei eng verwandte Ordnungen mit sehr verschiedenen Flügeln.", k:[

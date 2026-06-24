@@ -868,5 +868,269 @@
 "wichtig": false,
 "foto": true,
 "gruppe": "Spinnen"
+},
+{
+"slug": "honigbiene",
+"deutsch": "Honigbiene",
+"lat": "Apis mellifera",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Hautflügler"
+},
+{
+"slug": "rote-waldameise",
+"deutsch": "Rote Waldameise",
+"lat": "Formica rufa",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Hautflügler"
+},
+{
+"slug": "gehoernte-mauerbiene",
+"deutsch": "Gehörnte Mauerbiene",
+"lat": "Osmia cornuta",
+"monate": [
+3,
+4,
+5
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Hautflügler"
+},
+{
+"slug": "sandwespe",
+"deutsch": "Sandwespe",
+"lat": "Bembix rostrata",
+"monate": [
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Hautflügler"
+},
+{
+"slug": "grosse-schlupfwespe",
+"deutsch": "Große Schlupfwespe",
+"lat": "Rhyssa persuasoria",
+"monate": [
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Hautflügler"
+},
+{
+"slug": "grabwespe",
+"deutsch": "Grabwespe",
+"lat": "Sphex funerarius",
+"monate": [
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Hautflügler"
+},
+{
+"slug": "toepfergrabwespe",
+"deutsch": "Töpfergrabwespe",
+"lat": "Sceliphron curvatum",
+"monate": [
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Hautflügler"
+},
+{
+"slug": "gelbe-wegameise",
+"deutsch": "Gelbe Wegameise",
+"lat": "Lasius flavus",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Hautflügler"
+},
+{
+"slug": "haus-feldwespe",
+"deutsch": "Haus-Feldwespe",
+"lat": "Polistes dominula",
+"monate": [
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Hautflügler"
+},
+{
+"slug": "kiefernbuschhornblattwespe",
+"deutsch": "Rote Kiefernbuschhornblattwespe",
+"lat": "Diprion pini",
+"monate": [
+5,
+6,
+7
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Hautflügler"
+},
+{
+"slug": "gemeine-pelzbiene",
+"deutsch": "Gemeine Pelzbiene",
+"lat": "Anthophora plumipes",
+"monate": [
+3,
+4,
+5,
+6
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Hautflügler"
+},
+{
+"slug": "deutsche-wespe",
+"deutsch": "Deutsche Wespe",
+"lat": "Vespula germanica",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Hautflügler"
+},
+{
+"slug": "gemeine-breitblattwespe",
+"deutsch": "Gemeine Breitblattwespe",
+"lat": "Tenthredo mistura",
+"monate": [
+5,
+6,
+7
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Hautflügler"
+},
+{
+"slug": "baumhummel",
+"deutsch": "Baumhummel",
+"lat": "Bombus hypnorum",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Hautflügler"
+},
+{
+"slug": "gartenhummel",
+"deutsch": "Gartenhummel",
+"lat": "Bombus hortorum",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Hautflügler"
+},
+{
+"slug": "schwarze-wegameise",
+"deutsch": "Schwarze Wegameise",
+"lat": "Lasius niger",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Hautflügler"
+},
+{
+"slug": "wiesenhummel",
+"deutsch": "Wiesenhummel",
+"lat": "Bombus pratorum",
+"monate": [
+3,
+4,
+5,
+6,
+7
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Hautflügler"
 }
 ]
