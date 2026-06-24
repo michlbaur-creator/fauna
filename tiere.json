@@ -1572,5 +1572,213 @@
 "wichtig": true,
 "foto": false,
 "gruppe": "Zweiflügler"
+},
+{
+"slug": "gruenes-heupferd",
+"deutsch": "Grünes Heupferd",
+"lat": "Tettigonia viridissima",
+"monate": [
+7,
+8,
+9,
+10
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Heuschrecken"
+},
+{
+"slug": "feldgrille",
+"deutsch": "Feldgrille",
+"lat": "Gryllus campestris",
+"monate": [
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Heuschrecken"
+},
+{
+"slug": "gemeiner-grashuepfer",
+"deutsch": "Gemeiner Grashüpfer",
+"lat": "Chorthippus parallelus",
+"monate": [
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Heuschrecken"
+},
+{
+"slug": "nachtigall-grashuepfer",
+"deutsch": "Nachtigall-Grashüpfer",
+"lat": "Chorthippus biguttulus",
+"monate": [
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Heuschrecken"
+},
+{
+"slug": "ritterwanze",
+"deutsch": "Ritterwanze",
+"lat": "Lygaeus equestris",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Wanzen & Zikaden"
+},
+{
+"slug": "wiesenwanze",
+"deutsch": "Wiesenwanze",
+"lat": "Lygus pratensis",
+"monate": [
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Wanzen & Zikaden"
+},
+{
+"slug": "gruene-stinkwanze",
+"deutsch": "Grüne Stinkwanze",
+"lat": "Palomena viridissima",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Wanzen & Zikaden"
+},
+{
+"slug": "graue-gartenwanze",
+"deutsch": "Graue Gartenwanze",
+"lat": "Rhaphigaster nebulosa",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Wanzen & Zikaden"
+},
+{
+"slug": "wiesenschaumzikade",
+"deutsch": "Wiesenschaumzikade",
+"lat": "Philaenus spumarius",
+"monate": [
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Wanzen & Zikaden"
+},
+{
+"slug": "gruene-flachkopfzikade",
+"deutsch": "Grüne Flachkopfzikade",
+"lat": "Cicadella viridis",
+"monate": [
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Wanzen & Zikaden"
+},
+{
+"slug": "blattschneiderzikade",
+"deutsch": "Blattschneiderzikade",
+"lat": "Asiraca clavicornis",
+"monate": [
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Wanzen & Zikaden"
+},
+{
+"slug": "grosse-rosenblattlaus",
+"deutsch": "Große Rosenblattlaus",
+"lat": "Macrosiphum rosae",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": true,
+"foto": false,
+"gruppe": "Wanzen & Zikaden"
+},
+{
+"slug": "gruene-pfirsichblattlaus",
+"deutsch": "Grüne Pfirsichblattlaus",
+"lat": "Myzus persicae",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Wanzen & Zikaden"
 }
 ]

@@ -241,8 +241,16 @@ const baumDaten = {
                     {de:"Geradflügler & Schnabelkerfe", lat:"Neoptera (Teil)", info:"Hier trennen sich die kauenden Geradflügler von den saugenden Schnabelkerfen.", k:[
                       {de:"Heuschrecken & Schaben", lat:"Polyneoptera", info:"Kräftige Springer und flinke Schaben, oft mit ledrigen Vorderflügeln.", k:[
                         {de:"Heuschrecken", lat:"Orthoptera", info:"Springer mit kräftigen Hinterbeinen; viele zirpen.", k:[
-                          {de:"Laubheuschrecken & Grillen", lat:"Ensifera", info:"Lange, fadenförmige Fühler – das Grüne Heupferd, die Feldgrille."},
-                          {de:"Feldheuschrecken", lat:"Caelifera", info:"Kurze Fühler; zirpen mit den Hinterschenkeln."}
+                          {de:"Laubheuschrecken", lat:"Tettigoniidae", info:"Lange, fadenförmige Fühler; viele „singen“ mit den Flügeln.", k:[
+                            {de:"Grünes Heupferd", lat:"Tettigonia viridissima", art:true, url:"../arten/gruenes-heupferd.html", info:"Große grüne Laubheuschrecke mit körperlangen Fühlern; schwirrt bis in die Nacht."}
+                          ]},
+                          {de:"Grillen", lat:"Gryllidae", info:"Gedrungen; singen vor selbst gegrabenen Erdröhren.", k:[
+                            {de:"Feldgrille", lat:"Gryllus campestris", art:true, url:"../arten/feldgrille.html", info:"Tiefschwarz; das Männchen zirpt laut vor seiner Wohnröhre."}
+                          ]},
+                          {de:"Feldheuschrecken", lat:"Caelifera", info:"Kurze Fühler; zirpen mit den Hinterschenkeln.", k:[
+                            {de:"Gemeiner Grashüpfer", lat:"Chorthippus parallelus", art:true, url:"../arten/gemeiner-grashuepfer.html", info:"Häufigster Wiesenhüpfer; Weibchen oft mit verkürzten Flügeln."},
+                            {de:"Nachtigall-Grashüpfer", lat:"Chorthippus biguttulus", art:true, url:"../arten/nachtigall-grashuepfer.html", info:"Dem Gemeinen Grashüpfer sehr ähnlich; sicher nur am schwirrenden Gesang zu trennen."}
+                          ]}
                         ]},
                         {de:"Schaben & Fangschrecken", lat:"Dictyoptera", info:"Flinke Bodenläufer und lauernde Jäger.", k:[
                           {de:"Schaben & Termiten", lat:"Blattodea", info:"Abgeflachte Allesfresser; Termiten bauen riesige Staaten."},
@@ -259,16 +267,25 @@ const baumDaten = {
                             {de:"Streifenwanze", lat:"Graphosoma lineatum", art:true, url:"../arten/streifenwanze.html", info:"Rot-schwarz längsgestreift; Baumwanze auf Doldenblüten."},
                             {de:"Eichen-Schmuckwanze", lat:"Rhabdomiris striatellus", art:true, url:"../arten/eichen-schmuckwanze.html", info:"Schlanke Weichwanze, orange-rot gestreift; im Frühling in Eichenkronen."},
                             {de:"Lederwanze", lat:"Coreus marginatus", art:true, url:"../arten/lederwanze.html", info:"Breite, ledrig wirkende Randwanze mit kleinen Kopfhörnchen; an Ampfer."},
-                            {de:"Kohlwanze", lat:"Eurydema", art:true, url:"../arten/kohlwanze.html", info:"Schwarz mit roter/weißer Warnzeichnung; saugt an Kreuzblütlern."}
+                            {de:"Kohlwanze", lat:"Eurydema", art:true, url:"../arten/kohlwanze.html", info:"Schwarz mit roter/weißer Warnzeichnung; saugt an Kreuzblütlern."},
+                            {de:"Ritterwanze", lat:"Lygaeus equestris", art:true, url:"../arten/ritterwanze.html", info:"Auffällig rot-schwarz gemustert; wärmeliebend, an Wolfsmilch und Schwalbenwurz."},
+                            {de:"Grüne Stinkwanze", lat:"Palomena viridissima", art:true, url:"../arten/gruene-stinkwanze.html", info:"Breite grüne Baumwanze mit Wehrdrüsen; im Herbst bronzefarben."},
+                            {de:"Graue Gartenwanze", lat:"Rhaphigaster nebulosa", art:true, url:"../arten/graue-gartenwanze.html", info:"Große graubraune Baumwanze; überwintert gern an Hauswänden."},
+                            {de:"Wiesenwanze", lat:"Lygus pratensis", art:true, url:"../arten/wiesenwanze.html", info:"Kleine, grün-bräunliche Weichwanze; sehr häufig auf Wiesen und im Garten."}
                           ]},
                           {de:"Wasserwanzen", lat:"Hydrocorisae", info:"Wasserläufer und Rückenschwimmer an und auf dem Wasser."}
                         ]},
                         {de:"Pflanzensauger", lat:"Sternorrhyncha & Co.", info:"Saugen Pflanzensaft, oft in Massen.", k:[
                           {de:"Zikaden", lat:"Auchenorrhyncha", info:"Springende Sauger; manche Männchen singen erstaunlich laut.", k:[
-                            {de:"Gemeine Blutzikade", lat:"Cercopis vulnerata", art:true, url:"../arten/gemeine-blutzikade.html", info:"Schwarz mit roten Warnflecken; springt blitzschnell weg."}
+                            {de:"Gemeine Blutzikade", lat:"Cercopis vulnerata", art:true, url:"../arten/gemeine-blutzikade.html", info:"Schwarz mit roten Warnflecken; springt blitzschnell weg."},
+                            {de:"Wiesenschaumzikade", lat:"Philaenus spumarius", art:true, url:"../arten/wiesenschaumzikade.html", info:"Unscheinbar; ihre Larve steckt im Schaumnest („Kuckucksspucke“)."},
+                            {de:"Grüne Flachkopfzikade", lat:"Cicadella viridis", art:true, url:"../arten/gruene-flachkopfzikade.html", info:"Leuchtend grün mit blaugrünen Flügeln; auf feuchten Wiesen."},
+                            {de:"Blattschneiderzikade", lat:"Asiraca clavicornis", art:true, url:"../arten/blattschneiderzikade.html", info:"Kleine Spornzikade mit auffällig verbreiterten, blattartigen Fühlern."}
                           ]},
                           {de:"Blatt- & Schildläuse", lat:"Sternorrhyncha", info:"Winzige Sauger – Blattläuse vermehren sich rasend schnell.", k:[
-                            {de:"Schwarze Blattlaus", lat:"Aphis fabae", art:true, url:"../arten/schwarze-blattlaus.html", info:"Bildet riesige Kolonien; wird von Ameisen gemolken."}
+                            {de:"Schwarze Blattlaus", lat:"Aphis fabae", art:true, url:"../arten/schwarze-blattlaus.html", info:"Bildet riesige Kolonien; wird von Ameisen gemolken."},
+                            {de:"Große Rosenblattlaus", lat:"Macrosiphum rosae", art:true, url:"../arten/grosse-rosenblattlaus.html", info:"Grün, an Rosentrieben und Knospen; eine der größten Blattläuse."},
+                            {de:"Grüne Pfirsichblattlaus", lat:"Myzus persicae", art:true, url:"../arten/gruene-pfirsichblattlaus.html", info:"Winzig, blassgrün; überträgt zahlreiche Pflanzenviren."}
                           ]}
                         ]}
                       ]},
