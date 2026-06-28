@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Merlin Bird ID · Fauna Mibaso</title>
+<meta name="description" content="Merlin Bird ID (Cornell Lab): kostenlose Vogelbestimmung per Foto, Gesang und Fragen. Vor- und Nachteile, Installation für Android und iOS.">
+<meta name="theme-color" content="#233D5C">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Fauna Mibaso">
+<style>
+  :root{
+    --blau:#233D5C; --blau-tief:#1a2f47; --creme:#F7F3E8; --creme-tief:#EEE7D5;
+    --tinte:#1c2e42; --honig:#C28A3A; --linie:#d7cfba; --gruen:#3E9A5E; --rot:#B5482F;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{margin:0;background:var(--creme);color:var(--blau);
+    font-family:Georgia,"Times New Roman",serif;line-height:1.55;padding-top:env(safe-area-inset-top);}
+  .huelle{max-width:620px;margin:0 auto;padding:clamp(10px,3vw,20px) clamp(14px,4vw,26px) 50px;}
+  .zurueck{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--blau);text-decoration:none;
+    display:inline-flex;gap:6px;align-items:center;padding:4px 0;}
+  .app-kopf{text-align:center;margin:16px 0 18px;}
+  .app-kopf .badge{width:84px;height:84px;border-radius:20px;margin:0 auto;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(180deg,#2f7bd6,#1f5fae);box-shadow:0 3px 12px rgba(35,61,92,.18);}
+  .app-kopf .badge svg{width:50px;height:50px;}
+  .app-kopf h1{font-size:clamp(26px,7vw,36px);margin:12px 0 4px;font-weight:normal;}
+  .app-kopf .unter{font-family:var(--sans);font-size:14px;color:#6f7b86;margin:0;}
+  .install{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:0 0 22px;}
+  .install a{display:inline-flex;align-items:center;gap:9px;text-decoration:none;background:var(--blau);
+    color:var(--creme);border-radius:13px;padding:10px 16px;font-family:var(--sans);}
+  .install a:hover{background:var(--blau-tief);}
+  .install svg{width:22px;height:22px;fill:currentColor;}
+  .install .lab small{display:block;font-size:10px;opacity:.85;letter-spacing:.03em;}
+  .install .lab strong{display:block;font-size:14px;}
+  .text p{font-size:clamp(15px,4vw,16.5px);color:var(--tinte);margin:0 0 14px;}
+  .vn{display:grid;grid-template-columns:1fr;gap:12px;margin:18px 0;}
+  @media(min-width:520px){ .vn{grid-template-columns:1fr 1fr;} }
+  .karte{background:#fff;border:1px solid var(--linie);border-radius:14px;padding:14px 16px;}
+  .karte h3{font-family:var(--sans);margin:0 0 8px;font-size:15px;}
+  .karte.vor h3{color:var(--gruen);} .karte.nach h3{color:var(--rot);}
+  .karte ul{margin:0;padding-left:18px;} .karte li{font-family:var(--sans);font-size:13.5px;color:var(--tinte);margin:0 0 6px;}
+  .tipp{background:var(--creme-tief);border:1px solid var(--linie);border-radius:12px;padding:13px 16px;
+    font-family:var(--sans);font-size:13.5px;color:var(--tinte);margin:6px 0 0;}
+  .tipp strong{color:var(--blau);}
+  .hinw{font-family:var(--sans);font-size:11.5px;color:#9aa6b0;margin:18px 0 0;text-align:center;}
+  footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--linie);
+    font-family:var(--sans);font-size:12px;color:#8a96a1;text-align:center;}
+  footer a{color:inherit;}
+</style>
+</head>
+<body>
+<div class="huelle">
+  <a class="zurueck" href="../">‹ Zur Startseite</a>
+
+  <div class="app-kopf">
+    <div class="badge" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 7.5a3.5 3.5 0 0 0-6.8-1.2C7 6.7 4.5 8.7 4.5 12.2c0 3.6 3 6.3 7 6.3 3.2 0 5.4-1.8 5.4-1.8"/>
+        <path d="M16 7.5l3.5-1.2-1.4 3.1"/>
+        <path d="M9.2 18.3 8 21.5M13 18.5l.8 3"/>
+        <circle cx="13.4" cy="7.4" r=".9" fill="#fff" stroke="none"/>
+      </svg>
+    </div>
+    <h1>Merlin Bird ID</h1>
+    <p class="unter">Kostenlose Vogelbestimmung per Foto, Gesang und Fragen – vom Cornell Lab of Ornithology</p>
+  </div>
+
+  <div class="install">
+    <a href="https://play.google.com/store/apps/details?id=com.labs.merlinbirdid.app" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.3.3-.5.7-.5 1.3v17c0 .5.2 1 .5 1.3l9.9-9.9L3.6 2.3zm12 5.8L5.7 2.6c-.4-.2-.8-.2-1.1-.1l9.4 9.4 1.6-1.8zm4.1 2.4l-2.6-1.5-1.8 1.8 1.8 1.8 2.6-1.5c.8-.4.8-1.7 0-2.6zm-6.4 3.6L4.6 23.5c.3.1.7.1 1.1-.1l9.9-5.5-1.6-2.8z"/></svg>
+      <span class="lab"><small>Installieren auf</small><strong>Google Play</strong></span>
+    </a>
+    <a href="https://apps.apple.com/app/merlin-bird-id-by-cornell-lab/id773457673" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.6 12.5c0-2.6 2.1-3.8 2.2-3.9-1.2-1.7-3-2-3.7-2-1.6-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.1 2.5-1.8 3-.5 7.5 1.2 9.9.8 1.2 1.8 2.5 3.1 2.5 1.3-.1 1.7-.8 3.2-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.4-.9-2.4-3.8zM15.1 4.8c.7-.8 1.2-2 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1.1 3 1.1.1 2.3-.6 3-1.4z"/></svg>
+      <span class="lab"><small>Laden im</small><strong>App Store</strong></span>
+    </a>
+  </div>
+
+  <section class="text">
+    <p>Merlin Bird ID ist die <strong>kostenlose Vogel-App des Cornell Lab of Ornithology</strong> – einer der renommiertesten Vogelforschungs-Einrichtungen der Welt. Die Ergänzung zu Fauna Mibaso: Während du hier Insekten bestimmst, hilft Merlin bei den Vögeln, die dir draußen begegnen.</p>
+    <p>Drei Wege zur Art: per <strong>Foto</strong>, über <strong>fünf einfache Fragen</strong> (Größe, Farbe, Verhalten) – und das Highlight, die <strong>Gesangserkennung</strong>: Die App hört live mit und zeigt in Echtzeit an, welche Vögel gerade singen. Vorab lädt man ein regionales Artenpaket, danach klappt vieles auch offline.</p>
+  </section>
+
+  <div class="vn">
+    <div class="karte vor">
+      <h3>Vorteile</h3>
+      <ul>
+        <li>Komplett kostenlos, ohne Werbung</li>
+        <li>Geniale Gesangs­erkennung in Echtzeit</li>
+        <li>Auch Bestimmung per Foto und per Fragen</li>
+        <li>Regionale Artenpakete – vieles offline nutzbar</li>
+        <li>Riesige Foto- und Tonbibliothek</li>
+        <li>Sehr einsteigerfreundlich</li>
+      </ul>
+    </div>
+    <div class="karte nach">
+      <h3>Nachteile</h3>
+      <ul>
+        <li>Nur Vögel – keine Insekten</li>
+        <li>Artenpaket muss erst geladen werden</li>
+        <li>Tonerkennung mag ruhige Umgebung</li>
+        <li>Teile der Inhalte englisch</li>
+        <li>Erst-Download braucht Internet</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tipp"><strong>Tipp:</strong> Vor dem ersten Spaziergang das Artenpaket „Mitteleuropa/Deutschland" herunterladen – dann erkennt Merlin auch ohne Empfang die heimischen Vögel.</div>
+
+  <p class="hinw">Externe App – nicht Teil von Fauna Mibaso. Bereitstellung und Datenschutz liegen beim jeweiligen Anbieter.</p>
+
+  <footer>© 2026 <a href="../ueber/">Michael Baur</a> · Fauna Mibaso</footer>
+</div>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

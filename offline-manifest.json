@@ -2,6 +2,8 @@
   "pages": [
     "./",
     "./anleitung.html",
+    "./apps/inaturalist.html",
+    "./apps/merlin.html",
     "./arten/ackerhummel.html",
     "./arten/admiral.html",
     "./arten/asiatische-tigermuecke.html",
@@ -209,6 +211,7 @@
     "./images/blueten/uv-ohne.jpg",
     "./images/blueten/vespa-vulgaris.jpg",
     "./images/blueten/zitronenfalter-dost.jpg",
+    "./images/external-apps/inaturalist.png",
     "./images/flyer-hummeln.jpg",
     "./images/flyer-insektenschwund.jpg",
     "./images/flyer-traenke.jpg",
