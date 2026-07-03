@@ -268,12 +268,12 @@ const SCREENS = [
     id:"bausteine", type:"bausteine",
     titel:"Mehr als nur Gras",
     szene:"wiese-sommer.jpg", szeneLabel:"Strukturreiche Sommerwiese",
-    intro:"Welche Strukturen machen deine Wiese für Tiere wertvoll? "+
-          "Wähle alles aus, was du zulassen willst — dann triff deine Entscheidung.",
+    intro:"Welche Strukturen machen deine Wiese für Tiere wertvoll? Wähle mit Bedacht — "+
+          "nicht alles, was grün und hübsch aussieht, ist auch wertvoll. Dann bestätige.",
     optionen:[
-      { label:"Blühende Kräuter", em:"🌼", gut:true, krabbler:"🌼",
+      { label:"Blühende Wildkräuter", em:"🌼", gut:true, krabbler:"🌼",
         effekte:{bluetenangebot:2},
-        feedback:"Nektar und Pollen für Bienen, Hummeln, Falter und Schwebfliegen." },
+        feedback:"Heimische Wildblumen liefern Nektar und Pollen für Bienen, Hummeln und Falter." },
       { label:"Brennnessel-Ecke", em:"🌿", gut:true, krabbler:"🐛",
         effekte:{raupenfutter:2},
         feedback:"Unscheinbar, aber unverzichtbar: Raupenfutter für viele Schmetterlinge." },
@@ -286,11 +286,21 @@ const SCREENS = [
       { label:"Offene Bodenstelle", em:"🟫", gut:true, krabbler:"🐜",
         effekte:{verstecke:1},
         feedback:"Nackter, warmer Boden ist Nistplatz für viele bodennistende Wildbienen." },
-      { label:"Kurzrasen & Schotter", em:"🪨", gut:false,
+      // --- Fallen: sehen nützlich aus, sind es aber nicht ---
+      { label:"Gefüllte Zierblüten", em:"🌹", gut:false,
         effekte:{},
-        feedback:"Ordentlich, aber ökologisch fast tot: kaum Nahrung, kaum Verstecke." }
+        feedback:"Sieht üppig aus, ist aber eine Sackgasse: Gefüllte Zuchtblüten haben "+
+                 "kaum Nektar und keinen Pollen — für Insekten wertlos." },
+      { label:"Mähroboter fürs ordentliche Grün", em:"🤖", gut:false,
+        effekte:{verstecke:-2},
+        feedback:"Eine echte Gefahr: Der Roboter hält alles kurz, zerhäckselt Kleintiere "+
+                 "und verletzt nachts Igel. Er nimmt der Wiese jede Struktur." },
+      { label:"Kirschlorbeer-Hecke", em:"🌳", gut:false,
+        effekte:{},
+        feedback:"Immergrün und beliebt, aber ökologisch tot: Heimische Insekten können "+
+                 "mit dem exotischen Kirschlorbeer nichts anfangen." }
     ],
-    hinweis:"Tipp: „Unordnung“ ist hier kein Makel — jede Struktur ist ein Lebensraum."
+    hinweis:"Merke: „Unordnung“ ist kein Makel — aber „grün und gepflegt“ ist noch kein Lebensraum."
   },
 
   /* 2 — Blattlaus-Alarm (Entscheidung) ---------------------------------- */
@@ -306,6 +316,9 @@ const SCREENS = [
       { label:"Alle absammeln", em:"✋", klasse:"mittel", effekte:{},
         feedback:"Gut gemeint, aber du nimmst der Wiese eine wichtige Futterquelle. "+
                  "Ohne Blattläuse verhungern ihre Jäger." },
+      { label:"Marienkäfer aus dem Handel aussetzen", em:"🛒", klasse:"schlecht", effekte:{},
+        feedback:"Die Falle: Im Handel sind meist Asiatische Marienkäfer — eine invasive Art, "+
+                 "die unsere heimischen verdrängt. Deine Wiese hat ihre Jäger längst selbst." },
       { label:"Beobachten und dulden", em:"👀", klasse:"gut", effekte:{nahrungsnetz:2}, richtig:true,
         feedback:"Richtig! Blattläuse sind nicht nur „Schädlinge“ — sie sind Futter für "+
                  "Marienkäferlarven, Schwebfliegenlarven, Florfliegen und Vögel. "+
@@ -329,12 +342,16 @@ const SCREENS = [
     tiere:[
       { label:"Regenwurm",        em:"🪱", zone:"boden",
         feedback:"Der Regenwurm lockert und düngt den Boden — die unsichtbare Gärtnerei der Wiese." },
-      { label:"Assel",            em:"🦗", zone:"laub",
+      { label:"Assel",            em:"🪳", zone:"laub",
         feedback:"Asseln zersetzen Laub und Totholz zu Humus. Ohne sie stapelt sich das tote Material." },
       { label:"Marienkäferlarve", em:"🐞", zone:"blueten",
-        feedback:"Die gefräßige Larve jagt Blattläuse an Kräutern und Blüten." },
+        feedback:"Die gefräßige Larve jagt Blattläuse an Kräutern und Blüten — nicht im Boden." },
       { label:"Wildbiene",        em:"🐝", zone:"staengel",
-        feedback:"Viele Wildbienen nisten in hohlen, stehen gelassenen Stängeln." }
+        feedback:"Die Falle: Wildbienen besuchen Blüten, aber sie NISTEN in hohlen, stehen gelassenen Stängeln." },
+      { label:"Florfliegenlarve", em:"🦟", zone:"blueten",
+        feedback:"Auch die Florfliegenlarve jagt Blattläuse dort, wo sie sitzen: an Kräutern und Blüten." },
+      { label:"Ohrwurm",          em:"🦂", zone:"laub",
+        feedback:"Der Ohrwurm klettert zwar in Blüten, versteckt sich tagsüber aber in Laub, Ritzen und Totholz." }
     ],
     proRichtig:{verstecke:1}
   },
@@ -352,16 +369,20 @@ const SCREENS = [
       { id:"spinne",    label:"Spinne",    em:"🕷️" }
     ],
     jaeger:[
-      { id:"mklarve", label:"Marienkäferlarve", em:"🐞" },
-      { id:"sflarve", label:"Schwebfliegenlarve",em:"🪰" },
-      { id:"vogel",   label:"Vogel",             em:"🐦" }
+      { id:"mklarve",     label:"Marienkäferlarve", em:"🐞" },
+      { id:"sflarve",     label:"Schwebfliegenlarve",em:"🪰" },
+      { id:"vogel",       label:"Vogel",             em:"🐦" },
+      { id:"schlupfwespe",label:"Schlupfwespe",      em:"🐝" }
     ],
-    /* gültige „frisst“-Beziehungen (Beute → Jäger) */
+    /* gültige „frisst/befällt“-Beziehungen (Beute → Jäger).
+       Fallen: Marienkäferlarve frisst NUR Blattläuse (nicht Raupen),
+       die Schlupfwespe sieht aus wie eine Biene, ist aber ein Raupen-Parasit. */
     verbindungen:[
-      { von:"blattlaus", zu:"mklarve", text:"Marienkäferlarven vertilgen Unmengen an Blattläusen." },
-      { von:"blattlaus", zu:"sflarve", text:"Auch Schwebfliegenlarven leben fast nur von Blattläusen." },
-      { von:"raupe",     zu:"vogel",   text:"Raupen sind das wichtigste Vogelfutter für die Jungenaufzucht." },
-      { von:"spinne",    zu:"vogel",   text:"Spinnen wiederum landen selbst im Schnabel der Vögel." }
+      { von:"blattlaus", zu:"mklarve",     text:"Marienkäferlarven vertilgen Unmengen an Blattläusen." },
+      { von:"blattlaus", zu:"sflarve",     text:"Auch Schwebfliegenlarven leben fast nur von Blattläusen." },
+      { von:"raupe",     zu:"vogel",       text:"Raupen sind das wichtigste Vogelfutter für die Jungenaufzucht." },
+      { von:"raupe",     zu:"schlupfwespe",text:"Die Schlupfwespe legt ihre Eier in Raupen — von innen aufgefressen." },
+      { von:"spinne",    zu:"vogel",       text:"Spinnen wiederum landen selbst im Schnabel der Vögel." }
     ],
     proVerbindung:{nahrungsnetz:1}
   },
@@ -382,7 +403,10 @@ const SCREENS = [
                  "einen Rückzugsort. In Altgras und Stängeln überwintern unzählige Insekten." },
       { label:"Gar nicht mähen", em:"🌳", klasse:"mittel", effekte:{ueberwinterung:1},
         feedback:"Kurzfristig okay, doch ohne jede Mahd verbuscht die Wiese mit den Jahren — "+
-                 "und die lichtliebenden Blütenpflanzen verschwinden." }
+                 "und die lichtliebenden Blütenpflanzen verschwinden." },
+      { label:"Mulchen: Schnittgut liegen lassen", em:"🌱", klasse:"schlecht", effekte:{},
+        feedback:"Die Falle: Klingt naturnah, ist aber das Gegenteil. Das liegende Schnittgut "+
+                 "überdüngt den Boden — wenige Gräser wuchern, die zarten Blüten verschwinden." }
     ]
   },
 
@@ -400,6 +424,9 @@ const SCREENS = [
       { label:"Lampe dimmen, warmweiß", em:"🔅", klasse:"mittel", effekte:{nachtlebensraum:1},
         feedback:"Besser: Warmes, gedämpftes Licht zieht weniger Insekten an. "+
                  "Ganz dunkel wäre für die Nachttiere aber noch wertvoller." },
+      { label:"Solar-Bewegungsmelder anbringen", em:"🔦", klasse:"schlecht", effekte:{},
+        feedback:"Die Falle: „Solar“ klingt öko, doch das Licht springt genau dann an, "+
+                 "wenn sich nachts etwas bewegt — also immer dann, wenn die Nachttiere aktiv sind." },
       { label:"Lampe ausschalten", em:"🌙", klasse:"gut", effekte:{nachtlebensraum:3}, richtig:true,
         feedback:"Richtig! Dunkelheit ist ein Lebensraum. Ohne Lichtverschmutzung "+
                  "bestäuben Nachtfalter ungestört, und Glühwürmchen finden zueinander." }
@@ -556,7 +583,8 @@ function renderBausteine(s){
     '<p class="intro">'+s.intro+'</p><div class="wahlgitter" id="gitter">';
   s.optionen.forEach((o,k)=>{
     const gew=vorbei && s._gewaehlt && s._gewaehlt.includes(k);
-    html+='<button class="wahl'+(gew?" gewaehlt":"")+'" data-k="'+k+'"'+(vorbei?" disabled":"")+'>'+
+    const kl=gew ? (o.gut?" richtig":" falsch") : "";   // beim Wiederbesuch grün/rot
+    html+='<button class="wahl'+kl+'" data-k="'+k+'"'+(vorbei?" disabled":"")+'>'+
       '<span class="em">'+o.em+'</span>'+o.label+'</button>';
   });
   html+='</div></div>';
@@ -590,13 +618,20 @@ function renderBausteine(s){
       setzeKrabbler(o.krabbler);
     });
     erledigt[s.id]=true;
-    elB.querySelectorAll(".wahl").forEach(b=>b.disabled=true);
+    // gute Auswahl grün, Fallen rot markieren
+    elB.querySelectorAll(".wahl").forEach(b=>{
+      b.disabled=true;
+      const o=s.optionen[+b.dataset.k];
+      if(s._gewaehlt.includes(+b.dataset.k)) b.classList.add(o.gut?"richtig":"falsch");
+    });
     zeichneBarometer(pulsKeys);
-    const schlecht=s._gewaehlt.some(k=>!s.optionen[k].gut);
-    zeigeInfo(gutGewaehlt>0?"ok":"no","Deine Wiese wächst",
-      [ s.optionen.filter((o,k)=>s._gewaehlt.includes(k)&&o.gut).map(o=>o.feedback).join(" ")||
-          "Mit diesen Bausteinen bleibt die Wiese lebensarm.",
-        schlecht?"Kurzrasen und Schotter bringen ökologisch fast nichts — Struktur ist alles.":s.hinweis ]);
+    const gutTexte=s._gewaehlt.filter(k=>s.optionen[k].gut).map(k=>s.optionen[k].feedback);
+    const fallenTexte=s._gewaehlt.filter(k=>!s.optionen[k].gut).map(k=>s.optionen[k].feedback);
+    const texte=[ gutTexte.length?gutTexte.join(" ")
+                  :"Mit dieser Auswahl bleibt die Wiese lebensarm." ];
+    if(fallenTexte.length) texte.push("⚠️ "+fallenTexte.join(" "));
+    else texte.push(s.hinweis);
+    zeigeInfo(fallenTexte.length?"tipp":(gutGewaehlt>0?"ok":"no"),"Deine Wiese wächst",texte);
     setzeWeiter(true,"Weiter ›");
     $("weiterBtn").onclick=weiterKlick;   // ab jetzt normal weiterblättern
   };
