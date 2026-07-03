@@ -124,3 +124,5 @@ Alles ist statisches HTML/CSS/JS ohne externe Abhängigkeiten.
 ---
 
 © 2026 Michael Baur · Fauna Mibaso
+
+<!-- Veröffentlichungs-Anstoß: 2026-07-03 10:11 -->
