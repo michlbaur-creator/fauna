@@ -164,9 +164,36 @@
   footer{margin-top:30px;font-family:var(--sans);font-size:12px;color:#8a96a1;}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
   body{padding-top:calc(env(safe-area-inset-top) + min(2vh,16px));}
+  /* Einheitliches Pfad-Intro (Expedition Wiese) */
+  .pfad-intro{position:fixed;inset:0;z-index:9000;background:var(--creme);display:flex;
+    align-items:center;justify-content:center;padding:26px 20px;overflow-y:auto;transition:opacity .5s ease;}
+  .pfad-intro.weg{opacity:0;visibility:hidden;pointer-events:none;}
+  .pi-inner{max-width:440px;text-align:center;}
+  .pi-foto{width:100%;max-width:360px;aspect-ratio:16/10;object-fit:cover;border-radius:16px;
+    border:1px solid #cdbf9e;box-shadow:0 6px 20px rgba(35,61,92,.18);margin:0 auto 18px;display:block;}
+  .pi-eyebrow{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--honig-tief,#a9762c);margin-bottom:6px;}
+  .pi-titel{font-family:Georgia,serif;font-weight:normal;font-size:clamp(24px,7vw,32px);
+    color:var(--blau);margin:0 0 10px;line-height:1.1;}
+  .pi-lead{font-family:Georgia,serif;font-size:clamp(15px,4.2vw,17px);color:var(--tinte,#1c2e42);
+    margin:0 auto 22px;max-width:34ch;line-height:1.5;}
+  .pi-los{font-family:var(--sans);font-size:16px;font-weight:700;color:var(--creme);background:var(--honig);
+    border:none;border-radius:999px;padding:14px 32px;cursor:pointer;box-shadow:0 3px 12px rgba(194,138,58,.35);
+    transition:transform .15s,background .18s;}
+  .pi-los:hover{background:var(--honig-tief,#a9762c);transform:translateY(-1px);}
+  @media (prefers-reduced-motion:reduce){.pfad-intro{transition:none;}}
 </style>
 </head>
 <body>
+<div class="pfad-intro" id="pfadIntro">
+  <div class="pi-inner">
+    <img class="pi-foto" src="../images/blueten/hummel-beinwell.jpg" alt="" onerror="this.style.display='none'">
+    <div class="pi-eyebrow">🍃 Expedition Wiese · Lernpfad</div>
+    <h1 class="pi-titel">Wer bestäubt was?</h1>
+    <p class="pi-lead">Blüte und Bestäuber passen zusammen wie Schlüssel und Schloss. Finde heraus, welches Insekt zu welcher Blüte gehört — und warum das kein Zufall ist.</p>
+    <button class="pi-los" onclick="var e=document.getElementById('pfadIntro');e.classList.add('weg');setTimeout(function(){e.style.display='none';},500);">Los geht’s →</button>
+  </div>
+</div>
 <div class="huelle">
   <div class="kopf">
     <a class="zurueck" href="../index.html">‹ Startseite</a>
@@ -183,7 +210,7 @@
     <button class="knopf prim" id="weiterBtn">Nächste Station ›</button>
   </div>
 
-  <footer>© 2026 <a href="../ueber/" style="color:inherit;">Michael Baur</a> · Fauna Mibaso</footer>
+  <footer><a href="wiesenpass.html" style="color:inherit;font-weight:600;">🍃 Forscherpass</a> · © 2026 <a href="../ueber/" style="color:inherit;">Michael Baur</a> · Fauna Mibaso</footer>
 </div>
 
 <script>
