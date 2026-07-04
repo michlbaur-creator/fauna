@@ -144,10 +144,11 @@ function render(){
   const rk=document.getElementById("rangkarte");
   let rkHTML='<div class="medaille">'+rang.med+'</div>'+
     '<div class="rang">'+rang.name+'</div>'+
-    '<div class="summe"><b>'+summe+'</b> / '+MAX_BL+' Blättern 🍃 · '+fertige+' / '+PFADE.length+' Pfaden</div>'+
+    '<div class="summe"><b>'+summe+'</b> / '+MAX_BL+' Blättern 🍃 · '+fertige+' / '+PFADE.length+' Pfade</div>'+
     '<div class="fortschritt"><div id="fbar"></div></div>';
+  const fehlt=naechst?(naechst.ab-summe):0;
   rkHTML += naechst
-    ? '<p class="naechster">Noch '+(naechst.ab-summe)+' Blätter bis „'+naechst.name+'“</p>'
+    ? '<p class="naechster">Noch '+fehlt+(fehlt===1?' Blatt':' Blätter')+' bis „'+naechst.name+'“</p>'
     : '<p class="naechster">Höchster Rang erreicht — Respekt! 🎉</p>';
   rk.innerHTML=rkHTML;
   requestAnimationFrame(()=>{ const b=document.getElementById("fbar"); if(b) b.style.width=(summe/MAX_BL*100)+"%"; });

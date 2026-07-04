@@ -279,10 +279,10 @@ const SCREENS = [
     intro:"Jedes Tier hat seine Stufe. Tippe ein Lebewesen an, dann die passende Stufe "+
           "der Pyramide — von den Pflanzen unten bis zum Spitzenräuber oben.",
     stufen:[ /* oben → unten */
-      {id:"spitze",         label:"Spitzenräuber",   breite:"b-spitze"},
-      {id:"raeuber",        label:"Räuber",          breite:"b-raeuber"},
-      {id:"pflanzenfresser",label:"Pflanzenfresser", breite:"b-pflanzenfresser"},
-      {id:"produzenten",    label:"Produzenten",     breite:"b-produzenten"}
+      {id:"spitze",         label:"Spitzenräuber",                breite:"b-spitze"},
+      {id:"raeuber",        label:"Räuber (Konsumenten)",         breite:"b-raeuber"},
+      {id:"pflanzenfresser",label:"Pflanzenfresser (Konsumenten)",breite:"b-pflanzenfresser"},
+      {id:"produzenten",    label:"Pflanzen (Produzenten)",       breite:"b-produzenten"}
     ],
     organismen:[
       {org:"bluete",       stufe:"produzenten",     feedback:"Pflanzen sind die Produzenten: Sie bauen aus Licht Nahrung — die Basis von allem."},
@@ -311,9 +311,9 @@ const SCREENS = [
   /* 4 — Zersetzer (Konzept mit Hotspots) */
   { id:"zersetzer", type:"konzept",
     titel:"Die heimlichen Aufräumer",
-    text:"Die Pyramide hat eine unsichtbare Grundlage: die Zersetzer. Sie verwandeln totes "+
-         "Laub, Kot und gestorbene Tiere wieder in Erde und Nährstoffe — und schließen so "+
-         "den Kreislauf. Ohne sie würde die Wiese unter ihren eigenen Resten ersticken.",
+    text:"Die Pyramide hat eine unsichtbare Grundlage: die Zersetzer (Destruenten). Sie "+
+         "verwandeln totes Laub, Kot und gestorbene Tiere wieder in Erde und Nährstoffe — und "+
+         "schließen so den Kreislauf. Ohne sie würde die Wiese unter ihren eigenen Resten ersticken.",
     hint:"Tippe die Aufräumer an.",
     svg:"kreislauf",
     hotspots:[
@@ -554,7 +554,7 @@ function renderPyramide(s){
         zeigeInfo("ok","Richtig",o.feedback);
         aktiv=null;
         if(s._platziert.size===gesamt){ erledigt[s.id]=true;
-          zeigeInfo("ok","Pyramide steht","Unten viele Pflanzen, oben wenige Räuber — so trägt sich das Leben."); }
+          zeigeInfo("ok","Pyramide steht","Unten die Produzenten (Pflanzen), in der Mitte die Konsumenten (Pflanzen- und Fleischfresser), oben die wenigen Spitzenräuber — so trägt sich das Leben."); }
       } else {
         band.classList.add("ziel"); setTimeout(()=>band.classList.remove("ziel"),500);
         zeigeInfo("no","Nicht diese Stufe","Überleg: Frisst dieses Lebewesen Pflanzen, andere Tiere — oder ist es selbst die Pflanze?");
