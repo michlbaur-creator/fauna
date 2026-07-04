@@ -87,6 +87,10 @@
     border:1.5px solid var(--linie);border-radius:14px;padding:12px 13px;transition:.15s;}
   .wahl:hover:not(:disabled){border-color:#9bb0c6;}
   .wahl .em{font-size:24px;flex:0 0 auto;line-height:1;}
+  /* Echte Tierfotos als runde Insets (mit Emoji-Fallback) */
+  .tierfoto{flex:0 0 auto;width:40px;height:40px;border-radius:50%;object-fit:cover;
+    background:var(--creme-tief);border:1px solid var(--linie);box-shadow:0 1px 3px rgba(35,61,92,.15);}
+  .knoten .tierfoto{width:46px;height:46px;}
   .wahl.gewaehlt{border-color:var(--honig);background:#fbf3e3;}
   .wahl.gewaehlt::after{content:"✓";position:absolute;top:7px;right:9px;color:var(--honig);font-weight:700;font-family:var(--sans);}
   .wahl.richtig{border-color:var(--gruen);background:#e6efe7;color:var(--gruen-tief);}
@@ -219,6 +223,19 @@
 const SZENE  = "../images/wiese/";
 const TIERE  = "../images/wiese/tiere/";
 
+/* --- Expedition „Forscherpass“: Ergebnis geräteweit merken --- */
+const EXP_ID = "wiese";
+function meldeExpedition(id, blaetter){
+  try{
+    const K="mibaso.fauna.expedition";
+    const d=JSON.parse(localStorage.getItem(K)||"{}");
+    if(!d[id] || blaetter>d[id].blaetter){
+      d[id]={blaetter:blaetter, done:true, ts:Date.now()};
+      localStorage.setItem(K, JSON.stringify(d));
+    }
+  }catch(e){}
+}
+
 /* ---------- Die sechs Öko-Werte ---------- */
 const WERTE = {
   bluetenangebot: 0,
@@ -255,7 +272,7 @@ const SCREENS = [
   {
     id:"einstieg", type:"intro",
     titel:"Die Wiese lebt",
-    szene:"wiese-fruehling.jpg", szeneLabel:"Wiese im Frühling, noch wenig belebt",
+    szene:"wiese-fruehling.png", szeneLabel:"Wiese im Frühling, noch wenig belebt",
     lead:"Eine Wiese ist mehr als Gras. Sie ist ein kleines Ökosystem aus Blüten, "+
          "Kräutern, Boden, Totholz und tausend Tieren. In diesem Lernpfad baust und "+
          "pflegst du deine eigene Wiese — jede Entscheidung verändert, wie viel Leben "+
@@ -267,7 +284,7 @@ const SCREENS = [
   {
     id:"bausteine", type:"bausteine",
     titel:"Mehr als nur Gras",
-    szene:"wiese-sommer.jpg", szeneLabel:"Strukturreiche Sommerwiese",
+    szene:"wiese-sommer.png", szeneLabel:"Strukturreiche Sommerwiese",
     intro:"Welche Strukturen machen deine Wiese für Tiere wertvoll? Wähle mit Bedacht — "+
           "nicht alles, was grün und hübsch aussieht, ist auch wertvoll. Dann bestätige.",
     optionen:[
@@ -307,7 +324,7 @@ const SCREENS = [
   {
     id:"blattlaus", type:"entscheidung",
     titel:"Blattlaus-Alarm",
-    szene:"wiese-sommer.jpg", szeneLabel:"Blattläuse an einem Stängel",
+    szene:"wiese-sommer.png", szeneLabel:"Blattläuse an einem Stängel",
     intro:"An deinen Pflanzen sitzen plötzlich viele Blattläuse. Was tust du?",
     optionen:[
       { label:"Mit Gift bekämpfen", em:"🧴", klasse:"schlecht", effekte:{},
@@ -330,7 +347,7 @@ const SCREENS = [
   {
     id:"werlebtwo", type:"zuordnen",
     titel:"Wer lebt wo?",
-    szene:"boden-querschnitt.jpg", szeneLabel:"Bodenquerschnitt mit Wurzeln und Tierverstecken",
+    szene:"boden-querschnitt.png", szeneLabel:"Bodenquerschnitt mit Wurzeln und Tierverstecken",
     intro:"Jedes Tier braucht seinen Platz. Tippe ein Tier an, dann seinen passenden "+
           "Lebensraum. Für jede richtige Zuordnung wächst dein Wert „Verstecke“.",
     zonen:[
@@ -340,17 +357,17 @@ const SCREENS = [
       { id:"staengel",label:"Alte Stängel",      em:"🌾" }
     ],
     tiere:[
-      { label:"Regenwurm",        em:"🪱", zone:"boden",
+      { label:"Regenwurm",        em:"🪱", img:"tier-regenwurm.png", zone:"boden",
         feedback:"Der Regenwurm lockert und düngt den Boden — die unsichtbare Gärtnerei der Wiese." },
-      { label:"Assel",            em:"🪳", zone:"laub",
+      { label:"Assel",            em:"🪳", img:"tier-assel.png", zone:"laub",
         feedback:"Asseln zersetzen Laub und Totholz zu Humus. Ohne sie stapelt sich das tote Material." },
-      { label:"Marienkäferlarve", em:"🐞", zone:"blueten",
+      { label:"Marienkäferlarve", em:"🐞", img:"tier-marienkaeferlarve.png", zone:"blueten",
         feedback:"Die gefräßige Larve jagt Blattläuse an Kräutern und Blüten — nicht im Boden." },
-      { label:"Wildbiene",        em:"🐝", zone:"staengel",
+      { label:"Wildbiene",        em:"🐝", img:"tier-wildbiene.png", zone:"staengel",
         feedback:"Die Falle: Wildbienen besuchen Blüten, aber sie NISTEN in hohlen, stehen gelassenen Stängeln." },
-      { label:"Florfliegenlarve", em:"🦟", zone:"blueten",
+      { label:"Florfliegenlarve", em:"🦟", img:"tier-florfliegenlarve.png", zone:"blueten",
         feedback:"Auch die Florfliegenlarve jagt Blattläuse dort, wo sie sitzen: an Kräutern und Blüten." },
-      { label:"Ohrwurm",          em:"🦂", zone:"laub",
+      { label:"Ohrwurm",          em:"🦂", img:"tier-ohrwurm.png", zone:"laub",
         feedback:"Der Ohrwurm klettert zwar in Blüten, versteckt sich tagsüber aber in Laub, Ritzen und Totholz." }
     ],
     proRichtig:{verstecke:1}
@@ -360,19 +377,19 @@ const SCREENS = [
   {
     id:"nahrungsnetz", type:"netz",
     titel:"Baue ein Nahrungsnetz",
-    szene:"wiese-sommer.jpg", szeneLabel:"Strukturreiche Sommerwiese voller Leben",
+    szene:"wiese-sommer.png", szeneLabel:"Strukturreiche Sommerwiese voller Leben",
     intro:"Ein Nahrungsnetz ist mehr als eine Kette — viele Wege kreuzen sich. "+
           "Tippe eine Beute an, dann einen Jäger, der sie frisst. Finde alle Verbindungen.",
     beute:[
-      { id:"blattlaus", label:"Blattlaus", em:"🐜" },
-      { id:"raupe",     label:"Raupe",     em:"🐛" },
-      { id:"spinne",    label:"Spinne",    em:"🕷️" }
+      { id:"blattlaus", label:"Blattlaus", em:"🐜", img:"tier-blattlaus.png" },
+      { id:"raupe",     label:"Raupe",     em:"🐛", img:"tier-raupe.png" },
+      { id:"spinne",    label:"Spinne",    em:"🕷️", img:"tier-spinne.png" }
     ],
     jaeger:[
-      { id:"mklarve",     label:"Marienkäferlarve", em:"🐞" },
-      { id:"sflarve",     label:"Schwebfliegenlarve",em:"🪰" },
-      { id:"vogel",       label:"Vogel",             em:"🐦" },
-      { id:"schlupfwespe",label:"Schlupfwespe",      em:"🐝" }
+      { id:"mklarve",     label:"Marienkäferlarve", em:"🐞", img:"tier-marienkaeferlarve.png" },
+      { id:"sflarve",     label:"Schwebfliegenlarve",em:"🪰", img:"tier-schwebfliegenlarve.png" },
+      { id:"vogel",       label:"Vogel",             em:"🐦", img:"tier-vogel.png" },
+      { id:"schlupfwespe",label:"Schlupfwespe",      em:"🐝", img:"tier-schlupfwespe.png" }
     ],
     /* gültige „frisst/befällt“-Beziehungen (Beute → Jäger).
        Fallen: Marienkäferlarve frisst NUR Blattläuse (nicht Raupen),
@@ -391,7 +408,7 @@ const SCREENS = [
   {
     id:"maehen", type:"entscheidung",
     titel:"Du pflegst die Wiese",
-    szene:"wiese-kurzmahd.jpg", szeneLabel:"Wiese nach der Mahd",
+    szene:"wiese-kurzmahd.png", szeneLabel:"Wiese nach der Mahd",
     intro:"Der Sommer ist vorbei, die Wiese wird hoch. Wie mähst du?",
     optionen:[
       { label:"Alles auf einmal kurz mähen", em:"🚜", klasse:"schlecht", effekte:{},
@@ -414,7 +431,7 @@ const SCREENS = [
   {
     id:"nacht", type:"entscheidung", nacht:true,
     titel:"Nacht auf der Wiese",
-    szene:"wiese-nacht.jpg", szeneLabel:"Wiese bei Nacht",
+    szene:"wiese-nacht.png", szeneLabel:"Wiese bei Nacht",
     intro:"Es wird dunkel — jetzt beginnt die zweite Schicht: Nachtfalter und "+
           "Glühwürmchen. Am Rand steht eine helle Gartenlampe. Was tust du?",
     optionen:[
@@ -440,20 +457,20 @@ const SCREENS = [
 /* ---------- Auswertungs-Stufen ---------- */
 function ergebnisStufe(total){
   if(total<=4)  return {
-    name:"Öko-Wüste", medaille:"🏜️", szene:"ergebnis-wueste.jpg",
+    name:"Öko-Wüste", medaille:"🏜️", szene:"ergebnis-wueste.png",
     text:"Diese Wiese ist ordentlich — aber leer. Es fehlen Blüten, Verstecke und "+
          "Winterquartiere, also auch die Tiere, die davon leben. Artenvielfalt entsteht "+
          "nicht durch maximale Ordnung, sondern durch passende Strukturen." };
   if(total<=9)  return {
-    name:"Wiese mit Potenzial", medaille:"🌱", szene:"ergebnis-potenzial.jpg",
+    name:"Wiese mit Potenzial", medaille:"🌱", szene:"ergebnis-potenzial.png",
     text:"Ein guter Anfang! Erste Strukturen sind da. Mit mehr Raupenfutter, wilden "+
          "Ecken und Rücksicht bei Mahd und Licht kann hier viel mehr Leben einziehen." };
   if(total<=15) return {
-    name:"Lebendige Wiese", medaille:"🦋", szene:"ergebnis-lebendig.jpg",
+    name:"Lebendige Wiese", medaille:"🦋", szene:"ergebnis-lebendig.png",
     text:"Stark! Deine Wiese bietet Nahrung, Verstecke und Nachtleben. Tag- und "+
          "Nachtschicht funktionieren, das Nahrungsnetz trägt sich selbst." };
   return {
-    name:"Artenreiches Mini-Ökosystem", medaille:"🌾", szene:"ergebnis-artenreich.jpg",
+    name:"Artenreiches Mini-Ökosystem", medaille:"🌾", szene:"ergebnis-artenreich.png",
     text:"Sehr stabil! Diese Wiese bietet Nahrung, Nistplätze, Jagdräume, Raupenfutter "+
          "und Winterquartiere. Genau so entsteht Artenvielfalt: nicht durch maximale "+
          "Ordnung, sondern durch passende Strukturen. Tipp: abschnittsweise pflegen, "+
@@ -482,6 +499,16 @@ function szeneHTML(s){
     '<img src="'+SZENE+s.szene+'" alt="'+(s.szeneLabel||"")+'" '+
       'onerror="this.style.display=\'none\'">'+
   '</div>';
+}
+
+/* Icon einer Option: echtes Tierfoto (falls o.img gesetzt) sonst Emoji.
+   Fällt das Foto aus, ersetzt onerror es durch das Emoji. */
+function icon(o){
+  if(o.img){
+    return '<img class="tierfoto" src="'+TIERE+o.img+'" alt="'+o.label+'" '+
+      'onerror="this.outerHTML=\'<span class=&quot;em&quot;>'+o.em+'</span>\'">';
+  }
+  return '<span class="em">'+o.em+'</span>';
 }
 
 /* kleine Tier-Icons in die Szene setzen (Reaktion auf Auswahl) */
@@ -701,7 +728,7 @@ function renderZuordnen(s){
   s.tiere.forEach((t,k)=>{
     const fertig=s._geloest.has(k);
     html+='<button class="wahl'+(fertig?" richtig":"")+'" data-t="'+k+'"'+(fertig?" disabled":"")+'>'+
-      '<span class="em">'+t.em+'</span>'+t.label+'</button>';
+      icon(t)+t.label+'</button>';
   });
   html+='</div>';
   html+='<p class="frage" style="font-size:14px;color:#8a96a1;font-family:var(--sans);letter-spacing:.06em;text-transform:uppercase;margin-top:14px;">Lebensräume</p><div class="wahlgitter" id="zonen">';
@@ -766,10 +793,10 @@ function renderNetz(s){
       '<svg class="netz-svg" id="netzsvg" preserveAspectRatio="none"></svg>'+
       '<div class="netz-spalten">'+
         '<div class="netz-spalte" id="spBeute"><div class="kopfz">Beute</div>'+
-          s.beute.map(b=>'<button class="knoten" data-b="'+b.id+'"><span class="em">'+b.em+'</span>'+b.label+'</button>').join("")+
+          s.beute.map(b=>'<button class="knoten" data-b="'+b.id+'">'+icon(b)+b.label+'</button>').join("")+
         '</div>'+
         '<div class="netz-spalte" id="spJaeger"><div class="kopfz">Jäger</div>'+
-          s.jaeger.map(j=>'<button class="knoten" data-j="'+j.id+'"><span class="em">'+j.em+'</span>'+j.label+'</button>').join("")+
+          s.jaeger.map(j=>'<button class="knoten" data-j="'+j.id+'">'+icon(j)+j.label+'</button>').join("")+
         '</div>'+
       '</div>'+
     '</div></div>';
@@ -848,19 +875,24 @@ function renderNetz(s){
 function renderAuswertung(s){
   const total=gesamt();
   const erg=ergebnisStufe(total);
+  // Öko-Punkte → Blätter für den Forscherpass: 16+ =3, 10-15 =2, sonst 1
+  const blaetter = total>=16 ? 3 : total>=10 ? 2 : 1;
+  meldeExpedition(EXP_ID, blaetter);
   elNav.style.display="none";
   let html='<div class="stufe ergebnis">'+
     szeneHTML({szene:erg.szene, szeneLabel:"Ergebnisbild: "+erg.name})+
     '<div class="medaille">'+erg.medaille+'</div>'+
     '<h2 class="stufe-titel">'+erg.name+'</h2>'+
     '<p class="punkte-gross">Öko-Punkte: <b>'+total+'</b></p>'+
+    '<p class="blaetter" style="font-size:28px;letter-spacing:4px;margin:2px 0 8px;">'+
+      "🍃".repeat(blaetter)+'<span style="opacity:.25">'+"🍃".repeat(3-blaetter)+'</span></p>'+
     '<p class="beschrieb">'+erg.text+'</p>';
   // Barometer als Zusammenfassung
   html+='<div class="barometer an" style="display:block;max-width:340px;margin:0 auto 16px;">'+
     '<h2>Deine Wiese im Überblick</h2><div id="baroEnd"></div></div>';
   html+='<div class="knoepfe">'+
     '<button class="knopf prim" id="nochmal" style="margin:0;">Noch einmal spielen</button>'+
-    '<a class="knopf" href="../index.html">Zur Startseite</a></div></div>';
+    '<a class="knopf" href="wiesenpass.html">🍃 Zum Forscherpass</a></div></div>';
   elB.innerHTML=html;
 
   // End-Barometer zeichnen

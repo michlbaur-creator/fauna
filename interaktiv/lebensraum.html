@@ -205,6 +205,10 @@ function ende(){
   $("balken")&&($("balken").style.width="100%");
   $("zaehler").textContent="";
   const perfekt=score===DATEN.length;
+  // Ergebnis an den Forscherpass melden (3/2/1 Blätter)
+  const blaetter = perfekt ? 3 : score>=Math.ceil(DATEN.length*0.6) ? 2 : 1;
+  try{ const _K="mibaso.fauna.expedition"; const _d=JSON.parse(localStorage.getItem(_K)||"{}");
+    if(!_d.lebensraum || blaetter>_d.lebensraum.blaetter){ _d.lebensraum={blaetter:blaetter,done:true,ts:Date.now()}; localStorage.setItem(_K,JSON.stringify(_d)); } }catch(e){}
   const sprueche = perfekt
     ? ["Alles richtig – du weißt, was unsere Insekten brauchen! 🌱","Volltreffer! Ein echter Lebensraum-Kenner."]
     : score>=Math.ceil(DATEN.length*0.6)
@@ -213,9 +217,10 @@ function ende(){
   const e=$("ende"); e.style.display="block";
   e.innerHTML='<div class="ende"><p style="font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8a96a1;margin:0;">Ergebnis</p>'+
     '<p class="gross">'+score+'<small> / '+DATEN.length+'</small></p>'+
+    '<p style="font-size:26px;letter-spacing:4px;margin:2px 0 6px;">'+"🍃".repeat(blaetter)+'<span style="opacity:.25">'+"🍃".repeat(3-blaetter)+'</span></p>'+
     '<p class="spruch">'+sprueche[Math.floor(Math.random()*sprueche.length)]+'</p>'+
     '<div class="knoepfe"><button class="knopf prim" id="nochmal">Nochmal</button>'+
-    '<a class="knopf sek" href="../index.html">Zur Startseite</a></div></div>';
+    '<a class="knopf sek" href="wiesenpass.html">🍃 Forscherpass</a></div></div>';
   $("nochmal").addEventListener("click",()=>{ i=0; score=0; $("ende").style.display="none"; $("spiel").style.display="block"; render(); });
   if(perfekt){ konfetti(); fanfare(); }
 }

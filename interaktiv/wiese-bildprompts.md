@@ -73,3 +73,35 @@ ein. Prompt-Muster für ein freigestelltes Motiv:
 > Eine einzelne [Hummel / Marienkäferlarve / Raupe …], fotorealistisch,
 > freigestellt auf komplett transparentem Hintergrund, von der Seite, natürliche
 > Farben, scharf, keine Schatten, PNG mit Transparenz.
+
+---
+
+## Zusätzliche Tierfotos für die Expedition (welche du gefragt hast)
+
+Diese Motive sind in „Die Wiese lebt" und „Wer frisst wen?" schon **eingebaut** —
+sie erscheinen aktuell als Emoji und werden **automatisch** durch dein Foto ersetzt,
+sobald du es unter dem passenden Namen ablegst. Nichts weiter zu tun.
+
+**Ablageort:** `fauna/images/wiese/tiere/` · Format: **quadratisch**, freigestellt
+auf transparentem Hintergrund (wie deine bisherigen Tierfotos).
+
+Wichtig (kommen als große Knoten im Nahrungsnetz vor):
+
+- `tier-heuschrecke.png` — eine Heuschrecke
+- `tier-spinne.png` — eine Wiesen-/Radnetzspinne
+- `tier-vogel.png` — ein kleiner Wiesenvogel (z. B. Braunkehlchen oder Star)
+- `tier-gras.png` — ein Büschel Gras & Kräuter (Produzent)
+- `tier-bluete.png` — eine einzelne Wiesenblüte
+- `tier-pilz.png` — ein kleiner Pilz / Pilzgruppe (Zersetzer)
+
+Schön ergänzend (kleinere Rollen):
+
+- `tier-schwebfliegenlarve.png` — Schwebfliegenlarve
+- `tier-florfliegenlarve.png` — Florfliegenlarve
+- `tier-ohrwurm.png` — Ohrwurm
+- `tier-schlupfwespe.png` — Schlupfwespe
+
+Prompt-Muster (Name einsetzen):
+> Eine einzelne [Heuschrecke], fotorealistisch, freigestellt auf komplett
+> transparentem Hintergrund, von der Seite, natürliche Farben, scharf,
+> keine Schatten, quadratisch, PNG mit Transparenz.

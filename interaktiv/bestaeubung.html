@@ -552,6 +552,10 @@ function renderQuiz(s){
     melde();
   }
   function ende(){
+    // Ergebnis an den Forscherpass melden (3/2/1 Blätter)
+    const blaetter = score===fragen.length ? 3 : score>=Math.ceil(fragen.length*0.6) ? 2 : 1;
+    try{ const _K="mibaso.fauna.expedition"; const _d=JSON.parse(localStorage.getItem(_K)||"{}");
+      if(!_d.bestaeubung || blaetter>_d.bestaeubung.blaetter){ _d.bestaeubung={blaetter:blaetter,done:true,ts:Date.now()}; localStorage.setItem(_K,JSON.stringify(_d)); } }catch(e){}
     const perfekt=["Volltreffer! Du bist ein wahrer Bestäubungs-Profi. 🐝","Alles richtig – die Blüten hätten dich gern als Stammgast!"];
     const gut=["Stark! Du hast den Dreh raus.","Gut gemacht – Schlüssel passt fast immer ins Schloss."];
     const ok=["Schau ruhig nochmal durch die Stationen – dann sitzt es.","Ein guter Anfang! Noch eine Runde?"];
@@ -560,13 +564,13 @@ function renderQuiz(s){
       : ok[Math.floor(Math.random()*ok.length)];
     elE.innerHTML='<div class="qende"><p class="it" style="font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8a96a1;">Ergebnis</p>'+
       '<p class="gross">'+score+'<small> / '+fragen.length+'</small></p>'+
+      '<p style="font-size:26px;letter-spacing:4px;margin:2px 0 6px;">'+"🍃".repeat(blaetter)+'<span style="opacity:.25">'+"🍃".repeat(3-blaetter)+'</span></p>'+
       '<p class="spruch">'+spruch+'</p>'+
       '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">'+
         '<button class="knopf prim" id="nochmal" style="margin:0;">Nochmal</button>'+
-        '<button class="knopf" id="zumStart">↺ Pfad von vorn</button>'+
+        '<a class="knopf" href="wiesenpass.html">🍃 Forscherpass</a>'+
       '</div></div>';
     document.getElementById("nochmal").addEventListener("click",()=>renderQuiz(s));
-    document.getElementById("zumStart").addEventListener("click",()=>geheZu(0));
     if(score===fragen.length){ konfetti(); fanfare(); }
     melde();
   }

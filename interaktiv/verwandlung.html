@@ -626,6 +626,10 @@ function renderQuiz(s){
   }
   function ende(){
     const perfekt=score===fragen.length;
+    // Ergebnis an den Forscherpass melden (3/2/1 Blätter)
+    const blaetter = perfekt ? 3 : score>=Math.ceil(fragen.length*0.6) ? 2 : 1;
+    try{ const _K="mibaso.fauna.expedition"; const _d=JSON.parse(localStorage.getItem(_K)||"{}");
+      if(!_d.verwandlung || blaetter>_d.verwandlung.blaetter){ _d.verwandlung={blaetter:blaetter,done:true,ts:Date.now()}; localStorage.setItem(_K,JSON.stringify(_d)); } }catch(e){}
     const sprueche=perfekt
       ? ["Alles richtig – du hast die Verwandlung verstanden! 🦋","Volltreffer! Mit und ohne Puppe sitzen perfekt."]
       : score>=Math.ceil(fragen.length*0.6)
@@ -633,12 +637,12 @@ function renderQuiz(s){
         : ["Schau ruhig nochmal durch die Schritte – dann sitzt es.","Ein guter Anfang! Noch eine Runde?"];
     elE.innerHTML='<div class="qende"><p class="qlabel">Ergebnis</p>'+
       '<p class="qscore">'+score+'<small> / '+fragen.length+'</small></p>'+
+      '<p style="font-size:26px;letter-spacing:4px;margin:2px 0 6px;">'+"🍃".repeat(blaetter)+'<span style="opacity:.25">'+"🍃".repeat(3-blaetter)+'</span></p>'+
       '<p class="qspruch">'+sprueche[Math.floor(Math.random()*sprueche.length)]+'</p>'+
       '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">'+
         '<button class="knopf prim" id="qnochmal" style="margin:0;">Nochmal</button>'+
-        '<button class="knopf" id="qstart">↺ Pfad von vorn</button></div></div>';
+        '<a class="knopf" href="wiesenpass.html">🍃 Forscherpass</a></div></div>';
     document.getElementById("qnochmal").addEventListener("click",()=>renderQuiz(s));
-    document.getElementById("qstart").addEventListener("click",()=>geheZu(0));
     if(perfekt){ konfetti(); fanfare(); }
     melde();
   }
