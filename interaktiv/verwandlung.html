@@ -308,7 +308,7 @@ const SCHRITTE = [
     text:"Libellen, Heuschrecken und Wanzen gehen den Weg ohne Puppe: Die Jungen ähneln den Großen und werden nur größer.",
     hint:"▶ abspielen oder mit ‹ › weiterklicken.",
     typ:"sequenz",
-    absprung:{text:"Im Stammbaum: die Hemimetabola ›", url:"../interaktiv/stammbaum.html"},
+    absprung:{text:"Im Stammbaum: die Hemimetabola ›", url:"../interaktiv/stammbaum.html?ziel=Hemimetabola"},
     stufen:[
       {name:"Ei", bild:{src:"unvoll-1-ei.png", label:"Eier / Gelege", glyph:"🥚"},
        text:"Auch hier am Anfang das Ei, oft im Boden oder an Pflanzen abgelegt."},
@@ -323,7 +323,7 @@ const SCHRITTE = [
     text:"Ein echtes Beispiel für die Verwandlung ohne Puppe – die Große Pechlibelle (Ischnura elegans), Schritt für Schritt in eigenen Fotos.",
     hint:"▶ abspielen oder mit ‹ › weiterklicken.",
     typ:"sequenz", foto:true,
-    absprung:{text:"Libellen im Stammbaum ›", url:"../interaktiv/stammbaum.html"},
+    absprung:{text:"Libellen im Stammbaum ›", url:"../interaktiv/stammbaum.html?ziel=Odonata"},
     absprung2:{text:"Metamorphose der Libelle – als Tafel ›", url:"staunen-metamorphose-libelle.html"},
     stufen:[
       {name:"Paarungsrad", bild:{src:"pl-1-paarung.jpg", label:"Paarungsrad", glyph:"💙"},
@@ -536,7 +536,7 @@ function renderVergleich(s){
     '<div id="wegBox">'+wegVoll+'</div>'+
     '<p class="gruppen" id="grp"></p>'+
     '<div class="quiz"><p class="ql">Mini-Check: Tippe ein Insekt – welcher Weg ist es?</p><div class="quizchips" id="qz"></div></div>'+
-    '<a class="absprung" href="../interaktiv/stammbaum.html">Im Stammbaum: beide Äste zeigen ›</a>';
+    '<a class="absprung" href="../interaktiv/stammbaum.html?ziel=Insecta">Im Stammbaum: beide Äste zeigen ›</a>';
   elE.innerHTML=e;
 
   const grpVoll='<b>Mit Puppe (vollständig):</b> Schmetterlinge · Käfer · Bienen &amp; Wespen · Fliegen &amp; Mücken';
