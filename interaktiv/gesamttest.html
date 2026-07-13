@@ -356,7 +356,7 @@ function pruefe(richtig,geklickt,aufloesung,istRichtiger){
   if(richtig){ punkte++; stats[typ].r++; fb.textContent="✓ Richtig!"; fb.className="ok"; }
   else{ geklickt.classList.add("falsch"); fb.textContent="✗ "+aufloesung; fb.className="fehler"; }
   zeigeStatus();
-  if(modus==="blitz") autoId=setTimeout(naechste,richtig ? 3600 : 8800);
+  if(modus==="blitz") autoId=setTimeout(naechste,richtig ? 2700 : 6600);
   else $("weiter").style.display="inline-block";
 }
 $("frage").addEventListener("click",()=>{
