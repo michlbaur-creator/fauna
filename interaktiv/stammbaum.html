@@ -112,7 +112,7 @@
   <p class="augenbraue">Natur vor der Haustür</p>
   <h1>Der Stammbaum der Tiere</h1>
   <p class="unter">Schwerpunkt: Insekten &amp; niedere Tiere</p>
-  <p class="intro">Jede Gabelung teilt sich in zwei Äste mit gemeinsamem Vorfahren. Die Insekten sind bis zu ihren großen Ordnungen aufgefächert; die übrigen wirbellosen Gruppen lassen sich antippen und gehen eine Stufe tiefer. Die Wirbeltiere stecken im Dreieck rechts unten.</p>
+  <p class="intro">Jede Gabelung teilt sich in zwei Äste mit gemeinsamem Vorfahren. Die Insekten sind bis zu ihren großen Ordnungen aufgefächert; die übrigen wirbellosen Gruppen lassen sich antippen und gehen eine Stufe tiefer. Die Wirbeltiere stecken im Dreieck rechts unten – darin sind die Vögel bis zu einzelnen Arten aufgefächert.</p>
 
   <div class="leiste">
     <button class="knopf" id="ueberblick">Überblick</button>
@@ -152,7 +152,7 @@ const farbe=['#1E3A52','#1F5168','#1E6670','#1F7A6F','#2A8C66','#3E9A5E','#57A45
 
 // standardmäßig eingeklappt: Wirbeltiere, die übrigen Wirbellosen-Gruppen und alle Insekten-Ordnungen
 const ZU = new Set([
-  "Vertebrata","Cnidaria","Mollusca","Annelida","Arachnida","Myriapoda","Crustacea","Echinodermata",
+  "Vertebrata","Aves","Passeriformes","Cnidaria","Mollusca","Annelida","Arachnida","Myriapoda","Crustacea","Echinodermata",
   "Odonata","Polyneoptera","Hemiptera","Coleoptera","Hymenoptera","Lepidoptera","Diptera",
   "Pieridae & Lycaenidae","Nymphalidae","Satyrinae","Papilionidae","Bombycoidea & Co.","Noctuidae & Geometridae",
   "Apidae","Vespidae","Coccinellidae","Cerambycidae","Cleridae","Syrphidae & Asilidae","Geocorisae","Sternorrhyncha",
@@ -177,7 +177,9 @@ const RANG = {
   Adephaga:"Unterordnung", Polyphaga:"Unterordnung", Symphyta:"Unterordnung", Apocrita:"Unterordnung",
   Aeshnidae:"Familie", Libellulidae:"Familie", Calopterygidae:"Familie", Coenagrionidae:"Familie",
   Carabidae:"Familie", Dytiscidae:"Familie", Scarabaeidae:"Familie", Tenthredinidae:"Familie",
-  Culicidae:"Familie", Nymphalidae:"Familie", Papilionidae:"Familie", Satyrinae:"Unterfamilie"
+  Culicidae:"Familie", Nymphalidae:"Familie", Papilionidae:"Familie", Satyrinae:"Unterfamilie",
+  Passeriformes:"Ordnung", Piciformes:"Ordnung", Columbiformes:"Ordnung", Anseriformes:"Ordnung", Galliformes:"Ordnung", Ciconiiformes:"Ordnung", Suliformes:"Ordnung", Pelecaniformes:"Ordnung", Falconiformes:"Ordnung", Psittaciformes:"Ordnung", Accipitriformes:"Ordnung", Strigiformes:"Ordnung", Gruiformes:"Ordnung", Charadriiformes:"Ordnung",
+  Corvidae:"Familie", Paridae:"Familie", Fringillidae:"Familie", Passeridae:"Familie", Turdidae:"Familie", Muscicapidae:"Familie", Sturnidae:"Familie", Sittidae:"Familie", Hirundinidae:"Familie", Picidae:"Familie", Columbidae:"Familie", Ciconiidae:"Familie", Anatidae:"Familie", Phalacrocoracidae:"Familie", Falconidae:"Familie"
 };
 
 const baumDaten = {
@@ -521,7 +523,7 @@ const baumDaten = {
           {de:"Seesterne & Schlangensterne", lat:"Asterozoa", info:"Mit kräftigen Armen; können verlorene Arme nachwachsen lassen."},
           {de:"Seeigel & Seegurken", lat:"Echinozoa", info:"Kugelig bestachelt oder walzenförmig weich – Weidegänger des Meeresbodens."}
         ]},
-        {de:"Wirbeltiere", lat:"Vertebrata", info:"Tiere mit Knochen-Rückgrat und Schädel. In dieser App bewusst kompakt gehalten.", k:[
+        {de:"Wirbeltiere", lat:"Vertebrata", info:"Tiere mit Knochen-Rückgrat und Schädel. Kompakt gehalten – nur die Vögel sind bis zu einzelnen heimischen Arten aufgefächert.", k:[
           {de:"Fische", lat:"Pisces", info:"Im Wasser zu Hause, mit Kiemen und Flossen."},
           {de:"Landwirbeltiere", lat:"Tetrapoda", info:"Vier Gliedmaßen – der Schritt aufs Land.", k:[
             {de:"Amphibien", lat:"Amphibia", info:"Frösche, Kröten und Molche, zwischen Wasser und Land."},
@@ -535,7 +537,102 @@ const baumDaten = {
               ]},
               {de:"Sauropsiden", lat:"Sauropsida", info:"Schuppentiere und ihre gefiederten Nachfahren – hier zweigen die Vögel aus der Reptilien-Linie ab.", k:[
                 {de:"Reptilien", lat:"Reptilia", info:"Schlangen, Echsen, Schildkröten, Krokodile."},
-                {de:"Vögel", lat:"Aves", info:"Die gefiederten Nachfahren der Dinosaurier."}
+                {de:"Vögel", lat:"Aves", info:"Federn, ein Schnabel ohne Zähne und Eier mit harter Kalkschale – die gefiederten Nachfahren der Dinosaurier. Hier bis zu einzelnen heimischen Arten aufgefächert.", k:[
+                  {de:"Urkiefervögel", lat:"Palaeognathae", info:"Strauß, Emu, Nandu und Kiwi – meist flugunfähige Laufvögel. Sie haben sich sehr früh von allen anderen Vögeln getrennt."},
+                  {de:"Neukiefervögel", lat:"Neognathae", info:"Alle übrigen Vögel – über 10.000 Arten.", k:[
+                    {de:"Hühner- & Gänsevögel", lat:"Galloanserae", info:"Zwei alte Linien, die enger miteinander verwandt sind als mit allen anderen Vögeln.", k:[
+                      {de:"Hühnervögel", lat:"Galliformes", info:"Fasan, Rebhuhn, Wachtel – und das Haushuhn, dessen wilder Vorfahr das Bankivahuhn ist."},
+                      {de:"Gänsevögel", lat:"Anseriformes", info:"Enten, Gänse und Schwäne – mit Schwimmfüßen und breitem Seihschnabel.", k:[
+                        {de:"Stockente", lat:"Anas platyrhynchos", art:true, url:"../arten/stockente.html", info:"Häufigste Ente; Erpel mit grünem Kopf; Stammform der Hausente; Küken sind Nestflüchter."}
+                      ]}
+                    ]},
+                    {de:"Neuvögel", lat:"Neoaves", info:"Die große Mehrheit der Vögel. Wie ihre Äste genau zusammenhängen, wird noch erforscht.", k:[
+                      {de:"Taubenvögel", lat:"Columbiformes", info:"Tauben füttern ihre Jungen mit Kropfmilch – Vater und Mutter.", k:[
+                        {de:"Ringeltaube", lat:"Columba palumbus", art:true, url:"../arten/ringeltaube.html", info:"Größte heimische Taube mit weißem Halsfleck; füttert Junge mit Kropfmilch."},
+                        {de:"Türkentaube", lat:"Streptopelia decaocto", art:true, url:"../arten/tuerkentaube.html", info:"Hell graubeige mit schwarzem Nackenband; kam erst im 20. Jahrhundert zu uns."}
+                      ]},
+                      {de:"Segler & Nachtschwalben", lat:"Strisores", info:"Mauersegler, Ziegenmelker und Kolibris – Meister der Luft mit winzigen Füßen."},
+                      {de:"Kranichvögel", lat:"Gruiformes", info:"Kranich, Blässhuhn und Teichhuhn."},
+                      {de:"Wat- & Möwenvögel", lat:"Charadriiformes", info:"Kiebitz, Lachmöwe, Schnepfen und Seeschwalben."},
+                      {de:"Wasservögel-Linie", lat:"Aequornithes", info:"Störche, Kormorane, Reiher – und die Pinguine. Viele jagen im oder am Wasser.", k:[
+                        {de:"Schreitvögel", lat:"Ciconiiformes", info:"Störche: lange Beine, langer Schnabel, segelnde Langstreckenzieher.", k:[
+                          {de:"Weißstorch", lat:"Ciconia ciconia", art:true, url:"../arten/weissstorch.html", info:"Großer Schreitvogel mit rotem Schnabel; klappert statt zu singen; Zugvogel."}
+                        ]},
+                        {de:"Ruderfüßer", lat:"Suliformes", info:"Kormorane und Basstölpel: alle vier Zehen durch Schwimmhäute verbunden.", k:[
+                          {de:"Kormoran", lat:"Phalacrocorax carbo", art:true, url:"../arten/kormoran.html", info:"Schwarzer Tauchvogel mit Hakenschnabel; trocknet seine Flügel in der Sonne."}
+                        ]},
+                        {de:"Reiher & Pelikane", lat:"Pelecaniformes", info:"Graureiher, Silberreiher und Pelikane."}
+                      ]},
+                      {de:"Landvögel", lat:"Telluraves", info:"Eine große Linie fast nur landlebender Vögel – von den Greifvögeln bis zu den Singvögeln.", k:[
+                        {de:"Greife, Eulen & Spechte", lat:"Afroaves", info:"Greifvögel, Eulen, Spechte, Eisvögel und Wiedehopf gehören zu dieser Linie.", k:[
+                          {de:"Greifvögel", lat:"Accipitriformes", info:"Mäusebussard, Rotmilan, Habicht – mit Hakenschnabel und kräftigen Greiffüßen."},
+                          {de:"Eulen", lat:"Strigiformes", info:"Waldkauz, Schleiereule, Uhu – nächtliche Jäger mit fast lautlosem Flug."},
+                          {de:"Spechtvögel", lat:"Piciformes", info:"Kletterfuß mit zwei Zehen nach vorn und zwei nach hinten, Meißelschnabel und lange Zunge.", k:[
+                            {de:"Spechte", lat:"Picidae", info:"Hacken Höhlen ins Holz, die später viele andere Tiere nutzen.", k:[
+                              {de:"Buntspecht", lat:"Dendrocopos major", art:true, url:"../arten/buntspecht.html", info:"Häufigster Specht: schwarz-weiß mit rotem Unterschwanz; Männchen mit rotem Nackenfleck."},
+                              {de:"Mittelspecht", lat:"Dendrocoptes medius", art:true, url:"../arten/mittelspecht.html", info:"Rote Kappe bei beiden Geschlechtern; braucht alte Eichen mit rauer Rinde."},
+                              {de:"Grünspecht", lat:"Picus viridis", art:true, url:"../arten/gruenspecht.html", info:"Grün mit roter Kappe; sucht am Boden nach Ameisen; Ruf wie Gelächter."}
+                            ]}
+                          ]}
+                        ]},
+                        {de:"Falken, Papageien & Sperlingsvögel", lat:"Australaves", info:"Eine Überraschung der Forschung: Falken sind keine nahen Verwandten von Bussard und Habicht, sondern von Papageien und Singvögeln.", k:[
+                          {de:"Falkenartige", lat:"Falconiformes", info:"Schnelle Jäger mit spitzen Flügeln und einem „Zahn“ am Oberschnabel.", k:[
+                            {de:"Turmfalke", lat:"Falco tinnunculus", art:true, url:"../arten/turmfalke.html", info:"Kleiner Falke, der in der Luft „rüttelt“; enger mit Papageien als mit Bussarden verwandt."}
+                          ]},
+                          {de:"Papageien", lat:"Psittaciformes", info:"Wellensittich, Graupapagei, Kakadu – mit Kletterfuß und kräftigem Hakenschnabel."},
+                          {de:"Sperlingsvögel", lat:"Passeriformes", info:"Mehr als die Hälfte aller Vogelarten der Erde – fast alle sind Singvögel. Typisch: drei Zehen nach vorn, eine nach hinten, zum Umklammern von Zweigen.", k:[
+                            {de:"Rabenvögel", lat:"Corvidae", info:"Die größten Singvögel – klug, gesellig und anpassungsfähig.", k:[
+                              {de:"Eichelhäher", lat:"Garrulus glandarius", art:true, url:"../arten/eichelhaeher.html", info:"Bunter Rabenvogel mit blauen Flügelfedern; versteckt Eicheln und pflanzt so Eichen."},
+                              {de:"Elster", lat:"Pica pica", art:true, url:"../arten/elster.html", info:"Schwarz-weiß mit langem, grün schillerndem Schwanz; baut Nester mit Dach."},
+                              {de:"Rabenkrähe", lat:"Corvus corone", art:true, url:"../arten/rabenkraehe.html", info:"Ganz schwarz, mit befiederter Schnabelbasis; klug und anpassungsfähig."},
+                              {de:"Nebelkrähe", lat:"Corvus cornix", art:true, url:"../arten/nebelkraehe.html", info:"Grau-schwarze Schwester der Rabenkrähe; lebt im Osten und Norden Europas."}
+                            ]},
+                            {de:"Übrige Singvögel", lat:"Passerida", info:"Die meisten unserer Garten- und Waldvögel.", k:[
+                              {de:"Meisen", lat:"Paridae", info:"Kleine, flinke Höhlenbrüter mit kurzem, spitzem Schnabel.", k:[
+                                {de:"Blaumeise", lat:"Cyanistes caeruleus", art:true, url:"../arten/blaumeise.html", info:"Blaue Kopfkappe, weißes Gesicht, gelbe Unterseite; turnt an dünnsten Zweigen."},
+                                {de:"Kohlmeise", lat:"Parus major", art:true, url:"../arten/kohlmeise.html", info:"Größte heimische Meise: schwarzer Kopf, weiße Wangen, schwarzer Bauchstreif."},
+                                {de:"Tannenmeise", lat:"Periparus ater", art:true, url:"../arten/tannenmeise.html", info:"Kleinste heimische Meise: schwarzer Kopf mit weißem Nackenfleck; lebt im Nadelwald."},
+                                {de:"Haubenmeise", lat:"Lophophanes cristatus", art:true, url:"../arten/haubenmeise.html", info:"Die einzige heimische Meise mit spitzer, schwarz-weißer Federhaube."}
+                              ]},
+                              {de:"Schwalben", lat:"Hirundinidae", info:"Insektenjäger der Luft mit langen, spitzen Flügeln.", k:[
+                                {de:"Rauchschwalbe", lat:"Hirundo rustica", art:true, url:"../arten/rauchschwalbe.html", info:"Gabelschwanz mit langen Spießen, rote Kehle; brütet in Viehställen."}
+                              ]},
+                              {de:"Kleiber", lat:"Sittidae", info:"Klettern ohne Stützschwanz – auch kopfüber.", k:[
+                                {de:"Kleiber", lat:"Sitta europaea", art:true, url:"../arten/kleiber.html", info:"Blaugrauer Rücken, schwarzer Augenstreif; klettert als einziger auch kopfüber abwärts."}
+                              ]},
+                              {de:"Drossel-Verwandte", lat:"Muscicapoidea", info:"Stare, Drosseln und Fliegenschnäpper – meist mit schlankem Allzweck- oder Insektenschnabel.", k:[
+                                {de:"Stare", lat:"Sturnidae", info:"Schillernde Gesellen, die in großen Schwärmen ziehen.", k:[
+                                  {de:"Star", lat:"Sturnus vulgaris", art:true, url:"../arten/star.html", info:"Schillerndes Gefieder, im Winter hell getupft; meisterhafter Stimmenimitator."}
+                                ]},
+                                {de:"Drosseln", lat:"Turdidae", info:"Mittelgroße Singvögel, die viel am Boden nach Würmern suchen.", k:[
+                                  {de:"Amsel", lat:"Turdus merula", art:true, url:"../arten/amsel.html", info:"Männchen schwarz mit gelbem Schnabel, Weibchen braun. Einer der häufigsten Vögel Deutschlands."},
+                                  {de:"Wacholderdrossel", lat:"Turdus pilaris", art:true, url:"../arten/wacholderdrossel.html", info:"Große Drossel mit grauem Kopf und braunem Rücken; brütet in lockeren Kolonien."}
+                                ]},
+                                {de:"Fliegenschnäpper", lat:"Muscicapidae", info:"Kleine Insektenjäger – auch das Rotkehlchen gehört dazu.", k:[
+                                  {de:"Rotkehlchen", lat:"Erithacus rubecula", art:true, url:"../arten/rotkehlchen.html", info:"Orangerote Brust, große dunkle Augen; singt auch im Winter."}
+                                ]}
+                              ]},
+                              {de:"Sperlings-Verwandte", lat:"Passeroidea", info:"Sperlinge und Finken – Körnerfresser mit kräftigem Kegelschnabel.", k:[
+                                {de:"Sperlinge", lat:"Passeridae", info:"Gesellige Körnerfresser, oft in der Nähe des Menschen.", k:[
+                                  {de:"Haussperling", lat:"Passer domesticus", art:true, url:"../arten/haussperling.html", info:"Der Spatz: Männchen mit grauem Scheitel und schwarzem Latz; lebt fast nur bei Menschen."},
+                                  {de:"Feldsperling", lat:"Passer montanus", art:true, url:"../arten/feldsperling.html", info:"Kastanienbrauner Scheitel, schwarzer Wangenfleck; Männchen und Weibchen gleich."}
+                                ]},
+                                {de:"Finken", lat:"Fringillidae", info:"Kegelschnäbel in allen Größen – vom feinen Zeisig bis zum Kernbeißer.", k:[
+                                  {de:"Buchfink", lat:"Fringilla coelebs", art:true, url:"../arten/buchfink.html", info:"Zwei weiße Flügelbinden; Männchen mit blaugrauem Kopf und rostroter Brust."},
+                                  {de:"Grünfink", lat:"Chloris chloris", art:true, url:"../arten/gruenfink.html", info:"Olivgrün mit leuchtend gelben Flügel- und Schwanzkanten; kräftiger heller Schnabel."},
+                                  {de:"Stieglitz", lat:"Carduelis carduelis", art:true, url:"../arten/stieglitz.html", info:"Der Distelfink: rote Gesichtsmaske, breite gelbe Flügelbinden."},
+                                  {de:"Gimpel", lat:"Pyrrhula pyrrhula", art:true, url:"../arten/gimpel.html", info:"Auch Dompfaff: schwarze Kappe, Männchen mit roter Brust, weißer Bürzel."},
+                                  {de:"Erlenzeisig", lat:"Spinus spinus", art:true, url:"../arten/erlenzeisig.html", info:"Kleiner gelbgrüner Fink; Männchen mit schwarzer Kappe; im Winter an Erlen und Birken."},
+                                  {de:"Kernbeißer", lat:"Coccothraustes coccothraustes", art:true, url:"../arten/kernbeisser.html", info:"Größter heimischer Fink mit gewaltigem Kegelschnabel; knackt Kirschkerne."}
+                                ]}
+                              ]}
+                            ]}
+                          ]}
+                        ]}
+                      ]}
+                    ]}
+                  ]}
+                ]}
               ]}
             ]}
           ]}
@@ -664,7 +761,7 @@ function zeigePanel(n){
       html+='<p class="gal-titel">'+arten.length+(arten.length===1?' Art':' Arten')+' · Tafel antippen</p><div class="galerie">';
       zeige.forEach(a=>{
         const img=a.url.replace("../arten/","../images/tafeln/").replace(/\.html$/,".jpg");
-        html+='<a class="gal-item" href="'+a.url+'"><img loading="lazy" src="'+img+'" alt="Tafel '+a.de+'" onerror="this.style.display=\'none\'"><span>'+a.de+'</span></a>';
+        html+='<a class="gal-item" href="'+a.url+'"><img loading="lazy" src="'+img+'" alt="Tafel '+a.de+'" onerror="if(!this.dataset.f){this.dataset.f=1;this.src=this.src.replace(\'/tafeln/\',\'/fotos/\');}else{this.style.display=\'none\';}"><span>'+a.de+'</span></a>';
       });
       html+='</div>';
       if(arten.length>MAX) html+='<p class="gal-mehr">… und '+(arten.length-MAX)+' weitere – tippe eine Untergruppe für alle.</p>';

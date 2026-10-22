@@ -2,3 +2,4 @@
 tafeln_neu/
 fotos_neu/
 .DS_Store
+__pycache__/

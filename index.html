@@ -548,7 +548,7 @@ footer.fuss-neu a{color:#F7F3E8}
     auswahl.forEach(function(t){
       var a=document.createElement('a'); a.className='jetzt-karte'; a.href='arten/'+t.slug+'.html';
       var img=document.createElement('img'); img.src='images/tafeln/'+t.slug+'.jpg'; img.alt=t.deutsch; img.loading='lazy';
-      img.onerror=function(){this.style.visibility='hidden';};
+      img.onerror=function(){ if(!this.dataset.f){ this.dataset.f=1; this.src='images/fotos/'+t.slug+'.jpg'; } else { this.style.visibility='hidden'; } };
       var n=document.createElement('span'); n.className='jk-name'; n.textContent=t.deutsch;
       a.appendChild(img); a.appendChild(n); frag.appendChild(a);
     });
