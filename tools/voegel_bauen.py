@@ -75,8 +75,9 @@ def seite(v):
     t.append(f"""  </ul>
 
   <a class="baumlink" href="../interaktiv/stammbaum.html?art={v['slug']}">Im Stammbaum zeigen ↗</a>
+  <a class="baumlink" style="background:var(--honig)" href="https://bio.mibaso.de/fauna/interaktiv/vogelpass.html">🪶 Lernpfad „Vögel – gebaut zum Fliegen“ ↗</a>
 
-  <p class="vorlage">{' · '.join(quellen)}. Die Artseite ist der Endpunkt im Stammbaum.</p>
+  <p class="vorlage">{' · '.join(quellen)}. Die Artseite ist Endpunkt im Stammbaum und Nachschlagewerk zum Vogelpass auf bio.mibaso.de.</p>
 </div>
 <script src="../assets/app.js" defer></script>
 </body>
