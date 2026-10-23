@@ -22,6 +22,9 @@ O_SEGLER = ("Seglervögel", "Apodiformes")
 O_RACKE = ("Rackenvögel", "Coraciiformes")
 O_HUHN = ("Hühnervögel", "Galliformes")
 O_KUCKUCK = ("Kuckucksvögel", "Cuculiformes")
+O_KRANICH = ("Kranichvögel", "Gruiformes")
+O_TAUCHER = ("Lappentaucher", "Podicipediformes")
+O_PELIKAN = ("Pelikanartige", "Pelecaniformes")
 
 F = {
   "rabe": ("Rabenvögel", "Corvidae"), "wuerger": ("Würger", "Laniidae"), "meise": ("Meisen", "Paridae"),
@@ -37,7 +40,7 @@ F = {
   "habicht": ("Habichtartige", "Accipitridae"), "schleiereule": ("Schleiereulen", "Tytonidae"),
   "eule": ("Eigentliche Eulen", "Strigidae"), "segler": ("Segler", "Apodidae"), "eisvogel": ("Eisvögel", "Alcedinidae"),
   "baumlaeufer": ("Baumläufer", "Certhiidae"), "seidenschwanz": ("Seidenschwänze", "Bombycillidae"), "pirol": ("Pirole", "Oriolidae"),
-  "kuckuck": ("Kuckucke", "Cuculidae"), "huhn": ("Fasanenartige", "Phasianidae"),
+  "kuckuck": ("Kuckucke", "Cuculidae"), "ralle": ("Rallen", "Rallidae"), "taucher": ("Lappentaucher", "Podicipedidae"), "reiher": ("Reiher", "Ardeidae"), "huhn": ("Fasanenartige", "Phasianidae"),
 }
 
 from voegel_fotos import CAP   # {slug: Bildunterschrift zum eigenen Foto}
@@ -431,12 +434,79 @@ art("stockente", "Stockente", "Anas platyrhynchos", O_ENTE, "ente",
   "Häufigste Ente; Erpel mit grünem Kopf; Stammform der Hausente.",
   [("Küken mit Frühstart", "Stockentenküken schlüpfen mit offenen Augen und Daunen – und watscheln schon nach Stunden der Mutter hinterher ins Wasser."),
    ("Kopf runter, Po hoch", "Beim Gründeln taucht die Ente den Kopf unter und streckt den Bürzel in die Luft. Mit dem Schnabel seiht sie Futter aus dem Schlamm.")],
-  ["Die Mutter fast aller Hausenten.", "Der Erpel trägt einen grün schillernden Kopf."], tafel=False)
+  ["Die Mutter fast aller Hausenten.", "Der Erpel trägt einen grün schillernden Kopf."])
 art("kormoran", "Kormoran", "Phalacrocorax carbo", O_KORM, "korm",
   "Schwarzer Tauchvogel mit Hakenschnabel; trocknet seine Flügel in der Sonne.",
   [("Flügel zum Trocknen", "Sein Gefieder wird beim Tauchen nass – so taucht er leichter. Danach sitzt er da wie ein Kleiderständer und lässt die Flügel trocknen."),
    ("Angelprofi", "In China fischen Menschen seit Jahrhunderten mit gezähmten Kormoranen.")],
-  ["Brütet in Kolonien, oft hoch in Bäumen am Wasser.", "Bei Anglern nicht immer beliebt."], tafel=False)
+  ["Brütet in Kolonien, oft hoch in Bäumen am Wasser.", "Bei Anglern nicht immer beliebt."])
+
+# ================================================================ Serie 5: Vögel der Binnengewässer (23.10.2026)
+art("schnatterente", "Schnatterente", "Mareca strepera", O_ENTE, "ente",
+  "Schlichte graue Gründelente mit weißem Flügelspiegel; der Erpel hat ein schwarzes Heck.",
+  [("Die Unscheinbare", "Auf den ersten Blick ist der Erpel einfach grau. Aus der Nähe zeigt sich ein feines Wellenmuster – und hinten ein schwarzes Heck wie frisch lackiert."),
+   ("Mundraub beim Nachbarn", "Schnatterenten fressen Wasserpflanzen. Besonders bequem: Sie warten neben tauchenden Blässhühnern und schnappen ihnen das Grünzeug weg, wenn sie auftauchen.")],
+  ["Der weiße Flügelspiegel fällt im Flug sofort auf.", "Das Weibchen sieht der Stockente ähnlich, hat aber einen orange gerandeten Schnabel."])
+art("krickente", "Krickente", "Anas crecca", O_ENTE, "ente",
+  "Unsere kleinste Ente; Erpel mit kastanienbraunem Kopf und grünem Augenfeld.",
+  [("Klein, aber Raketenstart", "Bei Gefahr springt die Krickente fast senkrecht aus dem Wasser und ist im Nu weg. Kleine Trupps fliegen dann wendig wie ein Schwarm Watvögel."),
+   ("Name zum Hören", "Der Erpel ruft ein helles, pfeifendes „krrik“ – daher der Name. Im Schilf hört man die Krickente oft, bevor man sie sieht.")],
+  ["Kaum größer als eine Taube.", "Im Winter kommen viele aus dem Norden und Osten zu uns."])
+art("reiherente", "Reiherente", "Aythya fuligula", O_ENTE, "ente",
+  "Schwarz-weiße Tauchente mit gelben Augen und Federschopf am Hinterkopf.",
+  [("Frisur wie ein Reiher", "Am Hinterkopf hängt dem Erpel ein dünner Schopf herab – wie bei einem Graureiher. Daher der Name, auch wenn die beiden sonst nichts gemeinsam haben."),
+   ("Muschelknacker", "Reiherenten tauchen mehrere Meter tief nach kleinen Muscheln und Schnecken und schlucken sie mit Schale. Der Muskelmagen erledigt den Rest.")],
+  ["Im Winter schwimmen oft Hunderte zusammen auf großen Seen.", "Das Weibchen ist dunkelbraun, mit kleinem Schopf."])
+art("tafelente", "Tafelente", "Aythya ferina", O_ENTE, "ente",
+  "Tauchente; Erpel mit rotbraunem Kopf, roten Augen und hellgrauem Rücken.",
+  [("Ein Name aus der Küche", "„Tafelente“ heißt sie, weil sie früher als besonders schmackhaft galt – sie landete auf der festlichen Tafel. Heute ist sie seltener geworden und braucht eher Schutz."),
+   ("Gründeln in der Tiefe", "Sie taucht bis auf den Grund und weidet dort Wasserpflanzen und deren Samen ab. Zwischendurch schläft sie gern mitten auf dem See.")],
+  ["Erpel: rotbrauner Kopf, schwarze Brust, grauer Rücken.", "Im Winter kommen viele Gäste aus Osteuropa."])
+art("hoeckerschwan", "Höckerschwan", "Cygnus olor", O_ENTE, "ente",
+  "Großer weißer Schwan mit orangem Schnabel und schwarzem Höcker; einer der schwersten flugfähigen Vögel.",
+  [("Singende Flügel", "Stumm ist er nicht – aber der schönste Laut kommt von den Flügeln: Im Flug klingt jeder Schlag wie ein lautes „wuuh, wuuh“."),
+   ("Taxi für die Kleinen", "Die grauen Jungen klettern der Mutter auf den Rücken und lassen sich unter den Flügeln warm durchs Wasser fahren.")],
+  ["Wer seinem Nest zu nahe kommt, wird angezischt.", "Beim Männchen ist der Höcker größer."])
+art("graugans", "Graugans", "Anser anser", O_ENTE, "ente",
+  "Graubraune Gans mit orangem Schnabel und rosa Füßen; Stammform der Hausgans.",
+  [("Mama ist, wer zuerst da ist", "Frisch geschlüpfte Gänseküken folgen dem Ersten, den sie sehen. Der Forscher Konrad Lorenz watschelte deshalb mit einer Schar Gänseküken herum – „Prägung“ nennt man das."),
+   ("Familie bleibt zusammen", "Gänse sind treu: Paare halten oft lebenslang, und die Familie zieht gemeinsam durch den ersten Winter.")],
+  ["Die Mutter aller Hausgänse.", "Bei der Mauser im Sommer können sie einige Wochen nicht fliegen."])
+art("kanadagans", "Kanadagans", "Branta canadensis", O_ENTE, "ente",
+  "Große Gans mit schwarzem Hals und weißem Kinnband; aus Nordamerika eingeführt.",
+  [("Eingewandert", "Ursprünglich lebt sie in Nordamerika. Als Parkvogel kam sie nach Europa – und hat es sich längst gemütlich gemacht."),
+   ("Rasenmäher mit Flügeln", "Kanadagänse grasen gern auf Wiesen und Liegeflächen am Wasser. Was hinten herauskommt, macht sie bei Badegästen nicht beliebter.")],
+  ["Das weiße Kinnband sieht aus wie ein Riemen.", "Im Frühjahr verteidigen die Ganter ihr Nest mit lautem Getröte."])
+art("nilgans", "Nilgans", "Alopochen aegyptiaca", O_ENTE, "ente",
+  "Hellbraune Halbgans mit dunklem Augenfleck und langen rosa Beinen; aus Afrika eingeführt.",
+  [("Gar keine richtige Gans", "Trotz ihres Namens ist sie näher mit der Brandgans verwandt. Aus Parks entwischt, breitet sie sich seit Jahrzehnten bei uns aus."),
+   ("Sprung ins Leben", "Nilgänse brüten manchmal hoch oben – in Baumhöhlen, alten Greifvogelnestern oder auf Gebäuden. Die Küken springen dann einfach hinunter, ganz ohne Schaden.")],
+  ["Im Flug leuchten große weiße Flügelfelder.", "Am Nest kann sie ziemlich zänkisch sein."])
+art("blaesshuhn", "Blässhuhn", "Fulica atra", O_KRANICH, "ralle",
+  "Schwarze Ralle mit weißem Schnabel und weißer Stirnplatte; schwimmt und taucht.",
+  [("Keine Ente!", "Es schwimmt wie eine Ente, ist aber eine Ralle. Statt Schwimmhäuten hat es breite Lappen an den Zehen – die klappen beim Vorziehen praktisch zusammen."),
+   ("Anlauf übers Wasser", "Zum Starten rennt es platschend übers Wasser. Im Revierstreit lehnt es sich zurück und tritt mit den Füßen – ein kleiner Wasser-Ringkampf.")],
+  ["Die weiße „Blesse“ auf der Stirn gab ihm den Namen.", "Im Winter oft in großen Trupps auf Seen."])
+art("teichhuhn", "Teichhuhn", "Gallinula chloropus", O_KRANICH, "ralle",
+  "Dunkle Ralle mit rotem Stirnschild, gelber Schnabelspitze und weißem Flankenstreif.",
+  [("Lange Zehen", "Mit seinen langen grünen Zehen läuft es über Seerosenblätter, als wären sie ein Steg. Beim Schwimmen nickt der Kopf im Takt."),
+   ("Große Geschwister helfen", "Die Jungen aus der ersten Brut helfen oft mit, ihre jüngeren Geschwister aus der zweiten Brut zu füttern.")],
+  ["Ständig zuckt der Schwanz und zeigt die weiße Unterseite.", "Verschwindet bei Gefahr blitzschnell im Schilf."])
+art("haubentaucher", "Haubentaucher", "Podiceps cristatus", O_TAUCHER, "taucher",
+  "Eleganter Tauchvogel mit langem Hals; im Prachtkleid mit Federhaube und rotbraunem Kragen.",
+  [("Tanzen mit Grünzeug", "Zur Balz tauchen beide Partner, holen Wasserpflanzen herauf und richten sich Brust an Brust auf – ein „Pinguintanz“ mitten auf dem See."),
+   ("Federn als Magenschutz", "Haubentaucher schlucken eigene Federn – sogar die Küken bekommen welche. Die Federn polstern den Magen gegen spitze Fischgräten.")],
+  ["Die gestreiften Küken reiten auf dem Rücken der Eltern.", "Die Beine sitzen so weit hinten, dass er an Land kaum laufen kann."])
+art("zwergtaucher", "Zwergtaucher", "Tachybaptus ruficollis", O_TAUCHER, "taucher",
+  "Kleiner, rundlicher Taucher; im Prachtkleid mit rotbraunem Hals und hellem Fleck am Schnabel.",
+  [("Wie ein Korken", "Rund wie ein Federball dümpelt er auf dem Teich – und ist plötzlich verschwunden. Auftauchen tut er oft ganz woanders, gut versteckt am Ufer."),
+   ("Kichern im Schilf", "Im Frühjahr hört man ein schnelles, trillerndes Kichern aus dem Röhricht. Das ist sein Balzruf – den Sänger selbst sieht man selten.")],
+  ["Unser kleinster Lappentaucher.", "Verlässt er das Schwimmnest, deckt er die Eier mit Pflanzen zu."])
+art("graureiher", "Graureiher", "Ardea cinerea", O_PELIKAN, "reiher",
+  "Großer grauer Stelzvogel mit gelbem Dolchschnabel; jagt reglos lauernd Fische und Mäuse.",
+  [("Geduld ist alles", "Minutenlang steht er wie eine Statue im Wasser – dann schnellt der Hals vor, und der Fisch hängt im Schnabel. Auf Wiesen fängt er genauso gern Mäuse."),
+   ("Hals eingezogen", "Im Flug legt er den Hals zu einem S zusammen. So unterscheidest du ihn sofort vom Storch, der mit langem Hals fliegt.")],
+  ["Brütet in Kolonien hoch in Bäumen.", "Kein Kranich – auch wenn er oft so genannt wird."])
 
 # ================================================================ Serie 4 (23.10.2026)
 art("gartenbaumlaeufer", "Gartenbaumläufer", "Certhia brachydactyla", O_SPERL, "baumlaeufer",

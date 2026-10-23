@@ -178,7 +178,7 @@ const RANG = {
   Aeshnidae:"Familie", Libellulidae:"Familie", Calopterygidae:"Familie", Coenagrionidae:"Familie",
   Carabidae:"Familie", Dytiscidae:"Familie", Scarabaeidae:"Familie", Tenthredinidae:"Familie",
   Culicidae:"Familie", Nymphalidae:"Familie", Papilionidae:"Familie", Satyrinae:"Unterfamilie",
-  Apodiformes:"Ordnung", Coraciiformes:"Ordnung", Laniidae:"Familie", Aegithalidae:"Familie", Phylloscopidae:"Familie", Sylviidae:"Familie", Alaudidae:"Familie", Regulidae:"Familie", Troglodytidae:"Familie", Cinclidae:"Familie", Prunellidae:"Familie", Motacillidae:"Familie", Emberizidae:"Familie", Accipitridae:"Familie", Tytonidae:"Familie", Strigidae:"Familie", Apodidae:"Familie", Alcedinidae:"Familie", Cuculiformes:"Ordnung", Certhiidae:"Familie", Bombycillidae:"Familie", Oriolidae:"Familie", Cuculidae:"Familie", Phasianidae:"Familie", Passeriformes:"Ordnung", Piciformes:"Ordnung", Columbiformes:"Ordnung", Anseriformes:"Ordnung", Galliformes:"Ordnung", Ciconiiformes:"Ordnung", Suliformes:"Ordnung", Pelecaniformes:"Ordnung", Falconiformes:"Ordnung", Psittaciformes:"Ordnung", Accipitriformes:"Ordnung", Strigiformes:"Ordnung", Gruiformes:"Ordnung", Charadriiformes:"Ordnung",
+  Apodiformes:"Ordnung", Coraciiformes:"Ordnung", Laniidae:"Familie", Aegithalidae:"Familie", Phylloscopidae:"Familie", Sylviidae:"Familie", Alaudidae:"Familie", Regulidae:"Familie", Troglodytidae:"Familie", Cinclidae:"Familie", Prunellidae:"Familie", Motacillidae:"Familie", Emberizidae:"Familie", Accipitridae:"Familie", Tytonidae:"Familie", Strigidae:"Familie", Apodidae:"Familie", Alcedinidae:"Familie", Cuculiformes:"Ordnung", Certhiidae:"Familie", Bombycillidae:"Familie", Oriolidae:"Familie", Cuculidae:"Familie", Phasianidae:"Familie", Podicipediformes:"Ordnung", Rallidae:"Familie", Podicipedidae:"Familie", Ardeidae:"Familie", Passeriformes:"Ordnung", Piciformes:"Ordnung", Columbiformes:"Ordnung", Anseriformes:"Ordnung", Galliformes:"Ordnung", Ciconiiformes:"Ordnung", Suliformes:"Ordnung", Pelecaniformes:"Ordnung", Falconiformes:"Ordnung", Psittaciformes:"Ordnung", Accipitriformes:"Ordnung", Strigiformes:"Ordnung", Gruiformes:"Ordnung", Charadriiformes:"Ordnung",
   Corvidae:"Familie", Paridae:"Familie", Fringillidae:"Familie", Passeridae:"Familie", Turdidae:"Familie", Muscicapidae:"Familie", Sturnidae:"Familie", Sittidae:"Familie", Hirundinidae:"Familie", Picidae:"Familie", Columbidae:"Familie", Ciconiidae:"Familie", Anatidae:"Familie", Phalacrocoracidae:"Familie", Falconidae:"Familie"
 };
 
@@ -549,7 +549,17 @@ const baumDaten = {
                         ]}
                       ]},
                       {de:"Gänsevögel", lat:"Anseriformes", info:"Enten, Gänse und Schwäne – mit Schwimmfüßen und breitem Seihschnabel.", k:[
-                        {de:"Stockente", lat:"Anas platyrhynchos", art:true, url:"../arten/stockente.html", info:"Häufigste Ente; Erpel mit grünem Kopf; Stammform der Hausente."}
+                        {de:"Entenvögel", lat:"Anatidae", info:"Gründelenten, Tauchenten, Gänse und Schwäne.", k:[
+                          {de:"Stockente", lat:"Anas platyrhynchos", art:true, url:"../arten/stockente.html", info:"Häufigste Ente; Erpel mit grünem Kopf; Stammform der Hausente."},
+                          {de:"Schnatterente", lat:"Mareca strepera", art:true, url:"../arten/schnatterente.html", info:"Schlichte graue Gründelente mit weißem Flügelspiegel; der Erpel hat ein schwarzes Heck."},
+                          {de:"Krickente", lat:"Anas crecca", art:true, url:"../arten/krickente.html", info:"Unsere kleinste Ente; Erpel mit kastanienbraunem Kopf und grünem Augenfeld."},
+                          {de:"Tafelente", lat:"Aythya ferina", art:true, url:"../arten/tafelente.html", info:"Tauchente; Erpel mit rotbraunem Kopf, roten Augen und hellgrauem Rücken."},
+                          {de:"Reiherente", lat:"Aythya fuligula", art:true, url:"../arten/reiherente.html", info:"Schwarz-weiße Tauchente mit gelben Augen und Federschopf am Hinterkopf."},
+                          {de:"Graugans", lat:"Anser anser", art:true, url:"../arten/graugans.html", info:"Graubraune Gans mit orangem Schnabel und rosa Füßen; Stammform der Hausgans."},
+                          {de:"Kanadagans", lat:"Branta canadensis", art:true, url:"../arten/kanadagans.html", info:"Große Gans mit schwarzem Hals und weißem Kinnband; aus Nordamerika eingeführt."},
+                          {de:"Nilgans", lat:"Alopochen aegyptiaca", art:true, url:"../arten/nilgans.html", info:"Hellbraune Halbgans mit dunklem Augenfleck und langen rosa Beinen; aus Afrika eingeführt."},
+                          {de:"Höckerschwan", lat:"Cygnus olor", art:true, url:"../arten/hoeckerschwan.html", info:"Großer weißer Schwan mit orangem Schnabel und schwarzem Höcker; einer der schwersten flugfähigen Vögel."}
+                        ]}
                       ]}
                     ]},
                     {de:"Neuvögel", lat:"Neoaves", info:"Die große Mehrheit der Vögel. Wie ihre Äste genau zusammenhängen, wird noch erforscht.", k:[
@@ -571,7 +581,20 @@ const baumDaten = {
                           ]}
                         ]}
                       ]},
-                      {de:"Kranichvögel", lat:"Gruiformes", info:"Kranich, Blässhuhn und Teichhuhn."},
+                      {de:"Kranichvögel", lat:"Gruiformes", info:"Kranich, Blässhuhn und Teichhuhn.", k:[
+                        {de:"Rallen", lat:"Rallidae", info:"Rallen: gute Schwimmer und Schlüpfer im Röhricht – ohne Schwimmhäute.", k:[
+                          {de:"Blässhuhn", lat:"Fulica atra", art:true, url:"../arten/blaesshuhn.html", info:"Schwarze Ralle mit weißem Schnabel und weißer Stirnplatte; schwimmt und taucht."},
+                          {de:"Teichhuhn", lat:"Gallinula chloropus", art:true, url:"../arten/teichhuhn.html", info:"Dunkle Ralle mit rotem Stirnschild, gelber Schnabelspitze und weißem Flankenstreif."}
+                        ]}
+                      ]},
+                      {de:"Lappentaucher & Flamingos", lat:"Mirandornithes", info:"Ungleiche Verwandte: die tauchenden Lappentaucher und die Flamingos.", k:[
+                        {de:"Lappentaucher", lat:"Podicipediformes", info:"Tauchvögel mit Lappen an den Zehen; die Beine sitzen ganz hinten.", k:[
+                          {de:"Lappentaucher", lat:"Podicipedidae", info:"Bauen schwimmende Nester; die Küken reiten auf dem Rücken der Eltern.", k:[
+                            {de:"Haubentaucher", lat:"Podiceps cristatus", art:true, url:"../arten/haubentaucher.html", info:"Eleganter Tauchvogel mit langem Hals; im Prachtkleid mit Federhaube und rotbraunem Kragen."},
+                            {de:"Zwergtaucher", lat:"Tachybaptus ruficollis", art:true, url:"../arten/zwergtaucher.html", info:"Kleiner, rundlicher Taucher; im Prachtkleid mit rotbraunem Hals und hellem Fleck am Schnabel."}
+                          ]}
+                        ]}
+                      ]},
                       {de:"Wat- & Möwenvögel", lat:"Charadriiformes", info:"Kiebitz, Lachmöwe, Schnepfen und Seeschwalben."},
                       {de:"Wasservögel-Linie", lat:"Aequornithes", info:"Störche, Kormorane, Reiher – und die Pinguine. Viele jagen im oder am Wasser.", k:[
                         {de:"Schreitvögel", lat:"Ciconiiformes", info:"Störche: lange Beine, langer Schnabel, segelnde Langstreckenzieher.", k:[
@@ -580,7 +603,11 @@ const baumDaten = {
                         {de:"Ruderfüßer", lat:"Suliformes", info:"Kormorane und Basstölpel: alle vier Zehen durch Schwimmhäute verbunden.", k:[
                           {de:"Kormoran", lat:"Phalacrocorax carbo", art:true, url:"../arten/kormoran.html", info:"Schwarzer Tauchvogel mit Hakenschnabel; trocknet seine Flügel in der Sonne."}
                         ]},
-                        {de:"Reiher & Pelikane", lat:"Pelecaniformes", info:"Graureiher, Silberreiher und Pelikane."}
+                        {de:"Reiher & Pelikane", lat:"Pelecaniformes", info:"Graureiher, Silberreiher und Pelikane.", k:[
+                          {de:"Reiher", lat:"Ardeidae", info:"Stelzvögel mit Dolchschnabel, die im Flug den Hals einziehen.", k:[
+                            {de:"Graureiher", lat:"Ardea cinerea", art:true, url:"../arten/graureiher.html", info:"Großer grauer Stelzvogel mit gelbem Dolchschnabel; jagt reglos lauernd Fische und Mäuse."}
+                          ]}
+                        ]}
                       ]},
                       {de:"Landvögel", lat:"Telluraves", info:"Eine große Linie fast nur landlebender Vögel – von den Greifvögeln bis zu den Singvögeln.", k:[
                         {de:"Greife, Eulen & Spechte", lat:"Afroaves", info:"Greifvögel, Eulen, Spechte, Eisvögel und Wiedehopf gehören zu dieser Linie.", k:[

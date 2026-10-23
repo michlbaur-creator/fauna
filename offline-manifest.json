@@ -254,7 +254,20 @@
     "./arten/steinkauz.html",
     "./arten/fasan.html",
     "./arten/rebhuhn.html",
-    "./arten/wachtel.html"
+    "./arten/wachtel.html",
+    "./arten/schnatterente.html",
+    "./arten/krickente.html",
+    "./arten/reiherente.html",
+    "./arten/tafelente.html",
+    "./arten/hoeckerschwan.html",
+    "./arten/graugans.html",
+    "./arten/kanadagans.html",
+    "./arten/nilgans.html",
+    "./arten/blaesshuhn.html",
+    "./arten/teichhuhn.html",
+    "./arten/haubentaucher.html",
+    "./arten/zwergtaucher.html",
+    "./arten/graureiher.html"
   ],
   "media": [
     "./assets/apple-touch-icon.png",
@@ -616,6 +629,21 @@
     "./images/tafeln/steinkauz.jpg",
     "./images/tafeln/fasan.jpg",
     "./images/tafeln/rebhuhn.jpg",
-    "./images/tafeln/wachtel.jpg"
+    "./images/tafeln/wachtel.jpg",
+    "./images/tafeln/stockente.jpg",
+    "./images/tafeln/kormoran.jpg",
+    "./images/tafeln/schnatterente.jpg",
+    "./images/tafeln/krickente.jpg",
+    "./images/tafeln/reiherente.jpg",
+    "./images/tafeln/tafelente.jpg",
+    "./images/tafeln/hoeckerschwan.jpg",
+    "./images/tafeln/graugans.jpg",
+    "./images/tafeln/kanadagans.jpg",
+    "./images/tafeln/nilgans.jpg",
+    "./images/tafeln/blaesshuhn.jpg",
+    "./images/tafeln/teichhuhn.jpg",
+    "./images/tafeln/haubentaucher.jpg",
+    "./images/tafeln/zwergtaucher.jpg",
+    "./images/tafeln/graureiher.jpg"
   ]
 }

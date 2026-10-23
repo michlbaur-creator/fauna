@@ -105,7 +105,8 @@ VOEGEL = g("Vögel", "Aves", "Federn, ein Schnabel ohne Zähne und Eier mit hart
     g("Hühner- & Gänsevögel", "Galloanserae", "Zwei alte Linien, die enger miteinander verwandt sind als mit allen anderen Vögeln.", [
       g("Hühnervögel", "Galliformes", "Fasan, Rebhuhn, Wachtel – und das Haushuhn, dessen wilder Vorfahr das Bankivahuhn ist.", [
         fam("huhn", "Bodenvögel mit kräftigen Füßen; die Küken sind Nestflüchter.", ["fasan", "rebhuhn", "wachtel"])]),
-      g("Gänsevögel", "Anseriformes", "Enten, Gänse und Schwäne – mit Schwimmfüßen und breitem Seihschnabel.", [a("stockente")]),
+      g("Gänsevögel", "Anseriformes", "Enten, Gänse und Schwäne – mit Schwimmfüßen und breitem Seihschnabel.", [
+        fam("ente", "Gründelenten, Tauchenten, Gänse und Schwäne.", ["stockente", "schnatterente", "krickente", "tafelente", "reiherente", "graugans", "kanadagans", "nilgans", "hoeckerschwan"])]),
     ]),
     g("Neuvögel", "Neoaves", "Die große Mehrheit der Vögel. Wie ihre Äste genau zusammenhängen, wird noch erforscht.", [
       g("Taubenvögel", "Columbiformes", "Tauben füttern ihre Jungen mit Kropfmilch – Vater und Mutter.", [a("ringeltaube"), a("hohltaube"), a("tuerkentaube"), a("strassentaube")]),
@@ -115,12 +116,17 @@ VOEGEL = g("Vögel", "Aves", "Federn, ein Schnabel ohne Zähne und Eier mit hart
         g("Seglervögel", "Apodiformes", "Segler und Kolibris – ja, die beiden sind miteinander verwandt.", [
           fam("segler", "Leben fast nur in der Luft – mit Sichelflügeln und winzigen Füßen.", ["mauersegler"])]),
       ]),
-      g("Kranichvögel", "Gruiformes", "Kranich, Blässhuhn und Teichhuhn."),
+      g("Kranichvögel", "Gruiformes", "Kranich, Blässhuhn und Teichhuhn.", [
+        fam("ralle", "Rallen: gute Schwimmer und Schlüpfer im Röhricht – ohne Schwimmhäute.", ["blaesshuhn", "teichhuhn"])]),
+      g("Lappentaucher & Flamingos", "Mirandornithes", "Ungleiche Verwandte: die tauchenden Lappentaucher und die Flamingos.", [
+        g("Lappentaucher", "Podicipediformes", "Tauchvögel mit Lappen an den Zehen; die Beine sitzen ganz hinten.", [
+          fam("taucher", "Bauen schwimmende Nester; die Küken reiten auf dem Rücken der Eltern.", ["haubentaucher", "zwergtaucher"])])]),
       g("Wat- & Möwenvögel", "Charadriiformes", "Kiebitz, Lachmöwe, Schnepfen und Seeschwalben."),
       g("Wasservögel-Linie", "Aequornithes", "Störche, Kormorane, Reiher – und die Pinguine. Viele jagen im oder am Wasser.", [
         g("Schreitvögel", "Ciconiiformes", "Störche: lange Beine, langer Schnabel, segelnde Langstreckenzieher.", [a("weissstorch")]),
         g("Ruderfüßer", "Suliformes", "Kormorane und Basstölpel: alle vier Zehen durch Schwimmhäute verbunden.", [a("kormoran")]),
-        g("Reiher & Pelikane", "Pelecaniformes", "Graureiher, Silberreiher und Pelikane."),
+        g("Reiher & Pelikane", "Pelecaniformes", "Graureiher, Silberreiher und Pelikane.", [
+          fam("reiher", "Stelzvögel mit Dolchschnabel, die im Flug den Hals einziehen.", ["graureiher"])]),
       ]),
       g("Landvögel", "Telluraves", "Eine große Linie fast nur landlebender Vögel – von den Greifvögeln bis zu den Singvögeln.", [
         g("Greife, Eulen & Spechte", "Afroaves", "Greifvögel, Eulen, Spechte, Eisvögel und Wiedehopf gehören zu dieser Linie.", [
@@ -214,7 +220,7 @@ else:
 sb = sb[:start] + js(VOEGEL, ind) + sb[end:]
 
 ORD = ["Passeriformes", "Piciformes", "Columbiformes", "Anseriformes", "Galliformes", "Ciconiiformes", "Suliformes",
-       "Pelecaniformes", "Falconiformes", "Apodiformes", "Coraciiformes", "Cuculiformes", "Psittaciformes", "Accipitriformes", "Strigiformes", "Gruiformes", "Charadriiformes"]
+       "Pelecaniformes", "Falconiformes", "Apodiformes", "Coraciiformes", "Cuculiformes", "Psittaciformes", "Accipitriformes", "Strigiformes", "Gruiformes", "Charadriiformes", "Podicipediformes"]
 FAM = [f[1] for f in F.values()]
 add = ", ".join(f'{x}:"Ordnung"' for x in ORD) + ",\n  " + ", ".join(f'{x}:"Familie"' for x in FAM)
 if "Passeriformes:\"Ordnung\"" not in sb:
