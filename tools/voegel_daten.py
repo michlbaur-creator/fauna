@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 """Vogel-Daten für Fauna Mibaso: Artseiten, Stammbaum, tiere.json.
+Stil (ab Okt. 2026): kein Steckbrief (steht auf der Tafel), zwei kurze,
+augenzwinkernde Abschnitte und „Kurz notiert“ – wie bei den Insektenseiten.
 Erzeugt mit tools/voegel_bauen.py. Tafeln: images/tafeln/<slug>.jpg,
 Fotos (Michael Baur): images/fotos/<slug>.jpg."""
 
 JAHR = list(range(1, 13))
+M = lambda a, b: list(range(a, b + 1)) if a <= b else list(range(a, 13)) + list(range(1, b + 1))
 
-# Ordnungen / Familien (deutsch, wissenschaftlich)
+# Ordnungen (deutsch, wissenschaftlich)
 O_SPERL = ("Sperlingsvögel", "Passeriformes")
 O_SPECHT = ("Spechtvögel", "Piciformes")
 O_TAUBE = ("Taubenvögel", "Columbiformes")
@@ -13,366 +16,420 @@ O_STORCH = ("Schreitvögel", "Ciconiiformes")
 O_ENTE = ("Gänsevögel", "Anseriformes")
 O_KORM = ("Ruderfüßer", "Suliformes")
 O_FALKE = ("Falkenartige", "Falconiformes")
+O_GREIF = ("Greifvögel", "Accipitriformes")
+O_EULE = ("Eulen", "Strigiformes")
+O_SEGLER = ("Seglervögel", "Apodiformes")
+O_RACKE = ("Rackenvögel", "Coraciiformes")
 
 F = {
-  "rabe": ("Rabenvögel", "Corvidae"), "meise": ("Meisen", "Paridae"), "fink": ("Finken", "Fringillidae"),
-  "sperling": ("Sperlinge", "Passeridae"), "drossel": ("Drosseln", "Turdidae"),
-  "schnaepper": ("Fliegenschnäpper", "Muscicapidae"), "star": ("Stare", "Sturnidae"),
-  "kleiber": ("Kleiber", "Sittidae"), "zaunkoenig": ("Zaunkönige", "Troglodytidae"), "schwalbe": ("Schwalben", "Hirundinidae"),
+  "rabe": ("Rabenvögel", "Corvidae"), "wuerger": ("Würger", "Laniidae"), "meise": ("Meisen", "Paridae"),
+  "schwanzmeise": ("Schwanzmeisen", "Aegithalidae"), "laubsaenger": ("Laubsänger", "Phylloscopidae"),
+  "grasmuecke": ("Grasmücken", "Sylviidae"), "lerche": ("Lerchen", "Alaudidae"), "schwalbe": ("Schwalben", "Hirundinidae"),
+  "goldhaehnchen": ("Goldhähnchen", "Regulidae"), "kleiber": ("Kleiber", "Sittidae"), "zaunkoenig": ("Zaunkönige", "Troglodytidae"),
+  "star": ("Stare", "Sturnidae"), "wasseramsel": ("Wasseramseln", "Cinclidae"), "drossel": ("Drosseln", "Turdidae"),
+  "schnaepper": ("Fliegenschnäpper", "Muscicapidae"), "braunelle": ("Braunellen", "Prunellidae"),
+  "sperling": ("Sperlinge", "Passeridae"), "stelze": ("Stelzen und Pieper", "Motacillidae"),
+  "fink": ("Finken", "Fringillidae"), "ammer": ("Ammern", "Emberizidae"),
   "specht": ("Spechte", "Picidae"), "taube": ("Tauben", "Columbidae"), "storch": ("Störche", "Ciconiidae"),
   "ente": ("Entenvögel", "Anatidae"), "korm": ("Kormorane", "Phalacrocoracidae"), "falke": ("Falken", "Falconidae"),
+  "habicht": ("Habichtartige", "Accipitridae"), "schleiereule": ("Schleiereulen", "Tytonidae"),
+  "eule": ("Eigentliche Eulen", "Strigidae"), "segler": ("Segler", "Apodidae"), "eisvogel": ("Eisvögel", "Alcedinidae"),
 }
 
+from voegel_fotos import CAP   # {slug: Bildunterschrift zum eigenen Foto}
+
 V = []
-def art(**k): V.append(k)
+def art(slug, de, lat, o, f, stamm, abs, notiz, mon=None, zug=None, tafel=True):
+    V.append(dict(slug=slug, de=de, lat=lat, o=o, f=f, stamm=stamm, abs=abs, notiz=notiz,
+                  mon=mon or JAHR, zug=zug, tafel=tafel, foto=CAP.get(slug)))
 
-# ---------------------------------------------------------------- Singvögel mit Tafel
-art(slug="amsel", de="Amsel", lat="Turdus merula", o=O_SPERL, f="drossel", tafel=True,
-  foto="Ein Amsel-Männchen im Schnee – von hinten gut am tiefschwarzen Gefieder zu erkennen.",
-  stamm="Männchen schwarz mit gelbem Schnabel, Weibchen braun. Einer der häufigsten Vögel Deutschlands.",
-  steck=[("Größe","24–27 cm"),("Gewicht","80–110 g"),("Vorkommen","Jahresvogel"),
-    ("Lebensraum","Gärten, Parks, Wälder"),("Nahrung","Regenwürmer, Insekten, Schnecken, Beeren, Obst"),
-    ("Schnabel","Mittellang und kräftig – ein Allzweckschnabel"),
-    ("Brut","Napfnest in Hecken und Büschen; 3–5 Eier, 2–3 Bruten im Jahr"),("Brutdauer","etwa 2 Wochen")],
-  abs=[("Vom Waldvogel zum Gartenvogel","Vor 200 Jahren war die Amsel ein scheuer Bewohner dunkler Wälder. Erst im 19. Jahrhundert zog sie in Städte und Gärten – heute gehört sie zu den häufigsten Vögeln Deutschlands. Stadtamseln sind zutraulicher als ihre Verwandten im Wald und bleiben im Winter öfter bei uns."),
-    ("Hüpfen, stillhalten, zupacken","Auf dem Rasen hüpft die Amsel ein Stück, hält inne und legt den Kopf schief. Sie späht nach kleinsten Bewegungen im Gras – dann stößt sie zu und zieht einen Regenwurm aus dem Boden. Im Herbst und Winter frisst sie viele Beeren und Fallobst."),
-    ("Ein Lied in der Dämmerung","Ab Februar singt das Männchen von Dachfirsten und Antennen – flötend, gemächlich, oft schon vor Sonnenaufgang. Das Weibchen ist nicht schwarz, sondern braun mit leicht geflecktem Hals. Wer das nicht weiß, hält es leicht für eine andere Art.")],
-  notiz=["Das Nest baut vor allem das Weibchen, die Jungen füttern beide Eltern.","Ein aufgeregtes „tix-tix-tix“ verrät oft eine Katze in der Nähe."])
+# ================================================================ Drosseln & Verwandte
+art("amsel", "Amsel", "Turdus merula", O_SPERL, "drossel",
+  "Männchen schwarz mit gelbem Schnabel, Weibchen braun – vom scheuen Waldvogel zum Gartenstar.",
+  [("Vom Waldvogel zum Stadtkind", "Vor 200 Jahren lebte die Amsel scheu im Wald. Dann entdeckte sie Gärten und Parks – heute gehört sie zu unseren häufigsten Vögeln. Stadtamseln singen sogar früher am Morgen."),
+   ("Kopf schief, Wurm raus", "Auf dem Rasen hüpft sie, hält inne, legt den Kopf schief – und zack, hängt ein Regenwurm im Schnabel. Das sieht nach Lauschen aus, meist späht sie aber nach der kleinsten Bewegung.")],
+  ["Das Weibchen ist braun – Anfänger halten es oft für eine andere Art.", "Ein aufgeregtes „tix-tix-tix“ heißt oft: Achtung, Katze!"])
+art("wacholderdrossel", "Wacholderdrossel", "Turdus pilaris", O_SPERL, "drossel",
+  "Graukopf mit braunem Rücken; brütet in Kolonien und bombardiert Feinde mit Kot.",
+  [("Der Krammetsvogel", "„Krammet“ ist ein altes Wort für Wacholder – dessen Beeren nascht sie im Winter gern. Früher landete sie als „Krammetsvogel“ leider selbst auf dem Teller."),
+   ("Luftangriff mit Klecks", "Kommt eine Krähe dem Nest zu nahe, starten die Nachbarn gemeinsam – und bespritzen den Räuber gezielt mit Kot. Mit verklebtem Gefieder zieht der lieber ab.")],
+  ["Ihr Ruf klingt wie ein raues „schack-schack-schack“.", "Im Winter fallen Trupps aus dem Norden über das Fallobst her."])
+art("misteldrossel", "Misteldrossel", "Turdus viscivorus", O_SPERL, "drossel",
+  "Große, helle Drossel mit runden Brustflecken; verbreitet die Mistel.",
+  [("Gärtnerin der Mistel", "Sie liebt die klebrigen Mistelbeeren. Die Samen bleiben am Schnabel kleben oder kommen hinten wieder heraus – oft auf einem Ast, wo prompt eine neue Mistel keimt."),
+   ("Sängerin im Sturm", "Schon im Februar singt sie von der höchsten Baumspitze, selbst bei Wind und Regen. Die Engländer nennen sie deshalb „Sturmvogel“.")],
+  ["Unsere größte Drossel – deutlich größer als die Singdrossel.", "Einen beerenreichen Busch verteidigt sie im Winter gegen alle anderen Vögel."])
+art("singdrossel", "Singdrossel", "Turdus philomelos", O_SPERL, "drossel",
+  "Brauner Rücken, Brust mit dunklen Pfeilspitzen; singt jede Strophe mehrmals.",
+  [("Alles doppelt", "Ihr Lied klingt, als wolle sie sichergehen: Jede Strophe kommt zwei-, dreimal hintereinander – „Philipp, Philipp, komm her, komm her!“"),
+   ("Die Drosselschmiede", "Schnecken mit Haus knackt sie an einem Stein, ihrer „Schmiede“. Rund um den Stein verraten viele Schalensplitter die Werkstatt.")],
+  ["Ihr Nest streicht sie innen mit Holzbrei und Speichel glatt wie eine Tasse.", "Die meisten ziehen im Herbst nach Südwesteuropa."], mon=M(2, 11))
+art("rotkehlchen", "Rotkehlchen", "Erithacus rubecula", O_SPERL, "schnaepper",
+  "Orangerote Brust, große dunkle Augen; singt auch im Winter.",
+  [("Singt auch im Winter", "Rotkehlchen verteidigen auch im Winter ein Revier – und dann singen sogar die Weibchen. Unter Laternen hört man sie manchmal mitten in der Nacht."),
+   ("Gärtners Liebling", "Wer umgräbt, bekommt Gesellschaft: Das Rotkehlchen wartet auf jeden Wurm, den der Spaten freilegt. Die rote Brust ist übrigens eine Kampfansage – an andere Rotkehlchen.")],
+  ["Jungvögel sind noch braun gefleckt, ganz ohne Rot.", "Männchen und Weibchen sehen gleich aus."])
+art("nachtigall", "Nachtigall", "Luscinia megarhynchos", O_SPERL, "schnaepper",
+  "Unscheinbar braun – aber die berühmteste Sängerin Europas.",
+  [("Schlicht, aber berühmt", "Sie sieht aus wie ein braunes Nichts, singt aber wie kaum ein anderer Vogel – mit rund 200 verschiedenen Strophen. Kein Wunder, dass Dichter von Shakespeare bis zum Volkslied sie besungen haben."),
+   ("Nachtschicht", "Frisch angekommene Männchen singen nachts, um Weibchen anzulocken, die im Dunkeln durchziehen. Ist eine Partnerin gefunden, wird das Nachtkonzert meist eingestellt.")],
+  ["Kommt im April aus Afrika und zieht im August wieder ab.", "Lebt im dichten Gebüsch – man hört sie viel öfter, als man sie sieht."], mon=M(4, 8), zug="sommer")
+art("hausrotschwanz", "Hausrotschwanz", "Phoenicurus ochruros", O_SPERL, "schnaepper",
+  "Rußgrau mit zitterndem, rostrotem Schwanz; ursprünglich ein Felsenvogel.",
+  [("Vom Felsen aufs Dach", "Eigentlich ist er ein Bergvogel. Unsere Häuser sind für ihn einfach Felsen mit Fenstern – er brütet in Nischen unter dem Dach und singt vom First."),
+   ("Der Frühaufsteher", "Er singt schon lange vor Sonnenaufgang. Sein Lied endet mit einem Geräusch wie zerknülltes Papier.")],
+  ["Ständig zittert er mit dem rostroten Schwanz.", "Kommt im März und bleibt oft bis in den November."], mon=M(3, 11), zug="sommer")
+art("gartenrotschwanz", "Gartenrotschwanz", "Phoenicurus phoenicurus", O_SPERL, "schnaepper",
+  "Männchen mit weißer Stirn, schwarzer Kehle und orangeroter Brust; Afrika-Zieher.",
+  [("Der feine Vetter", "Weiße Stirn, schwarze Kehle, orangerote Brust: Er ist der elegante Vetter des Hausrotschwanzes. Statt auf Dächern lebt er in alten Obstgärten."),
+   ("Langstreckenflieger", "Den Winter verbringt er in Afrika südlich der Sahara. Zum Brüten sucht er Baumhöhlen – ein Nistkasten mit ovalem Loch kommt ihm gerade recht.")],
+  ["Auch er zittert ständig mit dem roten Schwanz.", "Vogel des Jahres 2011."], mon=M(4, 9), zug="sommer")
+art("schwarzkehlchen", "Schwarzkehlchen", "Saxicola rubicola", O_SPERL, "schnaepper",
+  "Männchen mit schwarzem Kopf, weißem Halsfleck und oranger Brust; sitzt gern ganz oben.",
+  [("Immer ganz oben", "Das Schwarzkehlchen sitzt mit Vorliebe auf der höchsten Distel oder dem obersten Zaunpfahl. Von dort hat es alles im Blick – und alle haben es im Blick."),
+   ("Kiesel klopfen", "Sein Warnruf klingt, als schlage jemand zwei Steinchen aneinander: „wid-tak-tak“.")],
+  ["Liebt Brachen, Wegränder und Heiden mit einzelnen Büschen.", "Ist bei uns in den letzten Jahren häufiger geworden."], mon=M(3, 10), zug="sommer")
+art("grauschnaepper", "Grauschnäpper", "Muscicapa striata", O_SPERL, "schnaepper",
+  "Schlicht graubraun mit gestrichelter Brust; fängt Insekten im Flug.",
+  [("Start, Schnapp, Landung", "Er sitzt auf einem Ast, startet, schnappt eine Fliege aus der Luft – und landet oft wieder auf demselben Zweig. Das Spiel wiederholt er den ganzen Tag."),
+   ("Der Nachzügler", "Er kommt erst im Mai aus Afrika, wenn genug Insekten fliegen. Sein Nest baut er gern in Mauernischen oder Halbhöhlen.")],
+  ["Typisch ist das ständige Zucken mit Flügeln und Schwanz.", "Sein Ruf ist ein feines, kaum hörbares „zieh“."], mon=M(5, 9), zug="sommer")
+art("trauerschnaepper", "Trauerschnäpper", "Ficedula hypoleuca", O_SPERL, "schnaepper",
+  "Männchen schwarz-weiß mit weißem Flügelfeld; Höhlenbrüter und Afrika-Zieher.",
+  [("Im Frack zum Nistkasten", "Das Männchen trägt Schwarz-Weiß wie ein Kellner im Frack. Kaum hängt ein Nistkasten, zieht er ein – manchmal wirft er dafür sogar Meisen hinaus."),
+   ("Zwei Wohnungen, zwei Familien", "Manche Männchen führen ein Doppelleben: Sie besetzen ein zweites Revier und werben dort ein zweites Weibchen.")],
+  ["Kommt im April aus Westafrika.", "Das Weibchen ist schlicht graubraun."], mon=M(4, 8), zug="sommer")
+art("star", "Star", "Sturnus vulgaris", O_SPERL, "star",
+  "Schillerndes Gefieder, im Winter hell getupft; meisterhafter Stimmenimitator.",
+  [("Der Stimmenimitator", "Stare ahmen fast alles nach: andere Vögel, Hühnergackern, sogar Handyklingeln. Mozart hielt sich einen Star, der eine Melodie aus seinem Klavierkonzert pfeifen konnte."),
+   ("Ein Kleid, das sich abnutzt", "Im Herbst ist er hell getupft. Bis zum Frühjahr reiben sich die hellen Federspitzen ab – und ohne eine einzige neue Feder wird er glänzend schwarz.")],
+  ["Im Herbst tanzen riesige Starenschwärme wie eine Wolke am Himmel.", "Vogel des Jahres 2018."])
+art("wasseramsel", "Wasseramsel", "Cinclus cinclus", O_SPERL, "wasseramsel",
+  "Dunkelbraun mit weißem Latz; unser einziger Singvogel, der taucht.",
+  [("Spaziergang unter Wasser", "Die Wasseramsel taucht in reißende Bäche und läuft regelrecht über den Grund. Dabei dreht sie Steine um und sucht Insektenlarven."),
+   ("Knicks am Bach", "Auf ihrem Lieblingsstein macht sie ständig kleine Knickse. Ihr Kugelnest baut sie gern unter Brücken – manchmal sogar hinter einem Wasserfall.")],
+  ["Mit der Amsel ist sie gar nicht näher verwandt.", "Sie singt auch mitten im Winter am eisigen Bach."])
 
-art(slug="wacholderdrossel", de="Wacholderdrossel", lat="Turdus pilaris", o=O_SPERL, f="drossel", tafel=False,
-  foto="Eine Wacholderdrossel im Geäst: grauer Kopf, gefleckte Brust und kräftig gelber Schnabel.",
-  stamm="Große Drossel mit grauem Kopf und braunem Rücken; brütet in lockeren Kolonien.",
-  steck=[("Größe","22–27 cm"),("Gewicht","80–130 g"),("Vorkommen","Jahresvogel; im Winter viele Gäste aus Nordosteuropa"),
-    ("Lebensraum","Feldgehölze, Waldränder, Streuobstwiesen"),("Nahrung","Würmer, Insekten; im Winter Beeren und Fallobst"),
-    ("Schnabel","Gelb mit dunkler Spitze"),("Brut","Napfnest in Bäumen, oft in lockeren Kolonien; 5–6 Eier"),("Brutdauer","knapp 2 Wochen")],
-  abs=[("Der Krammetsvogel","„Krammet“ ist ein altes Wort für Wacholder. Im Winter fressen die Drosseln gern dessen Beeren – daher der Name. Früher wurden sie als „Krammetsvögel“ in großen Mengen gefangen und gegessen."),
-    ("Gemeinsam gegen Räuber","Wacholderdrosseln brüten gern nah beieinander. Nähert sich eine Krähe oder ein Greifvogel, stürzen sich mehrere Altvögel laut schimpfend auf ihn – und bespritzen ihn gezielt mit Kot. Das verklebt das Gefieder des Angreifers und vertreibt ihn."),
-    ("Wintergäste im Obstgarten","Im Winter fallen Trupps aus dem Norden ein, oft zusammen mit Rotdrosseln. Sie suchen Fallobst unter alten Apfelbäumen und plündern Beerensträucher.")],
-  notiz=["Im Flug gut zu erkennen: grauer Bürzel und weiße Unterflügel.","Ihr Ruf ist ein raues „schack-schack-schack“."])
+# ================================================================ Kleiber, Zaunkönig, Goldhähnchen
+art("kleiber", "Kleiber", "Sitta europaea", O_SPERL, "kleiber",
+  "Blaugrauer Rücken, schwarzer Augenstreif; klettert als einziger auch kopfüber abwärts.",
+  [("Kopfüber abwärts", "Spechte klettern nur nach oben. Der Kleiber läuft auch kopfüber den Stamm hinunter – ganz ohne Stützschwanz, nur mit kräftigen Zehen."),
+   ("Der Maurer", "Ist das Einflugloch zu groß, klebt er es mit Lehm zu, bis nur er selbst hindurchpasst. Von diesem „Kleben“ hat er seinen Namen.")],
+  ["Haselnüsse klemmt er in die Rinde und hämmert sie auf.", "Sein lautes „twit-twit-twit“ ist im Frühjahr kaum zu überhören."])
+art("zaunkoenig", "Zaunkönig", "Troglodytes troglodytes", O_SPERL, "zaunkoenig",
+  "Winzig, braun gebändert, Stummelschwanz steil nach oben – und eine Stimme wie ein Großer.",
+  [("König durch einen Trick", "Im Grimm-Märchen wird König, wer am höchsten fliegt. Der Zaunkönig versteckt sich im Gefieder des Adlers, startet oben noch einmal durch – und ruft: „König bin ich!“ Ehrlich gewonnen ist anders."),
+   ("Klein, aber oho", "Er wiegt kaum zehn Gramm, schmettert sein Lied aber so laut, dass man sich nach dem Sänger umsieht. Dabei reckt er den Stummelschwanz keck in die Höhe.")],
+  ["Das Männchen baut mehrere Kugelnester aus Moos – das Weibchen sucht sich eins aus.", "In eisigen Nächten kuscheln sich manchmal ein Dutzend Zaunkönige in einem Nest zusammen."])
+art("wintergoldhaehnchen", "Wintergoldhähnchen", "Regulus regulus", O_SPERL, "goldhaehnchen",
+  "Europas kleinster Vogel: gut fünf Gramm, gelber Scheitelstreif.",
+  [("Europas Leichtgewicht", "Mit gut fünf Gramm wiegt es so viel wie ein Teelöffel Zucker – kein Vogel Europas ist kleiner."),
+   ("Überleben im Eiskeller", "Im Winter muss es fast ununterbrochen fressen, um nicht zu erfrieren. Nachts kuscheln sich mehrere eng aneinander.")],
+  ["Sein Lied ist so hoch, dass viele ältere Menschen es gar nicht mehr hören.", "Lebt am liebsten in Fichten und Tannen."])
+art("sommergoldhaehnchen", "Sommergoldhähnchen", "Regulus ignicapilla", O_SPERL, "goldhaehnchen",
+  "Winzig, mit weißem Überaugenstreif; zieht im Winter nach Süden.",
+  [("Der Bruder mit Brille", "Fast genauso winzig wie das Wintergoldhähnchen, aber mit weißem Streif über dem Auge – wie eine schicke Brille."),
+   ("Hängende Wiege", "Sein Nest hängt wie ein kleiner Korb unter einem Nadelzweig, gewebt aus Moos und Spinnweben.")],
+  ["Zieht im Herbst nach Südwesteuropa.", "Der Scheitel des Männchens leuchtet orange."], mon=M(3, 10), zug="sommer")
 
-art(slug="rotkehlchen", de="Rotkehlchen", lat="Erithacus rubecula", o=O_SPERL, f="schnaepper", tafel=True,
-  foto="Ein Rotkehlchen im Schnee – rund aufgeplustert gegen die Kälte.",
-  stamm="Orangerote Brust, große dunkle Augen; singt auch im Winter.",
-  steck=[("Größe","12–14 cm"),("Gewicht","16–22 g"),("Vorkommen","Teilzieher: viele bleiben, manche ziehen nach Südwesteuropa"),
-    ("Lebensraum","Unterholz, Wälder, Gärten, Parks"),("Nahrung","Insekten, Spinnen, Würmer; im Herbst Beeren"),
-    ("Schnabel","Dünn und spitz – ein typischer Insektenfresser"),("Brut","Nest am Boden oder in Nischen; 5–7 Eier"),("Brutdauer","etwa 2 Wochen")],
-  abs=[("Ein Lied auch im Winter","Die meisten Vögel singen nur im Frühjahr. Rotkehlchen verteidigen dagegen auch im Winter ein eigenes Revier – und dann singen Männchen und Weibchen. Ihr Lied klingt perlend und ein wenig wehmütig."),
-    ("Der Gärtnergehilfe","Wer im Garten umgräbt, bekommt oft Gesellschaft: Das Rotkehlchen wartet auf Würmer und Larven, die der Spaten freilegt. Mit seinen großen Augen sucht es auch in der Dämmerung nach Futter. Unter Straßenlaternen singt es manchmal sogar nachts."),
-    ("Rot heißt: Bleib weg!","Die orangerote Brust ist ein Warnsignal an Artgenossen. Ein Forscher stellte einen Büschel roter Federn in ein Revier – das Rotkehlchen griff ihn an, als wäre es ein Rivale.")],
-  notiz=["Jungvögel haben noch keine rote Brust, sondern ein braun geflecktes Gefieder.","Männchen und Weibchen sehen gleich aus."])
+# ================================================================ Sperlinge, Braunelle, Stelzen
+art("haussperling", "Haussperling", "Passer domesticus", O_SPERL, "sperling",
+  "Der Spatz: Männchen mit grauem Scheitel und schwarzem Latz; lebt fast nur bei Menschen.",
+  [("Seit 10.000 Jahren Mitbewohner", "Der Spatz folgte schon den ersten Bauern und lebt fast nur dort, wo Menschen wohnen. Wo Korn verschüttet wird, ist er nicht weit."),
+   ("Bad im Staub", "Spatzen baden gern gemeinsam – im Wasser und im trockenen Staub. Danach wird in der Hecke ausgiebig geschwatzt.")],
+  ["Das Weibchen ist schlicht graubraun, ohne schwarzen Latz.", "Glatte, moderne Fassaden bieten ihm kaum noch Brutnischen."])
+art("feldsperling", "Feldsperling", "Passer montanus", O_SPERL, "sperling",
+  "Kastanienbrauner Scheitel, schwarzer Wangenfleck; Männchen und Weibchen gleich.",
+  [("Der Spatz mit dem Fleck", "Brauner Scheitel, schwarzer Wangenfleck – so erkennt man den kleinen Vetter des Haussperlings. Männchen und Weibchen sehen gleich aus."),
+   ("Kein Bergvogel", "Sein wissenschaftlicher Name bedeutet „Berg-Sperling“. Dabei lebt er am liebsten am Dorfrand, in Hecken und Obstwiesen.")],
+  ["Übernachtet im Winter gern im Nistkasten.", "Ist deutlich seltener geworden."])
+art("heckenbraunelle", "Heckenbraunelle", "Prunella modularis", O_SPERL, "braunelle",
+  "Unauffällig braun und grau, feiner Schnabel; huscht wie eine Maus durch die Hecke.",
+  [("Die graue Maus", "Sie huscht so unauffällig durchs Gebüsch, dass kaum jemand sie bemerkt. Sie sieht aus wie ein Spatz – der feine, spitze Schnabel verrät aber den Insektenfresser."),
+   ("Kompliziertes Familienleben", "Bei Heckenbraunellen geht es bunt zu: Oft teilen sich zwei Männchen ein Weibchen – und beide helfen beim Füttern.")],
+  ["Gehört zu einer eigenen kleinen Familie, den Braunellen.", "Ihr Lied ist ein hastiges, dünnes Zwitschern."])
+art("bachstelze", "Bachstelze", "Motacilla alba", O_SPERL, "stelze",
+  "Schwarz-weiß-grau, wippt ständig mit dem langen Schwanz.",
+  [("Die Dauerwipperin", "Kaum ein Vogel wippt so eifrig mit dem Schwanz. Warum genau, rätseln Forscher bis heute – vielleicht scheucht es Insekten auf."),
+   ("Trippeln statt hüpfen", "Sie hüpft nicht, sie trippelt: flink über Wege, Dächer und Parkplätze, immer auf Mückenjagd. Gern läuft sie auch hinter dem Traktor her.")],
+  ["Brütet in Nischen an Gebäuden, Brücken und Holzstapeln.", "Die meisten ziehen im Herbst nach Südeuropa."], mon=M(2, 11))
+art("gebirgsstelze", "Gebirgsstelze", "Motacilla cinerea", O_SPERL, "stelze",
+  "Grau oben, leuchtend gelb unten, sehr langer Schwanz; lebt an rauschenden Bächen.",
+  [("Gelb – und trotzdem grau", "Die gelbe Unterseite führt oft in die Irre. Typisch für die Gebirgsstelze sind der graue Rücken und ein besonders langer, wippender Schwanz."),
+   ("Kein Berg nötig", "Trotz ihres Namens braucht sie keine Berge – ein schnell fließender Bach mit Steinen genügt. Ihr Nest versteckt sie gern unter Brücken und an Wehren.")],
+  ["Fängt Mücken direkt über dem Wasser.", "Viele bleiben im Winter, solange der Bach nicht zufriert."])
+art("wiesenpieper", "Wiesenpieper", "Anthus pratensis", O_SPERL, "stelze",
+  "Braun gestrichelter Bodenvogel offener Wiesen; singt im Fallschirmflug.",
+  [("Der Fallschirmspringer", "Zum Singen steigt er senkrecht auf und gleitet dann mit gespreizten Flügeln wie ein kleiner Fallschirm zurück auf die Wiese."),
+   ("Viel Wiese, wenig Pieper", "Er braucht feuchte, wenig gedüngte Wiesen. Weil die selten geworden sind, ist auch er bei uns selten geworden.")],
+  ["An der Hinterzehe trägt er eine auffällig lange Kralle.", "Im Herbst und Winter ziehen Trupps aus dem Norden durch."], mon=M(3, 11))
 
-art(slug="star", de="Star", lat="Sturnus vulgaris", o=O_SPERL, f="star", tafel=True,
-  foto="Ein Star im getupften Winterkleid auf dem verschneiten Futterhaus.",
-  stamm="Schillerndes Gefieder, im Winter hell getupft; meisterhafter Stimmenimitator.",
-  steck=[("Größe","19–22 cm"),("Gewicht","60–90 g"),("Vorkommen","Teilzieher: viele ziehen nach West- und Südeuropa, einige bleiben"),
-    ("Lebensraum","Wiesen, Weiden, Parks, Gärten"),("Nahrung","Insekten, Larven, Würmer; im Herbst Obst"),
-    ("Schnabel","Spitz; im Frühjahr gelb, im Winter dunkel"),("Brut","Höhlenbrüter (Baumhöhlen, Nistkästen); 4–6 Eier"),("Brutdauer","knapp 2 Wochen")],
-  abs=[("Der Stimmenkünstler","Stare ahmen fast alles nach: den Pfiff des Pirols, das Krächzen der Krähe, Hühnergackern – manchmal sogar Handyklingeln oder ein quietschendes Gartentor. Ihr eigener Gesang ist ein Gemisch aus Pfeifen, Schnalzen und Schwatzen."),
-    ("Zirkeln im Rasen","Der Star steckt den geschlossenen Schnabel ins Gras und öffnet ihn dann mit Kraft. Das nennt man „Zirkeln“. So drückt er die Erde auseinander und erwischt Larven, die tief im Boden stecken. Deshalb sucht er so gern auf kurz gemähten Wiesen und Weiden."),
-    ("Ein Kleid, das sich abnutzt","Im Herbst hat der Star viele helle Federspitzen – er sieht aus wie gesprenkelt. Bis zum Frühjahr reiben sich diese Spitzen ab. Ohne eine einzige Feder zu wechseln, wird der Star so glänzend schwarz mit grünem und violettem Schimmer.")],
-  notiz=["Im Herbst sammeln sich Stare zu riesigen Schwärmen, die am Schlafplatz wie eine Wolke tanzen.","Vogel des Jahres 2018."])
+# ================================================================ Finken & Ammern
+art("buchfink", "Buchfink", "Fringilla coelebs", O_SPERL, "fink",
+  "Zwei weiße Flügelbinden; Männchen mit blaugrauem Kopf und rostroter Brust.",
+  [("Der Junggeselle", "Sein wissenschaftlicher Name „coelebs“ heißt Junggeselle. Linné sah im schwedischen Winter fast nur Männchen – die Weibchen machen Urlaub im Süden."),
+   ("Lied mit Schnörkel", "Sein schmetternder Gesang endet mit einem kleinen Schnörkel. Je nach Gegend klingt er etwas anders – Buchfinken haben Dialekte.")],
+  ["Einer der häufigsten Vögel Deutschlands.", "Sein Ruf „pink-pink“ gab ihm vermutlich den Namen."])
+art("bergfink", "Bergfink", "Fringilla montifringilla", O_SPERL, "fink",
+  "Orange Schultern, weißer Bürzel; Wintergast aus dem hohen Norden.",
+  [("Gast aus Lappland", "Der Bergfink brütet in den Birkenwäldern Skandinaviens. Bei uns taucht er nur im Winter auf – oft zusammen mit seinem Vetter, dem Buchfink."),
+   ("Millionen am Schlafplatz", "In guten Bucheckern-Wintern fallen riesige Schwärme ein. An manchen Schlafplätzen in Europa wurden schon Millionen Bergfinken gezählt.")],
+  ["Im Flug leuchtet der weiße Bürzel.", "Kommt im Oktober und verschwindet im April."], mon=M(10, 4), zug="winter")
+art("bluthaenfling", "Bluthänfling", "Linaria cannabina", O_SPERL, "fink",
+  "Männchen mit karminroter Stirn und Brust; frisst fast nur Samen.",
+  [("Rot wie Blut", "Im Frühjahr färben sich beim Männchen Stirn und Brust leuchtend rot – daher der Name. Im Winter ist die Farbe fast verschwunden."),
+   ("Hanf statt Raupen", "„Hänfling“ kommt vom Hanf, dessen Samen er liebt. Sogar seine Jungen füttert er überwiegend mit Samen – für einen Singvogel ziemlich ungewöhnlich.")],
+  ["Brütet gern in Hecken und jungen Nadelbäumen.", "Mit den Wildkräutern am Feldrand verschwindet auch er."], mon=M(3, 10))
+art("girlitz", "Girlitz", "Serinus serinus", O_SPERL, "fink",
+  "Kleinster Fink, gelbgrün gestreift; Gesang wie ein klirrender Schlüsselbund.",
+  [("Ein Schlüsselbund mit Flügeln", "Sein Gesang klingt wie ein klirrender Schlüsselbund – hoch, schnell und ein bisschen nervös. Dabei flattert das Männchen wie eine Fledermaus durch die Luft."),
+   ("Ein Südländer zieht nach Norden", "Ursprünglich lebte der Girlitz rund ums Mittelmeer. Seit dem 19. Jahrhundert hat er sich bis zu uns ausgebreitet – heute singt er in Gärten und auf Friedhöfen.")],
+  ["Ein naher Verwandter des Kanarienvogels.", "Kommt im März und zieht im Oktober nach Süden."], mon=M(3, 10), zug="sommer")
+art("gruenfink", "Grünfink", "Chloris chloris", O_SPERL, "fink",
+  "Olivgrün mit leuchtend gelben Flügelkanten; kräftiger heller Schnabel.",
+  [("Kraftpaket am Futterhaus", "Sonnenblumenkerne knackt er mit dem dicken Schnabel wie nichts. Und hat er erst einen Platz am Futterhaus, verteidigt er ihn energisch."),
+   ("Futterstellen sauber halten!", "Seit etwa 2009 sterben viele Grünfinken an einer Krankheit, die über verschmutztes Futter und Wasser übertragen wird. Sauberkeit am Futterhaus rettet Leben.")],
+  ["Im Frühjahr flattert das Männchen singend wie eine Fledermaus im Kreis.", "Die gelben Flügelkanten leuchten im Flug."])
+art("stieglitz", "Stieglitz", "Carduelis carduelis", O_SPERL, "fink",
+  "Der Distelfink: rote Gesichtsmaske, breite gelbe Flügelbinden.",
+  [("Der Distelfink", "Er hängt an verblühten Disteln und zieht mit dem spitzen Schnabel die Samen heraus. Wer im Garten Disteln stehen lässt, bekommt bunten Besuch."),
+   ("Star der Maler", "Kaum ein Vogel wurde so oft gemalt: Auf alten Bildern hält das Jesuskind oft einen Stieglitz in der Hand. Berühmt ist auch „Der Distelfink“ von Carel Fabritius.")],
+  ["Seinen Namen hat er vom Ruf „stiglitt“.", "Vogel des Jahres 2016."])
+art("gimpel", "Gimpel", "Pyrrhula pyrrhula", O_SPERL, "fink",
+  "Auch Dompfaff: schwarze Kappe, Männchen mit roter Brust, weißer Bürzel.",
+  [("Der Domherr", "Sein zweiter Name „Dompfaff“ heißt Domherr: Die rote Brust und die schwarze Kappe erinnerten an die Kleidung der Geistlichen."),
+   ("Treu und leise", "Gimpelpaare halten oft auch im Winter zusammen und kommen gemeinsam ans Futterhaus. Gesungen wird eher leise – ein weiches „djü“.")],
+  ["Im Frühjahr knabbert er gern Blütenknospen.", "Im Flug leuchtet der weiße Bürzel."])
+art("erlenzeisig", "Erlenzeisig", "Spinus spinus", O_SPERL, "fink",
+  "Kleiner gelbgrüner Fink; Männchen mit schwarzer Kappe; im Winter an Erlen und Birken.",
+  [("Turner an Erlenzapfen", "Wie eine Meise hängt er kopfüber an Erlenzäpfchen und pickt die Samen heraus. Der schmale Schnabel passt genau zwischen die Schuppen."),
+   ("Mal viele, mal keine", "In manchen Wintern fallen große Schwärme aus dem Norden ein, in anderen fehlt er fast ganz – je nachdem, wie viel Futter dort wächst.")],
+  ["Sein Nest liegt so hoch in Fichten, dass es kaum jemand findet.", "Am Futterhaus liebt er feine Samen."])
+art("kernbeisser", "Kernbeißer", "Coccothraustes coccothraustes", O_SPERL, "fink",
+  "Größter heimischer Fink mit gewaltigem Kegelschnabel; knackt Kirschkerne.",
+  [("Nussknacker mit Federn", "Mit seinem riesigen Schnabel knackt er Kirschkerne, für die wir einen Hammer bräuchten. Die dicken Kaumuskeln machen seinen Kopf so groß."),
+   ("Heimlich in den Kronen", "Im Sommer versteckt er sich hoch oben in den Bäumen. Im Winter kommt er ans Futterhaus – und ist beim kleinsten Geräusch wieder weg.")],
+  ["Der größte Fink Deutschlands.", "Sauber halbierte Kirschkerne unter dem Baum verraten ihn."])
+art("goldammer", "Goldammer", "Emberiza citrinella", O_SPERL, "ammer",
+  "Gelber Kopf, rostbrauner Bürzel; singt „Wie, wie, wie hab ich dich lieb“.",
+  [("Ein Lied zum Mitsingen", "Ihr Gesang klingt wie „Wie, wie, wie hab ich dich liiieb“. In England singt sie angeblich „A little bit of bread and no cheese“."),
+   ("Gold am Feldrand", "Sie braucht Hecken und Feldränder mit Wildkräutern. Im Winter suchen Trupps auf Stoppelfeldern nach Samen.")],
+  ["Das Männchen leuchtet im Frühling zitronengelb.", "Beethoven soll das Motiv seiner 5. Sinfonie einer Goldammer abgelauscht haben – so jedenfalls eine hübsche Anekdote."])
 
-art(slug="kleiber", de="Kleiber", lat="Sitta europaea", o=O_SPERL, f="kleiber", tafel=True, foto=None,
-  stamm="Blaugrauer Rücken, schwarzer Augenstreif; klettert als einziger auch kopfüber abwärts.",
-  steck=[("Größe","12–14 cm"),("Gewicht","20–25 g"),("Vorkommen","Jahresvogel, sehr ortstreu"),
-    ("Lebensraum","Laub- und Mischwälder, Parks mit alten Bäumen"),("Nahrung","Insekten, Spinnen, Samen, Nüsse"),
-    ("Schnabel","Spitz und meißelartig"),("Füße","Kräftige Zehen mit langen, gebogenen Krallen"),
-    ("Brut","Baumhöhle, Eingang mit Lehm verkleinert; 6–8 Eier"),("Brutdauer","gut 2 Wochen")],
-  abs=[("Kopfüber den Stamm hinab","Spechte klettern nur aufwärts und stützen sich dabei mit dem Schwanz ab. Der Kleiber braucht diese Stütze nicht: Er hält sich allein mit seinen kräftigen Zehen und Krallen. So kann er als einziger heimischer Vogel auch kopfüber den Stamm hinunterlaufen."),
-    ("Der Maurer","Ist das Einflugloch einer Höhle zu groß, klebt der Kleiber es mit feuchtem Lehm zu, bis nur noch er selbst hindurchpasst. Von diesem „Kleben“ hat er seinen Namen. So sperrt er größere Konkurrenten wie den Star aus."),
-    ("Nüsse in der Rinde","Haselnüsse und Bucheckern klemmt der Kleiber in eine Rindenritze und hämmert sie mit dem Schnabel auf. Im Herbst versteckt er Vorräte hinter der Rinde.")],
-  notiz=["Sein lautes „twit-twit-twit“ ist im Frühjahr kaum zu überhören.","Männchen haben kräftiger rotbraune Flanken als Weibchen."])
+# ================================================================ Meisen & Co.
+art("blaumeise", "Blaumeise", "Cyanistes caeruleus", O_SPERL, "meise",
+  "Blaue Kopfkappe, weißes Gesicht, gelbe Unterseite; turnt an dünnsten Zweigen.",
+  [("Akrobatin", "Sie wiegt so viel wie drei Stück Würfelzucker und hängt kopfüber an den dünnsten Zweigen. Dort pickt sie Blattläuse, an die sonst keiner herankommt."),
+   ("Tausende Raupen", "Bis zu 13 Eier legt sie – und die Eltern schleppen Tausende Raupen heran. Die Jungen schlüpfen genau dann, wenn an den Eichen die meisten Raupen fressen.")],
+  ["Nistkasten mit 26–28 mm Loch: Da passt die Kohlmeise nicht durch.", "Blaue statt schwarzer Kappe – so unterscheidet man sie von der Kohlmeise."])
+art("kohlmeise", "Kohlmeise", "Parus major", O_SPERL, "meise",
+  "Größte heimische Meise: schwarzer Kopf, weiße Wangen, schwarzer Bauchstreif.",
+  [("Die Größte", "Schwarzer Kopf wie Kohle, weiße Wangen, gelber Bauch: Die Kohlmeise ist unsere größte und häufigste Meise."),
+   ("Die Krawatte verrät’s", "Beim Männchen ist der schwarze Bauchstreif breit wie eine Krawatte, beim Weibchen nur ein schmales Bändchen.")],
+  ["Ihr „zi-zi-bäh“ hört man schon an sonnigen Januartagen.", "Sonnenblumenkerne hält sie mit den Füßen fest und hämmert sie auf."])
+art("tannenmeise", "Tannenmeise", "Periparus ater", O_SPERL, "meise",
+  "Kleinste heimische Meise: schwarzer Kopf mit weißem Nackenfleck; lebt im Nadelwald.",
+  [("Klein mit Nackenfleck", "Sie ist unsere kleinste Meise. Von der Kohlmeise unterscheiden sie der weiße Fleck im Nacken und der fehlende gelbe Bauch."),
+   ("Hamstern im Nadelwald", "Im Herbst versteckt sie Samen zwischen Nadeln und hinter Rinde. Am Futterhaus schnappt sie sich einen Kern und – zack – ab ins Versteck.")],
+  ["Brütet manchmal sogar in Mauselöchern im Boden.", "Kommt vor allem dort in den Garten, wo Nadelbäume stehen."])
+art("haubenmeise", "Haubenmeise", "Lophophanes cristatus", O_SPERL, "meise",
+  "Die einzige heimische Meise mit spitzer, schwarz-weißer Federhaube.",
+  [("Die Meise mit Frisur", "Die spitze, schwarz-weiß gesprenkelte Haube macht sie unverwechselbar – sie ist unsere einzige Meise mit Frisur."),
+   ("Selbst ist die Meise", "Ihre Bruthöhle hackt sie oft selbst in morsches Holz. Dafür braucht sie Wälder mit totem Holz.")],
+  ["Ihr Ruf ist ein schnurrendes „zürrr“.", "Im Garten nur, wenn Nadelwald in der Nähe ist."])
+art("sumpfmeise", "Sumpfmeise", "Poecile palustris", O_SPERL, "meise",
+  "Glänzend schwarze Kappe, kleiner Kinnfleck; Doppelgängerin der Weidenmeise.",
+  [("Sumpf? Fehlanzeige", "Trotz ihres Namens lebt sie nicht im Sumpf, sondern in Laubwäldern und Gärten mit alten Bäumen."),
+   ("Der Zwillingstest", "Sie sieht der Weidenmeise zum Verwechseln ähnlich. Selbst Profis verlassen sich auf die Stimme: Die Sumpfmeise ruft ein helles „pitschü“.")],
+  ["Ihre Kappe glänzt, bei der Weidenmeise ist sie matt.", "Versteckt im Herbst Tausende Samen – und findet viele wieder."])
+art("weidenmeise", "Weidenmeise", "Poecile montanus", O_SPERL, "meise",
+  "Mattschwarze Kappe, heller Flügelstreif; Doppelgängerin der Sumpfmeise.",
+  [("Die Doppelgängerin", "Matte statt glänzende Kappe, ein heller Streif im Flügel – mehr Unterschiede zur Sumpfmeise gibt es kaum. Ihr gedehntes „däh-däh-däh“ verrät sie."),
+   ("Bauen im Weichholz", "Wie die Haubenmeise hackt sie ihre Bruthöhle selbst – am liebsten in morsche Weiden oder Birken.")],
+  ["Lebt gern in feuchten Wäldern und Weidengebüschen.", "Bei uns seltener als die Sumpfmeise."])
+art("schwanzmeise", "Schwanzmeise", "Aegithalos caudatus", O_SPERL, "schwanzmeise",
+  "Winziger Körper, riesiger Schwanz – ein fliegender Kochlöffel.",
+  [("Ein Löffel mit Flügeln", "Der Körper ist kaum größer als ein Daumen, der Schwanz länger als der ganze Rest. Im Volksmund heißt sie deshalb „Pfannenstiel“."),
+   ("Ein Nest aus tausend Federn", "Ihr Kugelnest webt sie aus Moos und Spinnweben und polstert es mit über tausend Federn. Im Winter schlafen die Trupps dicht an dicht auf einem Ast.")],
+  ["Sie ist keine echte Meise, sondern hat eine eigene Familie.", "Zieht in kleinen, piepsenden Trupps durch die Bäume."])
 
-art(slug="rauchschwalbe", de="Rauchschwalbe", lat="Hirundo rustica", o=O_SPERL, f="schwalbe", tafel=False,
-  foto="Eine junge Rauchschwalbe kurz nach dem Ausfliegen – die langen Schwanzspieße wachsen erst noch.",
-  stamm="Gabelschwanz mit langen Spießen, rote Kehle; brütet in Viehställen.",
-  steck=[("Größe","17–21 cm mit Schwanzspießen"),("Gewicht","16–25 g"),("Vorkommen","Zugvogel: April bis September, Winter in Afrika"),
-    ("Lebensraum","Dörfer und Bauernhöfe mit Viehställen"),("Nahrung","Fliegende Insekten"),
-    ("Schnabel","Kurz, aber mit weitem Rachen – ein Fangkescher für den Flug"),("Füße","Klein und schwach – zum Sitzen, kaum zum Laufen"),
-    ("Brut","Schalennest aus Lehm in Ställen; 4–5 Eier, meist 2 Bruten"),("Brutdauer","gut 2 Wochen")],
-  abs=[("Gebaut für die Luft","Lange, spitze Flügel und ein tief gegabelter Schwanz machen die Rauchschwalbe zur Kunstfliegerin. Sie jagt dicht über Wiesen und Wasser, fängt Insekten im Flug und trinkt sogar im Flug, indem sie über die Wasseroberfläche streift."),
-    ("Ein Nest aus Lehmklümpchen","Für ihr Nest sammelt die Schwalbe feuchten Lehm an Pfützen – Schnabelvoll für Schnabelvoll, viele hundert Mal. Die Klümpchen klebt sie mit Speichel an einen Balken im Stall. Ohne Pfützen und offene Stalltüren findet sie keinen Brutplatz."),
-    ("Schwalben brauchen Kühe","Wo Kühe und Pferde stehen, gibt es viele Fliegen – und warme Ställe zum Brüten. Seit es weniger kleine Höfe mit Vieh gibt, sind auch die Rauchschwalben seltener geworden.")],
-  notiz=["Den Winter verbringt sie in Afrika südlich der Sahara – tausende Kilometer entfernt.","Im Unterschied zur Mehlschwalbe hat sie eine rote Kehle und baut offene Nester innen in Gebäuden."])
+# ================================================================ Laubsänger, Grasmücken, Lerche, Schwalben
+art("zilpzalp", "Zilpzalp", "Phylloscopus collybita", O_SPERL, "laubsaenger",
+  "Olivbraun und unscheinbar – sagt aber laut, wie er heißt.",
+  [("Er sagt, wie er heißt", "Sein Lied ist leicht zu merken: „zilp-zalp-zilp-zalp“. Er gehört zu den ersten Rückkehrern im März."),
+   ("Zwilling mit anderem Lied", "Er sieht dem Fitis fast genau gleich. Erst wenn beide singen, ist alles klar – ein Glück für Vogelfreunde.")],
+  ["Meist mit dunklen Beinen – beim Fitis sind sie hell.", "Baut ein Kugelnest dicht über dem Boden."], mon=M(3, 10), zug="sommer")
+art("fitis", "Fitis", "Phylloscopus trochilus", O_SPERL, "laubsaenger",
+  "Zwilling des Zilpzalps mit hellen Beinen und weich abfallendem Lied.",
+  [("Der Zwilling", "Wie ein Zilpzalp, nur mit hellen Beinen und etwas gelblicher. Am besten erkennt man ihn am Lied: eine weiche, abfallende Tonleiter."),
+   ("Leichtgewicht auf Weltreise", "Er wiegt kaum zehn Gramm und fliegt trotzdem jedes Jahr bis ins südliche Afrika – und wieder zurück.")],
+  ["Baut ein Kugelnest mit Seiteneingang am Boden.", "Mag lichte Wälder mit Birken."], mon=M(4, 9), zug="sommer")
+art("moenchsgrasmuecke", "Mönchsgrasmücke", "Sylvia atricapilla", O_SPERL, "grasmuecke",
+  "Männchen mit schwarzer, Weibchen mit brauner Kappe; flötender Sänger.",
+  [("Mönch mit Käppchen", "Das Männchen trägt eine schwarze Kappe wie ein Mönch, das Weibchen eine braune. Ihr Lied beginnt plaudernd und endet in lauten Flötentönen."),
+   ("Neue Route nach England", "Seit einigen Jahrzehnten fliegen manche Mönchsgrasmücken aus Mitteleuropa im Herbst nicht nach Süden, sondern nach England – dank milder Winter und voller Futterhäuser.")],
+  ["Einer der häufigsten Brutvögel in Gärten.", "Liebt im Herbst Holunderbeeren."], mon=M(3, 10), zug="sommer")
+art("gartengrasmuecke", "Gartengrasmücke", "Sylvia borin", O_SPERL, "grasmuecke",
+  "Die Unauffälligste von allen: graubraun, ganz ohne Abzeichen.",
+  [("Merkmal: kein Merkmal", "Kein Fleck, keine Kappe, kein Streifen – ihr Erkennungszeichen ist, dass sie keins hat. Dafür singt sie lang und plätschernd wie ein Bach."),
+   ("Beerenmast vor dem Abflug", "Vor dem Flug nach Afrika frisst sie sich an Beeren satt und kann ihr Gewicht fast verdoppeln.")],
+  ["Lebt im Gebüsch – nicht unbedingt im Garten.", "Kommt erst Ende April zurück."], mon=M(5, 9), zug="sommer")
+art("dorngrasmuecke", "Dorngrasmücke", "Curruca communis", O_SPERL, "grasmuecke",
+  "Weiße Kehle, rostbraune Flügel; lebt in dornigen Hecken.",
+  [("Zuhause im Gestrüpp", "Brombeeren, Schlehen, Heckenrosen – je dorniger, desto lieber. Mit weißer Kehle sitzt das Männchen oben auf der Hecke und kratzt sein Liedchen."),
+   ("Kurzer Hüpfer in die Luft", "Zum Balzen flattert es plötzlich singend ein Stück in die Höhe und lässt sich dann wieder ins Gebüsch fallen.")],
+  ["Überwintert in Afrika südlich der Sahara.", "Ihr Gesang klingt kratzig und hastig."], mon=M(4, 9), zug="sommer")
+art("feldlerche", "Feldlerche", "Alauda arvensis", O_SPERL, "lerche",
+  "Braun gestrichelter Bodenvogel mit kleiner Haube; singt minutenlang hoch in der Luft.",
+  [("Singen im Steigflug", "Die Feldlerche steigt trillernd so hoch, bis man sie kaum noch sieht – und singt dabei oft mehrere Minuten ohne Pause."),
+   ("Lerchenfenster", "In dichten Getreidefeldern findet sie kaum Platz zum Landen. Kleine, absichtlich nicht eingesäte Flecken – „Lerchenfenster“ – helfen ihr.")],
+  ["Vogel des Jahres 1998 und 2019.", "Brütet direkt auf dem Acker am Boden."], mon=M(2, 10), zug="sommer")
+art("rauchschwalbe", "Rauchschwalbe", "Hirundo rustica", O_SPERL, "schwalbe",
+  "Gabelschwanz mit langen Spießen, rote Kehle; brütet in Viehställen.",
+  [("Gebaut für die Luft", "Lange Flügel, Gabelschwanz mit Spießen: Sie fängt Insekten im Flug und trinkt sogar im Tiefflug über dem Teich."),
+   ("Schwalben brauchen Kühe", "Sie brütet in Ställen – und wo Vieh steht, gibt es Fliegen. Mit den kleinen Bauernhöfen verschwinden auch die Schwalben.")],
+  ["„Eine Schwalbe macht noch keinen Sommer“ – das wusste schon Aristoteles.", "Überwintert in Afrika südlich der Sahara."], mon=M(4, 9), zug="sommer")
+art("mehlschwalbe", "Mehlschwalbe", "Delichon urbicum", O_SPERL, "schwalbe",
+  "Blauschwarz oben, schneeweiß unten, weißer Bürzel; baut geschlossene Lehmnester an Hauswänden.",
+  [("Weiß wie Mehl", "Ihr weißer Bauch und Bürzel brachten ihr den Namen. Anders als die Rauchschwalbe brütet sie außen an der Hauswand."),
+   ("Häuschen aus Lehm", "Ihr Nest ist eine geschlossene Halbkugel mit kleinem Einflugloch – gebaut aus Hunderten Lehmklümpchen. Kunstnester helfen, wenn Pfützen fehlen.")],
+  ["Brütet oft in Kolonien – Nest an Nest unter der Dachrinne.", "Ihre Nester sind gesetzlich geschützt."], mon=M(4, 9), zug="sommer")
 
-art(slug="feldsperling", de="Feldsperling", lat="Passer montanus", o=O_SPERL, f="sperling", tafel=True,
-  foto="Ein Feldsperling am winterlichen Futterplatz – gut zu sehen: brauner Scheitel und schwarzer Wangenfleck.",
-  stamm="Kastanienbrauner Scheitel, schwarzer Wangenfleck; Männchen und Weibchen gleich.",
-  steck=[("Größe","12–14 cm"),("Gewicht","19–25 g"),("Vorkommen","Jahresvogel"),
-    ("Lebensraum","Feldgehölze, Obstwiesen, Dorfränder"),("Nahrung","Samen, Getreide; Junge bekommen Insekten"),
-    ("Schnabel","Kurz und kegelförmig – zum Knacken von Samen"),("Brut","Höhlenbrüter (Baumhöhlen, Nistkästen); 4–6 Eier, 2–3 Bruten"),("Brutdauer","knapp 2 Wochen")],
-  abs=[("Der Spatz mit dem Fleck","Der Feldsperling ist der kleine Vetter des Haussperlings. Sicher erkennt man ihn am kastanienbraunen Scheitel, dem schwarzen Fleck auf der weißen Wange und dem hellen Halsring. Anders als beim Haussperling sehen Männchen und Weibchen gleich aus."),
-    ("Samenfresser mit Insektenküche","Erwachsene Feldsperlinge leben vor allem von Samen. Ihre Jungen füttern sie aber mit Insekten – wie fast alle Singvögel. Junge Vögel brauchen viel Eiweiß, um schnell zu wachsen."),
-    ("Ein Dorfvogel wird selten","Der Feldsperling lebt am Rand der Dörfer, in Hecken, Obstwiesen und an Feldrainen. Seit es weniger Brachen, Hecken und Insekten gibt, ist er deutlich seltener geworden. Nistkästen und wilde Ecken helfen ihm.")],
-  notiz=["Sein wissenschaftlicher Name bedeutet „Berg-Sperling“ – obwohl er gar kein Bergvogel ist.","Feldsperlinge übernachten gern in Nistkästen, auch im Winter."])
+# ================================================================ Rabenvögel & Würger
+art("eichelhaeher", "Eichelhäher", "Garrulus glandarius", O_SPERL, "rabe",
+  "Bunter Rabenvogel mit blauen Flügelfedern; versteckt Eicheln und pflanzt so Eichen.",
+  [("Förster mit Flügeln", "Im Herbst versteckt er Tausende Eicheln im Boden. Die vergessenen keimen – und so pflanzt er ganze Eichenwälder."),
+   ("Alarmanlage des Waldes", "Schleicht ein Fuchs vorbei, rätscht er los und warnt den ganzen Wald. Den Ruf des Mäusebussards ahmt er täuschend echt nach.")],
+  ["Das Blau seiner Federn ist keine Farbe, sondern ein Lichteffekt.", "Eine gefundene blaue Feder ist ein schönes Andenken."])
+art("elster", "Elster", "Pica pica", O_SPERL, "rabe",
+  "Schwarz-weiß mit langem, grün schillerndem Schwanz; baut Nester mit Dach.",
+  [("Ein Nest mit Dach", "Elstern bauen Kugelnester aus Reisig mit stacheligem Dach. In alte Nester ziehen später gern Turmfalken oder Waldohreulen ein."),
+   ("Diebisch? Von wegen!", "Die „diebische Elster“ ist vor allem ein Märchen – in Versuchen mieden Elstern glänzende Dinge eher. Dafür erkannten sie sich in einem berühmten Versuch im Spiegel.")],
+  ["Der lange Schwanz schillert grün, blau und violett.", "Ihr Ruf: ein schnelles „schäk-schäk-schäk“."])
+art("dohle", "Dohle", "Coloeus monedula", O_SPERL, "rabe",
+  "Kleinste heimische Krähe mit grauem Nacken und hellen Augen; brütet in Kirchtürmen.",
+  [("Die mit den hellen Augen", "Grauer Nacken, silberhelle Augen – die Dohle ist die Kleinste unserer Krähen. Sie brütet gern in Kirchtürmen, Schornsteinen und alten Bäumen."),
+   ("Treue fürs Leben", "Dohlenpaare bleiben ein Leben lang zusammen. Der Verhaltensforscher Konrad Lorenz zog Dohlen auf und erzählte in seinen Büchern begeistert von ihnen.")],
+  ["Ihr Ruf ist ein helles „kja“.", "Brütet gern gesellig in Kolonien."])
+art("saatkraehe", "Saatkrähe", "Corvus frugilegus", O_SPERL, "rabe",
+  "Schwarz mit nacktem, grauweißem Schnabelgrund; brütet in lauten Kolonien.",
+  [("Der nackte Schnabel", "Erwachsene Saatkrähen haben am Schnabelgrund keine Federn, sondern helle, nackte Haut. So unterscheidet man sie von der Rabenkrähe."),
+   ("Krähenstadt", "Saatkrähen brüten in Kolonien mit oft vielen Dutzend Nestern – und dort ist es laut. Im Winter kommen große Schwärme aus Osteuropa dazu.")],
+  ["Auf dem Acker sucht sie vor allem Larven und Würmer – nicht nur Saat.", "Die Federn an den Beinen sehen aus wie Pluderhosen."])
+art("rabenkraehe", "Rabenkrähe", "Corvus corone", O_SPERL, "rabe",
+  "Ganz schwarz, mit befiederter Schnabelbasis; klug und anpassungsfähig.",
+  [("Ganz in Schwarz", "Komplett schwarz, mit befiedertem Schnabelgrund – so unterscheidet sie sich von der Saatkrähe. Im Osten lebt ihre grau-schwarze Schwester, die Nebelkrähe."),
+   ("Kluger Kopf", "Krähen merken sich Gesichter und lassen Nüsse auf die Straße fallen, damit Autos sie knacken. Mit Krähen sollte man es sich also nicht verscherzen.")],
+  ["Paare bleiben meist ein Leben lang zusammen.", "Kann über 15 Jahre alt werden."])
+art("nebelkraehe", "Nebelkrähe", "Corvus cornix", O_SPERL, "rabe",
+  "Grau-schwarze Schwester der Rabenkrähe; lebt im Osten und Norden Europas.",
+  [("Die grau-schwarze Schwester", "Sie ist so eng mit der Rabenkrähe verwandt, dass manche Forscher beide für eine Art halten. Entlang der Elbe gibt es Mischlinge."),
+   ("Muscheln vom Himmel", "An der Küste lässt sie Muscheln aus der Luft auf Steine fallen. Klappt’s nicht, wird eben noch einmal gestartet.")],
+  ["Bei uns in Hessen nur ein seltener Wintergast.", "Sieht aus wie mit grauer Weste über schwarzem Kopf."], tafel=False)
+art("kolkrabe", "Kolkrabe", "Corvus corax", O_SPERL, "rabe",
+  "Größter Singvogel Europas, keilförmiger Schwanz; tiefes „krok“.",
+  [("Der größte Singvogel", "So groß wie ein Bussard – und trotzdem ein Singvogel. Am keilförmigen Schwanz und dem tiefen „krok“ erkennt man ihn."),
+   ("Odins Späher", "In den alten Sagen hatte Göttervater Odin zwei Raben: Hugin und Munin, „Gedanke“ und „Erinnerung“. Sie flogen täglich um die Welt und berichteten ihm alles.")],
+  ["Fliegt gern Loopings und Rückenrollen – einfach aus Spaß.", "War bei uns fast ausgerottet und ist heute zurück."])
+art("neuntoeter", "Neuntöter", "Lanius collurio", O_SPERL, "wuerger",
+  "Männchen mit schwarzer Augenmaske und rotbraunem Rücken; spießt Beute auf Dornen.",
+  [("Speisekammer am Dornbusch", "Er spießt Käfer, Hummeln und sogar Mäuse auf Dornen – als Vorrat für schlechte Tage."),
+   ("Neun? Eher nicht", "Früher glaubte man, er töte erst neun Tiere, bevor er eins frisst. Gezählt hat das sicher niemand – der Name ist geblieben.")],
+  ["Trägt eine schwarze „Zorro-Maske“.", "Überwintert in Afrika und kommt erst im Mai."], mon=M(5, 8), zug="sommer")
 
-art(slug="haussperling", de="Haussperling", lat="Passer domesticus", o=O_SPERL, f="sperling", tafel=True, foto=None,
-  stamm="Der Spatz: Männchen mit grauem Scheitel und schwarzem Latz; lebt fast nur bei Menschen.",
-  steck=[("Größe","14–16 cm"),("Gewicht","25–35 g"),("Vorkommen","Jahresvogel, sehr ortstreu"),
-    ("Lebensraum","Dörfer, Städte, Höfe, Gärten"),("Nahrung","Samen, Getreide, Reste; Junge bekommen Insekten"),
-    ("Schnabel","Kurz und kegelförmig"),("Brut","Nischen und Höhlen an Gebäuden, oft in Kolonien; 4–6 Eier, 2–4 Bruten"),("Brutdauer","knapp 2 Wochen")],
-  abs=[("Ein Begleiter der ersten Bauern","Der Haussperling lebt fast nur dort, wo auch Menschen leben. Vermutlich folgte er schon den ersten Bauern, als diese vor etwa 10.000 Jahren Getreide anbauten. Wo Korn verschüttet wird und Ställe Unterschlupf bieten, fühlt er sich wohl."),
-    ("Gesellig und laut","Spatzen tun fast alles in der Gruppe: Sie schwatzen in der Hecke, baden gemeinsam im Staub oder in der Pfütze und brüten gern dicht nebeneinander. Das Staubbad hilft vermutlich gegen lästige Parasiten im Gefieder."),
-    ("Wohnungsnot in der Stadt","Moderne Häuser haben glatte Fassaden ohne Ritzen und Nischen – dem Spatzen fehlen dort Brutplätze. Spezielle Nistkästen mit mehreren Kammern unter dem Dach können helfen.")],
-  notiz=["Das Weibchen ist schlicht graubraun ohne schwarzen Latz.","„Spatz“ und „Sperling“ meinen denselben Vogel."])
-
-art(slug="buchfink", de="Buchfink", lat="Fringilla coelebs", o=O_SPERL, f="fink", tafel=True,
-  foto="Ein Buchfink-Männchen von hinten am Eisrand: rotbrauner Rücken, graublauer Nacken und weißer Flügelfleck.",
-  stamm="Zwei weiße Flügelbinden; Männchen mit blaugrauem Kopf und rostroter Brust.",
-  steck=[("Größe","14–16 cm"),("Gewicht","18–29 g"),("Vorkommen","Jahresvogel; viele Weibchen ziehen im Winter nach Süden"),
-    ("Lebensraum","Wälder, Parks, Gärten"),("Nahrung","Samen; im Sommer viele Insekten"),
-    ("Schnabel","Kegelförmig, mittelstark – ein Körnerfresser"),("Brut","Kunstvolles Napfnest, außen mit Flechten getarnt; 4–6 Eier"),("Brutdauer","knapp 2 Wochen")],
-  abs=[("Der Junggeselle","Der wissenschaftliche Name „coelebs“ heißt „Junggeselle“. Der Naturforscher Carl von Linné sah im schwedischen Winter fast nur Männchen – viele Weibchen ziehen in den Süden, die Männchen bleiben."),
-    ("Ein Lied mit Schnörkel","Der Gesang ist ein schmetternder Triller mit einem Schnörkel am Ende. Junge Männchen lernen ihn in ihrem ersten Frühjahr von den Nachbarn. Darum klingen Buchfinken je nach Gegend etwas anders – sie haben Dialekte."),
-    ("Das unsichtbare Nest","Das Weibchen baut einen tiefen Napf aus Moos, Gras und Haaren. Außen tarnt es ihn mit Flechten und Spinnweben, bis er aussieht wie ein Knubbel am Ast.")],
-  notiz=["Der Buchfink gehört zu den häufigsten Vögeln Deutschlands.","Sein Ruf „pink-pink“ gab ihm vermutlich den Namen Fink."])
-
-art(slug="gruenfink", de="Grünfink", lat="Chloris chloris", o=O_SPERL, f="fink", tafel=True, foto=None,
-  stamm="Olivgrün mit leuchtend gelben Flügel- und Schwanzkanten; kräftiger heller Schnabel.",
-  steck=[("Größe","14–16 cm"),("Gewicht","25–35 g"),("Vorkommen","Jahresvogel"),
-    ("Lebensraum","Gärten, Parks, Waldränder"),("Nahrung","Samen (gern Sonnenblumenkerne), Knospen, Beeren"),
-    ("Schnabel","Kräftiger, heller Kegelschnabel"),("Brut","Napfnest in dichten Hecken; 4–6 Eier"),("Brutdauer","knapp 2 Wochen")],
-  abs=[("Ein Kraftpaket am Futterhaus","Mit seinem dicken Kegelschnabel knackt der Grünfink Sonnenblumenkerne mühelos. Am Futterplatz sitzt er gern lange und verteidigt seinen Platz gegen andere Vögel."),
-    ("Krank durch schmutzige Futterstellen","Seit etwa 2009 sind in Deutschland viele Grünfinken an einer Krankheit gestorben, die ein winziger Einzeller auslöst. Sie wird über verschmutztes Futter und Wasser übertragen. Deshalb gilt: Futterstellen und Tränken sauber halten – und bei kranken Vögeln das Füttern für einige Wochen einstellen."),
-    ("Flattern wie eine Fledermaus","Im Frühjahr fliegt das Männchen mit langsamen, weit ausholenden Flügelschlägen im Kreis und singt dabei. Man nennt das den „Fledermausflug“.")],
-  notiz=["Das Weibchen ist matter und bräunlicher gefärbt.","Die gelben Flügelkanten sind vor allem im Flug gut zu sehen."])
-
-art(slug="stieglitz", de="Stieglitz", lat="Carduelis carduelis", o=O_SPERL, f="fink", tafel=True, foto=None,
-  stamm="Der Distelfink: rote Gesichtsmaske, breite gelbe Flügelbinden.",
-  steck=[("Größe","12–13 cm"),("Gewicht","14–19 g"),("Vorkommen","Jahresvogel, im Winter in Trupps umherstreifend"),
-    ("Lebensraum","Brachen, Wegränder, Obstwiesen, Gärten"),("Nahrung","Samen von Disteln, Karden und Wildkräutern"),
-    ("Schnabel","Spitz und für einen Finken lang – zieht Samen aus Distelköpfen"),("Brut","Napfnest weit außen in Baumkronen; 4–6 Eier"),("Brutdauer","knapp 2 Wochen")],
-  abs=[("Der Distelfink","Den Namen Stieglitz hat er von seinem Ruf „stiglitt“. Sein zweiter Name Distelfink verrät, was er am liebsten frisst: Er hängt an verblühten Distelköpfen und zieht mit dem spitzen Schnabel die Samen heraus."),
-    ("Ein bisschen Unordnung, bitte","Wer verblühte Disteln, Karden, Wilde Möhre oder Sonnenblumen bis in den Winter stehen lässt, bekommt bunten Besuch. Ein zu ordentlicher Garten bietet dem Stieglitz kaum Futter."),
-    ("Liebling der Maler","Kaum ein Vogel ist so oft gemalt worden. Auf vielen alten Bildern hält das Jesuskind einen Stieglitz in der Hand. Berühmt ist auch das kleine Gemälde „Der Distelfink“ des Holländers Carel Fabritius von 1654.")],
-  notiz=["Männchen und Weibchen sehen fast gleich aus.","Vogel des Jahres 2016."])
-
-art(slug="gimpel", de="Gimpel", lat="Pyrrhula pyrrhula", o=O_SPERL, f="fink", tafel=True, foto=None,
-  stamm="Auch Dompfaff: schwarze Kappe, Männchen mit roter Brust, weißer Bürzel.",
-  steck=[("Größe","14–16 cm"),("Gewicht","21–27 g"),("Vorkommen","Jahresvogel; im Winter auch Gäste aus dem Norden"),
-    ("Lebensraum","Mischwälder, Parks, Gärten mit Hecken"),("Nahrung","Knospen, Samen, Beeren"),
-    ("Schnabel","Kurz, dick und rundlich – zum Schälen von Samen und Knospen"),("Brut","Lockeres Napfnest in dichten Büschen; 4–6 Eier"),("Brutdauer","knapp 2 Wochen")],
-  abs=[("Der Domherr","Der zweite Name Dompfaff heißt „Domherr“. Die rote Brust und die schwarze Kappe erinnerten die Menschen an die Kleidung der Geistlichen am Dom."),
-    ("Leise und treu","Der Gimpel singt leise und unauffällig, sein Ruf ist ein weiches, etwas wehmütiges „djü“. Paare bleiben oft auch über den Winter zusammen und fliegen gemeinsam zum Futterhaus."),
-    ("Ein Knospenfresser","Im Frühjahr knabbert der Gimpel gern Blütenknospen von Obstbäumen. Früher wurde er deshalb von Obstbauern verfolgt. Heute weiß man: Der Schaden ist meist gering.")],
-  notiz=["Das Weibchen ist graubraun statt rot, hat aber dieselbe schwarze Kappe.","Im Flug leuchtet der weiße Bürzel."])
-
-art(slug="erlenzeisig", de="Erlenzeisig", lat="Spinus spinus", o=O_SPERL, f="fink", tafel=True, foto=None,
-  stamm="Kleiner gelbgrüner Fink; Männchen mit schwarzer Kappe; im Winter an Erlen und Birken.",
-  steck=[("Größe","11–12 cm"),("Gewicht","10–14 g"),("Vorkommen","Jahresvogel und Wintergast aus Nordeuropa"),
-    ("Lebensraum","Nadelwälder; im Winter Erlen und Birken an Bächen"),("Nahrung","Samen von Erle, Birke und Fichte"),
-    ("Schnabel","Spitz und schmal – passt zwischen die Schuppen kleiner Zapfen"),("Brut","Napfnest hoch in Nadelbäumen; 3–5 Eier"),("Brutdauer","knapp 2 Wochen")],
-  abs=[("Turnen an Erlenzapfen","Wie eine Meise hängt der Erlenzeisig kopfüber an den kleinen Zapfen der Erle und pickt die Samen heraus. Sein schmaler, spitzer Schnabel passt genau zwischen die Zapfenschuppen."),
-    ("Mal viele, mal keine","In manchen Wintern fallen große Schwärme ein, in anderen sieht man kaum einen. Das hängt davon ab, wie viele Samen die Bäume im Norden tragen. Gibt es dort wenig Futter, ziehen sie zu uns."),
-    ("Ein Nest im Wipfel","Das Nest liegt meist so hoch in Fichten, dass es kaum jemand findet. Im Frühling singt das Männchen dort ein zwitscherndes Lied mit einem gequetschten Schluss.")],
-  notiz=["Das Weibchen ist blasser und stärker gestrichelt, ohne schwarze Kappe.","Am Futterplatz liebt er kleine Samen wie Nigersaat."])
-
-art(slug="kernbeisser", de="Kernbeißer", lat="Coccothraustes coccothraustes", o=O_SPERL, f="fink", tafel=True, foto=None,
-  stamm="Größter heimischer Fink mit gewaltigem Kegelschnabel; knackt Kirschkerne.",
-  steck=[("Größe","16–18 cm"),("Gewicht","48–62 g"),("Vorkommen","Jahresvogel, scheu"),
-    ("Lebensraum","Laubwälder, Parks, Obstgärten"),("Nahrung","Harte Samen wie Kirsch- und Hainbuchenkerne, Knospen"),
-    ("Schnabel","Riesiger Kegelschnabel mit starken Kaumuskeln"),("Brut","Napfnest hoch in Bäumen; 4–6 Eier"),("Brutdauer","knapp 2 Wochen")],
-  abs=[("Ein Nussknacker mit Federn","Der Kernbeißer knackt mit seinem Schnabel Kirschkerne, die wir Menschen nur mit dem Hammer aufbekommen. Dafür braucht er dicke Kaumuskeln – deshalb wirkt sein Kopf so groß."),
-    ("Kopflastig gebaut","Großer Kopf, dicker Nacken, kurzer Schwanz: Der Kernbeißer sieht fast ein wenig plump aus. Doch jede Einzelheit seines Körpers dient dem Knacken harter Kerne."),
-    ("Heimlich in den Kronen","Im Sommer hält er sich meist hoch in den Baumkronen auf und ist schwer zu sehen. Im Winter kommt er an Futterstellen – oft nur kurz, und beim kleinsten Geräusch ist er wieder weg.")],
-  notiz=["Er ist der größte Fink Deutschlands.","Unter Kirschbäumen findet man im Sommer manchmal sauber halbierte Kerne – seine Spur."])
-
-art(slug="blaumeise", de="Blaumeise", lat="Cyanistes caeruleus", o=O_SPERL, f="meise", tafel=True,
-  foto="Eine Blaumeise am Meisenknödel – blaue Kappe und dunkler Augenstreif.",
-  stamm="Blaue Kopfkappe, weißes Gesicht, gelbe Unterseite; turnt an dünnsten Zweigen.",
-  steck=[("Größe","11–12 cm"),("Gewicht","ca. 11 g"),("Vorkommen","Jahresvogel"),
-    ("Lebensraum","Laubwälder, Parks, Gärten"),("Nahrung","Insekten, Raupen, Blattläuse; im Winter Samen und Fett"),
-    ("Schnabel","Kurz und spitz – zum Picken kleiner Insekten"),("Brut","Höhlenbrüter (Nistkasten mit 26–28 mm Einflugloch); 7–13 Eier"),("Brutdauer","etwa 2 Wochen")],
-  abs=[("Akrobatin im Geäst","Die Blaumeise wiegt etwa so viel wie drei Zuckerwürfel. Dadurch kann sie kopfüber an den dünnsten Zweigspitzen hängen, wo schwerere Vögel nicht hinkommen. Dort sucht sie Blattläuse und winzige Raupen."),
-    ("Tausende Raupen für eine Brut","Eine Blaumeise legt bis zu 13 Eier – mehr als die meisten anderen Singvögel. Die Jungen schlüpfen genau dann, wenn an den Eichen die meisten Raupen fressen. Bis zum Ausfliegen schleppen die Eltern mehrere tausend Raupen heran."),
-    ("Ein Haus mit kleiner Tür","Ein Nistkasten mit einem Einflugloch von 26 bis 28 Millimetern ist für die Blaumeise ideal. Die größere Kohlmeise passt da nicht hindurch – für sie empfiehlt man etwa 32 Millimeter.")],
-  notiz=["Im Winter streift sie oft in gemischten Trupps mit anderen Meisen umher.","Unterschied zur Kohlmeise: blaue statt schwarze Kappe, kein breiter Bauchstreif."])
-
-art(slug="kohlmeise", de="Kohlmeise", lat="Parus major", o=O_SPERL, f="meise", tafel=True, foto=None,
-  stamm="Größte heimische Meise: schwarzer Kopf, weiße Wangen, schwarzer Bauchstreif.",
-  steck=[("Größe","13,5–15 cm"),("Gewicht","16–21 g"),("Vorkommen","Jahresvogel"),
-    ("Lebensraum","Wälder, Parks, Gärten, Hecken"),("Nahrung","Im Sommer Insekten und Spinnen; im Winter Samen, Nüsse, Fett"),
-    ("Schnabel","Kurz, kräftig und spitz"),("Brut","Höhlenbrüter (Nistkasten ab 32 mm Einflugloch); 6–12 Eier"),("Brutdauer","etwa 2 Wochen")],
-  abs=[("Die Größte unter den Meisen","Die Kohlmeise ist die größte und häufigste Meise in Deutschland. Ihr Name kommt von der Kohle: Kopf und Kehle sind tiefschwarz, die Wangen leuchtend weiß."),
-    ("Zi-zi-bäh","Schon an sonnigen Januartagen ruft sie ihr helles „zi-zi-bäh“. Ein Männchen beherrscht mehrere verschiedene Strophen."),
-    ("Die Krawatte verrät das Geschlecht","Der schwarze Streif auf dem gelben Bauch ist beim Männchen breit und reicht bis zwischen die Beine. Beim Weibchen ist er schmaler und läuft unten aus.")],
-  notiz=["Eine Kohlmeisenfamilie braucht während der Brut viele tausend Raupen – gute Hilfe gegen Schädlinge im Garten.","Im Winter knackt sie Sonnenblumenkerne, indem sie sie mit den Füßen festhält."])
-
-art(slug="tannenmeise", de="Tannenmeise", lat="Periparus ater", o=O_SPERL, f="meise", tafel=True, foto=None,
-  stamm="Kleinste heimische Meise: schwarzer Kopf mit weißem Nackenfleck; lebt im Nadelwald.",
-  steck=[("Größe","ca. 11 cm"),("Gewicht","8–10 g"),("Vorkommen","Jahresvogel"),
-    ("Lebensraum","Nadel- und Mischwälder"),("Nahrung","Insekten, Spinnen, Samen von Nadelbäumen"),
-    ("Schnabel","Fein und spitz – zum Suchen zwischen Nadeln"),("Brut","Höhlenbrüter, auch in Erdlöchern und Mauerritzen; 6–10 Eier"),("Brutdauer","gut 2 Wochen")],
-  abs=[("Ein Fliegengewicht","Die Tannenmeise ist unsere kleinste Meise – noch leichter als die Blaumeise. Von der Kohlmeise unterscheidet sie der weiße Fleck im Nacken und die fehlende gelbe Farbe auf dem Bauch."),
-    ("Vorräte für schlechte Zeiten","Im Herbst versteckt die Tannenmeise Samen und Insekten zwischen Nadelbüscheln und hinter Rinde. Im Winter findet sie viele ihrer Verstecke wieder."),
-    ("Zuhause zwischen Nadeln","Im Garten taucht sie vor allem dort auf, wo Fichten oder Tannen in der Nähe stehen. Am Futterhaus schnappt sie sich einen Kern und fliegt damit sofort weg, um ihn in Ruhe zu fressen – oder zu verstecken.")],
-  notiz=["Männchen und Weibchen sehen gleich aus.","Sie brütet manchmal sogar in Mauselöchern im Boden."])
-
-art(slug="haubenmeise", de="Haubenmeise", lat="Lophophanes cristatus", o=O_SPERL, f="meise", tafel=True, foto=None,
-  stamm="Die einzige heimische Meise mit spitzer, schwarz-weißer Federhaube.",
-  steck=[("Größe","11–12 cm"),("Gewicht","10–13 g"),("Vorkommen","Jahresvogel, sehr ortstreu"),
-    ("Lebensraum","Nadelwälder, vor allem mit Kiefern und Fichten"),("Nahrung","Insekten, Spinnen; im Winter Samen"),
-    ("Schnabel","Kurz und spitz"),("Brut","Höhle, oft selbst in morsches Holz gehackt; 5–8 Eier"),("Brutdauer","gut 2 Wochen")],
-  abs=[("Die Meise mit dem Federhut","Die spitze, schwarz-weiß gesprenkelte Haube macht die Haubenmeise unverwechselbar. Sie kann sie aufstellen oder flacher anlegen."),
-    ("Sie baut selbst","Die meisten Meisen brauchen fertige Höhlen. Die Haubenmeise hackt sich ihre Bruthöhle oft selbst in einen morschen Baumstumpf. Dafür braucht sie Wälder mit totem Holz."),
-    ("Ein Vorratslager im Wald","Wie die Tannenmeise versteckt sie im Herbst Samen und Insekten hinter Rinde und Flechten. Davon zehrt sie im Winter.")],
-  notiz=["Ihr schnurrender Ruf klingt wie „zürrr-r“.","In Gärten kommt sie nur vor, wenn Nadelwald in der Nähe ist."])
-
-art(slug="eichelhaeher", de="Eichelhäher", lat="Garrulus glandarius", o=O_SPERL, f="rabe", tafel=True,
-  foto="Ein Eichelhäher im Schnee mit den leuchtend blau-schwarz gebänderten Flügelfedern.",
-  stamm="Bunter Rabenvogel mit blauen Flügelfedern; versteckt Eicheln und pflanzt so Eichen.",
-  steck=[("Größe","32–35 cm"),("Gewicht","140–190 g"),("Vorkommen","Jahresvogel"),
-    ("Lebensraum","Wälder, Parks mit alten Bäumen"),("Nahrung","Eicheln, Bucheckern, Nüsse, Insekten, auch Eier und Jungvögel"),
-    ("Schnabel","Kräftig – ein Allesfresser-Schnabel"),("Brut","Napfnest aus Zweigen in Bäumen; 5–7 Eier"),("Brutdauer","gut 2 Wochen")],
-  abs=[("Der Förster des Waldes","Im Herbst sammelt der Eichelhäher Eicheln. Mehrere davon trägt er im Kehlsack, eine im Schnabel, und versteckt sie einzeln im Boden – mehrere tausend in einem Herbst. Im Winter findet er viele wieder. Die vergessenen keimen im Frühjahr. So pflanzt er ganze Eichenwälder."),
-    ("Die Alarmanlage des Waldes","Bemerkt der Eichelhäher einen Fuchs, eine Katze oder einen Menschen, rätscht er laut. Alle Tiere im Umkreis sind gewarnt. Er kann außerdem andere Vögel nachahmen, besonders gut den Ruf des Mäusebussards."),
-    ("Blau ohne blaue Farbe","Die blauen Federn am Flügel enthalten keinen blauen Farbstoff. Das Blau entsteht durch winzige Strukturen in der Feder, die das Licht so streuen, dass wir Blau sehen.")],
-  notiz=["„glandarius“ heißt übersetzt „Eichel-“ – wie im deutschen Namen.","Eine gefundene blaue Feder ist ein schönes Andenken vom Waldspaziergang."])
-
-art(slug="elster", de="Elster", lat="Pica pica", o=O_SPERL, f="rabe", tafel=True, foto=None,
-  stamm="Schwarz-weiß mit langem, grün schillerndem Schwanz; baut Nester mit Dach.",
-  steck=[("Größe","40–51 cm, die Hälfte ist Schwanz"),("Gewicht","180–250 g"),("Vorkommen","Jahresvogel"),
-    ("Lebensraum","Offene Landschaft mit Hecken, Dörfer, Städte"),("Nahrung","Allesfresser: Insekten, Würmer, Samen, Früchte, Aas, auch Eier"),
-    ("Schnabel","Kräftig und spitz"),("Brut","Großes Reisignest mit Dach; 5–7 Eier"),("Brutdauer","etwa 2½ Wochen")],
-  abs=[("Ein Nest mit Dach","Elstern bauen kugelige Nester aus Zweigen, mit einem stacheligen Dach und einem Eingang an der Seite. Der Bau dauert mehrere Wochen. Alte Elsternnester nutzen später zum Beispiel Turmfalken und Waldohreulen."),
-    ("Ich sehe was, was du nicht siehst","In einem bekannten Versuch bekamen Elstern einen farbigen Punkt auf das Gefieder, den sie nur im Spiegel sehen konnten. Sie versuchten, ihn wegzuputzen. Sie hatten sich also selbst erkannt – als erste Tiere außerhalb der Säugetiere."),
-    ("Diebisch? Eher nicht","Die „diebische Elster“ ist vor allem eine Geschichte. In Versuchen mieden Elstern glänzende Gegenstände sogar eher. Sie verstecken aber gern Futter.")],
-  notiz=["Der lange Schwanz schillert je nach Licht grün, blau oder violett.","Ihr Ruf ist ein lautes, schnelles „schäk-schäk-schäk“."])
-
-art(slug="rabenkraehe", de="Rabenkrähe", lat="Corvus corone", o=O_SPERL, f="rabe", tafel=True, foto=None,
-  stamm="Ganz schwarz, mit befiederter Schnabelbasis; klug und anpassungsfähig.",
-  steck=[("Größe","44–51 cm"),("Gewicht","400–600 g"),("Vorkommen","Jahresvogel"),
-    ("Lebensraum","Feldflur, Waldränder, Dörfer, Städte"),("Nahrung","Allesfresser: Würmer, Insekten, Samen, Früchte, Kleintiere, Aas, Abfälle"),
-    ("Schnabel","Kräftig und leicht gebogen – für fast jede Nahrung"),("Brut","Reisignest hoch in Bäumen; 4–6 Eier"),("Brutdauer","knapp 3 Wochen")],
-  abs=[("Krähe ist nicht gleich Krähe","Die Rabenkrähe ist ganz schwarz, und der Grund ihres Schnabels ist befiedert. Die Saatkrähe hat dort nackte, grauweiße Haut und brütet in großen Kolonien. Der Kolkrabe ist viel größer und hat einen keilförmigen Schwanz. Im Osten Deutschlands lebt die grau-schwarze Nebelkrähe."),
-    ("Kluge Köpfe","Krähen gehören zu den klügsten Vögeln. Sie merken sich Gesichter von Menschen, verstecken Futter und lassen harte Nüsse aus der Luft auf Steine fallen, damit sie aufplatzen."),
-    ("Treue Paare","Rabenkrähen leben meist ein Leben lang in festen Paaren und verteidigen gemeinsam ihr Revier. Junge Krähen, die noch kein Revier haben, ziehen in Trupps umher.")],
-  notiz=["Ein anderer Name ist Aaskrähe.","Rabenkrähen können über 15 Jahre alt werden."])
-
-art(slug="nebelkraehe", de="Nebelkrähe", lat="Corvus cornix", o=O_SPERL, f="rabe", tafel=False,
-  foto="Eine Nebelkrähe am Ufer: grauer Körper, schwarzer Kopf, schwarze Flügel.",
-  stamm="Grau-schwarze Schwester der Rabenkrähe; lebt im Osten und Norden Europas.",
-  steck=[("Größe","44–51 cm"),("Gewicht","400–600 g"),("Vorkommen","Jahresvogel; in Deutschland vor allem östlich der Elbe"),
-    ("Lebensraum","Feldflur, Küsten, Städte"),("Nahrung","Allesfresser: Würmer, Insekten, Muscheln, Aas, Abfälle"),
-    ("Schnabel","Kräftig und leicht gebogen"),("Brut","Reisignest in Bäumen; 4–6 Eier"),("Brutdauer","knapp 3 Wochen")],
-  abs=[("Die grau-schwarze Schwester","Nebelkrähe und Rabenkrähe sind so eng verwandt, dass manche Forscher sie für eine einzige Art halten. Etwa entlang der Elbe treffen beide aufeinander – dort gibt es auch Mischlinge mit mehr oder weniger Grau."),
-    ("Muscheln vom Himmel","An der Küste holt die Nebelkrähe Muscheln aus dem Watt, fliegt damit hoch und lässt sie auf Steine fallen. Zerbricht die Schale nicht, versucht sie es noch einmal."),
-    ("Bei uns ein seltener Gast","Im Ebsdorfergrund und in ganz Hessen lebt die Rabenkrähe. Nebelkrähen sieht man hier nur selten, meist im Winter.")],
-  notiz=["Das graue Gefieder sieht aus wie ein Umhang über einem schwarzen Kopf.","Auch sie gehört zu den sehr klugen Rabenvögeln."])
-
-# ---------------------------------------------------------------- Spechte
-art(slug="buntspecht", de="Buntspecht", lat="Dendrocopos major", o=O_SPECHT, f="specht", tafel=True,
-  foto="Ein Buntspecht-Männchen am Meisenknödel – rot leuchten Nacken und Unterschwanz.",
-  stamm="Häufigster Specht: schwarz-weiß mit rotem Unterschwanz; Männchen mit rotem Nackenfleck.",
-  steck=[("Größe","23–26 cm"),("Gewicht","60–90 g"),("Vorkommen","Jahresvogel"),
-    ("Lebensraum","Wälder, Parks, Gärten mit alten Bäumen"),("Nahrung","Insektenlarven aus Holz, Samen von Nadelbäumen, Nüsse"),
-    ("Schnabel","Hart und meißelförmig"),("Füße","Kletterfuß: zwei Zehen nach vorn, zwei nach hinten"),
-    ("Schwanz","Stützschwanz mit steifen Federn"),("Brut","Selbst gehackte Baumhöhle; 4–7 Eier"),("Brutdauer","etwa 11 Tage")],
-  abs=[("Ein Werkzeugkasten am Kopf","Mit dem Meißelschnabel hackt der Buntspecht Löcher ins Holz. Dann holt er mit seiner langen Zunge, die vorn kleine Widerhaken trägt, Käferlarven aus ihren Gängen. Steife Schwanzfedern stützen ihn am Stamm wie ein dritter Fuß."),
-    ("Trommeln statt Singen","Im Frühjahr trommelt der Buntspecht in schnellen Wirbeln auf hohle Äste. Das ist keine Futtersuche – so zeigt er sein Revier an, wie andere Vögel mit Gesang."),
-    ("Die Spechtschmiede","Kiefern- und Fichtenzapfen klemmt der Specht in eine Ritze und hackt die Samen heraus. Unter so einer „Schmiede“ liegen oft Dutzende zerzauste Zapfen. Seine alten Höhlen werden später zur Wohnung für Meisen, Stare, Kleiber oder Fledermäuse.")],
-  notiz=["Das Weibchen hat keinen roten Nackenfleck, Jungvögel tragen eine ganz rote Kappe.","Im Frühjahr plündert er manchmal Nistkästen von Meisen."])
-
-art(slug="mittelspecht", de="Mittelspecht", lat="Dendrocoptes medius", o=O_SPECHT, f="specht", tafel=False,
-  foto="Ein Mittelspecht am Meisenknödel – mit leuchtend roter Kappe und weißem Gesicht.",
-  stamm="Rote Kappe bei beiden Geschlechtern; braucht alte Eichen mit rauer Rinde.",
-  steck=[("Größe","20–22 cm"),("Gewicht","50–80 g"),("Vorkommen","Jahresvogel, sehr ortstreu"),
-    ("Lebensraum","Alte Eichenwälder, Streuobstwiesen"),("Nahrung","Insekten und Spinnen aus Rindenritzen, Baumsaft, Samen"),
-    ("Schnabel","Schwächer als beim Buntspecht – eher zum Stochern als zum Hacken"),
-    ("Füße","Kletterfuß: zwei Zehen nach vorn, zwei nach hinten"),("Brut","Höhle in morschem Holz; 5–6 Eier"),("Brutdauer","knapp 2 Wochen")],
-  abs=[("Ein Rindenstocherer","Der Mittelspecht hackt selten tief ins Holz. Er sucht Insekten in den Ritzen rauer Rinde – am liebsten an alten Eichen. Deshalb braucht er Wälder und Obstwiesen mit vielen alten Bäumen."),
-    ("Leicht zu verwechseln","Auf den ersten Blick sieht er aus wie ein Buntspecht. Doch er trägt eine ganz rote Kappe, sein Gesicht ist fast ganz weiß, die Flanken sind fein gestrichelt und der Unterschwanz ist nur rosa."),
-    ("Ein Vogel mit Hessen-Bezug","Ein beachtlicher Teil aller Mittelspechte weltweit lebt in Deutschland, viele davon in den Eichenwäldern Hessens. Wer alte Eichen schützt, schützt auch ihn.")],
-  notiz=["Im Frühjahr ruft er ein klagendes, quäkendes „gääk-gääk“ statt laut zu trommeln.","Im Winter kommt er manchmal an Futterstellen in Waldnähe."])
-
-art(slug="gruenspecht", de="Grünspecht", lat="Picus viridis", o=O_SPECHT, f="specht", tafel=False,
-  foto="Ein junger Grünspecht an einer Trockenmauer – Jungvögel sind noch kräftig gesprenkelt.",
-  stamm="Grün mit roter Kappe; sucht am Boden nach Ameisen; Ruf wie Gelächter.",
-  steck=[("Größe","31–33 cm"),("Gewicht","150–220 g"),("Vorkommen","Jahresvogel"),
-    ("Lebensraum","Streuobstwiesen, Parks, halboffene Landschaft"),("Nahrung","Vor allem Ameisen und ihre Puppen"),
-    ("Schnabel","Kräftig, mit einer klebrigen Zunge, die weit herausschnellt"),
-    ("Füße","Kletterfuß: zwei Zehen nach vorn, zwei nach hinten"),("Brut","Baumhöhle; 5–8 Eier"),("Brutdauer","gut 2 Wochen")],
-  abs=[("Ein Specht am Boden","Der Grünspecht sucht seine Nahrung meist auf Wiesen und Rasen. Er hackt Löcher in Ameisenhaufen und holt mit seiner sehr langen, klebrigen Zunge Ameisen und ihre Puppen heraus. Die Zunge reicht etwa zehn Zentimeter über die Schnabelspitze hinaus."),
-    ("Das Lachen im Frühling","Sein Ruf klingt wie ein lautes Gelächter: „klü-klü-klü-klü“. Er schallt im Frühjahr weit über Obstwiesen und Parks."),
-    ("Im Winter graben","Liegt Schnee, gräbt der Grünspecht tiefe Gänge, um an die Ameisennester darunter zu kommen.")],
-  notiz=["Das Männchen hat einen roten Bartstreif, beim Weibchen ist er schwarz.","Vogel des Jahres 2014."])
-
-# ---------------------------------------------------------------- weitere Ordnungen (nur Foto)
-art(slug="turmfalke", de="Turmfalke", lat="Falco tinnunculus", o=O_FALKE, f="falke", tafel=False,
-  foto="Ein Turmfalke von vorn: große dunkle Augen und Hakenschnabel.",
-  stamm="Kleiner Falke, der in der Luft „rüttelt“; enger mit Papageien als mit Bussarden verwandt.",
-  steck=[("Größe","31–37 cm"),("Gewicht","150–300 g, Weibchen schwerer"),("Vorkommen","Jahresvogel, manche ziehen nach Süden"),
-    ("Lebensraum","Offene Landschaft, Dörfer, Städte mit hohen Gebäuden"),("Nahrung","Vor allem Mäuse, auch große Insekten und Eidechsen"),
-    ("Schnabel","Hakenschnabel zum Zerteilen der Beute"),("Füße","Greiffüße mit spitzen Krallen"),
-    ("Brut","Kein eigenes Nest: Nischen, alte Krähennester, Nistkästen; 4–6 Eier"),("Brutdauer","etwa 4 Wochen")],
-  abs=[("Stehen in der Luft","Der Turmfalke kann mit schnellen Flügelschlägen auf der Stelle schweben. Das nennt man „Rütteln“. Dabei hält er den Kopf ganz ruhig und mustert den Boden. Entdeckt er eine Maus, lässt er sich fallen und packt sie mit den Krallen."),
-    ("Ein Blick für Mäusespuren","Forscher vermuten, dass Turmfalken ultraviolettes Licht sehen können. Mäuse markieren ihre Wege mit Urin, der in diesem Licht leuchtet. So könnte der Falke von oben erkennen, wo viele Mäuse unterwegs sind."),
-    ("Falken sind anders","Falken sehen aus wie Bussarde oder Habichte. Ihr Erbgut zeigt aber: Sie sind näher mit Papageien und Singvögeln verwandt. Die ähnliche Gestalt ist durch die gleiche Lebensweise entstanden.")],
-  notiz=["Den Namen hat er, weil er gern an Kirchtürmen brütet.","Beim Männchen sind Kopf und Schwanz blaugrau, beim Weibchen braun."])
-
-art(slug="ringeltaube", de="Ringeltaube", lat="Columba palumbus", o=O_TAUBE, f="taube", tafel=False,
-  foto="Eine Ringeltaube auf dem Rasen – gut zu sehen ist der weiße Fleck am Hals.",
-  stamm="Größte heimische Taube mit weißem Halsfleck; füttert Junge mit Kropfmilch.",
-  steck=[("Größe","40–42 cm"),("Gewicht","450–550 g"),("Vorkommen","Jahresvogel; im Herbst ziehen viele aus dem Norden durch"),
-    ("Lebensraum","Wälder, Felder, Parks, Gärten"),("Nahrung","Samen, Getreide, Knospen, Blätter, Eicheln"),
-    ("Schnabel","Kurz und weich, mit einem Wulst über den Nasenlöchern"),("Brut","Dünnes Reisignest, oft fast durchsichtig; 2 Eier"),("Brutdauer","etwa 2½ Wochen")],
-  abs=[("Milch von Vater und Mutter","Tauben füttern ihre Jungen in den ersten Tagen mit „Kropfmilch“, einem nahrhaften Brei aus dem Kropf. Das Besondere: Männchen und Weibchen bilden sie beide."),
-    ("Trinken ohne Kopfheben","Die meisten Vögel nehmen einen Schluck und heben dann den Kopf, damit das Wasser hinunterläuft. Tauben dagegen saugen das Wasser auf wie mit einem Strohhalm."),
-    ("Ein klatschender Abflug","Fliegt eine Ringeltaube erschreckt auf, klatschen die Flügel laut. Im Frühjahr steigt das Männchen steil auf, klatscht und gleitet dann in einem Bogen hinab – das ist sein Balzflug.")],
-  notiz=["Im Flug zeigt sie eine breite weiße Flügelbinde.","Ihr Ruf: ein dumpfes „gu-guuh-gu, gu-gu“."])
-
-art(slug="tuerkentaube", de="Türkentaube", lat="Streptopelia decaocto", o=O_TAUBE, f="taube", tafel=False,
-  foto="Eine Türkentaube auf einem Pfosten – mit schmalem schwarzem Nackenband.",
-  stamm="Hell graubeige mit schwarzem Nackenband; kam erst im 20. Jahrhundert zu uns.",
-  steck=[("Größe","31–33 cm"),("Gewicht","150–200 g"),("Vorkommen","Jahresvogel"),
-    ("Lebensraum","Dörfer, Städte, Gärten, Parks"),("Nahrung","Samen, Getreide, Beeren"),
-    ("Schnabel","Kurz und schlank"),("Brut","Dünnes Nest aus Zweigen; 2 Eier, bis zu 4 Bruten im Jahr"),("Brutdauer","etwa 2 Wochen")],
-  abs=[("Eine Einwanderin","Noch vor hundert Jahren gab es in Deutschland keine Türkentauben. Ab etwa 1930 breiteten sie sich vom Balkan nach Nordwesten aus. Um die Mitte des 20. Jahrhunderts erreichten sie Deutschland – heute leben sie in fast jedem Dorf."),
-    ("Viele Bruten im Jahr","Die Türkentaube legt zwar nur zwei Eier, brütet aber sehr oft – manchmal schon im Februar und noch im Herbst. So konnte sie sich so schnell ausbreiten."),
-    ("Gu-guuh-gu","Ihr dreisilbiger Ruf „gu-guuh-gu“ ist in Gärten oft den ganzen Tag zu hören.")],
-  notiz=["Sie lebt fast immer in der Nähe von Menschen.","Männchen und Weibchen sehen gleich aus."])
-
-art(slug="weissstorch", de="Weißstorch", lat="Ciconia ciconia", o=O_STORCH, f="storch", tafel=False,
-  foto="Ein Weißstorch-Paar auf seinem Horst hoch auf einem Mast.",
-  stamm="Großer Schreitvogel mit rotem Schnabel; klappert statt zu singen; Zugvogel.",
-  steck=[("Größe","95–110 cm, Spannweite etwa 2 m"),("Gewicht","2,5–4,5 kg"),("Vorkommen","Zugvogel: Februar/März bis August; Winter in Afrika oder Spanien"),
-    ("Lebensraum","Feuchtwiesen, Flussauen, Dörfer"),("Nahrung","Mäuse, Frösche, Regenwürmer, große Insekten"),
-    ("Schnabel","Lang und spitz – eine Pinzette zum Zupacken"),("Beine","Lang – zum Schreiten durch nasse Wiesen"),
-    ("Brut","Großes Reisignest (Horst) auf Dächern und Masten; 3–5 Eier"),("Brutdauer","etwa 4½ Wochen")],
-  abs=[("Klappern statt singen","Störche haben fast keine Stimme. Begrüßen sich die Partner am Nest, legen sie den Kopf in den Nacken und klappern laut mit dem Schnabel."),
-    ("Segeln statt flattern","Für die weite Reise nach Afrika nutzt der Storch warme Aufwinde, die über Land aufsteigen. Er kreist darin nach oben und gleitet dann lange Strecken. Über dem offenen Meer gibt es solche Aufwinde kaum – darum fliegen Störche einen Umweg über Gibraltar oder über den Bosporus."),
-    ("Zurück in Hessen","Vor einigen Jahrzehnten brüteten in Hessen nur noch ganz wenige Storchenpaare. Dank feuchter Wiesen und neuer Nisthilfen sind es heute wieder viele hundert.")],
-  notiz=["Störche kehren oft zu ihrem alten Horst zurück und bauen ihn jedes Jahr weiter aus.","Die Jungen schlüpfen nacheinander und sind daher verschieden groß."])
-
-art(slug="stockente", de="Stockente", lat="Anas platyrhynchos", o=O_ENTE, f="ente", tafel=False,
-  foto="Ein Stockenten-Weibchen im Schilf – braun gemustert und dadurch gut getarnt.",
-  stamm="Häufigste Ente; Erpel mit grünem Kopf; Stammform der Hausente; Küken sind Nestflüchter.",
-  steck=[("Größe","50–65 cm"),("Gewicht","0,9–1,5 kg"),("Vorkommen","Jahresvogel"),
-    ("Lebensraum","Teiche, Seen, Flüsse, Parks"),("Nahrung","Wasserpflanzen, Samen, Schnecken, Insektenlarven"),
-    ("Schnabel","Breit und flach, mit feinen Hornleisten zum Seihen"),("Füße","Schwimmfüße mit Schwimmhäuten"),
-    ("Brut","Bodennest, mit Daunen gepolstert; 8–12 Eier"),("Brutdauer","etwa 4 Wochen")],
-  abs=[("Küken, die sofort laufen","Stockenten-Küken schlüpfen mit offenen Augen und dichtem Daunenkleid. Schon nach wenigen Stunden folgen sie der Mutter zum Wasser und picken selbst ihr Futter. Solche Jungen nennt man Nestflüchter – ganz anders als nackte, blinde Singvogel-Junge."),
-    ("Kopf runter, Hinterteil hoch","Beim Gründeln taucht die Ente den Kopf unter Wasser und streckt den Bürzel in die Luft. Mit dem Schnabel seiht sie Pflanzenteile und kleine Tiere aus dem Schlamm."),
-    ("Die Mutter der Hausente","Fast alle Hausenten stammen von der Stockente ab. Wie beim Wolf und dem Hund haben Menschen über viele Generationen ausgewählt, welche Tiere Junge bekommen.")],
-  notiz=["Das Weibchen brütet allein – sein braunes Gefieder tarnt es am Nest.","Der Erpel trägt im Prachtkleid einen grün schillernden Kopf und einen weißen Halsring."])
-
-art(slug="kormoran", de="Kormoran", lat="Phalacrocorax carbo", o=O_KORM, f="korm", tafel=False,
-  foto="Ein Kormoran füttert sein Junges am Nest – das Junge holt sich das Futter direkt aus dem Schlund.",
-  stamm="Schwarzer Tauchvogel mit Hakenschnabel; trocknet seine Flügel in der Sonne.",
-  steck=[("Größe","80–100 cm"),("Gewicht","2–3 kg"),("Vorkommen","Jahresvogel und Wintergast"),
-    ("Lebensraum","Seen, Flüsse, Küsten"),("Nahrung","Fische"),
-    ("Schnabel","Lang, mit Haken an der Spitze – hält glitschige Fische fest"),("Füße","Alle vier Zehen durch Schwimmhäute verbunden"),
-    ("Brut","Nest aus Zweigen, in Kolonien; 3–4 Eier"),("Brutdauer","etwa 4 Wochen")],
-  abs=[("Ein Jäger unter Wasser","Der Kormoran taucht und treibt sich dabei mit seinen großen Schwimmfüßen an. Unter Wasser jagt er Fische und packt sie mit dem Hakenschnabel."),
-    ("Flügel zum Trocknen","Sein Gefieder wird beim Tauchen teilweise nass. Das ist kein Fehler: So treibt er weniger auf und taucht leichter. Danach sitzt er mit weit ausgebreiteten Flügeln da, bis die Federn getrocknet sind."),
-    ("Futter aus dem Schlund","Die Jungen stecken den Kopf tief in den Schnabel der Eltern und holen sich den vorverdauten Fisch heraus – das zeigt auch das Foto.")],
-  notiz=["Kormorane brüten in Kolonien, oft hoch in Bäumen am Wasser.","Wegen des Fischfangs sind sie bei manchen Anglern unbeliebt."])
-
-# ---------------------------------------------------------------- Neue Arten (Okt. 2026): kurze, augenzwinkernde Texte, kein Steckbrief
-art(slug="zaunkoenig", de="Zaunkönig", lat="Troglodytes troglodytes", o=O_SPERL, f="zaunkoenig", tafel=True, foto=None,
-  stamm="Winzig, braun gebändert, Stummelschwanz steil nach oben – und eine Stimme wie ein Großer.",
-  abs=[("König durch einen Trick","Im Grimm-Märchen wird König, wer am höchsten fliegt. Der Zaunkönig versteckt sich im Gefieder des Adlers, startet oben noch einmal durch – und ruft: „König bin ich!“ Ehrlich gewonnen ist anders."),
-    ("Klein, aber oho","Er wiegt kaum zehn Gramm, schmettert sein Lied aber so laut, dass man sich nach dem Sänger umsieht. Dabei reckt er den Stummelschwanz keck in die Höhe.")],
-  notiz=["Das Männchen baut mehrere Kugelnester aus Moos – das Weibchen sucht sich eins aus.","In eisigen Nächten kuscheln sich manchmal ein Dutzend Zaunkönige in einem Nest zusammen."])
-
-# Reihenfolge für Galerie/Listen: wie im Baum
+# ================================================================ Nichtsingvögel
+art("mauersegler", "Mauersegler", "Apus apus", O_SEGLER, "segler",
+  "Sichelflügel, rußbraun; lebt fast nur in der Luft – frisst, trinkt und schläft im Flug.",
+  [("Monatelang in der Luft", "Mauersegler können zehn Monate am Stück fliegen, ohne zu landen. Sie fressen, trinken und schlafen sogar in der Luft."),
+   ("Keine Schwalbe!", "Sie sehen aus wie Schwalben, sind aber eher mit Kolibris verwandt. Ihre winzigen Füße taugen kaum zum Laufen – „Apus“ heißt „ohne Fuß“.")],
+  ["Kreischende Jagdtrupps sausen im Sommer um die Häuser.", "Bleibt nur von Mai bis August bei uns."], mon=M(5, 8), zug="sommer")
+art("turmfalke", "Turmfalke", "Falco tinnunculus", O_FALKE, "falke",
+  "Kleiner Falke, der in der Luft „rüttelt“; enger mit Papageien als mit Bussarden verwandt.",
+  [("Stehen in der Luft", "Er „rüttelt“: Mit schnellen Flügelschlägen steht er still in der Luft, nur der Kopf bleibt ganz ruhig. Entdeckt er eine Maus, geht’s im Sturzflug nach unten."),
+   ("Mehr Papagei als Bussard", "Falken sehen aus wie Greifvögel, sind aber näher mit Papageien und Singvögeln verwandt. Die Ähnlichkeit kommt vom gleichen Beruf: Jäger.")],
+  ["Brütet gern an Kirchtürmen – daher der Name.", "Männchen mit grauem Kopf, Weibchen braun."])
+art("maeusebussard", "Mäusebussard", "Buteo buteo", O_GREIF, "habicht",
+  "Unser häufigster Greifvogel; sitzt geduldig auf Pfählen am Straßenrand.",
+  [("Der Pfahlsitzer", "Wer Autobahn fährt, sieht ihn oft: Geduldig sitzt er auf einem Pfahl und wartet auf Mäuse. Spart Energie – Rütteln ist nicht so sein Ding."),
+   ("Jedes Kleid ein Unikat", "Kaum ein Bussard sieht aus wie der andere: von fast weiß bis dunkelbraun. Sein miauendes „hiääh“ kopiert sogar der Eichelhäher.")],
+  ["Kreist gern im warmen Aufwind über den Feldern.", "Im Winter kommen Bussarde aus dem Norden dazu."])
+art("rotmilan", "Rotmilan", "Milvus milvus", O_GREIF, "habicht",
+  "Rostrot mit tief gegabeltem Schwanz; mehr als die Hälfte aller Rotmilane brüten in Deutschland.",
+  [("Ein Vogel mit Hessen-Pass", "Mehr als die Hälfte aller Rotmilane der Welt brüten in Deutschland – viele davon in Hessen. Wir tragen also echte Verantwortung."),
+   ("Segeln mit Steuerruder", "Mit dem tief gegabelten Schwanz steuert er elegant über Felder und Wiesen. Frisch gemähte Wiesen ziehen ihn magisch an.")],
+  ["Schmückt sein Nest gern mit Plastik oder Stofffetzen.", "Immer mehr Rotmilane bleiben über den Winter bei uns."], mon=M(2, 11))
+art("sperber", "Sperber", "Accipiter nisus", O_GREIF, "habicht",
+  "Kleiner Greifvogel mit langen Beinen und gebänderter Brust; jagt Singvögel im Überraschungsangriff.",
+  [("Blitz aus dem Hinterhalt", "Der Sperber jagt im Tiefflug an Hecken entlang und überrascht kleine Vögel. Am Futterhaus taucht er plötzlich auf – und ist ebenso schnell wieder weg."),
+   ("Die Frau ist größer", "Das Weibchen ist deutlich größer und fast doppelt so schwer wie das Männchen. So jagen beide unterschiedlich große Beute.")],
+  ["Orange Augen und lange, dünne Beine.", "Wer Vögel füttert, füttert indirekt auch den Sperber – das gehört dazu."])
+art("schleiereule", "Schleiereule", "Tyto alba", O_EULE, "schleiereule",
+  "Herzförmiger heller Gesichtsschleier; brütet in Scheunen und Kirchtürmen.",
+  [("Das Gesicht als Ohr", "Ihr herzförmiger Schleier lenkt Geräusche zu den Ohren wie eine Satellitenschüssel. So findet sie Mäuse sogar in völliger Dunkelheit."),
+   ("Gespenst im Kirchturm", "Weiß, lautlos und mit schauerlichem Kreischen – kein Wunder, dass man sie früher für ein Gespenst hielt.")],
+  ["Ihre Ohren sitzen unterschiedlich hoch – so hört sie, ob es oben oder unten raschelt.", "Ein Eulenloch im Scheunengiebel hilft ihr beim Einzug."])
+art("waldkauz", "Waldkauz", "Strix aluco", O_EULE, "eule",
+  "Runder Kopf ohne Federohren, dunkle Augen; das bekannte „huu-hu-huuu“.",
+  [("Der Krimi-Star", "Das schaurige „huu-hu-huuu“ in vielen Fernsehkrimis stammt meist vom Waldkauz – nicht vom Uhu."),
+   ("Mutige Mutter", "Am Nest verteidigt das Weibchen seine Jungen sehr entschlossen – notfalls auch gegen Menschen. Also: Abstand halten!")],
+  ["„Kju-witt“ ruft das Weibchen, „huu-hu“ das Männchen.", "Vogel des Jahres 2017."])
+art("waldohreule", "Waldohreule", "Asio otus", O_EULE, "eule",
+  "Lange Federohren, orange Augen; zieht in alte Krähennester.",
+  [("Ohren, die keine sind", "Die langen „Ohren“ sind nur Federbüschel. Die echten Ohren sitzen versteckt seitlich am Kopf."),
+   ("Winter-WG", "Im Winter versammeln sich oft viele Waldohreulen an einem Schlafplatz – manchmal mitten im Dorf auf einem Friedhofsbaum.")],
+  ["Baut kein eigenes Nest, sondern zieht in alte Krähen- oder Elsternnester.", "Orange Augen – beim Waldkauz sind sie dunkel."])
+art("eisvogel", "Eisvogel", "Alcedo atthis", O_RACKE, "eisvogel",
+  "Blau-orange schillernd, Dolchschnabel; stößt kopfüber nach Fischen.",
+  [("Fliegender Edelstein", "Blau schillernder Rücken, orange Brust – der Eisvogel sieht aus wie aus den Tropen. Meist sieht man ihn nur als blauen Blitz über dem Bach."),
+   ("Vorbild für einen Zug", "Er taucht fast ohne Spritzer ins Wasser. Japanische Ingenieure gaben deshalb einem Schnellzug eine Eisvogel-Nase – und der wurde leiser.")],
+  ["Brütet in selbst gegrabenen Röhren in steilen Uferwänden.", "Vogel des Jahres 1973 und 2009."])
+art("buntspecht", "Buntspecht", "Dendrocopos major", O_SPECHT, "specht",
+  "Häufigster Specht: schwarz-weiß mit rotem Unterschwanz; Männchen mit rotem Nackenfleck.",
+  [("Trommeln statt singen", "Im Frühjahr trommelt er wie wild auf hohle Äste – das ist sein Lied. Je lauter es dröhnt, desto besser."),
+   ("Die Spechtschmiede", "Zapfen klemmt er in eine Rindenritze und hackt die Samen heraus. Darunter liegen dann haufenweise zerzauste Zapfen.")],
+  ["Männchen mit rotem Nackenfleck, Jungvögel mit roter Kappe.", "In seine alten Höhlen ziehen Meisen, Stare und Fledermäuse."])
+art("mittelspecht", "Mittelspecht", "Dendrocoptes medius", O_SPECHT, "specht",
+  "Rote Kappe bei beiden Geschlechtern; braucht alte Eichen mit rauer Rinde.",
+  [("Der Rindenstocherer", "Er hackt selten tief, sondern stochert in der rauen Rinde alter Eichen. Ohne alte Bäume geht’s für ihn nicht."),
+   ("Quäken statt trommeln", "Im Frühjahr trommelt er kaum, sondern quäkt ein klägliches „gääk-gääk“. Ein großer Teil aller Mittelspechte lebt in Deutschland – viele in Hessen.")],
+  ["Ganz rote Kappe bei Männchen und Weibchen.", "Kommt im Winter manchmal an Futterstellen in Waldnähe."], tafel=False)
+art("gruenspecht", "Grünspecht", "Picus viridis", O_SPECHT, "specht",
+  "Grün mit roter Kappe; sucht am Boden nach Ameisen; Ruf wie Gelächter.",
+  [("Specht am Boden", "Er sucht seine Nahrung meist auf dem Rasen: Mit seiner extrem langen, klebrigen Zunge angelt er Ameisen aus ihren Gängen."),
+   ("Das Lachen im Frühling", "Sein Ruf klingt wie lautes Gelächter: „klü-klü-klü“. Wer ihn hört, muss oft selbst grinsen.")],
+  ["Vogel des Jahres 2014.", "Im Schnee gräbt er tiefe Gänge zu den Ameisennestern."])
+art("kleinspecht", "Kleinspecht", "Dryobates minor", O_SPECHT, "specht",
+  "Spatzengroß, schwarz-weiß gebändert, ohne Rot unter dem Schwanz.",
+  [("Specht im Spatzenformat", "Er ist kaum größer als ein Spatz und turnt in den dünnen Zweigen der Baumkronen. Deshalb übersieht man ihn leicht."),
+   ("Lieber weiches Holz", "Seine Höhle hackt er in morsches Weichholz von Weiden, Pappeln oder Obstbäumen.")],
+  ["Ruft ein hohes, schnelles „kikikiki“.", "Kein Rot unter dem Schwanz – anders als Bunt- und Mittelspecht."])
+art("schwarzspecht", "Schwarzspecht", "Dryocopus martius", O_SPECHT, "specht",
+  "Krähengroß, ganz schwarz mit roter Kappe; zimmert Höhlen für viele Nachmieter.",
+  [("Der Riese unter den Spechten", "So groß wie eine Krähe, schwarz mit roter Kappe – unverwechselbar. In seine großen ovalen Höhlen ziehen später Hohltauben, Dohlen oder Fledermäuse ein."),
+   ("Ameisen aus dem Holz", "Am liebsten frisst er Rossameisen, die im Holz wohnen. Dafür hackt er mit großer Wucht lange Löcher in Baumstämme.")],
+  ["Im Flug ruft er „krrü-krrü-krrü“.", "Braucht große Wälder mit alten Buchen."])
+art("ringeltaube", "Ringeltaube", "Columba palumbus", O_TAUBE, "taube",
+  "Größte heimische Taube mit weißem Halsfleck; füttert Junge mit Kropfmilch.",
+  [("Milch vom Papa", "Tauben füttern ihre Jungen mit „Kropfmilch“ – und die bilden Männchen und Weibchen. Bei Säugetieren undenkbar!"),
+   ("Trinken mit Strohhalm", "Die meisten Vögel heben zum Schlucken den Kopf. Tauben saugen das Wasser einfach auf.")],
+  ["Weißer Halsfleck und weiße Flügelbinde.", "Ihr Ruf: „gu-guuh-gu, gu-gu“."])
+art("tuerkentaube", "Türkentaube", "Streptopelia decaocto", O_TAUBE, "taube",
+  "Hell graubeige mit schwarzem Nackenband; kam erst im 20. Jahrhundert zu uns.",
+  [("Eingewandert", "Vor hundert Jahren gab es sie bei uns nicht. Vom Balkan aus breitete sie sich ab etwa 1930 nach Nordwesten aus – heute lebt sie in fast jedem Dorf."),
+   ("Fleißige Eltern", "Nur zwei Eier pro Gelege – aber bis zu vier Bruten im Jahr. So erobert man einen Kontinent.")],
+  ["Schwarzes Nackenband.", "Ruft unermüdlich „gu-guuh-gu“."])
+art("weissstorch", "Weißstorch", "Ciconia ciconia", O_STORCH, "storch",
+  "Großer Schreitvogel mit rotem Schnabel; klappert statt zu singen; Zugvogel.",
+  [("Klappern statt singen", "Störche sind fast stumm. Zur Begrüßung legen sie den Kopf in den Nacken und klappern laut mit dem Schnabel."),
+   ("Segeln nach Afrika", "Über Land nutzt er warme Aufwinde und segelt. Übers Meer geht das nicht – darum fliegen Störche über Gibraltar oder den Bosporus.")],
+  ["Kehrt oft zu seinem alten Horst zurück.", "Und die Babys? Bringt er nicht – auch wenn’s schön wäre."], mon=M(3, 8), zug="sommer", tafel=False)
+art("stockente", "Stockente", "Anas platyrhynchos", O_ENTE, "ente",
+  "Häufigste Ente; Erpel mit grünem Kopf; Stammform der Hausente.",
+  [("Küken mit Frühstart", "Stockentenküken schlüpfen mit offenen Augen und Daunen – und watscheln schon nach Stunden der Mutter hinterher ins Wasser."),
+   ("Kopf runter, Po hoch", "Beim Gründeln taucht die Ente den Kopf unter und streckt den Bürzel in die Luft. Mit dem Schnabel seiht sie Futter aus dem Schlamm.")],
+  ["Die Mutter fast aller Hausenten.", "Der Erpel trägt einen grün schillernden Kopf."], tafel=False)
+art("kormoran", "Kormoran", "Phalacrocorax carbo", O_KORM, "korm",
+  "Schwarzer Tauchvogel mit Hakenschnabel; trocknet seine Flügel in der Sonne.",
+  [("Flügel zum Trocknen", "Sein Gefieder wird beim Tauchen nass – so taucht er leichter. Danach sitzt er da wie ein Kleiderständer und lässt die Flügel trocknen."),
+   ("Angelprofi", "In China fischen Menschen seit Jahrhunderten mit gezähmten Kormoranen.")],
+  ["Brütet in Kolonien, oft hoch in Bäumen am Wasser.", "Bei Anglern nicht immer beliebt."], tafel=False)

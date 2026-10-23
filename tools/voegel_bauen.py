@@ -108,7 +108,10 @@ VOEGEL = g("Vögel", "Aves", "Federn, ein Schnabel ohne Zähne und Eier mit hart
     ]),
     g("Neuvögel", "Neoaves", "Die große Mehrheit der Vögel. Wie ihre Äste genau zusammenhängen, wird noch erforscht.", [
       g("Taubenvögel", "Columbiformes", "Tauben füttern ihre Jungen mit Kropfmilch – Vater und Mutter.", [a("ringeltaube"), a("tuerkentaube")]),
-      g("Segler & Nachtschwalben", "Strisores", "Mauersegler, Ziegenmelker und Kolibris – Meister der Luft mit winzigen Füßen."),
+      g("Segler & Nachtschwalben", "Strisores", "Mauersegler, Ziegenmelker und Kolibris – Meister der Luft mit winzigen Füßen.", [
+        g("Seglervögel", "Apodiformes", "Segler und Kolibris – ja, die beiden sind miteinander verwandt.", [
+          fam("segler", "Leben fast nur in der Luft – mit Sichelflügeln und winzigen Füßen.", ["mauersegler"])]),
+      ]),
       g("Kranichvögel", "Gruiformes", "Kranich, Blässhuhn und Teichhuhn."),
       g("Wat- & Möwenvögel", "Charadriiformes", "Kiebitz, Lachmöwe, Schnepfen und Seeschwalben."),
       g("Wasservögel-Linie", "Aequornithes", "Störche, Kormorane, Reiher – und die Pinguine. Viele jagen im oder am Wasser.", [
@@ -118,31 +121,51 @@ VOEGEL = g("Vögel", "Aves", "Federn, ein Schnabel ohne Zähne und Eier mit hart
       ]),
       g("Landvögel", "Telluraves", "Eine große Linie fast nur landlebender Vögel – von den Greifvögeln bis zu den Singvögeln.", [
         g("Greife, Eulen & Spechte", "Afroaves", "Greifvögel, Eulen, Spechte, Eisvögel und Wiedehopf gehören zu dieser Linie.", [
-          g("Greifvögel", "Accipitriformes", "Mäusebussard, Rotmilan, Habicht – mit Hakenschnabel und kräftigen Greiffüßen."),
-          g("Eulen", "Strigiformes", "Waldkauz, Schleiereule, Uhu – nächtliche Jäger mit fast lautlosem Flug."),
+          g("Greifvögel", "Accipitriformes", "Mit Hakenschnabel und kräftigen Greiffüßen – die Falken gehören übrigens nicht dazu.", [
+            fam("habicht", "Bussarde, Milane, Habicht und Sperber – Jäger mit breiten Flügeln.", ["maeusebussard", "rotmilan", "sperber"])]),
+          g("Eulen", "Strigiformes", "Nächtliche Jäger mit großen Augen und fast lautlosem Flug.", [
+            fam("schleiereule", "Mit herzförmigem Gesichtsschleier.", ["schleiereule"]),
+            fam("eule", "Waldkauz, Uhu, Waldohreule – mit rundem Gesichtsschleier.", ["waldkauz", "waldohreule"]),
+          ]),
+          g("Rackenvögel", "Coraciiformes", "Bunte Vögel wie Eisvogel, Bienenfresser und Blauracke.", [
+            fam("eisvogel", "Stoßtaucher mit Dolchschnabel.", ["eisvogel"])]),
           g("Spechtvögel", "Piciformes", "Kletterfuß mit zwei Zehen nach vorn und zwei nach hinten, Meißelschnabel und lange Zunge.", [
-            fam("specht", "Hacken Höhlen ins Holz, die später viele andere Tiere nutzen.", ["buntspecht", "mittelspecht", "gruenspecht"])]),
+            fam("specht", "Hacken Höhlen ins Holz, die später viele andere Tiere nutzen.", ["buntspecht", "mittelspecht", "kleinspecht", "gruenspecht", "schwarzspecht"])]),
         ]),
         g("Falken, Papageien & Sperlingsvögel", "Australaves", "Eine Überraschung der Forschung: Falken sind keine nahen Verwandten von Bussard und Habicht, sondern von Papageien und Singvögeln.", [
           g("Falkenartige", "Falconiformes", "Schnelle Jäger mit spitzen Flügeln und einem „Zahn“ am Oberschnabel.", [a("turmfalke")]),
           g("Papageien", "Psittaciformes", "Wellensittich, Graupapagei, Kakadu – mit Kletterfuß und kräftigem Hakenschnabel."),
           g("Sperlingsvögel", "Passeriformes", "Mehr als die Hälfte aller Vogelarten der Erde – fast alle sind Singvögel. Typisch: drei Zehen nach vorn, eine nach hinten, zum Umklammern von Zweigen.", [
-            fam("rabe", "Die größten Singvögel – klug, gesellig und anpassungsfähig.", ["eichelhaeher", "elster", "rabenkraehe", "nebelkraehe"]),
+            g("Rabenvögel & Würger", "Corvoidea", "Eine Linie mit kräftigen Schnäbeln – von den klugen Raben bis zu den Würgern.", [
+              fam("rabe", "Die größten Singvögel – klug, gesellig und anpassungsfähig.", ["eichelhaeher", "elster", "dohle", "saatkraehe", "rabenkraehe", "nebelkraehe", "kolkrabe"]),
+              fam("wuerger", "Kleine „Greifvögel“ unter den Singvögeln, mit Hakenschnabel.", ["neuntoeter"]),
+            ]),
             g("Übrige Singvögel", "Passerida", "Die meisten unserer Garten- und Waldvögel.", [
-              fam("meise", "Kleine, flinke Höhlenbrüter mit kurzem, spitzem Schnabel.", ["blaumeise", "kohlmeise", "tannenmeise", "haubenmeise"]),
-              fam("schwalbe", "Insektenjäger der Luft mit langen, spitzen Flügeln.", ["rauchschwalbe"]),
+              fam("meise", "Kleine, flinke Höhlenbrüter mit kurzem, spitzem Schnabel.", ["blaumeise", "kohlmeise", "tannenmeise", "haubenmeise", "sumpfmeise", "weidenmeise"]),
+              g("Grasmücken-Verwandte", "Sylvioidea", "Laubsänger, Grasmücken, Lerchen und Schwalben – meist schlichte Insektenfresser mit feinem Schnabel.", [
+                fam("schwanzmeise", "Winzige Vögel mit sehr langem Schwanz – keine echten Meisen.", ["schwanzmeise"]),
+                fam("laubsaenger", "Kleine, grünlich-braune Sänger, die man am besten am Lied erkennt.", ["zilpzalp", "fitis"]),
+                fam("grasmuecke", "Heimliche Sänger in Hecken und Gebüsch.", ["moenchsgrasmuecke", "gartengrasmuecke", "dorngrasmuecke"]),
+                fam("lerche", "Bodenvögel offener Felder, die hoch in der Luft singen.", ["feldlerche"]),
+                fam("schwalbe", "Insektenjäger der Luft mit langen, spitzen Flügeln.", ["rauchschwalbe", "mehlschwalbe"]),
+              ]),
+              fam("goldhaehnchen", "Die kleinsten Vögel Europas.", ["wintergoldhaehnchen", "sommergoldhaehnchen"]),
               g("Kleiber & Zaunkönig", "Certhioidea", "Kleine Kletter- und Schlüpfkünstler – mit Baumläufern und Zaunkönig verwandt.", [
                 fam("kleiber", "Klettern ohne Stützschwanz – auch kopfüber.", ["kleiber"]),
                 fam("zaunkoenig", "Winzige Vögel mit keck gestelztem Schwanz.", ["zaunkoenig"]),
               ]),
               g("Drossel-Verwandte", "Muscicapoidea", "Stare, Drosseln und Fliegenschnäpper – meist mit schlankem Allzweck- oder Insektenschnabel.", [
                 fam("star", "Schillernde Gesellen, die in großen Schwärmen ziehen.", ["star"]),
-                fam("drossel", "Mittelgroße Singvögel, die viel am Boden nach Würmern suchen.", ["amsel", "wacholderdrossel"]),
-                fam("schnaepper", "Kleine Insektenjäger – auch das Rotkehlchen gehört dazu.", ["rotkehlchen"]),
+                fam("wasseramsel", "Singvögel, die tauchen können.", ["wasseramsel"]),
+                fam("drossel", "Mittelgroße Singvögel, die viel am Boden nach Würmern suchen.", ["amsel", "wacholderdrossel", "misteldrossel", "singdrossel"]),
+                fam("schnaepper", "Kleine Insektenjäger – auch Rotkehlchen, Nachtigall und Rotschwänze gehören dazu.", ["rotkehlchen", "nachtigall", "hausrotschwanz", "gartenrotschwanz", "schwarzkehlchen", "grauschnaepper", "trauerschnaepper"]),
               ]),
-              g("Sperlings-Verwandte", "Passeroidea", "Sperlinge und Finken – Körnerfresser mit kräftigem Kegelschnabel.", [
+              g("Sperlings-Verwandte", "Passeroidea", "Sperlinge, Stelzen, Finken und Ammern – viele davon Körnerfresser mit Kegelschnabel.", [
+                fam("braunelle", "Unauffällige Vögel mit feinem Schnabel.", ["heckenbraunelle"]),
                 fam("sperling", "Gesellige Körnerfresser, oft in der Nähe des Menschen.", ["haussperling", "feldsperling"]),
-                fam("fink", "Kegelschnäbel in allen Größen – vom feinen Zeisig bis zum Kernbeißer.", ["buchfink", "gruenfink", "stieglitz", "gimpel", "erlenzeisig", "kernbeisser"]),
+                fam("stelze", "Schlanke Bodenvögel, die laufen statt hüpfen.", ["bachstelze", "gebirgsstelze", "wiesenpieper"]),
+                fam("fink", "Kegelschnäbel in allen Größen – vom feinen Zeisig bis zum Kernbeißer.", ["buchfink", "bergfink", "gruenfink", "stieglitz", "bluthaenfling", "girlitz", "gimpel", "erlenzeisig", "kernbeisser"]),
+                fam("ammer", "Körnerfresser offener Landschaften.", ["goldammer"]),
               ]),
             ]),
           ]),
@@ -185,11 +208,16 @@ else:
 sb = sb[:start] + js(VOEGEL, ind) + sb[end:]
 
 ORD = ["Passeriformes", "Piciformes", "Columbiformes", "Anseriformes", "Galliformes", "Ciconiiformes", "Suliformes",
-       "Pelecaniformes", "Falconiformes", "Psittaciformes", "Accipitriformes", "Strigiformes", "Gruiformes", "Charadriiformes"]
+       "Pelecaniformes", "Falconiformes", "Apodiformes", "Coraciiformes", "Psittaciformes", "Accipitriformes", "Strigiformes", "Gruiformes", "Charadriiformes"]
 FAM = [f[1] for f in F.values()]
 add = ", ".join(f'{x}:"Ordnung"' for x in ORD) + ",\n  " + ", ".join(f'{x}:"Familie"' for x in FAM)
 if "Passeriformes:\"Ordnung\"" not in sb:
     sb = sb.replace('Satyrinae:"Unterfamilie"\n};', 'Satyrinae:"Unterfamilie",\n  ' + add + '\n};', 1)
+neu = [f'{x}:"Ordnung"' for x in ORD] + [f'{x}:"Familie"' for x in FAM]
+neu = [x for x in neu if (x.split(":")[0] + ":") not in sb]
+if neu:
+    i = sb.index('Passeriformes:"Ordnung"')
+    sb = sb[:i] + ", ".join(neu) + ", " + sb[i:]
 if '"Aves","Passeriformes"' not in sb:
     sb = sb.replace('"Vertebrata","Cnidaria",', '"Vertebrata","Aves","Passeriformes","Cnidaria",', 1)
 sb = sb.replace('info:"Tiere mit Knochen-Rückgrat und Schädel. In dieser App bewusst kompakt gehalten."',
@@ -204,10 +232,11 @@ open(P("interaktiv", "stammbaum.html"), "w", encoding="utf-8").write(sb)
 # ------------------------------------------------------------------ tiere.json
 tiere = json.load(open(P("tiere.json"), encoding="utf-8"))
 tiere = [t for t in tiere if t.get("gruppe") != "Vögel"]
-MON = {"rauchschwalbe": list(range(4, 10)), "weissstorch": list(range(3, 9))}
 for v in V:
-    tiere.append({"slug": v["slug"], "deutsch": v["de"], "lat": v["lat"], "monate": MON.get(v["slug"], JAHR),
-                  "wichtig": False, "foto": bool(v.get("foto")), "gruppe": "Vögel"})
+    e = {"slug": v["slug"], "deutsch": v["de"], "lat": v["lat"], "monate": v["mon"],
+         "wichtig": False, "foto": bool(v.get("foto")), "gruppe": "Vögel"}
+    if v.get("zug"): e["zug"] = v["zug"]
+    tiere.append(e)
 open(P("tiere.json"), "w", encoding="utf-8").write(json.dumps(tiere, ensure_ascii=False, indent=0) + "\n")
 
 # ------------------------------------------------------------------ offline-manifest.json

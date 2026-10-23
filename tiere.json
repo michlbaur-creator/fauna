@@ -1866,6 +1866,48 @@
 "gruppe": "Vögel"
 },
 {
+"slug": "misteldrossel",
+"deutsch": "Misteldrossel",
+"lat": "Turdus viscivorus",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "singdrossel",
+"deutsch": "Singdrossel",
+"lat": "Turdus philomelos",
+"monate": [
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
 "slug": "rotkehlchen",
 "deutsch": "Rotkehlchen",
 "lat": "Erithacus rubecula",
@@ -1888,6 +1930,110 @@
 "gruppe": "Vögel"
 },
 {
+"slug": "nachtigall",
+"deutsch": "Nachtigall",
+"lat": "Luscinia megarhynchos",
+"monate": [
+4,
+5,
+6,
+7,
+8
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "hausrotschwanz",
+"deutsch": "Hausrotschwanz",
+"lat": "Phoenicurus ochruros",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "gartenrotschwanz",
+"deutsch": "Gartenrotschwanz",
+"lat": "Phoenicurus phoenicurus",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "schwarzkehlchen",
+"deutsch": "Schwarzkehlchen",
+"lat": "Saxicola rubicola",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "grauschnaepper",
+"deutsch": "Grauschnäpper",
+"lat": "Muscicapa striata",
+"monate": [
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "trauerschnaepper",
+"deutsch": "Trauerschnäpper",
+"lat": "Ficedula hypoleuca",
+"monate": [
+4,
+5,
+6,
+7,
+8
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
 "slug": "star",
 "deutsch": "Star",
 "lat": "Sturnus vulgaris",
@@ -1907,6 +2053,28 @@
 ],
 "wichtig": false,
 "foto": true,
+"gruppe": "Vögel"
+},
+{
+"slug": "wasseramsel",
+"deutsch": "Wasseramsel",
+"lat": "Cinclus cinclus",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
 "gruppe": "Vögel"
 },
 {
@@ -1932,19 +2100,88 @@
 "gruppe": "Vögel"
 },
 {
-"slug": "rauchschwalbe",
-"deutsch": "Rauchschwalbe",
-"lat": "Hirundo rustica",
+"slug": "zaunkoenig",
+"deutsch": "Zaunkönig",
+"lat": "Troglodytes troglodytes",
 "monate": [
+1,
+2,
+3,
 4,
 5,
 6,
 7,
 8,
-9
+9,
+10,
+11,
+12
 ],
 "wichtig": false,
-"foto": true,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "wintergoldhaehnchen",
+"deutsch": "Wintergoldhähnchen",
+"lat": "Regulus regulus",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "sommergoldhaehnchen",
+"deutsch": "Sommergoldhähnchen",
+"lat": "Regulus ignicapilla",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "haussperling",
+"deutsch": "Haussperling",
+"lat": "Passer domesticus",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
 "gruppe": "Vögel"
 },
 {
@@ -1970,9 +2207,9 @@
 "gruppe": "Vögel"
 },
 {
-"slug": "haussperling",
-"deutsch": "Haussperling",
-"lat": "Passer domesticus",
+"slug": "heckenbraunelle",
+"deutsch": "Heckenbraunelle",
+"lat": "Prunella modularis",
 "monate": [
 1,
 2,
@@ -1986,6 +2223,67 @@
 10,
 11,
 12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "bachstelze",
+"deutsch": "Bachstelze",
+"lat": "Motacilla alba",
+"monate": [
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "gebirgsstelze",
+"deutsch": "Gebirgsstelze",
+"lat": "Motacilla cinerea",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "wiesenpieper",
+"deutsch": "Wiesenpieper",
+"lat": "Anthus pratensis",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11
 ],
 "wichtig": false,
 "foto": false,
@@ -2012,6 +2310,61 @@
 "wichtig": false,
 "foto": true,
 "gruppe": "Vögel"
+},
+{
+"slug": "bergfink",
+"deutsch": "Bergfink",
+"lat": "Fringilla montifringilla",
+"monate": [
+10,
+11,
+12,
+1,
+2,
+3,
+4
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "winter"
+},
+{
+"slug": "bluthaenfling",
+"deutsch": "Bluthänfling",
+"lat": "Linaria cannabina",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "girlitz",
+"deutsch": "Girlitz",
+"lat": "Serinus serinus",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
 },
 {
 "slug": "gruenfink",
@@ -2124,6 +2477,28 @@
 "gruppe": "Vögel"
 },
 {
+"slug": "goldammer",
+"deutsch": "Goldammer",
+"lat": "Emberiza citrinella",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
 "slug": "blaumeise",
 "deutsch": "Blaumeise",
 "lat": "Cyanistes caeruleus",
@@ -2212,6 +2587,214 @@
 "gruppe": "Vögel"
 },
 {
+"slug": "sumpfmeise",
+"deutsch": "Sumpfmeise",
+"lat": "Poecile palustris",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "weidenmeise",
+"deutsch": "Weidenmeise",
+"lat": "Poecile montanus",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "schwanzmeise",
+"deutsch": "Schwanzmeise",
+"lat": "Aegithalos caudatus",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "zilpzalp",
+"deutsch": "Zilpzalp",
+"lat": "Phylloscopus collybita",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "fitis",
+"deutsch": "Fitis",
+"lat": "Phylloscopus trochilus",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "moenchsgrasmuecke",
+"deutsch": "Mönchsgrasmücke",
+"lat": "Sylvia atricapilla",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "gartengrasmuecke",
+"deutsch": "Gartengrasmücke",
+"lat": "Sylvia borin",
+"monate": [
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "dorngrasmuecke",
+"deutsch": "Dorngrasmücke",
+"lat": "Curruca communis",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "feldlerche",
+"deutsch": "Feldlerche",
+"lat": "Alauda arvensis",
+"monate": [
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "rauchschwalbe",
+"deutsch": "Rauchschwalbe",
+"lat": "Hirundo rustica",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": true,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "mehlschwalbe",
+"deutsch": "Mehlschwalbe",
+"lat": "Delichon urbicum",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
 "slug": "eichelhaeher",
 "deutsch": "Eichelhäher",
 "lat": "Garrulus glandarius",
@@ -2237,6 +2820,50 @@
 "slug": "elster",
 "deutsch": "Elster",
 "lat": "Pica pica",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "dohle",
+"deutsch": "Dohle",
+"lat": "Coloeus monedula",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "saatkraehe",
+"deutsch": "Saatkrähe",
+"lat": "Corvus frugilegus",
 "monate": [
 1,
 2,
@@ -2297,6 +2924,232 @@
 ],
 "wichtig": false,
 "foto": true,
+"gruppe": "Vögel"
+},
+{
+"slug": "kolkrabe",
+"deutsch": "Kolkrabe",
+"lat": "Corvus corax",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "neuntoeter",
+"deutsch": "Neuntöter",
+"lat": "Lanius collurio",
+"monate": [
+5,
+6,
+7,
+8
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "mauersegler",
+"deutsch": "Mauersegler",
+"lat": "Apus apus",
+"monate": [
+5,
+6,
+7,
+8
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "turmfalke",
+"deutsch": "Turmfalke",
+"lat": "Falco tinnunculus",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": true,
+"gruppe": "Vögel"
+},
+{
+"slug": "maeusebussard",
+"deutsch": "Mäusebussard",
+"lat": "Buteo buteo",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "rotmilan",
+"deutsch": "Rotmilan",
+"lat": "Milvus milvus",
+"monate": [
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "sperber",
+"deutsch": "Sperber",
+"lat": "Accipiter nisus",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "schleiereule",
+"deutsch": "Schleiereule",
+"lat": "Tyto alba",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "waldkauz",
+"deutsch": "Waldkauz",
+"lat": "Strix aluco",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "waldohreule",
+"deutsch": "Waldohreule",
+"lat": "Asio otus",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "eisvogel",
+"deutsch": "Eisvogel",
+"lat": "Alcedo atthis",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
 "gruppe": "Vögel"
 },
 {
@@ -2366,9 +3219,9 @@
 "gruppe": "Vögel"
 },
 {
-"slug": "turmfalke",
-"deutsch": "Turmfalke",
-"lat": "Falco tinnunculus",
+"slug": "kleinspecht",
+"deutsch": "Kleinspecht",
+"lat": "Dryobates minor",
 "monate": [
 1,
 2,
@@ -2384,7 +3237,29 @@
 12
 ],
 "wichtig": false,
-"foto": true,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "schwarzspecht",
+"deutsch": "Schwarzspecht",
+"lat": "Dryocopus martius",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
 "gruppe": "Vögel"
 },
 {
@@ -2445,7 +3320,8 @@
 ],
 "wichtig": false,
 "foto": true,
-"gruppe": "Vögel"
+"gruppe": "Vögel",
+"zug": "sommer"
 },
 {
 "slug": "stockente",
@@ -2489,28 +3365,6 @@
 ],
 "wichtig": false,
 "foto": true,
-"gruppe": "Vögel"
-},
-{
-"slug": "zaunkoenig",
-"deutsch": "Zaunkönig",
-"lat": "Troglodytes troglodytes",
-"monate": [
-1,
-2,
-3,
-4,
-5,
-6,
-7,
-8,
-9,
-10,
-11,
-12
-],
-"wichtig": false,
-"foto": false,
 "gruppe": "Vögel"
 }
 ]

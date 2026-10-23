@@ -134,6 +134,9 @@
     text-decoration:none;border:1.5px dashed var(--linie);border-radius:14px;color:var(--blau);
     font-family:var(--sans);font-size:.92rem;font-weight:600;padding:10px;scroll-snap-align:start;}
   .jetzt-mehr:hover{border-color:#9bb0c6;background:var(--creme-tief);}
+  .jk-zug{display:block;margin-top:3px;font-family:var(--sans);font-size:.62rem;font-weight:700;letter-spacing:.04em;
+    text-transform:uppercase;color:var(--honig);}
+  #voegel-sektion{margin-top:18px;}
 
   /* Rubriken */
   section{margin-top:30px;}
@@ -237,6 +240,13 @@
     <h2 class="jetzt-titel">Was fliegt &amp; krabbelt gerade?</h2>
     <p class="jetzt-unter" id="jetzt-unter"></p>
     <div class="jetzt-strip" id="jetzt-strip" aria-label="Aktuell aktive Insekten"></div>
+  </section>
+
+  <!-- Wer ist gerade da? – Vögel des Monats (dynamisch aus tiere.json) -->
+  <section class="jetzt-sektion" id="voegel-sektion" hidden>
+    <h2 class="jetzt-titel">Wer ist gerade da?</h2>
+    <p class="jetzt-unter" id="voegel-unter"></p>
+    <div class="jetzt-strip" id="voegel-strip" aria-label="Vögel, die gerade bei uns sind"></div>
   </section>
 
   <div class="start-chips">
@@ -527,36 +537,52 @@ footer.fuss-neu a{color:#F7F3E8}
   });
 })();
 </script>
-<!-- „Was fliegt & krabbelt gerade?" – lädt tiere.json, filtert nach Monat -->
+<!-- „Was fliegt & krabbelt gerade?" und „Wer ist gerade da?" – laden tiere.json, filtern nach Monat -->
 <script>
 (function(){
   var MONATE=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
   var monat=new Date().getMonth()+1;
-  var sektion=document.getElementById('jetzt-sektion');
-  var strip=document.getElementById('jetzt-strip');
-  var unter=document.getElementById('jetzt-unter');
-  if(!sektion||!strip) return;
   function misch(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
-  fetch('tiere.json').then(function(r){return r.json();}).then(function(daten){
-    var aktiv=daten.filter(function(t){return Array.isArray(t.monate)&&t.monate.indexOf(monat)>=0;});
-    if(!aktiv.length){ return; }
-    unter.textContent=aktiv.length+' Arten sind im '+MONATE[monat-1]+' unterwegs — die wichtigsten zum Einstieg:';
-    var wichtige=misch(aktiv.filter(function(t){return t.wichtig;}));
-    var weitere=misch(aktiv.filter(function(t){return !t.wichtig;}));
-    var auswahl=wichtige.concat(weitere).slice(0,10);
+  function karte(t,marke){
+    var a=document.createElement('a'); a.className='jetzt-karte'; a.href='arten/'+t.slug+'.html';
+    var img=document.createElement('img'); img.src='images/tafeln/'+t.slug+'.jpg'; img.alt=t.deutsch; img.loading='lazy';
+    img.onerror=function(){ if(!this.dataset.f){ this.dataset.f=1; this.src='images/fotos/'+t.slug+'.jpg'; } else { this.style.visibility='hidden'; } };
+    var n=document.createElement('span'); n.className='jk-name'; n.textContent=t.deutsch;
+    if(marke){ var m=document.createElement('span'); m.className='jk-zug'; m.textContent=marke; n.appendChild(m); }
+    a.appendChild(img); a.appendChild(n);
+    return a;
+  }
+  function fuelle(id,auswahl,mehrHref,mehrText,marke){
+    var sektion=document.getElementById(id+'-sektion'), strip=document.getElementById(id+'-strip');
+    if(!sektion||!strip||!auswahl.length) return;
     var frag=document.createDocumentFragment();
-    auswahl.forEach(function(t){
-      var a=document.createElement('a'); a.className='jetzt-karte'; a.href='arten/'+t.slug+'.html';
-      var img=document.createElement('img'); img.src='images/tafeln/'+t.slug+'.jpg'; img.alt=t.deutsch; img.loading='lazy';
-      img.onerror=function(){ if(!this.dataset.f){ this.dataset.f=1; this.src='images/fotos/'+t.slug+'.jpg'; } else { this.style.visibility='hidden'; } };
-      var n=document.createElement('span'); n.className='jk-name'; n.textContent=t.deutsch;
-      a.appendChild(img); a.appendChild(n); frag.appendChild(a);
-    });
-    var mehr=document.createElement('a'); mehr.className='jetzt-mehr'; mehr.href='interaktiv/stammbaum.html'; mehr.textContent='Alle im Stammbaum →';
+    auswahl.forEach(function(t){ frag.appendChild(karte(t,marke&&marke(t))); });
+    var mehr=document.createElement('a'); mehr.className='jetzt-mehr'; mehr.href=mehrHref; mehr.textContent=mehrText;
     frag.appendChild(mehr);
     strip.appendChild(frag);
     sektion.hidden=false;
-  }).catch(function(){ /* tiere.json nicht erreichbar – Sektion bleibt aus */ });
+  }
+  fetch('tiere.json').then(function(r){return r.json();}).then(function(daten){
+    var aktiv=daten.filter(function(t){return Array.isArray(t.monate)&&t.monate.indexOf(monat)>=0;});
+    // Insekten & Co.
+    var kr=aktiv.filter(function(t){return t.gruppe!=='Vögel';});
+    if(kr.length){
+      document.getElementById('jetzt-unter').textContent=kr.length+' Arten sind im '+MONATE[monat-1]+' unterwegs — die wichtigsten zum Einstieg:';
+      var wichtige=misch(kr.filter(function(t){return t.wichtig;}));
+      var weitere=misch(kr.filter(function(t){return !t.wichtig;}));
+      fuelle('jetzt',wichtige.concat(weitere).slice(0,10),'interaktiv/stammbaum.html','Alle im Stammbaum →');
+    }
+    // Vögel: Zugvögel, die nur jetzt da sind, zuerst
+    var vo=aktiv.filter(function(t){return t.gruppe==='Vögel';});
+    if(vo.length){
+      var gaeste=misch(vo.filter(function(t){return t.zug;}));
+      var jahr=misch(vo.filter(function(t){return !t.zug;}));
+      var txt=vo.length+' Vogelarten sind im '+MONATE[monat-1]+' bei uns'+(gaeste.length?' — vorne die Zugvögel, die nicht das ganze Jahr hier sind:':':');
+      document.getElementById('voegel-unter').textContent=txt;
+      fuelle('voegel',gaeste.concat(jahr).slice(0,12),'interaktiv/stammbaum.html?ziel=Aves','Alle Vögel im Stammbaum →',
+        function(t){return t.zug==='sommer'?'Sommergast':(t.zug==='winter'?'Wintergast':'');});
+    }
+  }).catch(function(){ /* tiere.json nicht erreichbar – Sektionen bleiben aus */ });
 })();
 </script>
 
@@ -610,7 +636,7 @@ footer.fuss-neu a{color:#F7F3E8}
     { titel:'Tiere entdecken',
       text:'Insekten und andere Wirbellose vor der Haustür – jede Art mit Foto, naturkundlicher Tafel und Steckbrief.' },
     { titel:'Was fliegt & krabbelt gerade?',
-      text:'Ganz oben siehst du die Tiere, die genau jetzt im Jahr unterwegs sind – tippe eines an.' },
+      text:'Ganz oben siehst du die Tiere, die genau jetzt im Jahr unterwegs sind – darunter unter „Wer ist gerade da?“ die Vögel. Tippe eines an.' },
     { titel:'Bestimmen & ordnen',
       text:'Über den Bestimmungsschlüssel zur Art, im Stammbaum die Verwandtschaft erkunden – mit Suchfeld für jede Art.' },
     { titel:'Knobeln, verstehen, staunen',

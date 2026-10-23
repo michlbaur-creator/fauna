@@ -178,7 +178,7 @@ const RANG = {
   Aeshnidae:"Familie", Libellulidae:"Familie", Calopterygidae:"Familie", Coenagrionidae:"Familie",
   Carabidae:"Familie", Dytiscidae:"Familie", Scarabaeidae:"Familie", Tenthredinidae:"Familie",
   Culicidae:"Familie", Nymphalidae:"Familie", Papilionidae:"Familie", Satyrinae:"Unterfamilie",
-  Passeriformes:"Ordnung", Piciformes:"Ordnung", Columbiformes:"Ordnung", Anseriformes:"Ordnung", Galliformes:"Ordnung", Ciconiiformes:"Ordnung", Suliformes:"Ordnung", Pelecaniformes:"Ordnung", Falconiformes:"Ordnung", Psittaciformes:"Ordnung", Accipitriformes:"Ordnung", Strigiformes:"Ordnung", Gruiformes:"Ordnung", Charadriiformes:"Ordnung",
+  Apodiformes:"Ordnung", Coraciiformes:"Ordnung", Laniidae:"Familie", Aegithalidae:"Familie", Phylloscopidae:"Familie", Sylviidae:"Familie", Alaudidae:"Familie", Regulidae:"Familie", Troglodytidae:"Familie", Cinclidae:"Familie", Prunellidae:"Familie", Motacillidae:"Familie", Emberizidae:"Familie", Accipitridae:"Familie", Tytonidae:"Familie", Strigidae:"Familie", Apodidae:"Familie", Alcedinidae:"Familie", Passeriformes:"Ordnung", Piciformes:"Ordnung", Columbiformes:"Ordnung", Anseriformes:"Ordnung", Galliformes:"Ordnung", Ciconiiformes:"Ordnung", Suliformes:"Ordnung", Pelecaniformes:"Ordnung", Falconiformes:"Ordnung", Psittaciformes:"Ordnung", Accipitriformes:"Ordnung", Strigiformes:"Ordnung", Gruiformes:"Ordnung", Charadriiformes:"Ordnung",
   Corvidae:"Familie", Paridae:"Familie", Fringillidae:"Familie", Passeridae:"Familie", Turdidae:"Familie", Muscicapidae:"Familie", Sturnidae:"Familie", Sittidae:"Familie", Hirundinidae:"Familie", Picidae:"Familie", Columbidae:"Familie", Ciconiidae:"Familie", Anatidae:"Familie", Phalacrocoracidae:"Familie", Falconidae:"Familie"
 };
 
@@ -543,7 +543,7 @@ const baumDaten = {
                     {de:"Hühner- & Gänsevögel", lat:"Galloanserae", info:"Zwei alte Linien, die enger miteinander verwandt sind als mit allen anderen Vögeln.", k:[
                       {de:"Hühnervögel", lat:"Galliformes", info:"Fasan, Rebhuhn, Wachtel – und das Haushuhn, dessen wilder Vorfahr das Bankivahuhn ist."},
                       {de:"Gänsevögel", lat:"Anseriformes", info:"Enten, Gänse und Schwäne – mit Schwimmfüßen und breitem Seihschnabel.", k:[
-                        {de:"Stockente", lat:"Anas platyrhynchos", art:true, url:"../arten/stockente.html", info:"Häufigste Ente; Erpel mit grünem Kopf; Stammform der Hausente; Küken sind Nestflüchter."}
+                        {de:"Stockente", lat:"Anas platyrhynchos", art:true, url:"../arten/stockente.html", info:"Häufigste Ente; Erpel mit grünem Kopf; Stammform der Hausente."}
                       ]}
                     ]},
                     {de:"Neuvögel", lat:"Neoaves", info:"Die große Mehrheit der Vögel. Wie ihre Äste genau zusammenhängen, wird noch erforscht.", k:[
@@ -551,7 +551,13 @@ const baumDaten = {
                         {de:"Ringeltaube", lat:"Columba palumbus", art:true, url:"../arten/ringeltaube.html", info:"Größte heimische Taube mit weißem Halsfleck; füttert Junge mit Kropfmilch."},
                         {de:"Türkentaube", lat:"Streptopelia decaocto", art:true, url:"../arten/tuerkentaube.html", info:"Hell graubeige mit schwarzem Nackenband; kam erst im 20. Jahrhundert zu uns."}
                       ]},
-                      {de:"Segler & Nachtschwalben", lat:"Strisores", info:"Mauersegler, Ziegenmelker und Kolibris – Meister der Luft mit winzigen Füßen."},
+                      {de:"Segler & Nachtschwalben", lat:"Strisores", info:"Mauersegler, Ziegenmelker und Kolibris – Meister der Luft mit winzigen Füßen.", k:[
+                        {de:"Seglervögel", lat:"Apodiformes", info:"Segler und Kolibris – ja, die beiden sind miteinander verwandt.", k:[
+                          {de:"Segler", lat:"Apodidae", info:"Leben fast nur in der Luft – mit Sichelflügeln und winzigen Füßen.", k:[
+                            {de:"Mauersegler", lat:"Apus apus", art:true, url:"../arten/mauersegler.html", info:"Sichelflügel, rußbraun; lebt fast nur in der Luft – frisst, trinkt und schläft im Flug."}
+                          ]}
+                        ]}
+                      ]},
                       {de:"Kranichvögel", lat:"Gruiformes", info:"Kranich, Blässhuhn und Teichhuhn."},
                       {de:"Wat- & Möwenvögel", lat:"Charadriiformes", info:"Kiebitz, Lachmöwe, Schnepfen und Seeschwalben."},
                       {de:"Wasservögel-Linie", lat:"Aequornithes", info:"Störche, Kormorane, Reiher – und die Pinguine. Viele jagen im oder am Wasser.", k:[
@@ -565,13 +571,34 @@ const baumDaten = {
                       ]},
                       {de:"Landvögel", lat:"Telluraves", info:"Eine große Linie fast nur landlebender Vögel – von den Greifvögeln bis zu den Singvögeln.", k:[
                         {de:"Greife, Eulen & Spechte", lat:"Afroaves", info:"Greifvögel, Eulen, Spechte, Eisvögel und Wiedehopf gehören zu dieser Linie.", k:[
-                          {de:"Greifvögel", lat:"Accipitriformes", info:"Mäusebussard, Rotmilan, Habicht – mit Hakenschnabel und kräftigen Greiffüßen."},
-                          {de:"Eulen", lat:"Strigiformes", info:"Waldkauz, Schleiereule, Uhu – nächtliche Jäger mit fast lautlosem Flug."},
+                          {de:"Greifvögel", lat:"Accipitriformes", info:"Mit Hakenschnabel und kräftigen Greiffüßen – die Falken gehören übrigens nicht dazu.", k:[
+                            {de:"Habichtartige", lat:"Accipitridae", info:"Bussarde, Milane, Habicht und Sperber – Jäger mit breiten Flügeln.", k:[
+                              {de:"Mäusebussard", lat:"Buteo buteo", art:true, url:"../arten/maeusebussard.html", info:"Unser häufigster Greifvogel; sitzt geduldig auf Pfählen am Straßenrand."},
+                              {de:"Rotmilan", lat:"Milvus milvus", art:true, url:"../arten/rotmilan.html", info:"Rostrot mit tief gegabeltem Schwanz; mehr als die Hälfte aller Rotmilane brüten in Deutschland."},
+                              {de:"Sperber", lat:"Accipiter nisus", art:true, url:"../arten/sperber.html", info:"Kleiner Greifvogel mit langen Beinen und gebänderter Brust; jagt Singvögel im Überraschungsangriff."}
+                            ]}
+                          ]},
+                          {de:"Eulen", lat:"Strigiformes", info:"Nächtliche Jäger mit großen Augen und fast lautlosem Flug.", k:[
+                            {de:"Schleiereulen", lat:"Tytonidae", info:"Mit herzförmigem Gesichtsschleier.", k:[
+                              {de:"Schleiereule", lat:"Tyto alba", art:true, url:"../arten/schleiereule.html", info:"Herzförmiger heller Gesichtsschleier; brütet in Scheunen und Kirchtürmen."}
+                            ]},
+                            {de:"Eigentliche Eulen", lat:"Strigidae", info:"Waldkauz, Uhu, Waldohreule – mit rundem Gesichtsschleier.", k:[
+                              {de:"Waldkauz", lat:"Strix aluco", art:true, url:"../arten/waldkauz.html", info:"Runder Kopf ohne Federohren, dunkle Augen; das bekannte „huu-hu-huuu“."},
+                              {de:"Waldohreule", lat:"Asio otus", art:true, url:"../arten/waldohreule.html", info:"Lange Federohren, orange Augen; zieht in alte Krähennester."}
+                            ]}
+                          ]},
+                          {de:"Rackenvögel", lat:"Coraciiformes", info:"Bunte Vögel wie Eisvogel, Bienenfresser und Blauracke.", k:[
+                            {de:"Eisvögel", lat:"Alcedinidae", info:"Stoßtaucher mit Dolchschnabel.", k:[
+                              {de:"Eisvogel", lat:"Alcedo atthis", art:true, url:"../arten/eisvogel.html", info:"Blau-orange schillernd, Dolchschnabel; stößt kopfüber nach Fischen."}
+                            ]}
+                          ]},
                           {de:"Spechtvögel", lat:"Piciformes", info:"Kletterfuß mit zwei Zehen nach vorn und zwei nach hinten, Meißelschnabel und lange Zunge.", k:[
                             {de:"Spechte", lat:"Picidae", info:"Hacken Höhlen ins Holz, die später viele andere Tiere nutzen.", k:[
                               {de:"Buntspecht", lat:"Dendrocopos major", art:true, url:"../arten/buntspecht.html", info:"Häufigster Specht: schwarz-weiß mit rotem Unterschwanz; Männchen mit rotem Nackenfleck."},
                               {de:"Mittelspecht", lat:"Dendrocoptes medius", art:true, url:"../arten/mittelspecht.html", info:"Rote Kappe bei beiden Geschlechtern; braucht alte Eichen mit rauer Rinde."},
-                              {de:"Grünspecht", lat:"Picus viridis", art:true, url:"../arten/gruenspecht.html", info:"Grün mit roter Kappe; sucht am Boden nach Ameisen; Ruf wie Gelächter."}
+                              {de:"Kleinspecht", lat:"Dryobates minor", art:true, url:"../arten/kleinspecht.html", info:"Spatzengroß, schwarz-weiß gebändert, ohne Rot unter dem Schwanz."},
+                              {de:"Grünspecht", lat:"Picus viridis", art:true, url:"../arten/gruenspecht.html", info:"Grün mit roter Kappe; sucht am Boden nach Ameisen; Ruf wie Gelächter."},
+                              {de:"Schwarzspecht", lat:"Dryocopus martius", art:true, url:"../arten/schwarzspecht.html", info:"Krähengroß, ganz schwarz mit roter Kappe; zimmert Höhlen für viele Nachmieter."}
                             ]}
                           ]}
                         ]},
@@ -581,21 +608,53 @@ const baumDaten = {
                           ]},
                           {de:"Papageien", lat:"Psittaciformes", info:"Wellensittich, Graupapagei, Kakadu – mit Kletterfuß und kräftigem Hakenschnabel."},
                           {de:"Sperlingsvögel", lat:"Passeriformes", info:"Mehr als die Hälfte aller Vogelarten der Erde – fast alle sind Singvögel. Typisch: drei Zehen nach vorn, eine nach hinten, zum Umklammern von Zweigen.", k:[
-                            {de:"Rabenvögel", lat:"Corvidae", info:"Die größten Singvögel – klug, gesellig und anpassungsfähig.", k:[
-                              {de:"Eichelhäher", lat:"Garrulus glandarius", art:true, url:"../arten/eichelhaeher.html", info:"Bunter Rabenvogel mit blauen Flügelfedern; versteckt Eicheln und pflanzt so Eichen."},
-                              {de:"Elster", lat:"Pica pica", art:true, url:"../arten/elster.html", info:"Schwarz-weiß mit langem, grün schillerndem Schwanz; baut Nester mit Dach."},
-                              {de:"Rabenkrähe", lat:"Corvus corone", art:true, url:"../arten/rabenkraehe.html", info:"Ganz schwarz, mit befiederter Schnabelbasis; klug und anpassungsfähig."},
-                              {de:"Nebelkrähe", lat:"Corvus cornix", art:true, url:"../arten/nebelkraehe.html", info:"Grau-schwarze Schwester der Rabenkrähe; lebt im Osten und Norden Europas."}
+                            {de:"Rabenvögel & Würger", lat:"Corvoidea", info:"Eine Linie mit kräftigen Schnäbeln – von den klugen Raben bis zu den Würgern.", k:[
+                              {de:"Rabenvögel", lat:"Corvidae", info:"Die größten Singvögel – klug, gesellig und anpassungsfähig.", k:[
+                                {de:"Eichelhäher", lat:"Garrulus glandarius", art:true, url:"../arten/eichelhaeher.html", info:"Bunter Rabenvogel mit blauen Flügelfedern; versteckt Eicheln und pflanzt so Eichen."},
+                                {de:"Elster", lat:"Pica pica", art:true, url:"../arten/elster.html", info:"Schwarz-weiß mit langem, grün schillerndem Schwanz; baut Nester mit Dach."},
+                                {de:"Dohle", lat:"Coloeus monedula", art:true, url:"../arten/dohle.html", info:"Kleinste heimische Krähe mit grauem Nacken und hellen Augen; brütet in Kirchtürmen."},
+                                {de:"Saatkrähe", lat:"Corvus frugilegus", art:true, url:"../arten/saatkraehe.html", info:"Schwarz mit nacktem, grauweißem Schnabelgrund; brütet in lauten Kolonien."},
+                                {de:"Rabenkrähe", lat:"Corvus corone", art:true, url:"../arten/rabenkraehe.html", info:"Ganz schwarz, mit befiederter Schnabelbasis; klug und anpassungsfähig."},
+                                {de:"Nebelkrähe", lat:"Corvus cornix", art:true, url:"../arten/nebelkraehe.html", info:"Grau-schwarze Schwester der Rabenkrähe; lebt im Osten und Norden Europas."},
+                                {de:"Kolkrabe", lat:"Corvus corax", art:true, url:"../arten/kolkrabe.html", info:"Größter Singvogel Europas, keilförmiger Schwanz; tiefes „krok“."}
+                              ]},
+                              {de:"Würger", lat:"Laniidae", info:"Kleine „Greifvögel“ unter den Singvögeln, mit Hakenschnabel.", k:[
+                                {de:"Neuntöter", lat:"Lanius collurio", art:true, url:"../arten/neuntoeter.html", info:"Männchen mit schwarzer Augenmaske und rotbraunem Rücken; spießt Beute auf Dornen."}
+                              ]}
                             ]},
                             {de:"Übrige Singvögel", lat:"Passerida", info:"Die meisten unserer Garten- und Waldvögel.", k:[
                               {de:"Meisen", lat:"Paridae", info:"Kleine, flinke Höhlenbrüter mit kurzem, spitzem Schnabel.", k:[
                                 {de:"Blaumeise", lat:"Cyanistes caeruleus", art:true, url:"../arten/blaumeise.html", info:"Blaue Kopfkappe, weißes Gesicht, gelbe Unterseite; turnt an dünnsten Zweigen."},
                                 {de:"Kohlmeise", lat:"Parus major", art:true, url:"../arten/kohlmeise.html", info:"Größte heimische Meise: schwarzer Kopf, weiße Wangen, schwarzer Bauchstreif."},
                                 {de:"Tannenmeise", lat:"Periparus ater", art:true, url:"../arten/tannenmeise.html", info:"Kleinste heimische Meise: schwarzer Kopf mit weißem Nackenfleck; lebt im Nadelwald."},
-                                {de:"Haubenmeise", lat:"Lophophanes cristatus", art:true, url:"../arten/haubenmeise.html", info:"Die einzige heimische Meise mit spitzer, schwarz-weißer Federhaube."}
+                                {de:"Haubenmeise", lat:"Lophophanes cristatus", art:true, url:"../arten/haubenmeise.html", info:"Die einzige heimische Meise mit spitzer, schwarz-weißer Federhaube."},
+                                {de:"Sumpfmeise", lat:"Poecile palustris", art:true, url:"../arten/sumpfmeise.html", info:"Glänzend schwarze Kappe, kleiner Kinnfleck; Doppelgängerin der Weidenmeise."},
+                                {de:"Weidenmeise", lat:"Poecile montanus", art:true, url:"../arten/weidenmeise.html", info:"Mattschwarze Kappe, heller Flügelstreif; Doppelgängerin der Sumpfmeise."}
                               ]},
-                              {de:"Schwalben", lat:"Hirundinidae", info:"Insektenjäger der Luft mit langen, spitzen Flügeln.", k:[
-                                {de:"Rauchschwalbe", lat:"Hirundo rustica", art:true, url:"../arten/rauchschwalbe.html", info:"Gabelschwanz mit langen Spießen, rote Kehle; brütet in Viehställen."}
+                              {de:"Grasmücken-Verwandte", lat:"Sylvioidea", info:"Laubsänger, Grasmücken, Lerchen und Schwalben – meist schlichte Insektenfresser mit feinem Schnabel.", k:[
+                                {de:"Schwanzmeisen", lat:"Aegithalidae", info:"Winzige Vögel mit sehr langem Schwanz – keine echten Meisen.", k:[
+                                  {de:"Schwanzmeise", lat:"Aegithalos caudatus", art:true, url:"../arten/schwanzmeise.html", info:"Winziger Körper, riesiger Schwanz – ein fliegender Kochlöffel."}
+                                ]},
+                                {de:"Laubsänger", lat:"Phylloscopidae", info:"Kleine, grünlich-braune Sänger, die man am besten am Lied erkennt.", k:[
+                                  {de:"Zilpzalp", lat:"Phylloscopus collybita", art:true, url:"../arten/zilpzalp.html", info:"Olivbraun und unscheinbar – sagt aber laut, wie er heißt."},
+                                  {de:"Fitis", lat:"Phylloscopus trochilus", art:true, url:"../arten/fitis.html", info:"Zwilling des Zilpzalps mit hellen Beinen und weich abfallendem Lied."}
+                                ]},
+                                {de:"Grasmücken", lat:"Sylviidae", info:"Heimliche Sänger in Hecken und Gebüsch.", k:[
+                                  {de:"Mönchsgrasmücke", lat:"Sylvia atricapilla", art:true, url:"../arten/moenchsgrasmuecke.html", info:"Männchen mit schwarzer, Weibchen mit brauner Kappe; flötender Sänger."},
+                                  {de:"Gartengrasmücke", lat:"Sylvia borin", art:true, url:"../arten/gartengrasmuecke.html", info:"Die Unauffälligste von allen: graubraun, ganz ohne Abzeichen."},
+                                  {de:"Dorngrasmücke", lat:"Curruca communis", art:true, url:"../arten/dorngrasmuecke.html", info:"Weiße Kehle, rostbraune Flügel; lebt in dornigen Hecken."}
+                                ]},
+                                {de:"Lerchen", lat:"Alaudidae", info:"Bodenvögel offener Felder, die hoch in der Luft singen.", k:[
+                                  {de:"Feldlerche", lat:"Alauda arvensis", art:true, url:"../arten/feldlerche.html", info:"Braun gestrichelter Bodenvogel mit kleiner Haube; singt minutenlang hoch in der Luft."}
+                                ]},
+                                {de:"Schwalben", lat:"Hirundinidae", info:"Insektenjäger der Luft mit langen, spitzen Flügeln.", k:[
+                                  {de:"Rauchschwalbe", lat:"Hirundo rustica", art:true, url:"../arten/rauchschwalbe.html", info:"Gabelschwanz mit langen Spießen, rote Kehle; brütet in Viehställen."},
+                                  {de:"Mehlschwalbe", lat:"Delichon urbicum", art:true, url:"../arten/mehlschwalbe.html", info:"Blauschwarz oben, schneeweiß unten, weißer Bürzel; baut geschlossene Lehmnester an Hauswänden."}
+                                ]}
+                              ]},
+                              {de:"Goldhähnchen", lat:"Regulidae", info:"Die kleinsten Vögel Europas.", k:[
+                                {de:"Wintergoldhähnchen", lat:"Regulus regulus", art:true, url:"../arten/wintergoldhaehnchen.html", info:"Europas kleinster Vogel: gut fünf Gramm, gelber Scheitelstreif."},
+                                {de:"Sommergoldhähnchen", lat:"Regulus ignicapilla", art:true, url:"../arten/sommergoldhaehnchen.html", info:"Winzig, mit weißem Überaugenstreif; zieht im Winter nach Süden."}
                               ]},
                               {de:"Kleiber & Zaunkönig", lat:"Certhioidea", info:"Kleine Kletter- und Schlüpfkünstler – mit Baumläufern und Zaunkönig verwandt.", k:[
                                 {de:"Kleiber", lat:"Sittidae", info:"Klettern ohne Stützschwanz – auch kopfüber.", k:[
@@ -609,26 +668,51 @@ const baumDaten = {
                                 {de:"Stare", lat:"Sturnidae", info:"Schillernde Gesellen, die in großen Schwärmen ziehen.", k:[
                                   {de:"Star", lat:"Sturnus vulgaris", art:true, url:"../arten/star.html", info:"Schillerndes Gefieder, im Winter hell getupft; meisterhafter Stimmenimitator."}
                                 ]},
-                                {de:"Drosseln", lat:"Turdidae", info:"Mittelgroße Singvögel, die viel am Boden nach Würmern suchen.", k:[
-                                  {de:"Amsel", lat:"Turdus merula", art:true, url:"../arten/amsel.html", info:"Männchen schwarz mit gelbem Schnabel, Weibchen braun. Einer der häufigsten Vögel Deutschlands."},
-                                  {de:"Wacholderdrossel", lat:"Turdus pilaris", art:true, url:"../arten/wacholderdrossel.html", info:"Große Drossel mit grauem Kopf und braunem Rücken; brütet in lockeren Kolonien."}
+                                {de:"Wasseramseln", lat:"Cinclidae", info:"Singvögel, die tauchen können.", k:[
+                                  {de:"Wasseramsel", lat:"Cinclus cinclus", art:true, url:"../arten/wasseramsel.html", info:"Dunkelbraun mit weißem Latz; unser einziger Singvogel, der taucht."}
                                 ]},
-                                {de:"Fliegenschnäpper", lat:"Muscicapidae", info:"Kleine Insektenjäger – auch das Rotkehlchen gehört dazu.", k:[
-                                  {de:"Rotkehlchen", lat:"Erithacus rubecula", art:true, url:"../arten/rotkehlchen.html", info:"Orangerote Brust, große dunkle Augen; singt auch im Winter."}
+                                {de:"Drosseln", lat:"Turdidae", info:"Mittelgroße Singvögel, die viel am Boden nach Würmern suchen.", k:[
+                                  {de:"Amsel", lat:"Turdus merula", art:true, url:"../arten/amsel.html", info:"Männchen schwarz mit gelbem Schnabel, Weibchen braun – vom scheuen Waldvogel zum Gartenstar."},
+                                  {de:"Wacholderdrossel", lat:"Turdus pilaris", art:true, url:"../arten/wacholderdrossel.html", info:"Graukopf mit braunem Rücken; brütet in Kolonien und bombardiert Feinde mit Kot."},
+                                  {de:"Misteldrossel", lat:"Turdus viscivorus", art:true, url:"../arten/misteldrossel.html", info:"Große, helle Drossel mit runden Brustflecken; verbreitet die Mistel."},
+                                  {de:"Singdrossel", lat:"Turdus philomelos", art:true, url:"../arten/singdrossel.html", info:"Brauner Rücken, Brust mit dunklen Pfeilspitzen; singt jede Strophe mehrmals."}
+                                ]},
+                                {de:"Fliegenschnäpper", lat:"Muscicapidae", info:"Kleine Insektenjäger – auch Rotkehlchen, Nachtigall und Rotschwänze gehören dazu.", k:[
+                                  {de:"Rotkehlchen", lat:"Erithacus rubecula", art:true, url:"../arten/rotkehlchen.html", info:"Orangerote Brust, große dunkle Augen; singt auch im Winter."},
+                                  {de:"Nachtigall", lat:"Luscinia megarhynchos", art:true, url:"../arten/nachtigall.html", info:"Unscheinbar braun – aber die berühmteste Sängerin Europas."},
+                                  {de:"Hausrotschwanz", lat:"Phoenicurus ochruros", art:true, url:"../arten/hausrotschwanz.html", info:"Rußgrau mit zitterndem, rostrotem Schwanz; ursprünglich ein Felsenvogel."},
+                                  {de:"Gartenrotschwanz", lat:"Phoenicurus phoenicurus", art:true, url:"../arten/gartenrotschwanz.html", info:"Männchen mit weißer Stirn, schwarzer Kehle und orangeroter Brust; Afrika-Zieher."},
+                                  {de:"Schwarzkehlchen", lat:"Saxicola rubicola", art:true, url:"../arten/schwarzkehlchen.html", info:"Männchen mit schwarzem Kopf, weißem Halsfleck und oranger Brust; sitzt gern ganz oben."},
+                                  {de:"Grauschnäpper", lat:"Muscicapa striata", art:true, url:"../arten/grauschnaepper.html", info:"Schlicht graubraun mit gestrichelter Brust; fängt Insekten im Flug."},
+                                  {de:"Trauerschnäpper", lat:"Ficedula hypoleuca", art:true, url:"../arten/trauerschnaepper.html", info:"Männchen schwarz-weiß mit weißem Flügelfeld; Höhlenbrüter und Afrika-Zieher."}
                                 ]}
                               ]},
-                              {de:"Sperlings-Verwandte", lat:"Passeroidea", info:"Sperlinge und Finken – Körnerfresser mit kräftigem Kegelschnabel.", k:[
+                              {de:"Sperlings-Verwandte", lat:"Passeroidea", info:"Sperlinge, Stelzen, Finken und Ammern – viele davon Körnerfresser mit Kegelschnabel.", k:[
+                                {de:"Braunellen", lat:"Prunellidae", info:"Unauffällige Vögel mit feinem Schnabel.", k:[
+                                  {de:"Heckenbraunelle", lat:"Prunella modularis", art:true, url:"../arten/heckenbraunelle.html", info:"Unauffällig braun und grau, feiner Schnabel; huscht wie eine Maus durch die Hecke."}
+                                ]},
                                 {de:"Sperlinge", lat:"Passeridae", info:"Gesellige Körnerfresser, oft in der Nähe des Menschen.", k:[
                                   {de:"Haussperling", lat:"Passer domesticus", art:true, url:"../arten/haussperling.html", info:"Der Spatz: Männchen mit grauem Scheitel und schwarzem Latz; lebt fast nur bei Menschen."},
                                   {de:"Feldsperling", lat:"Passer montanus", art:true, url:"../arten/feldsperling.html", info:"Kastanienbrauner Scheitel, schwarzer Wangenfleck; Männchen und Weibchen gleich."}
                                 ]},
+                                {de:"Stelzen und Pieper", lat:"Motacillidae", info:"Schlanke Bodenvögel, die laufen statt hüpfen.", k:[
+                                  {de:"Bachstelze", lat:"Motacilla alba", art:true, url:"../arten/bachstelze.html", info:"Schwarz-weiß-grau, wippt ständig mit dem langen Schwanz."},
+                                  {de:"Gebirgsstelze", lat:"Motacilla cinerea", art:true, url:"../arten/gebirgsstelze.html", info:"Grau oben, leuchtend gelb unten, sehr langer Schwanz; lebt an rauschenden Bächen."},
+                                  {de:"Wiesenpieper", lat:"Anthus pratensis", art:true, url:"../arten/wiesenpieper.html", info:"Braun gestrichelter Bodenvogel offener Wiesen; singt im Fallschirmflug."}
+                                ]},
                                 {de:"Finken", lat:"Fringillidae", info:"Kegelschnäbel in allen Größen – vom feinen Zeisig bis zum Kernbeißer.", k:[
                                   {de:"Buchfink", lat:"Fringilla coelebs", art:true, url:"../arten/buchfink.html", info:"Zwei weiße Flügelbinden; Männchen mit blaugrauem Kopf und rostroter Brust."},
-                                  {de:"Grünfink", lat:"Chloris chloris", art:true, url:"../arten/gruenfink.html", info:"Olivgrün mit leuchtend gelben Flügel- und Schwanzkanten; kräftiger heller Schnabel."},
+                                  {de:"Bergfink", lat:"Fringilla montifringilla", art:true, url:"../arten/bergfink.html", info:"Orange Schultern, weißer Bürzel; Wintergast aus dem hohen Norden."},
+                                  {de:"Grünfink", lat:"Chloris chloris", art:true, url:"../arten/gruenfink.html", info:"Olivgrün mit leuchtend gelben Flügelkanten; kräftiger heller Schnabel."},
                                   {de:"Stieglitz", lat:"Carduelis carduelis", art:true, url:"../arten/stieglitz.html", info:"Der Distelfink: rote Gesichtsmaske, breite gelbe Flügelbinden."},
+                                  {de:"Bluthänfling", lat:"Linaria cannabina", art:true, url:"../arten/bluthaenfling.html", info:"Männchen mit karminroter Stirn und Brust; frisst fast nur Samen."},
+                                  {de:"Girlitz", lat:"Serinus serinus", art:true, url:"../arten/girlitz.html", info:"Kleinster Fink, gelbgrün gestreift; Gesang wie ein klirrender Schlüsselbund."},
                                   {de:"Gimpel", lat:"Pyrrhula pyrrhula", art:true, url:"../arten/gimpel.html", info:"Auch Dompfaff: schwarze Kappe, Männchen mit roter Brust, weißer Bürzel."},
                                   {de:"Erlenzeisig", lat:"Spinus spinus", art:true, url:"../arten/erlenzeisig.html", info:"Kleiner gelbgrüner Fink; Männchen mit schwarzer Kappe; im Winter an Erlen und Birken."},
                                   {de:"Kernbeißer", lat:"Coccothraustes coccothraustes", art:true, url:"../arten/kernbeisser.html", info:"Größter heimischer Fink mit gewaltigem Kegelschnabel; knackt Kirschkerne."}
+                                ]},
+                                {de:"Ammern", lat:"Emberizidae", info:"Körnerfresser offener Landschaften.", k:[
+                                  {de:"Goldammer", lat:"Emberiza citrinella", art:true, url:"../arten/goldammer.html", info:"Gelber Kopf, rostbrauner Bürzel; singt „Wie, wie, wie hab ich dich lieb“."}
                                 ]}
                               ]}
                             ]}
