@@ -20,6 +20,8 @@ O_GREIF = ("Greifvögel", "Accipitriformes")
 O_EULE = ("Eulen", "Strigiformes")
 O_SEGLER = ("Seglervögel", "Apodiformes")
 O_RACKE = ("Rackenvögel", "Coraciiformes")
+O_HUHN = ("Hühnervögel", "Galliformes")
+O_KUCKUCK = ("Kuckucksvögel", "Cuculiformes")
 
 F = {
   "rabe": ("Rabenvögel", "Corvidae"), "wuerger": ("Würger", "Laniidae"), "meise": ("Meisen", "Paridae"),
@@ -34,6 +36,8 @@ F = {
   "ente": ("Entenvögel", "Anatidae"), "korm": ("Kormorane", "Phalacrocoracidae"), "falke": ("Falken", "Falconidae"),
   "habicht": ("Habichtartige", "Accipitridae"), "schleiereule": ("Schleiereulen", "Tytonidae"),
   "eule": ("Eigentliche Eulen", "Strigidae"), "segler": ("Segler", "Apodidae"), "eisvogel": ("Eisvögel", "Alcedinidae"),
+  "baumlaeufer": ("Baumläufer", "Certhiidae"), "seidenschwanz": ("Seidenschwänze", "Bombycillidae"), "pirol": ("Pirole", "Oriolidae"),
+  "kuckuck": ("Kuckucke", "Cuculidae"), "huhn": ("Fasanenartige", "Phasianidae"),
 }
 
 from voegel_fotos import CAP   # {slug: Bildunterschrift zum eigenen Foto}
@@ -325,7 +329,7 @@ art("nebelkraehe", "Nebelkrähe", "Corvus cornix", O_SPERL, "rabe",
   "Grau-schwarze Schwester der Rabenkrähe; lebt im Osten und Norden Europas.",
   [("Die grau-schwarze Schwester", "Sie ist so eng mit der Rabenkrähe verwandt, dass manche Forscher beide für eine Art halten. Entlang der Elbe gibt es Mischlinge."),
    ("Muscheln vom Himmel", "An der Küste lässt sie Muscheln aus der Luft auf Steine fallen. Klappt’s nicht, wird eben noch einmal gestartet.")],
-  ["Bei uns in Hessen nur ein seltener Wintergast.", "Sieht aus wie mit grauer Weste über schwarzem Kopf."], tafel=False)
+  ["Bei uns in Hessen nur ein seltener Wintergast.", "Sieht aus wie mit grauer Weste über schwarzem Kopf."])
 art("kolkrabe", "Kolkrabe", "Corvus corax", O_SPERL, "rabe",
   "Größter Singvogel Europas, keilförmiger Schwanz; tiefes „krok“.",
   [("Der größte Singvogel", "So groß wie ein Bussard – und trotzdem ein Singvogel. Am keilförmigen Schwanz und dem tiefen „krok“ erkennt man ihn."),
@@ -392,7 +396,7 @@ art("mittelspecht", "Mittelspecht", "Dendrocoptes medius", O_SPECHT, "specht",
   "Rote Kappe bei beiden Geschlechtern; braucht alte Eichen mit rauer Rinde.",
   [("Der Rindenstocherer", "Er hackt selten tief, sondern stochert in der rauen Rinde alter Eichen. Ohne alte Bäume geht’s für ihn nicht."),
    ("Quäken statt trommeln", "Im Frühjahr trommelt er kaum, sondern quäkt ein klägliches „gääk-gääk“. Ein großer Teil aller Mittelspechte lebt in Deutschland – viele in Hessen.")],
-  ["Ganz rote Kappe bei Männchen und Weibchen.", "Kommt im Winter manchmal an Futterstellen in Waldnähe."], tafel=False)
+  ["Ganz rote Kappe bei Männchen und Weibchen.", "Kommt im Winter manchmal an Futterstellen in Waldnähe."])
 art("gruenspecht", "Grünspecht", "Picus viridis", O_SPECHT, "specht",
   "Grün mit roter Kappe; sucht am Boden nach Ameisen; Ruf wie Gelächter.",
   [("Specht am Boden", "Er sucht seine Nahrung meist auf dem Rasen: Mit seiner extrem langen, klebrigen Zunge angelt er Ameisen aus ihren Gängen."),
@@ -433,3 +437,145 @@ art("kormoran", "Kormoran", "Phalacrocorax carbo", O_KORM, "korm",
   [("Flügel zum Trocknen", "Sein Gefieder wird beim Tauchen nass – so taucht er leichter. Danach sitzt er da wie ein Kleiderständer und lässt die Flügel trocknen."),
    ("Angelprofi", "In China fischen Menschen seit Jahrhunderten mit gezähmten Kormoranen.")],
   ["Brütet in Kolonien, oft hoch in Bäumen am Wasser.", "Bei Anglern nicht immer beliebt."], tafel=False)
+
+# ================================================================ Serie 4 (23.10.2026)
+art("gartenbaumlaeufer", "Gartenbaumläufer", "Certhia brachydactyla", O_SPERL, "baumlaeufer",
+  "Rindenfarben gesprenkelt, gebogener Pinzettenschnabel; klettert in Spiralen den Stamm hinauf.",
+  [("Immer im Kreis nach oben", "Er klettert in Spiralen um den Stamm nach oben, stochert dabei Spinnen aus der Rinde – und fliegt dann zum Fuß des nächsten Baums. Das Ganze von vorn."),
+   ("Zwilling mit Kurzzehe", "Er sieht dem Waldbaumläufer zum Verwechseln ähnlich. Sein wissenschaftlicher Name bedeutet „Kurzzehe“ – die Kralle der Hinterzehe ist etwas kürzer. Sicherer erkennt man ihn am kurzen, schmetternden Lied.")],
+  ["Stützt sich beim Klettern auf den steifen Schwanz – wie ein Specht.", "Sein Nest versteckt er hinter abstehender Rinde."])
+art("waldbaumlaeufer", "Waldbaumläufer", "Certhia familiaris", O_SPERL, "baumlaeufer",
+  "Doppelgänger des Gartenbaumläufers mit hellerem Bauch; lebt vor allem im Wald.",
+  [("Der Doppelgänger", "Etwas heller am Bauch, etwas deutlicher der Überaugenstreif – mehr Unterschiede zum Gartenbaumläufer gibt es kaum. Selbst Fachleute warten lieber, bis er singt."),
+   ("Kuscheln in der Ritze", "In eisigen Nächten zwängen sich manchmal ein Dutzend und mehr Baumläufer gemeinsam in eine Rindenspalte. Gemeinsam frieren ist eben halb so schlimm.")],
+  ["Sein Lied ist ein abfallendes, feines Trillern.", "Mag Nadel- und Mischwälder mit alten Bäumen."])
+art("waldlaubsaenger", "Waldlaubsänger", "Phylloscopus sibilatrix", O_SPERL, "laubsaenger",
+  "Gelbe Kehle, weißer Bauch, lange Flügel; singt im Buchenwald wie eine kreiselnde Münze.",
+  [("Die kreiselnde Münze", "Sein Lied beginnt mit einzelnen „sip“-Tönen, wird immer schneller und endet in einem Schwirren – wie eine Münze, die auf dem Teller ausrollt. Dabei zittert der ganze Vogel."),
+   ("Ein Dach überm Kopf", "Er baut ein Kugelnest mit Dach direkt auf den Waldboden. Am liebsten in Buchenwäldern, wo unten kaum etwas wächst.")],
+  ["Überwintert im tropischen Afrika.", "Hat noch ein zweites, wehmütiges Lied: „djü-djü-djü“."], mon=M(4, 8), zug="sommer")
+art("klappergrasmuecke", "Klappergrasmücke", "Curruca curruca", O_SPERL, "grasmuecke",
+  "Grauer Kopf mit dunkler Wange, weiße Kehle; Lied endet mit trockenem Klappern.",
+  [("Erst Geplauder, dann Geklapper", "Ihr Lied beginnt mit leisem Plaudern und endet in einem trockenen Klappern auf einem Ton. Den Namen hat sie sich also redlich verdient."),
+   ("Umweg über Arabien", "Die meisten Grasmücken fliegen nach Südwesten. Die Klappergrasmücke nimmt die Ostroute – über den Nahen Osten bis nach Nordostafrika.")],
+  ["Die dunkle Wange wirkt wie eine kleine Maske.", "Brütet gern in Hecken, auch in Thujen im Garten."], mon=M(4, 9), zug="sommer")
+art("baumpieper", "Baumpieper", "Anthus trivialis", O_SPERL, "stelze",
+  "Brauner, gestrichelter Pieper an Waldrändern; singt im Fallschirmflug vom Baum.",
+  [("Fallschirmspringer mit Startrampe", "Er startet von einer Baumspitze, steigt singend auf und schwebt mit gespreizten Flügeln zurück – oft auf denselben Ast. Am Ende ruft er gedehnt „zia-zia-zia“."),
+   ("Unfreiwillige Pflegeeltern", "Sein Bodennest wird gern vom Kuckuck heimgesucht. Dann zieht das Pieperpaar ein Kuckucksküken groß, das bald doppelt so groß ist wie sie selbst.")],
+  ["Lebt an Waldrändern, auf Lichtungen und in Heiden.", "Überwintert in Afrika südlich der Sahara."], mon=M(4, 9), zug="sommer")
+art("wiesenschafstelze", "Wiesenschafstelze", "Motacilla flava", O_SPERL, "stelze",
+  "Leuchtend gelbe Unterseite, kurzer Schwanz; folgt gern dem Weidevieh.",
+  [("Im Gefolge der Schafe", "Ihren Namen hat sie von den Weidetieren: Sie läuft zwischen Schafen und Kühen herum und schnappt die Insekten, die deren Hufe aufscheuchen."),
+   ("Ein Vogel, viele Köpfe", "Quer durch Europa trägt sie verschiedene Kopffarben – grau, blau, schwarz oder gelb. Es sind alles Unterarten derselben Art.")],
+  ["Brütet heute oft in Raps- und Kartoffeläckern.", "Auch im Winterquartier in Afrika folgt sie dem Vieh."], mon=M(4, 9), zug="sommer")
+art("braunkehlchen", "Braunkehlchen", "Saxicola rubetra", O_SPERL, "schnaepper",
+  "Heller Überaugenstreif, orangebraune Brust; Wächter auf Wiesenstängeln.",
+  [("Der Wiesenwächter", "Es sitzt auf der höchsten Staude oder einem Zaunpfahl und hält Ausschau nach Insekten. Am weißen Streif über dem Auge unterscheidet man es vom Schwarzkehlchen."),
+   ("Zu früh gemäht", "Es brütet am Boden in blühenden Wiesen. Werden die zu früh gemäht, ist die Brut verloren – deshalb ist es selten geworden.")],
+  ["Vogel des Jahres 1987 und 2023.", "Überwintert in Afrika südlich der Sahara."], mon=M(4, 9), zug="sommer")
+art("steinschmaetzer", "Steinschmätzer", "Oenanthe oenanthe", O_SPERL, "schnaepper",
+  "Grau, schwarze Augenmaske, weißer Bürzel mit schwarzem „T“ im Schwanz.",
+  [("Steine, die schmatzen", "Sein Ruf „tschak“ klingt wie zwei Steinchen, die aneinanderschlagen. Im Flug leuchtet der weiße Bürzel mit dem schwarzen „T“ im Schwanz."),
+   ("Weltrekord im Kleinformat", "Manche Steinschmätzer brüten in Alaska und überwintern in Afrika. Für einen Vogel von rund 25 Gramm sind das über 14.000 Kilometer – pro Strecke.")],
+  ["Brütet in Steinhaufen, Mauerritzen oder alten Kaninchenbauen.", "Bei uns selten – auf dem Durchzug aber oft auf Äckern zu sehen."], mon=M(3, 10), zug="sommer")
+art("heidelerche", "Heidelerche", "Lullula arborea", O_SPERL, "lerche",
+  "Kleiner als die Feldlerche, kurzer Schwanz, helle Überaugenstreifen; dudelt auch nachts.",
+  [("Ein Lied wie ein Name", "Ihr Gesang ist ein weiches, abfallendes „lü-lü-lü-lü“ – daher ihr wissenschaftlicher Name Lullula. Sie singt im Kreisflug und oft sogar nachts."),
+   ("Die Kleine mit Stummelschwanz", "Neben der Feldlerche wirkt sie kurz und rundlich. Sie liebt Heiden, Sandflächen und lichte Kiefernwälder.")],
+  ["Die Überaugenstreifen treffen sich im Nacken.", "Kommt schon im Februar zurück."], mon=M(2, 11), zug="sommer")
+art("grauammer", "Grauammer", "Emberiza calandra", O_SPERL, "ammer",
+  "Größte Ammer, schlicht graubraun gestrichelt; singt von Drähten und Pfählen.",
+  [("Schlüsselbund auf dem Draht", "Sie sitzt auf Leitungen und Pfählen in weiten Feldern und singt, als würde jemand mit einem Schlüsselbund klirren. Im kurzen Flug lässt sie gern die Beine baumeln."),
+   ("Mehrere Frauen", "Manche Männchen haben gleich mehrere Weibchen im Revier. Die Arbeit am Nest überlassen sie dann weitgehend den Damen.")],
+  ["Die größte unserer Ammern – und die unscheinbarste.", "Braucht offene Feldflur mit Brachen und Feldrainen."])
+art("fichtenkreuzschnabel", "Fichtenkreuzschnabel", "Loxia curvirostra", O_SPERL, "fink",
+  "Kräftiger Fink mit gekreuzten Schnabelspitzen; Männchen rot, Weibchen gelbgrün.",
+  [("Werkzeug mit Überkreuz", "Mit den gekreuzten Schnabelspitzen hebelt er die Schuppen der Fichtenzapfen auf und löffelt die Samen heraus. Es gibt Links- und Rechtsüberkreuzer."),
+   ("Die Legende vom Kreuz", "Eine Legende erzählt, er habe versucht, die Nägel aus Jesu Kreuz zu ziehen. Dabei habe sich der Schnabel verbogen und die Brust rot gefärbt.")],
+  ["Brütet, wenn es Zapfen gibt – auch mitten im Winter im Schnee.", "In guten Zapfenjahren tauchen plötzlich Trupps auf."])
+art("rotdrossel", "Rotdrossel", "Turdus iliacus", O_SPERL, "drossel",
+  "Kleinste Drossel mit hellem Überaugenstreif und rostroten Flanken; Wintergast aus dem Norden.",
+  [("Rot unter den Achseln", "Ihre Flanken und die Flügelunterseiten leuchten rostrot. Mit dem breiten hellen Streif über dem Auge ist sie leicht von der Singdrossel zu unterscheiden."),
+   ("Nachtflug mit Funk", "Im Oktober ziehen Rotdrosseln nachts über uns hinweg. In stillen Nächten hört man ihre dünnen „zieh“-Rufe vom Himmel.")],
+  ["Brütet in Skandinavien und Russland.", "Im Winter oft zusammen mit Wacholderdrosseln an Beeren und Fallobst."], mon=M(10, 4), zug="winter")
+art("seidenschwanz", "Seidenschwanz", "Bombycilla garrulus", O_SPERL, "seidenschwanz",
+  "Federhaube, schwarze Maske, gelbe Schwanzspitze; unregelmäßiger Wintergast aus dem Norden.",
+  [("Gast mit Frisur", "Haube, schwarze Maske und rote, wachsartige Plättchen an den Flügelfedern – so schick ist kaum ein anderer Wintergast. Im Englischen heißt er deshalb „Wachsflügel“."),
+   ("Unheimlich – früher", "Er kommt nur in manchen Wintern, wenn im Norden die Vogelbeeren knapp sind – dann aber in Scharen. Früher hielt man das für ein böses Omen und nannte ihn „Pestvogel“.")],
+  ["Frisst täglich mehr Beeren, als er selbst wiegt.", "Oft erstaunlich zutraulich."], mon=M(11, 3), zug="winter")
+art("hohltaube", "Hohltaube", "Columba oenas", O_TAUBE, "taube",
+  "Blaugraue Taube ohne weiße Abzeichen, dunkle Augen; brütet in Baumhöhlen.",
+  [("Die Taube in der Höhle", "Sie ist unsere einzige Taube, die in Baumhöhlen brütet – am liebsten in alten Schwarzspechthöhlen. Ohne Schwarzspecht hat sie es schwer."),
+   ("Die Unauffällige", "Kein weißer Halsfleck, keine weiße Flügelbinde: Sie ist kleiner und schlichter als die Ringeltaube. Nur am Hals schimmert es grün.")],
+  ["Ihr Ruf ist ein dumpfes „hu-ru, hu-ru“.", "Nistkästen in alten Buchenwäldern helfen ihr."])
+art("strassentaube", "Straßentaube", "Columba livia forma domestica", O_TAUBE, "taube",
+  "Verwilderte Haustaube in allen Farben; stammt von der Felsentaube ab.",
+  [("Verwilderte Haustiere", "Straßentauben stammen von Haustauben ab, die wiederum von der Felsentaube abstammen. Für sie sind Häuser einfach Felsen mit Simsen."),
+   ("Die Postbotin", "Tauben finden über weite Strecken nach Hause. Brieftauben trugen deshalb jahrhundertelang Nachrichten – sogar noch im Ersten Weltkrieg.")],
+  ["Kommt in vielen Farbvarianten vor – kaum eine gleicht der anderen.", "Kann fast das ganze Jahr über brüten."])
+art("kuckuck", "Kuckuck", "Cuculus canorus", O_KUCKUCK, "kuckuck",
+  "Grau mit quergebändertem Bauch, langer Schwanz; legt seine Eier in fremde Nester.",
+  [("Das Kuckuckskind", "Das Weibchen legt je ein Ei in fremde Nester, zum Beispiel bei Teichrohrsänger oder Hausrotschwanz. Das geschlüpfte Küken schiebt die anderen Eier hinaus – und lässt sich von den Pflegeeltern durchfüttern."),
+   ("Nur er ruft „Kuckuck“", "Den bekannten Ruf bringt nur das Männchen. Das Weibchen kichert eher blubbernd.")],
+  ["Junge Kuckucke finden ganz allein nach Afrika – ohne dass es ihnen jemand zeigt.", "Vogel des Jahres 2008."], mon=M(4, 8), zug="sommer")
+art("pirol", "Pirol", "Oriolus oriolus", O_SPERL, "pirol",
+  "Männchen leuchtend gelb-schwarz, Weibchen grünlich; flötet aus dichten Baumkronen.",
+  [("Herr Bülow", "Sein flötender Ruf klingt wie „Düdeldüo“ – manche hören „Bülow“. Deshalb heißt er im Volksmund auch „Vogel Bülow“."),
+   ("Knallgelb und doch unsichtbar", "Trotz seiner Farbe sieht man ihn kaum: Er hält sich hoch oben im Laub auf. Kommt er erst im Mai zurück, heißt er auch „Pfingstvogel“.")],
+  ["Sein Napfnest hängt zwischen zwei Ästen einer Astgabel.", "Überwintert im tropischen Afrika."], mon=M(5, 8), zug="sommer")
+art("grauspecht", "Grauspecht", "Picus canus", O_SPECHT, "specht",
+  "Wie ein kleiner Grünspecht mit grauem Kopf; Männchen mit roter Stirn.",
+  [("Der kleine Bruder", "Er sieht aus wie ein Grünspecht, nur kleiner und mit grauem Kopf. Nur das Männchen trägt einen kleinen roten Fleck auf der Stirn."),
+   ("Ein Lied, das müde wird", "Sein Ruf ist eine Reihe von „kü-kü-kü“-Tönen, die immer tiefer und langsamer werden – als ginge ihm die Puste aus.")],
+  ["Sucht wie der Grünspecht viel am Boden nach Ameisen.", "Selten – braucht alte, lichte Laubwälder."])
+art("wendehals", "Wendehals", "Jynx torquilla", O_SPECHT, "specht",
+  "Rindenfarben marmorierter Specht; verdreht bei Gefahr schlangenartig den Hals.",
+  [("Der Schlangentrick", "Wird er bedroht, verdreht er den Hals wie eine Schlange und zischt. Das sieht so unheimlich aus, dass mancher Angreifer zurückzuckt."),
+   ("Specht ohne Meißel", "Er kann keine Höhlen hacken und zieht in fertige Baumhöhlen ein. Und als einziger heimischer Specht fliegt er im Winter nach Afrika.")],
+  ["Frisst fast nur Ameisen und ihre Brut.", "Liebt Streuobstwiesen und lichte Wälder."], mon=M(4, 9), zug="sommer")
+art("habicht", "Habicht", "Astur gentilis", O_GREIF, "habicht",
+  "Kräftiger Greifvogel mit hellem Überaugenstreif und gebänderter Brust; jagt im Überraschungsangriff.",
+  [("Der Hühnerhabicht", "Früher hieß er „Hühnerhabicht“, weil er sich auch mal ein Huhn holte. Meist jagt er Tauben, Krähen und Kaninchen – blitzschnell aus der Deckung."),
+   ("Großstadt-Jäger", "Inzwischen brüten viele Habichte in Großstädten wie Berlin. Dort gibt es Tauben satt – und niemand stellt ihnen nach.")],
+  ["Das Weibchen ist deutlich größer als das Männchen.", "In der Falknerei seit Jahrhunderten beliebt."])
+art("wanderfalke", "Wanderfalke", "Falco peregrinus", O_FALKE, "falke",
+  "Dunkler Bartstreif, spitze Flügel; der schnellste Vogel der Welt im Sturzflug.",
+  [("Schneller als ein ICE", "Im Sturzflug auf Beute erreicht er über 300 Kilometer pro Stunde. Kein Tier der Welt ist schneller."),
+   ("Comeback am Kirchturm", "Wegen Umweltgiften war er in den 1970er-Jahren bei uns fast verschwunden. Heute brütet er wieder – auf Felsen, Kirchtürmen, Kraftwerken und Hochhäusern.")],
+  ["Jagt vor allem Tauben in der Luft.", "Ein „Wanderer“ ist er nur in nördlichen Brutgebieten; unsere bleiben meist hier."])
+art("baumfalke", "Baumfalke", "Falco subbuteo", O_FALKE, "falke",
+  "Eleganter kleiner Falke mit rostroten „Hosen“; jagt Libellen und Schwalben im Flug.",
+  [("Rote Hosen, schnelle Flügel", "Mit seinen sichelförmigen Flügeln sieht er aus wie ein großer Mauersegler. Die rostroten Federn an den Beinen sehen aus wie Hosen."),
+   ("Imbiss im Flug", "Er fängt Libellen in der Luft und frisst sie direkt aus den Krallen – ohne zu landen. Selbst Schwalben und Mauersegler sind vor ihm nicht sicher.")],
+  ["Brütet in alten Krähennestern.", "Überwintert in Afrika."], mon=M(4, 9), zug="sommer")
+art("schwarzmilan", "Schwarzmilan", "Milvus migrans", O_GREIF, "habicht",
+  "Dunkelbraun mit nur schwach gegabeltem Schwanz; oft am Wasser.",
+  [("Der dunkle Vetter", "Kleiner und dunkler als der Rotmilan, der Schwanz nur leicht eingekerbt. Gern sammelt er tote Fische von der Wasseroberfläche."),
+   ("Brandstifter in Australien", "In Australien beobachtet man, wie Schwarzmilane brennende Zweige aufnehmen und anderswo fallen lassen. So treiben sie Beute aus dem Gras.")],
+  ["Überwintert in Afrika.", "Einer der häufigsten Greifvögel der Welt."], mon=M(3, 9), zug="sommer")
+art("uhu", "Uhu", "Bubo bubo", O_EULE, "eule",
+  "Unsere größte Eule mit langen Federohren und orangen Augen.",
+  [("Der Riese", "Bis zu 1,70 Meter Flügelspannweite – der Uhu ist eine der größten Eulen der Welt. Er erbeutet Ratten, Krähen und sogar Igel, trotz Stacheln."),
+   ("Zurück aus dem Nichts", "In den 1960er-Jahren gab es in Westdeutschland kaum noch Uhus. Dank Schutz und Auswilderung brütet er heute wieder – in Felsen, Steinbrüchen und manchmal sogar in Städten.")],
+  ["Seinen Namen hat er von seinem tiefen Ruf „uhu“.", "Federohren sind keine Ohren, nur Federbüschel."])
+art("steinkauz", "Steinkauz", "Athene noctua", O_EULE, "eule",
+  "Kleine Eule mit gelben Augen und weißen Brauen; lebt in Streuobstwiesen und Kopfweiden.",
+  [("Der Vogel der Athene", "Er war das Wappentier der Göttin Athene und der Stadt Athen. Noch heute ist er auf der griechischen Ein-Euro-Münze abgebildet."),
+   ("Wohnung in der Kopfweide", "Er brütet in alten Obstbäumen und hohlen Kopfweiden. Spezielle Steinkauzröhren helfen ihm, wo solche Bäume fehlen.")],
+  ["Ist er aufgeregt, wippt er mit dem ganzen Körper.", "Jagt auch tagsüber – und läuft Regenwürmern am Boden nach."])
+art("fasan", "Fasan", "Phasianus colchicus", O_HUHN, "huhn",
+  "Hahn bunt mit rotem Gesicht und langem Schwanz, Henne braun; stammt aus Asien.",
+  [("Ein Einwanderer", "Ursprünglich lebte der Fasan in Asien. Für die Jagd wurde er schon vor Jahrhunderten nach Europa gebracht und ausgesetzt."),
+   ("Laut und bunt", "Der Hahn ruft ein heiseres „göck-göck“ und schlägt dazu laut mit den Flügeln. Die braune Henne fällt dagegen kaum auf – und brütet ganz allein.")],
+  ["Die Küken sind Nestflüchter und laufen gleich nach dem Schlüpfen los.", "Fliegt nur kurz und laut auf."])
+art("rebhuhn", "Rebhuhn", "Perdix perdix", O_HUHN, "huhn",
+  "Rundlich, orangebraunes Gesicht, graue Brust; lebt in Familien auf Feldern.",
+  [("Rekordgelege", "Rebhühner legen oft 10 bis 20 Eier – eines der größten Gelege aller Vögel. Die Küken laufen sofort los."),
+   ("Familie bleibt zusammen", "Im Winter bleibt die ganze Familie als „Kette“ zusammen und kuschelt sich nachts eng aneinander.")],
+  ["Seit 1980 ist es bei uns um weit über 90 Prozent seltener geworden.", "Braucht Feldraine, Brachen und Hecken."])
+art("wachtel", "Wachtel", "Coturnix coturnix", O_HUHN, "huhn",
+  "Kleinster heimischer Hühnervogel; versteckt im Getreide, ruft „pick-per-wick“.",
+  [("Bück den Rück!", "Ihr Ruf „pick-per-wick“ klingt manchen wie „Bück den Rück“. Man hört die Wachtel oft, sieht sie aber fast nie."),
+   ("Ein Huhn auf Reisen", "Sie ist der einzige heimische Hühnervogel, der im Winter nach Afrika zieht.")],
+  ["Ruft vor allem in der Dämmerung und nachts.", "Lebt in Getreidefeldern und Wiesen."], mon=M(5, 9), zug="sommer")

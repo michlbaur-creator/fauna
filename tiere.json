@@ -3366,5 +3366,548 @@
 "wichtig": false,
 "foto": true,
 "gruppe": "Vögel"
+},
+{
+"slug": "gartenbaumlaeufer",
+"deutsch": "Gartenbaumläufer",
+"lat": "Certhia brachydactyla",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "waldbaumlaeufer",
+"deutsch": "Waldbaumläufer",
+"lat": "Certhia familiaris",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "waldlaubsaenger",
+"deutsch": "Waldlaubsänger",
+"lat": "Phylloscopus sibilatrix",
+"monate": [
+4,
+5,
+6,
+7,
+8
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "klappergrasmuecke",
+"deutsch": "Klappergrasmücke",
+"lat": "Curruca curruca",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "baumpieper",
+"deutsch": "Baumpieper",
+"lat": "Anthus trivialis",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "wiesenschafstelze",
+"deutsch": "Wiesenschafstelze",
+"lat": "Motacilla flava",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "braunkehlchen",
+"deutsch": "Braunkehlchen",
+"lat": "Saxicola rubetra",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "steinschmaetzer",
+"deutsch": "Steinschmätzer",
+"lat": "Oenanthe oenanthe",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "heidelerche",
+"deutsch": "Heidelerche",
+"lat": "Lullula arborea",
+"monate": [
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "grauammer",
+"deutsch": "Grauammer",
+"lat": "Emberiza calandra",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "fichtenkreuzschnabel",
+"deutsch": "Fichtenkreuzschnabel",
+"lat": "Loxia curvirostra",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "rotdrossel",
+"deutsch": "Rotdrossel",
+"lat": "Turdus iliacus",
+"monate": [
+10,
+11,
+12,
+1,
+2,
+3,
+4
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "winter"
+},
+{
+"slug": "seidenschwanz",
+"deutsch": "Seidenschwanz",
+"lat": "Bombycilla garrulus",
+"monate": [
+11,
+12,
+1,
+2,
+3
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "winter"
+},
+{
+"slug": "hohltaube",
+"deutsch": "Hohltaube",
+"lat": "Columba oenas",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "strassentaube",
+"deutsch": "Straßentaube",
+"lat": "Columba livia forma domestica",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "kuckuck",
+"deutsch": "Kuckuck",
+"lat": "Cuculus canorus",
+"monate": [
+4,
+5,
+6,
+7,
+8
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "pirol",
+"deutsch": "Pirol",
+"lat": "Oriolus oriolus",
+"monate": [
+5,
+6,
+7,
+8
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "grauspecht",
+"deutsch": "Grauspecht",
+"lat": "Picus canus",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "wendehals",
+"deutsch": "Wendehals",
+"lat": "Jynx torquilla",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "habicht",
+"deutsch": "Habicht",
+"lat": "Astur gentilis",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "wanderfalke",
+"deutsch": "Wanderfalke",
+"lat": "Falco peregrinus",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "baumfalke",
+"deutsch": "Baumfalke",
+"lat": "Falco subbuteo",
+"monate": [
+4,
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "schwarzmilan",
+"deutsch": "Schwarzmilan",
+"lat": "Milvus migrans",
+"monate": [
+3,
+4,
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
+},
+{
+"slug": "uhu",
+"deutsch": "Uhu",
+"lat": "Bubo bubo",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "steinkauz",
+"deutsch": "Steinkauz",
+"lat": "Athene noctua",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "fasan",
+"deutsch": "Fasan",
+"lat": "Phasianus colchicus",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "rebhuhn",
+"deutsch": "Rebhuhn",
+"lat": "Perdix perdix",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel"
+},
+{
+"slug": "wachtel",
+"deutsch": "Wachtel",
+"lat": "Coturnix coturnix",
+"monate": [
+5,
+6,
+7,
+8,
+9
+],
+"wichtig": false,
+"foto": false,
+"gruppe": "Vögel",
+"zug": "sommer"
 }
 ]
