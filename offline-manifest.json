@@ -182,7 +182,8 @@
     "./arten/tuerkentaube.html",
     "./arten/weissstorch.html",
     "./arten/stockente.html",
-    "./arten/kormoran.html"
+    "./arten/kormoran.html",
+    "./arten/zaunkoenig.html"
   ],
   "media": [
     "./assets/apple-touch-icon.png",
@@ -464,6 +465,7 @@
     "./images/fotos/tuerkentaube.jpg",
     "./images/fotos/weissstorch.jpg",
     "./images/fotos/stockente.jpg",
-    "./images/fotos/kormoran.jpg"
+    "./images/fotos/kormoran.jpg",
+    "./images/tafeln/zaunkoenig.jpg"
   ]
 }

@@ -18,7 +18,7 @@ F = {
   "rabe": ("Rabenvögel", "Corvidae"), "meise": ("Meisen", "Paridae"), "fink": ("Finken", "Fringillidae"),
   "sperling": ("Sperlinge", "Passeridae"), "drossel": ("Drosseln", "Turdidae"),
   "schnaepper": ("Fliegenschnäpper", "Muscicapidae"), "star": ("Stare", "Sturnidae"),
-  "kleiber": ("Kleiber", "Sittidae"), "schwalbe": ("Schwalben", "Hirundinidae"),
+  "kleiber": ("Kleiber", "Sittidae"), "zaunkoenig": ("Zaunkönige", "Troglodytidae"), "schwalbe": ("Schwalben", "Hirundinidae"),
   "specht": ("Spechte", "Picidae"), "taube": ("Tauben", "Columbidae"), "storch": ("Störche", "Ciconiidae"),
   "ente": ("Entenvögel", "Anatidae"), "korm": ("Kormorane", "Phalacrocoracidae"), "falke": ("Falken", "Falconidae"),
 }
@@ -367,5 +367,12 @@ art(slug="kormoran", de="Kormoran", lat="Phalacrocorax carbo", o=O_KORM, f="korm
     ("Flügel zum Trocknen","Sein Gefieder wird beim Tauchen teilweise nass. Das ist kein Fehler: So treibt er weniger auf und taucht leichter. Danach sitzt er mit weit ausgebreiteten Flügeln da, bis die Federn getrocknet sind."),
     ("Futter aus dem Schlund","Die Jungen stecken den Kopf tief in den Schnabel der Eltern und holen sich den vorverdauten Fisch heraus – das zeigt auch das Foto.")],
   notiz=["Kormorane brüten in Kolonien, oft hoch in Bäumen am Wasser.","Wegen des Fischfangs sind sie bei manchen Anglern unbeliebt."])
+
+# ---------------------------------------------------------------- Neue Arten (Okt. 2026): kurze, augenzwinkernde Texte, kein Steckbrief
+art(slug="zaunkoenig", de="Zaunkönig", lat="Troglodytes troglodytes", o=O_SPERL, f="zaunkoenig", tafel=True, foto=None,
+  stamm="Winzig, braun gebändert, Stummelschwanz steil nach oben – und eine Stimme wie ein Großer.",
+  abs=[("König durch einen Trick","Im Grimm-Märchen wird König, wer am höchsten fliegt. Der Zaunkönig versteckt sich im Gefieder des Adlers, startet oben noch einmal durch – und ruft: „König bin ich!“ Ehrlich gewonnen ist anders."),
+    ("Klein, aber oho","Er wiegt kaum zehn Gramm, schmettert sein Lied aber so laut, dass man sich nach dem Sänger umsieht. Dabei reckt er den Stummelschwanz keck in die Höhe.")],
+  notiz=["Das Männchen baut mehrere Kugelnester aus Moos – das Weibchen sucht sich eins aus.","In eisigen Nächten kuscheln sich manchmal ein Dutzend Zaunkönige in einem Nest zusammen."])
 
 # Reihenfolge für Galerie/Listen: wie im Baum

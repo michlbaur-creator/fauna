@@ -27,7 +27,7 @@ def seite(v):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{E(v['de'])} · Artseite · Fauna Mibaso</title>
-<meta name="description" content="{E(v['de'])} ({E(v['lat'])}): {'naturkundliche Tafel, ' if v['tafel'] else ''}{'Foto, ' if v.get('foto') else ''}Steckbrief und Wissenswertes – Fauna Mibaso.">
+<meta name="description" content="{E(v['de'])} ({E(v['lat'])}): {'naturkundliche Tafel, ' if v['tafel'] else ''}{'Foto, ' if v.get('foto') else ''}Wissenswertes und Anekdoten – Fauna Mibaso.">
 {CSS}
 </head>
 <body>
@@ -58,11 +58,12 @@ def seite(v):
     <p class="ph">Foto: Michael Baur · CC BY-NC</p>
   </div>
 """)
-    t.append("\n  <h2>Steckbrief</h2>\n  <dl>\n")
-    t.append(f"    <dt>Familie</dt><dd>{E(fam[0])} ({E(fam[1])})</dd>\n")
-    for a, b in v["steck"]:
-        t.append(f"    <dt>{E(a)}</dt><dd>{E(b)}</dd>\n")
-    t.append("  </dl>\n")
+    if v.get("steck"):
+        t.append("\n  <h2>Steckbrief</h2>\n  <dl>\n")
+        t.append(f"    <dt>Familie</dt><dd>{E(fam[0])} ({E(fam[1])})</dd>\n")
+        for a, b in v["steck"]:
+            t.append(f"    <dt>{E(a)}</dt><dd>{E(b)}</dd>\n")
+        t.append("  </dl>\n")
     for h, txt in v["abs"]:
         t.append(f"\n  <h3 class=\"abschnitt\">{E(h)}</h3>\n  <p class=\"text\">{E(txt)}</p>\n")
     t.append("\n  <h2>Kurz notiert</h2>\n  <ul class=\"notizen\">\n")
@@ -130,7 +131,10 @@ VOEGEL = g("Vögel", "Aves", "Federn, ein Schnabel ohne Zähne und Eier mit hart
             g("Übrige Singvögel", "Passerida", "Die meisten unserer Garten- und Waldvögel.", [
               fam("meise", "Kleine, flinke Höhlenbrüter mit kurzem, spitzem Schnabel.", ["blaumeise", "kohlmeise", "tannenmeise", "haubenmeise"]),
               fam("schwalbe", "Insektenjäger der Luft mit langen, spitzen Flügeln.", ["rauchschwalbe"]),
-              fam("kleiber", "Klettern ohne Stützschwanz – auch kopfüber.", ["kleiber"]),
+              g("Kleiber & Zaunkönig", "Certhioidea", "Kleine Kletter- und Schlüpfkünstler – mit Baumläufern und Zaunkönig verwandt.", [
+                fam("kleiber", "Klettern ohne Stützschwanz – auch kopfüber.", ["kleiber"]),
+                fam("zaunkoenig", "Winzige Vögel mit keck gestelztem Schwanz.", ["zaunkoenig"]),
+              ]),
               g("Drossel-Verwandte", "Muscicapoidea", "Stare, Drosseln und Fliegenschnäpper – meist mit schlankem Allzweck- oder Insektenschnabel.", [
                 fam("star", "Schillernde Gesellen, die in großen Schwärmen ziehen.", ["star"]),
                 fam("drossel", "Mittelgroße Singvögel, die viel am Boden nach Würmern suchen.", ["amsel", "wacholderdrossel"]),
