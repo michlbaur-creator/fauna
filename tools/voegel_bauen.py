@@ -104,7 +104,7 @@ VOEGEL = g("Vögel", "Aves", "Federn, ein Schnabel ohne Zähne und Eier mit hart
   g("Neukiefervögel", "Neognathae", "Alle übrigen Vögel – über 10.000 Arten.", [
     g("Hühner- & Gänsevögel", "Galloanserae", "Zwei alte Linien, die enger miteinander verwandt sind als mit allen anderen Vögeln.", [
       g("Hühnervögel", "Galliformes", "Fasan, Rebhuhn, Wachtel – und das Haushuhn, dessen wilder Vorfahr das Bankivahuhn ist.", [
-        fam("huhn", "Bodenvögel mit kräftigen Füßen; die Küken sind Nestflüchter.", ["fasan", "rebhuhn", "wachtel"])]),
+        fam("huhn", "Bodenvögel mit kräftigen Füßen; die Küken sind Nestflüchter.", ["fasan", "rebhuhn", "wachtel", "haushuhn"])]),
       g("Gänsevögel", "Anseriformes", "Enten, Gänse und Schwäne – mit Schwimmfüßen und breitem Seihschnabel.", [
         fam("ente", "Gründelenten, Tauchenten, Gänse und Schwäne.", ["stockente", "schnatterente", "krickente", "tafelente", "reiherente", "graugans", "kanadagans", "nilgans", "hoeckerschwan"])]),
     ]),

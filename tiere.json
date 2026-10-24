@@ -2325,7 +2325,7 @@
 4
 ],
 "wichtig": false,
-"foto": false,
+"foto": true,
 "gruppe": "Vögel",
 "zug": "winter"
 },
@@ -3474,7 +3474,7 @@
 12
 ],
 "wichtig": false,
-"foto": false,
+"foto": true,
 "gruppe": "Vögel"
 },
 {
@@ -3496,7 +3496,7 @@
 12
 ],
 "wichtig": false,
-"foto": false,
+"foto": true,
 "gruppe": "Vögel"
 },
 {
@@ -3562,7 +3562,7 @@
 12
 ],
 "wichtig": false,
-"foto": false,
+"foto": true,
 "gruppe": "Vögel"
 },
 {
@@ -4195,5 +4195,27 @@
 "foto": false,
 "gruppe": "Vögel",
 "zug": "sommer"
+},
+{
+"slug": "haushuhn",
+"deutsch": "Haushuhn",
+"lat": "Gallus gallus domesticus",
+"monate": [
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12
+],
+"wichtig": false,
+"foto": true,
+"gruppe": "Vögel"
 }
 ]

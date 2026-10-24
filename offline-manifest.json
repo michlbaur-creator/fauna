@@ -267,7 +267,8 @@
     "./arten/teichhuhn.html",
     "./arten/haubentaucher.html",
     "./arten/zwergtaucher.html",
-    "./arten/graureiher.html"
+    "./arten/graureiher.html",
+    "./arten/haushuhn.html"
   ],
   "media": [
     "./assets/apple-touch-icon.png",
@@ -644,6 +645,11 @@
     "./images/tafeln/teichhuhn.jpg",
     "./images/tafeln/haubentaucher.jpg",
     "./images/tafeln/zwergtaucher.jpg",
-    "./images/tafeln/graureiher.jpg"
+    "./images/tafeln/graureiher.jpg",
+    "./images/fotos/bergfink.jpg",
+    "./images/fotos/hoeckerschwan.jpg",
+    "./images/fotos/graugans.jpg",
+    "./images/fotos/blaesshuhn.jpg",
+    "./images/fotos/haushuhn.jpg"
   ]
 }

@@ -649,3 +649,8 @@ art("wachtel", "Wachtel", "Coturnix coturnix", O_HUHN, "huhn",
   [("Bück den Rück!", "Ihr Ruf „pick-per-wick“ klingt manchen wie „Bück den Rück“. Man hört die Wachtel oft, sieht sie aber fast nie."),
    ("Ein Huhn auf Reisen", "Sie ist der einzige heimische Hühnervogel, der im Winter nach Afrika zieht.")],
   ["Ruft vor allem in der Dämmerung und nachts.", "Lebt in Getreidefeldern und Wiesen."], mon=M(5, 9), zug="sommer")
+art("haushuhn", "Haushuhn", "Gallus gallus domesticus", O_HUHN, "huhn",
+  "Unser häufigster Vogel überhaupt – gezüchtet aus dem wilden Bankivahuhn Südostasiens.",
+  [("Ein Dschungelvogel im Hühnerstall", "Der Vorfahr aller Hühner, das Bankivahuhn, lebt noch heute in den Wäldern Südostasiens. Vor rund 8000 Jahren holten Menschen es zu sich – zuerst wohl wegen der Hahnenkämpfe, erst später wegen der Eier."),
+   ("Wer pickt zuerst?", "Hühner haben eine feste Rangordnung, die „Hackordnung“. Wer oben steht, frisst zuerst und hat den besten Schlafplatz – das Wort benutzen wir heute auch für Menschen.")],
+  ["Ein Hahn kräht nicht nur morgens, sondern immer, wenn er sein Revier zeigen will.", "Es gibt mehr Hühner auf der Erde als Menschen – viele Milliarden."], tafel=False)
