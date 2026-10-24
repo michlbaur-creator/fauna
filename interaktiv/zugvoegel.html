@@ -46,7 +46,7 @@
   .karte .bild{overflow:hidden;aspect-ratio:4/3;background-color:#fff;}
   .tafelbild{background-repeat:no-repeat;background-size:214% auto;background-position:0 11%;}
   .karte .n{font-size:15px;padding:6px 9px 8px;line-height:1.25;}
-  .karte .marke{position:absolute;left:6px;top:6px;font-family:var(--sans);font-size:10.5px;font-weight:700;color:#fff;background:var(--c);border-radius:999px;padding:2px 8px;}
+  .karte .marke{position:absolute;right:6px;top:6px;font-family:var(--sans);font-size:10.5px;font-weight:700;color:#fff;background:var(--c);border-radius:999px;padding:2px 8px;}
   .leer{font-family:var(--sans);font-size:14px;color:#6f7b86;background:#fff;border:1px dashed var(--linie);border-radius:12px;padding:12px 14px;}
 
   /* Zeitleiste */
@@ -135,7 +135,7 @@
   var vor = function(m){ return m === 1 ? 12 : m - 1; }, nach = function(m){ return m === 12 ? 1 : m + 1; };
   function bild(t){
     return t.foto ? '<div class="bild"><img src="../images/fotos/' + t.slug + '.jpg" alt="" loading="lazy"></div>'
-                  : '<div class="bild tafelbild" style="background-image:url(../images/tafeln/' + t.slug + '.jpg)" role="img" aria-label="Lehrtafel ' + t.deutsch + '"></div>';
+                  : '<div class="bild"><img src="../images/tafeln/mini/' + t.slug + '.jpg" alt="" loading="lazy"></div>';
   }
   function karte(t, marke){
     var c = t.zug === "winter" ? "var(--winter)" : t.zug === "sommer" ? "var(--sommer)" : "var(--jahr)";
@@ -224,7 +224,7 @@
     var el = $("spiel"), sel = null, rest = runde.length, fehler = 0;
     var klasse = function(s){ return SPIEL.sommer.indexOf(s) >= 0 ? "sommer" : SPIEL.winter.indexOf(s) >= 0 ? "winter" : "jahr"; };
     el.innerHTML = '<div class="pool" id="pool">' + runde.map(function(s){ var t = BY[s];
-        return '<button type="button" class="chip" data-s="' + s + '">' + (t.foto ? '<img src="../images/fotos/' + s + '.jpg" alt="">' : '<span class="tafelbild rund" style="background-image:url(../images/tafeln/' + s + '.jpg)"></span>') + '' + t.deutsch + '</button>'; }).join("") + '</div>' +
+        return '<button type="button" class="chip" data-s="' + s + '">' + (t.foto ? '<img src="../images/fotos/' + s + '.jpg" alt="">' : '<img src="../images/tafeln/mini/' + s + '.jpg" alt="">') + '' + t.deutsch + '</button>'; }).join("") + '</div>' +
       '<div class="faecher">' + FAECHER.map(function(f){ return '<div class="fach" role="button" tabindex="0" data-f="' + f[0] + '" style="--c:' + f[2] + '"><h3>' + f[1] + '</h3><div class="pool"></div></div>'; }).join("") + '</div>' +
       '<p class="rueck" aria-live="polite">Tippe zuerst einen Vogel an.</p>';
     var rueck = el.querySelector(".rueck");
