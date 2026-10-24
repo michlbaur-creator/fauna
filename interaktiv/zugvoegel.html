@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kommen und Gehen – Zugvögel im Jahreslauf · Fauna Mibaso</title>
+<meta name="description" content="Wer kommt, wer geht, wer bleibt? Der Zugvogel-Kalender von Fauna Mibaso: Ankunft und Abflug von 35 Zugvögeln Monat für Monat, eine Jahres-Zeitleiste, Wissenswertes zum Vogelzug und ein Sortierspiel.">
+<meta name="theme-color" content="#233D5C">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/icon.svg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Fauna Mibaso">
+<style>
+  :root{
+    --blau:#233D5C; --blau-tief:#1a2f47; --creme:#F7F3E8; --creme-tief:#EEE7D5;
+    --tinte:#1c2e42; --honig:#C28A3A; --linie:#c3ccd5; --gruen:#3f8a52; --rot:#b5402f;
+    --sommer:#d98a2b; --winter:#4f86b8; --jahr:#7d8a96;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html{-webkit-text-size-adjust:100%;}
+  body{margin:0;background:var(--creme);color:var(--blau);font-family:Georgia,"Times New Roman",serif;line-height:1.5;}
+  .huelle{max-width:720px;margin:0 auto;padding:clamp(16px,4.5vw,34px) max(16px,env(safe-area-inset-right,0px)) 56px max(16px,env(safe-area-inset-left,0px));}
+  .zurueck{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--blau);text-decoration:none;display:inline-flex;gap:6px;align-items:center;padding:6px 0;}
+  .augenbraue{font-family:var(--sans);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--honig);font-weight:700;margin:8px 0 6px;}
+  h1{font-size:clamp(26px,7vw,38px);margin:0 0 8px;font-weight:normal;line-height:1.15;}
+  h2{font-size:clamp(20px,5.4vw,25px);font-weight:normal;margin:34px 0 4px;}
+  h2::after{content:"";display:block;width:44px;height:3px;background:var(--honig);border-radius:2px;margin-top:6px;}
+  .intro{font-size:17px;margin:0 0 6px;}
+  .klein{font-family:var(--sans);font-size:13.5px;color:#5a6675;margin:4px 0 12px;}
+  .legende{display:flex;gap:14px;flex-wrap:wrap;font-family:var(--sans);font-size:13px;color:#5a6675;margin:10px 0 0;}
+  .legende span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:6px;background:var(--c);}
+
+  /* Monatswahl */
+  .monate{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;margin:10px 0 14px;}
+  .monate button{font-family:var(--sans);font-size:13px;padding:9px 0;border:1px solid var(--linie);border-radius:9px;background:#fff;color:var(--blau);cursor:pointer;}
+  .monate button.an{background:var(--blau);color:#fff;border-color:var(--blau);}
+  .monate button.heute{box-shadow:inset 0 -3px 0 var(--honig);}
+  @media(max-width:520px){.monate{grid-template-columns:repeat(6,1fr);}}
+  .gruppe{margin:14px 0 4px;font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--c,#5a6675);}
+  .gruppe small{font-weight:400;letter-spacing:0;text-transform:none;color:#6f7b86;}
+  .karten{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:9px;}
+  .karte{display:grid;text-decoration:none;color:var(--blau);background:#fff;border:1px solid var(--linie);border-radius:12px;overflow:hidden;position:relative;}
+  .karte img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--creme-tief);}
+  .karte .bild{overflow:hidden;aspect-ratio:4/3;background-color:#fff;}
+  .tafelbild{background-repeat:no-repeat;background-size:214% auto;background-position:0 11%;}
+  .karte .n{font-size:15px;padding:6px 9px 8px;line-height:1.25;}
+  .karte .marke{position:absolute;left:6px;top:6px;font-family:var(--sans);font-size:10.5px;font-weight:700;color:#fff;background:var(--c);border-radius:999px;padding:2px 8px;}
+  .leer{font-family:var(--sans);font-size:14px;color:#6f7b86;background:#fff;border:1px dashed var(--linie);border-radius:12px;padding:12px 14px;}
+
+  /* Zeitleiste */
+  .zeitleiste{background:#fff;border:1px solid var(--linie);border-radius:14px;padding:10px 8px 10px 12px;}
+  .zl{display:grid;grid-template-columns:minmax(92px,150px) repeat(12,minmax(14px,1fr));align-items:center;}
+  .zl .kopfz{font-family:var(--sans);font-size:11px;color:#6f7b86;text-align:center;padding-bottom:4px;}
+  .zl .kopfz.jetzt{color:var(--honig);font-weight:700;}
+  .zl a{font-size:clamp(12px,3.3vw,13.5px);color:var(--blau);text-decoration:none;padding:3px 6px 3px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .zl a:hover{text-decoration:underline;}
+  .zl .z{height:22px;position:relative;}
+  .zl .z.jetzt{background:rgba(194,138,58,.10);}
+  .zl .z i{position:absolute;inset:5px 0;background:var(--c);}
+  .zl .z i.s{border-top-left-radius:6px;border-bottom-left-radius:6px;left:2px;}
+  .zl .z i.e{border-top-right-radius:6px;border-bottom-right-radius:6px;right:2px;}
+  .zl .trenn{grid-column:1/-1;font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--c);padding:10px 0 4px;}
+
+  /* Wissen */
+  .wissen{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;}
+  .w{background:#fff;border:1px solid var(--linie);border-radius:14px;padding:14px;text-align:left;cursor:pointer;font:inherit;color:inherit;display:grid;gap:6px;align-content:start;}
+  .w .t{font-size:17px;}
+  .w .x{font-size:15px;color:#4c5966;display:none;}
+  .w .tipp{font-family:var(--sans);font-size:12px;color:var(--honig);}
+  .w.offen{background:#f5f8fb;border-color:#9bb0c6;}
+  .w.offen .x{display:block;} .w.offen .tipp{display:none;}
+
+  /* Spiel */
+  .spiel{background:#fff;border:1px solid var(--linie);border-radius:14px;padding:14px;display:grid;gap:12px;}
+  .pool{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{display:flex;align-items:center;gap:7px;border:1px solid var(--linie);background:var(--creme);border-radius:999px;padding:4px 12px 4px 4px;cursor:pointer;font:inherit;font-size:15px;color:var(--blau);}
+  .chip img,.chip .rund{width:34px;height:34px;border-radius:50%;object-fit:cover;flex:none;}
+  .chip .rund{background-size:300% auto;background-position:8% 10%;background-color:#fff;}
+  .chip.sel{border-color:var(--blau);box-shadow:0 0 0 2px var(--blau) inset;background:#fff;}
+  .chip.ok{cursor:default;background:#fff;border-color:var(--gruen);}
+  .chip.wackel{animation:wackel .35s;}
+  @keyframes wackel{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+  .faecher{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+  @media(max-width:520px){.faecher{grid-template-columns:1fr;}}
+  .fach{border:2px dashed var(--c);border-radius:12px;padding:10px;min-height:100px;display:flex;flex-direction:column;gap:7px;cursor:pointer;background:#fcfbf8;}
+  .fach h3{margin:0;font-weight:normal;font-size:16px;color:var(--c);}
+  .fach .pool{gap:6px;}
+  .rueck{font-family:var(--sans);font-size:14.5px;min-height:1.4em;color:#5a6675;}
+  .rueck.gut{color:var(--gruen);} .rueck.schlecht{color:var(--rot);}
+  .knopf{font-family:var(--sans);font-size:14px;border:1px solid var(--blau);background:#fff;color:var(--blau);border-radius:10px;padding:9px 14px;cursor:pointer;}
+  footer{margin-top:40px;border-top:1px solid var(--linie);padding-top:14px;font-family:var(--sans);font-size:12.5px;color:#6f7b86;text-align:center;}
+  footer a{color:var(--blau);}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="huelle">
+  <a class="zurueck" href="../index.html">‹ Fauna Mibaso</a>
+  <div class="augenbraue">Vögel im Jahreslauf</div>
+  <h1>Kommen und Gehen</h1>
+  <p class="intro">Im Frühling kehren die Schwalben zurück, im Herbst ziehen sie wieder fort – und im Winter kommen Gäste aus dem hohen Norden. Hier siehst du, wer wann bei uns ist.</p>
+  <div class="legende"><span style="--c:var(--sommer)">Sommergast – brütet hier, überwintert im Süden</span><span style="--c:var(--winter)">Wintergast – brütet im Norden, überwintert hier</span></div>
+
+  <h2>Wer ist im … da?</h2>
+  <p class="klein">Wähle einen Monat. Der aktuelle Monat ist unterstrichen.</p>
+  <div class="monate" id="monate" role="group" aria-label="Monat wählen"></div>
+  <div id="monatsblick" aria-live="polite"></div>
+
+  <h2>Das ganze Jahr auf einen Blick</h2>
+  <p class="klein">Jede Zeile ist ein Zugvogel, der Balken zeigt, wann er bei uns ist. Tippe einen Namen an, um zur Artseite zu kommen.</p>
+  <div class="zeitleiste"><div class="zl" id="zeitleiste"></div></div>
+
+  <h2>Warum ziehen Vögel?</h2>
+  <p class="klein">Tippe jede Karte an.</p>
+  <div class="wissen" id="wissen"></div>
+
+  <h2>Sortierspiel: Wer kommt, wer geht, wer bleibt?</h2>
+  <p class="klein">Tippe einen Vogel an und dann das passende Fach.</p>
+  <div class="spiel" id="spiel"></div>
+
+  <footer>Monatsangaben: grobe Richtwerte für Mitteleuropa – je nach Wetter und Region kommen und gehen die Vögel früher oder später.<br>
+    <a href="stammbaum.html?ziel=Aves">Alle Vögel im Stammbaum</a> · <a href="../index.html">Fauna Mibaso</a> · © 2026 Michael Baur</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var M = ["Jan","Feb","Mär","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez"];
+  var MLANG = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+  var heute = new Date().getMonth() + 1, wahl = heute, V = [], BY = {};
+  var $ = function(id){ return document.getElementById(id); };
+  var misch = function(a){ a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; };
+  var vor = function(m){ return m === 1 ? 12 : m - 1; }, nach = function(m){ return m === 12 ? 1 : m + 1; };
+  function bild(t){
+    return t.foto ? '<div class="bild"><img src="../images/fotos/' + t.slug + '.jpg" alt="" loading="lazy"></div>'
+                  : '<div class="bild tafelbild" style="background-image:url(../images/tafeln/' + t.slug + '.jpg)" role="img" aria-label="Lehrtafel ' + t.deutsch + '"></div>';
+  }
+  function karte(t, marke){
+    var c = t.zug === "winter" ? "var(--winter)" : t.zug === "sommer" ? "var(--sommer)" : "var(--jahr)";
+    return '<a class="karte" href="../arten/' + t.slug + '.html" style="--c:' + c + '">' + bild(t) +
+      (marke ? '<span class="marke">' + marke + '</span>' : '') + '<span class="n">' + t.deutsch + '</span></a>';
+  }
+
+  /* ---------- Monatsblick ---------- */
+  function monatsblick(){
+    var m = wahl, zug = V.filter(function(t){ return t.zug; });
+    var da = zug.filter(function(t){ return t.monate.indexOf(m) >= 0; });
+    var kommt = da.filter(function(t){ return t.monate.indexOf(vor(m)) < 0; });
+    var geht = da.filter(function(t){ return t.monate.indexOf(nach(m)) < 0 && kommt.indexOf(t) < 0; });
+    var bleibt = da.filter(function(t){ return kommt.indexOf(t) < 0 && geht.indexOf(t) < 0; });
+    var fort = zug.filter(function(t){ return t.monate.indexOf(m) < 0 && t.zug === "sommer"; });
+    var jahr = V.filter(function(t){ return !t.zug && t.monate.length === 12; }).length;
+    var block = function(titel, c, liste, marke, leerText){
+      return '<div class="gruppe" style="--c:' + c + '">' + titel + ' <small>(' + liste.length + ')</small></div>' +
+        (liste.length ? '<div class="karten">' + liste.map(function(t){ return karte(t, marke(t)); }).join("") + '</div>'
+                      : '<div class="leer">' + leerText + '</div>');
+    };
+    var art = function(t){ return t.zug === "winter" ? "Wintergast" : "Sommergast"; };
+    $("monatsblick").innerHTML =
+      block("🛬 Kommen im " + MLANG[m - 1] + " an", "var(--honig)", kommt, art, "In diesem Monat kommt keiner unserer Zugvögel neu an.") +
+      block("🛫 Ziehen nach dem " + MLANG[m - 1] + " fort", "var(--rot)", geht, art, "Nach diesem Monat zieht keiner fort.") +
+      block("🏡 Sind schon länger da und bleiben noch", "var(--blau)", bleibt, art, "Gerade ist kein weiterer Zugvogel hier.") +
+      '<p class="klein" style="margin-top:14px">Dazu kommen <b>' + jahr + ' Jahresvögel</b>, die das ganze Jahr bei uns sind – zum Beispiel Kohlmeise, Amsel und Buntspecht.' +
+      (fort.length ? ' <b>' + fort.length + ' Sommergäste</b> sind im ' + MLANG[m - 1] + ' gerade im Süden – etwa ' +
+        misch(fort).slice(0, 3).map(function(t){ return t.deutsch; }).join(", ") + '.' : '') + '</p>';
+  }
+  function monatsKnoepfe(){
+    $("monate").innerHTML = M.map(function(n, i){
+      return '<button type="button" data-m="' + (i + 1) + '" class="' + (i + 1 === wahl ? "an " : "") + (i + 1 === heute ? "heute" : "") + '" aria-pressed="' + (i + 1 === wahl) + '">' + n + '</button>';
+    }).join("");
+    Array.prototype.forEach.call($("monate").querySelectorAll("button"), function(b){
+      b.onclick = function(){ wahl = +b.dataset.m; monatsKnoepfe(); monatsblick(); zeitleiste(); };
+    });
+  }
+
+  /* ---------- Zeitleiste ---------- */
+  function zeitleiste(){
+    var start = function(t){ // erster Monat der Anwesenheit (bei Wintergästen über den Jahreswechsel)
+      for (var m = 1; m <= 12; m++) if (t.monate.indexOf(m) >= 0 && t.monate.indexOf(vor(m)) < 0) return m; return 1; };
+    var zeile = function(t){
+      var c = t.zug === "winter" ? "var(--winter)" : "var(--sommer)", h = '<a href="../arten/' + t.slug + '.html">' + t.deutsch + '</a>';
+      for (var m = 1; m <= 12; m++) {
+        var an = t.monate.indexOf(m) >= 0, s = an && t.monate.indexOf(vor(m)) < 0, e = an && t.monate.indexOf(nach(m)) < 0;
+        h += '<div class="z' + (m === wahl ? ' jetzt' : '') + '" style="--c:' + c + '">' + (an ? '<i class="' + (s ? 's ' : '') + (e ? 'e' : '') + '"></i>' : '') + '</div>';
+      }
+      return h;
+    };
+    var sommer = V.filter(function(t){ return t.zug === "sommer"; }).sort(function(a, b){ return start(a) - start(b) || b.monate.length - a.monate.length; });
+    var winter = V.filter(function(t){ return t.zug === "winter"; });
+    $("zeitleiste").innerHTML = '<div></div>' + M.map(function(n, i){ return '<div class="kopfz' + (i + 1 === wahl ? ' jetzt' : '') + '">' + n.charAt(0) + '</div>'; }).join("") +
+      '<div class="trenn" style="--c:var(--sommer)">Sommergäste – nach Ankunft sortiert</div>' + sommer.map(zeile).join("") +
+      '<div class="trenn" style="--c:var(--winter)">Wintergäste</div>' + winter.map(zeile).join("");
+  }
+
+  /* ---------- Wissen ---------- */
+  var WISSEN = [
+    ["🐛 Es geht ums Futter", "Nicht die Kälte treibt die Vögel fort, sondern der Hunger. Schwalben und Mauersegler fangen fliegende Insekten – im Winter gibt es bei uns keine. Wer Körner und Samen frisst, kann bleiben."],
+    ["🧭 Wie finden sie den Weg?", "Zugvögel orientieren sich an der Sonne, an den Sternen und am Magnetfeld der Erde. Manche merken sich auch Küsten, Flüsse und Gebirge."],
+    ["🐣 Allein nach Afrika", "Junge Kuckucke kennen ihre Eltern nicht – sie wachsen ja bei fremden Vögeln auf. Trotzdem finden sie ganz allein den Weg nach Afrika. Der Weg ist ihnen angeboren."],
+    ["☁️ Zehn Monate in der Luft", "Mauersegler landen fast nie. Forscher haben gemessen, dass sie bis zu zehn Monate am Stück fliegen – sie fressen, trinken und schlafen sogar im Flug."],
+    ["🗺️ Zwei Wege um das Mittelmeer", "Störche segeln auf warmer Luft. Über dem Meer gibt es keine Aufwinde – darum fliegen sie außen herum: über Gibraltar im Westen oder den Bosporus im Osten."],
+    ["❄️ Gäste aus dem Norden", "Bergfink, Rotdrossel und Seidenschwanz brüten in Skandinavien und Russland. Für sie ist unser Winter mild – sie kommen im Herbst und fliegen im Frühjahr zurück."],
+    ["🔀 Mal so, mal so", "Bei manchen Arten ziehen nur einige Vögel fort, die anderen bleiben. Man nennt sie Teilzieher. Viele Stare, Buchfinken und Ringeltauben ziehen im Herbst nach Südwesten – andere überwintern bei uns."],
+    ["🌍 Das Klima verschiebt den Kalender", "Weil die Winter milder werden, überwintern immer mehr Mönchsgrasmücken und Hausrotschwänze bei uns oder ganz in der Nähe – und viele Zugvögel kommen früher zurück als noch vor 50 Jahren."]
+  ];
+  function wissen(){
+    $("wissen").innerHTML = WISSEN.map(function(w){ return '<button type="button" class="w"><span class="t">' + w[0] + '</span><span class="x">' + w[1] + '</span><span class="tipp">Antippen ›</span></button>'; }).join("");
+    Array.prototype.forEach.call($("wissen").querySelectorAll(".w"), function(b){ b.onclick = function(){ b.classList.toggle("offen"); }; });
+  }
+
+  /* ---------- Sortierspiel ---------- */
+  var SPIEL = {
+    sommer: ["mauersegler", "rauchschwalbe", "mehlschwalbe", "kuckuck", "weissstorch", "nachtigall", "pirol", "neuntoeter", "gartenrotschwanz", "trauerschnaepper"],
+    winter: ["bergfink", "rotdrossel", "seidenschwanz"],
+    jahr: ["kohlmeise", "blaumeise", "haussperling", "amsel", "buntspecht", "kleiber", "elster", "rotkehlchen", "gruenfink", "eichelhaeher"]
+  };
+  var FAECHER = [["sommer", "☀️ Sommergast", "var(--sommer)", "Er kommt im Frühling, brütet bei uns und überwintert im Süden."],
+                 ["winter", "❄️ Wintergast", "var(--winter)", "Er brütet im hohen Norden und überwintert bei uns."],
+                 ["jahr", "🏡 Bleibt das ganze Jahr", "var(--jahr)", "Er ist das ganze Jahr bei uns – ein Jahresvogel."]];
+  function spiel(){
+    var runde = misch(misch(SPIEL.sommer).slice(0, 4).concat(misch(SPIEL.winter).slice(0, 2), misch(SPIEL.jahr).slice(0, 3))).filter(function(s){ return BY[s]; });
+    var el = $("spiel"), sel = null, rest = runde.length, fehler = 0;
+    var klasse = function(s){ return SPIEL.sommer.indexOf(s) >= 0 ? "sommer" : SPIEL.winter.indexOf(s) >= 0 ? "winter" : "jahr"; };
+    el.innerHTML = '<div class="pool" id="pool">' + runde.map(function(s){ var t = BY[s];
+        return '<button type="button" class="chip" data-s="' + s + '">' + (t.foto ? '<img src="../images/fotos/' + s + '.jpg" alt="">' : '<span class="tafelbild rund" style="background-image:url(../images/tafeln/' + s + '.jpg)"></span>') + '' + t.deutsch + '</button>'; }).join("") + '</div>' +
+      '<div class="faecher">' + FAECHER.map(function(f){ return '<div class="fach" role="button" tabindex="0" data-f="' + f[0] + '" style="--c:' + f[2] + '"><h3>' + f[1] + '</h3><div class="pool"></div></div>'; }).join("") + '</div>' +
+      '<p class="rueck" aria-live="polite">Tippe zuerst einen Vogel an.</p>';
+    var rueck = el.querySelector(".rueck");
+    Array.prototype.forEach.call(el.querySelectorAll("#pool .chip"), function(c){
+      c.onclick = function(){ if (c.classList.contains("ok")) return; Array.prototype.forEach.call(el.querySelectorAll(".chip.sel"), function(x){ x.classList.remove("sel"); }); sel = c; c.classList.add("sel"); };
+    });
+    Array.prototype.forEach.call(el.querySelectorAll(".fach"), function(f){
+      f.onkeydown = function(e){ if (e.key === "Enter" || e.key === " ") { e.preventDefault(); f.click(); } };
+      f.onclick = function(){
+        if (!sel) { rueck.className = "rueck"; rueck.textContent = "Tippe zuerst einen Vogel an."; return; }
+        var s = sel.dataset.s, k = klasse(s), t = BY[s];
+        if (k === f.dataset.f) {
+          sel.classList.remove("sel"); sel.classList.add("ok"); f.querySelector(".pool").appendChild(sel); sel = null; rest--;
+          var monate = t.zug ? " Bei uns von " + MLANG[t.monate[0] - 1] + " bis " + MLANG[t.monate[t.monate.length - 1] - 1] + "." : "";
+          rueck.className = "rueck gut"; rueck.textContent = "Richtig! " + t.deutsch + ": " + FAECHER.filter(function(x){ return x[0] === k; })[0][3] + monate;
+          if (!rest) {
+            rueck.textContent += fehler ? " – Geschafft, mit " + fehler + " Fehlversuch" + (fehler > 1 ? "en" : "") + "." : " – Alles auf Anhieb richtig! 🎉";
+            el.insertAdjacentHTML("beforeend", '<div><button type="button" class="knopf" id="neuRunde">↻ Neue Runde mit anderen Vögeln</button></div>');
+            $("neuRunde").onclick = spiel;
+          }
+        } else {
+          fehler++; var c = sel; c.classList.add("wackel"); setTimeout(function(){ c.classList.remove("wackel"); }, 400);
+          rueck.className = "rueck schlecht"; rueck.textContent = "Nicht ganz – probier ein anderes Fach.";
+        }
+      };
+    });
+  }
+
+  wissen();
+  fetch("../tiere.json").then(function(r){ return r.json(); }).then(function(d){
+    V = d.filter(function(t){ return t.gruppe === "Vögel"; });
+    V.forEach(function(t){ BY[t.slug] = t; });
+    monatsKnoepfe(); monatsblick(); zeitleiste(); spiel();
+  }).catch(function(){ $("monatsblick").innerHTML = '<div class="leer">Die Vogeldaten konnten nicht geladen werden.</div>'; });
+})();
+</script>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

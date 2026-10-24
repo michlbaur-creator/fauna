@@ -268,7 +268,8 @@
     "./arten/haubentaucher.html",
     "./arten/zwergtaucher.html",
     "./arten/graureiher.html",
-    "./arten/haushuhn.html"
+    "./arten/haushuhn.html",
+    "./interaktiv/zugvoegel.html"
   ],
   "media": [
     "./assets/apple-touch-icon.png",
